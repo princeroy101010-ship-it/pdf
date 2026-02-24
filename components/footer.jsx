@@ -15,7 +15,7 @@ const Footer = () => {
                 <Files className="text-white" size={20} />
               </div>
               <span className="text-xl font-black text-gray-800 tracking-tight">
-                VIP<span className="text-rose-600">PDF</span>
+                Free<span className="text-rose-600">PDF</span>Convert
               </span>
             </Link>
             <p className="text-gray-500 mb-6 max-w-sm leading-relaxed">
