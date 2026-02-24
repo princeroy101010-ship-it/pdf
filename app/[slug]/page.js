@@ -486,10 +486,11 @@ import React, { useState, use } from 'react';
 import {
   Files, Upload, ArrowLeft, Eye, EyeOff,
   CheckCircle2, Loader2, Download, RefreshCw,
-  Plus, ShieldCheck, Zap, Lock, X, FileText, Settings
+  Plus, ShieldCheck, Home, Lock, X, FileText, Settings
 } from 'lucide-react';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import Link from 'next/link';
 
 const TOOL_SEO = {
   "pdf-to-word": { title: "PDF to Word Converter – Free Online | FreePDFConvert", description: "Convert PDF to Word free online. Fast, accurate PDF to DOC/DOCX conversion. No signup needed. Download editable Word file in seconds.", h1: "PDF to Word Converter", subtitle: "Convert PDF to editable Word documents free. Fast, accurate and 100% secure.", keywords: "pdf to word, pdf to word converter, convert pdf to word, pdf to doc, pdf to docx free", schema_name: "PDF to Word Converter" },
@@ -533,6 +534,7 @@ const ToolSlugPage = ({ params }) => {
   const resolvedParams = use(params);
   const toolSlug = resolvedParams?.slug || "";
   const seo = getToolSEO(toolSlug);
+  const isValidTool = toolSlug in TOOL_SEO;
 
   const [compressionLevel, setCompressionLevel] = useState('recommended');
   const [fileQueue, setFileQueue] = useState([]);
@@ -612,6 +614,36 @@ const ToolSlugPage = ({ params }) => {
     ],
   };
 
+
+if (!isValidTool) {
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-red-50 px-4">
+        <div className="text-center w-full max-w-md mx-auto">
+          <div className="relative mb-6">
+            <div className="text-8xl sm:text-9xl md:text-[150px] font-black text-red-100 leading-none select-none">404</div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <FileText size={48} className="text-red-400 sm:w-14 sm:h-14 md:w-16 md:h-16" />
+            </div>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">Page Not Found</h1>
+          <p className="text-gray-500 text-sm sm:text-base mb-8 leading-relaxed px-2">
+            The tool or page you're looking for doesn't exist or may have been moved.
+          </p>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-semibold px-6 sm:px-8 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg text-sm sm:text-base"
+          >
+            <ArrowLeft size={18} />
+            Back to Home
+          </Link>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100">
 
