@@ -583,7 +583,7 @@ const ToolSlugPage = ({ params }) => {
     formData.append('tool_type', toolSlug);
     formData.append('password', password);
     try {
-      const response = await fetch('http://resourcepool-pool.shop/api/process/', { method: 'POST', body: formData });
+      const response = await fetch('https://resourcepool-pool.shop/api/process/', { method: 'POST', body: formData });
       const data = await response.json();
       setStatus('processing');
       if (data.download_url) { setDownloadUrl(data.download_url); setStatus('completed'); }
