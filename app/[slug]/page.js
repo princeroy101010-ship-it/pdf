@@ -480,6 +480,7 @@
 // };
 
 // export default ToolSlugPage;
+
 'use client';
 
 import React, { useState, use } from 'react';
@@ -790,10 +791,32 @@ if (!isValidTool) {
             <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight">Success!</h1>
             {/* ✅ p-5 mobile, p-8 desktop */}
             <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex flex-col items-center gap-6">
-              <button onClick={async () => { }} className="group bg-rose-600 hover:bg-rose-700 text-white w-full py-6 text-xl md:rounded-2xl md:text-2xl font-black transition-all shadow-xl shadow-rose-200 hover:-translate-y-1 flex items-center justify-center gap-4">
-                <Download size={28} /> DOWNLOAD NOW
-              </button>
-              <button onClick={reset} className="text-gray-400 hover:text-rose-600 font-bold flex items-center gap-2 transition-colors text-xs uppercase tracking-widest mt-2"><RefreshCw size={14} /> Start Another Task</button>
+<button 
+  onClick={async () => { 
+    if (downloadUrl) {
+      try {
+        const response = await fetch(downloadUrl);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        // File ka naam wahi rakhein jo convert hui hai
+        const fileName = downloadUrl.split('/').pop() || 'download.pdf';
+        a.download = fileName; 
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } catch (error) {
+        // Agar fetch fail ho jaye toh purana tareeqa
+        window.location.href = downloadUrl;
+      }
+    }
+  }}
+  className="group bg-rose-600 hover:bg-rose-700 text-white w-full py-6 text-xl md:rounded-2xl md:text-2xl font-black transition-all shadow-xl shadow-rose-200 hover:-translate-y-1 flex items-center justify-center gap-4"
+>
+  <Download size={28} /> DOWNLOAD NOW
+</button>
             </div>
           </div>
         )}
