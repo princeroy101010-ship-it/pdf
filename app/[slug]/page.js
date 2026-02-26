@@ -584,10 +584,20 @@ const ToolSlugPage = ({ params }) => {
     formData.append('tool_type', toolSlug);
     formData.append('password', password);
     try {
-      const response = await fetch('https://resourcepool-pool.shop/api/process/', { method: 'POST', body: formData });
+      const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 60000);
+      const response = await fetch('https://resourcepool-pool.shop/api/process/', { method: 'POST', body: formData ,  signal: controller.signal  // ✅ yeh add karo
+});
+      clearTimeout(timeout);
+
       const data = await response.json();
-      setStatus('processing');
-      if (data.download_url) { setDownloadUrl(data.download_url); setStatus('completed'); }
+if (data.download_url) {
+  setDownloadUrl(data.download_url);
+  setStatus('completed');  // ✅ seedha completed
+} else {
+  setStatus('idle');
+  alert("⚠️ Conversion failed. Please try again.");
+}
     } catch (error) { alert("⚠️ " + error.message); setStatus('idle'); }
   };
 
