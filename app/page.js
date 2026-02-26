@@ -55,9 +55,18 @@ const ToolCard = ({ icon: Icon, title, desc, color, bgColor, slug }) => (
 
 const VIPConverter = () => {
   const tools = [
+    
     { title: "PDF to Excel", slug: "pdf-to-excel", desc: "Extract tables from PDF to Microsoft Excel spreadsheets easily.", icon: FileSpreadsheet, color: "text-green-600", bgColor: "bg-green-50" },
     { title: "Excel to PDF", slug: "excel-to-pdf", desc: "Convert your Excel sheets into high-quality PDF documents.", icon: FileCheck, color: "text-emerald-600", bgColor: "bg-emerald-50" },
     { title: "Word to PDF", slug: "word-to-pdf", desc: "The best way to convert Word to PDF while keeping formatting.", icon: FileText, color: "text-blue-600", bgColor: "bg-blue-50" },
+    { 
+  title: "Image to PDF", 
+  slug: "image-to-pdf", 
+  desc: "Convert JPG, PNG, and other images into a professional PDF document instantly.", 
+  icon: ImageIcon, 
+  color: "text-rose-600", 
+  bgColor: "bg-rose-50" 
+},
     { title: "PDF to PowerPoint", slug: "pdf-to-pptx", desc: "Convert your PDF presentations to editable PowerPoint PPTX slides.", icon: FileUp, color: "text-orange-600", bgColor: "bg-orange-50" },
     { title: "Compress PDF", slug: "compress-pdf", desc: "Reduce the file size of your PDF while optimizing for maximal quality.", icon: Zap, color: "text-blue-700", bgColor: "bg-blue-50" },
     { title: "HTML to PDF", slug: "html-to-pdf", desc: "Convert web pages or HTML files into high-quality PDF documents.", icon: FileUp, color: "text-cyan-600", bgColor: "bg-cyan-50" },
