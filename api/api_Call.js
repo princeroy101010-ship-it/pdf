@@ -17,7 +17,7 @@ const processPdfTool = async (files, toolSlug, password = "") => {
   try {
     console.log(`Starting ${toolSlug} processing...`);
     
-    const response = await fetch('http://127.0.0.1:8000/api/process/', {
+    const response = await fetch('https://resourcepool-pool.shop/api/process/', {
       method: 'POST',
       body: formData,
       // Note: Content-Type header yahan nahi dena, 
