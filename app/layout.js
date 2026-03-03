@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -13,16 +14,14 @@ const geistMono = Geist_Mono({
 });
 
 // ============================================================
-// ✅ ADVANCED SEO METADATA — freepdfconvert.io
-// Target Keywords: free pdf converter, pdf to word, merge pdf,
-// compress pdf, pdf online, convert pdf free
+// ✅ GLOBAL SEO METADATA — freepdfconvert.io
 // ============================================================
 export const metadata = {
   metadataBase: new URL('https://freepdfconvert.io'),
 
   title: {
     default: "Free PDF Converter Online – Convert, Merge & Compress PDF",
-    template: "%s | FreePDFConvert.io",
+    template: "%s | FreePDFConvert",
   },
 
   description:
@@ -97,7 +96,7 @@ export const metadata = {
     },
   },
 
-  // ✅ Verification tags — apni Google Search Console se copy karo
+  // ✅ Google Search Console verification — apna code yahan add karo
   // verification: {
   //   google: "YOUR_GOOGLE_VERIFICATION_CODE",
   //   bing: "YOUR_BING_VERIFICATION_CODE",
@@ -105,9 +104,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // ============================================================
-  // ✅ SCHEMA 1: WebApplication (Google Rich Snippet for Homepage)
-  // ============================================================
+
+  // ── Schema 1: WebApplication ──────────────────────────────
   const webAppSchema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -141,18 +139,24 @@ export default function RootLayout({ children }) {
       "Word to PDF",
       "Protect PDF",
       "Unlock PDF",
+      "Split PDF",
+      "HTML to PDF",
+      "Image to PDF",
     ],
   };
 
-  // ============================================================
-  // ✅ SCHEMA 2: Organization (Brand Authority)
-  // ============================================================
+  // ── Schema 2: Organization ────────────────────────────────
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "FreePDFConvert",
     url: "https://freepdfconvert.io",
-    logo: "https://freepdfconvert.io/logo.png",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://freepdfconvert.io/logo.png",
+      width: 200,
+      height: 60,
+    },
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
@@ -161,15 +165,14 @@ export default function RootLayout({ children }) {
     },
   };
 
-  // ============================================================
-  // ✅ SCHEMA 3: Website + Sitelinks SearchBox
-  // ============================================================
+  // ── Schema 3: WebSite + SearchBox ────────────────────────
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "FreePDFConvert",
     url: "https://freepdfconvert.io",
     description: "Free online PDF tools – convert, merge, compress & protect PDF files.",
+    inLanguage: "en",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -180,9 +183,7 @@ export default function RootLayout({ children }) {
     },
   };
 
-  // ============================================================
-  // ✅ SCHEMA 4: FAQPage (Voice Search + Featured Snippets)
-  // ============================================================
+  // ── Schema 4: FAQPage (Global — Voice Search) ─────────────
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -219,33 +220,50 @@ export default function RootLayout({ children }) {
           text: "Yes. All uploaded files are encrypted via SSL and automatically deleted after processing. We never store or share your documents.",
         },
       },
+      {
+        "@type": "Question",
+        name: "Do I need to create an account to use FreePDFConvert?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No, you do not need to create an account or sign up. All PDF tools are available instantly without any registration.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What file formats does FreePDFConvert support?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "FreePDFConvert supports PDF, Word (DOC, DOCX), Excel (XLS, XLSX), PowerPoint (PPT, PPTX), JPG, PNG, HTML and TXT file formats.",
+        },
+      },
     ],
   };
 
   return (
     <html lang="en">
       <head>
-        {/* ✅ All Schema Markups */}
+        {/* ✅ Schema 1 — WebApplication */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
         />
+        {/* ✅ Schema 2 — Organization */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
+        {/* ✅ Schema 3 — WebSite + SearchBox */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        {/* ✅ Schema 4 — FAQPage */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Analytics />
         <SpeedInsights />

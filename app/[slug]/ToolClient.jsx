@@ -27,7 +27,7 @@ export default function ToolClient({ toolName, toolSlug }) {
     formData.append('tool_type', toolSlug);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/process/', {
+      const response = await fetch('https://resourcepool-pool.shop/api/process/', {
         method: 'POST',
         body: formData,
       });

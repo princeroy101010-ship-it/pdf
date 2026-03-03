@@ -1,55 +1,49 @@
-// ============================================================
-// ✅ SITEMAP — app/sitemap.js
-// Next.js 14 App Router dynamic sitemap
-// Automatically generates sitemap.xml at /sitemap.xml
-// Submit this URL to Google Search Console:
-// https://freepdfconvert.io/sitemap.xml
-// ============================================================
+// app/sitemap.js
 
 export default function sitemap() {
-  const BASE_URL = "https://freepdfconvert.io";
+  const baseUrl = "https://freepdfconvert.io";
 
-  // ✅ All tool slugs — add new tools here anytime
   const tools = [
-    "pdf-to-word",
-    "word-to-pdf",
-    "pdf-to-excel",
-    "excel-to-pdf",
-    "pdf-to-jpg",
-    "jpg-to-pdf",
-    "pdf-to-png",
-    "png-to-pdf",
-    "merge-pdf",
-    "compress-pdf",
-    "pdf-to-pptx",
-    "pptx-to-pdf",
-    "protect-pdf",
-    "unlock-pdf",
-    "html-to-pdf",
-    "pdf-to-html",
-    "txt-to-pdf",
-    "pdf-to-txt",
-    "txt-to-word",
-    "word-to-txt",
-    "pptx-to-txt",
-    "txt-to-pptx",
+    "pdf-to-word", "word-to-pdf", "pdf-to-excel", "excel-to-pdf",
+    "image-to-pdf", "pdf-to-jpg", "jpg-to-pdf", "merge-pdf",
+    "compress-pdf", "pdf-to-pptx", "pptx-to-pdf", "pdf-to-png",
+    "png-to-pdf", "protect-pdf", "unlock-pdf", "html-to-pdf",
+    "Text-to-pdf", "pdf-to-Text", "Text-to-word", "word-to-Text",
+    "pptx-to-Text", "Text-to-pptx", "pdf-to-html", "split-pdf",
+    "extract-text-from-pdf", "extract-text-from-image",
   ];
 
-  // ✅ Homepage entry
-  const homepage = {
-    url: BASE_URL,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 1.0,
-  };
-
-  // ✅ Tool pages — high priority, they rank individually
+  // ── Tool pages ─────────────────────────────────────────────
   const toolPages = tools.map((slug) => ({
-    url: `${BASE_URL}/${slug}`,
+    url: `${baseUrl}/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
-    priority: 0.9,
+    priority: 0.8,
   }));
 
-  return [homepage, ...toolPages];
+  // ── Static pages — jo tumhare paas hain woh rakho ──────────
+  const staticPages = [
+    { url: `${baseUrl}/about-us`,       priority: 0.5, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/contact-us`,     priority: 0.5, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/privacy-policy`,     priority: 0.4, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/terms-of-service`,       priority: 0.4, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/how-work`,        priority: 0.6, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/cookie-policy`,        priority: 0.6, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/features`,        priority: 0.6, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/security`,        priority: 0.6, changeFrequency: "yearly"  },
+  ].map((page) => ({ ...page, lastModified: new Date() }));
+
+  return [
+    // Homepage — highest priority
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1.0,
+    },
+    // Tool pages
+    ...toolPages,
+    // Static pages
+    ...staticPages,
+  ];
 }
