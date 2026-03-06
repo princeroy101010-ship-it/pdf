@@ -18,7 +18,9 @@ const geistMono = Geist_Mono({
 // ============================================================
 export const metadata = {
   metadataBase: new URL('https://freepdfconvert.io'),
-
+verification: {
+    google: "YOUR_GOOGLE_VERIFICATION_CODE", // Yahan apna code daalein
+  },
   title: {
     default: "Free PDF Converter Online – Convert, Merge & Compress PDF",
     template: "%s | FreePDFConvert",
@@ -242,10 +244,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-X7HW9F8FV6"
+        <meta name="google-site-verification" content="G-X7HW9F8FV6" />
+        {/* 2. Google Tag (gtag.js) - Script 1 (Load script) */}
+        <Script 
+          src="https://www.googletagmanager.com/gtag/js?id=G-X7HW9F8FV6" 
+          strategy="afterInteractive" 
         />
+        
+        {/* 3. Google Tag (gtag.js) - Script 2 (Initialize) */}
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
