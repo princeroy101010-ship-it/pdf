@@ -185,61 +185,7 @@ export default function RootLayout({ children }) {
     },
   };
 
-  // ── Schema 4: FAQPage (Global — Voice Search) ─────────────
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Is FreePDFConvert free to use?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes, FreePDFConvert is 100% free. All PDF tools including PDF to Word, merge PDF, compress PDF, and more are completely free with no signup required.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do I convert PDF to Word for free?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Go to freepdfconvert.io/pdf-to-word, upload your PDF file, and click Convert. Your Word document will be ready to download in seconds.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do I merge multiple PDF files into one?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Visit freepdfconvert.io/merge-pdf, select or drag your PDF files, arrange them in order, and click Merge. Download your combined PDF instantly.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is my data safe when using FreePDFConvert?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. All uploaded files are encrypted via SSL and automatically deleted after processing. We never store or share your documents.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do I need to create an account to use FreePDFConvert?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No, you do not need to create an account or sign up. All PDF tools are available instantly without any registration.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What file formats does FreePDFConvert support?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "FreePDFConvert supports PDF, Word (DOC, DOCX), Excel (XLS, XLSX), PowerPoint (PPT, PPTX), JPG, PNG, HTML and TXT file formats.",
-        },
-      },
-    ],
-  };
+
 
   return (
     <html lang="en">
@@ -275,11 +221,7 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        {/* ✅ Schema 4 — FAQPage */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
+      
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}

@@ -61,7 +61,8 @@ export default function ToolClient({ toolName, toolSlug }) {
             <Files className="text-white" size={24} />
           </div>
           <span className="text-2xl font-black text-gray-800 tracking-tight">
-            VIP<span className="text-rose-600">PDF</span>
+           Free<span className="text-rose-600">PDF</span>Convert
+
           </span>
         </div>
         <button onClick={() => window.history.back()} className="flex items-center gap-2 text-gray-500 hover:text-rose-600 font-bold transition-all group">
