@@ -6,7 +6,7 @@ import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
-const config = TOOLS_CONFIG['Text-to-pdf'];
+const config = TOOLS_CONFIG['text-to-pdf'];
 const COLOR = 'rose-600';
 const BTN_TEXT = 'Select Text File';
 const DL_TEXT = 'DOWNLOAD PDF';

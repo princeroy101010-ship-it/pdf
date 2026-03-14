@@ -6,7 +6,7 @@ import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
-const config = TOOLS_CONFIG['Text-to-word'];
+const config = TOOLS_CONFIG['text-to-word'];
 const COLOR = 'rose-600';
 const BTN_TEXT = 'Select Text File';
 const DL_TEXT = 'DOWNLOAD WORD FILE';
