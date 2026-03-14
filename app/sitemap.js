@@ -8,8 +8,8 @@ export default function sitemap() {
     "image-to-pdf", "pdf-to-jpg", "jpg-to-pdf", "merge-pdf",
     "compress-pdf", "pdf-to-pptx", "pptx-to-pdf", "pdf-to-png",
     "png-to-pdf", "protect-pdf", "unlock-pdf", "html-to-pdf",
-    "Text-to-pdf", "pdf-to-Text", "Text-to-word", "word-to-Text",
-    "pptx-to-Text", "Text-to-pptx", "pdf-to-html", "split-pdf",
+    "text-to-pdf", "pdf-to-text", "text-to-word", "word-to-text",
+    "pptx-to-text", "text-to-pptx", "pdf-to-html", "split-pdf",
     "extract-text-from-pdf", "extract-text-from-image",
   ];
 
