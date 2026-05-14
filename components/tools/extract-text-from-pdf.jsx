@@ -1,48 +1,96 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
+import Head from 'next/head';
 import {
-  Plus, FileText, Loader2, CheckCircle2,
-  Copy, ClipboardCheck, RefreshCw, AlertCircle
+  Plus, Loader2, CheckCircle2,
+  Copy, ClipboardCheck, RefreshCw, AlertCircle, Search, ShieldCheck, Zap
 } from 'lucide-react';
 import Tesseract from 'tesseract.js';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 
 // ─── PDF.js worker fix ───────────────────────────────────────────────────────
-// We import the worker as a bundled entry so Next.js handles it correctly.
-// No external CDN needed — avoids version mismatch & fetch errors entirely.
 let pdfjs = null;
 
 async function getPdfJs() {
   if (pdfjs) return pdfjs;
-
   const lib = await import('pdfjs-dist');
-
-  // Next.js / Webpack: point workerSrc to the file inside node_modules
-  // so it is served from the same origin (no CDN fetch required).
   lib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.mjs',
     import.meta.url
   ).toString();
-
   pdfjs = lib;
   return lib;
 }
-// ────────────────────────────────────────────────────────────────────────────
 
 const fmt = (n) => n.toLocaleString();
 
+// ─── SEO: JSON-LD Schema ─────────────────────────────────────────────────────
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Online OCR – Extract Text from PDF",
+  "url": "https://freepdfconvert.io/extract-text-from-pdf",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "Free online OCR tool to extract text from scanned PDFs. No signup required. 100% secure browser-based processing.",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I extract text from a scanned PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upload your scanned PDF to FreePDFConvert's free OCR tool. It will automatically detect and extract all text using AI-powered OCR technology. No signup required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this OCR tool free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, FreePDFConvert's OCR tool is 100% free with no hidden fees, no watermarks, and no signup required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my PDF file safe to upload?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Your PDF is processed entirely in your browser using client-side technology. Files never leave your device and are never uploaded to any server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work on scanned PDFs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. FreePDFConvert uses the Tesseract OCR engine to read scanned and image-based PDFs and convert them to editable text."
+      }
+    }
+  ]
+};
+
 export default function OCRToolPage() {
   const [extractedText, setExtractedText] = useState('');
-  const [status, setStatus]               = useState('idle');   // idle | processing | completed | error
-  const [progress, setProgress]           = useState(0);
+  const [status, setStatus] = useState('idle');
+  const [progress, setProgress] = useState(0);
   const [progressLabel, setProgressLabel] = useState('');
-  const [isCopied, setIsCopied]           = useState(false);
-  const [fileName, setFileName]           = useState('');
-  const [errorMsg, setErrorMsg]           = useState('');
+  const [isCopied, setIsCopied] = useState(false);
+  const [fileName, setFileName] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  // ── OCR a single canvas blob (for scanned PDF pages) ──
   const ocrBlob = async (blob, pageIdx, totalPages) => {
     const { data: { text } } = await Tesseract.recognize(blob, 'eng', {
       logger: (m) => {
@@ -55,22 +103,28 @@ export default function OCRToolPage() {
     return text;
   };
 
-  // ── Render a PDF page to canvas → blob ──
   const pageToBlob = (page) =>
     new Promise((resolve, reject) => {
       const viewport = page.getViewport({ scale: 2.0 });
-      const canvas   = document.createElement('canvas');
-      canvas.width   = viewport.width;
-      canvas.height  = viewport.height;
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
       page
         .render({ canvasContext: canvas.getContext('2d'), viewport })
         .promise.then(() => canvas.toBlob(resolve, 'image/png'))
         .catch(reject);
     });
 
-  // ── Main handler ──
   const handleFile = async (file) => {
     if (!file) return;
+
+    // ── PDF only ─────────────────────────────────────────────────────────────
+    if (file.type !== 'application/pdf') {
+      setErrorMsg('Only PDF files are supported. Please upload a .pdf file.');
+      setStatus('error');
+      return;
+    }
+
     setFileName(file.name);
     setStatus('processing');
     setProgress(0);
@@ -78,97 +132,76 @@ export default function OCRToolPage() {
     setErrorMsg('');
 
     try {
-      // ── IMAGE ──
-      if (file.type.startsWith('image/')) {
-        setProgressLabel('Scanning image…');
-        const { data: { text } } = await Tesseract.recognize(file, 'eng', {
-          logger: (m) => {
-            if (m.status === 'recognizing text')
-              setProgress(Math.round(m.progress * 100));
-          },
-        });
-        setExtractedText(text.trim() || '(No text detected)');
+      setProgressLabel('Initializing OCR Engine...');
+      const lib = await getPdfJs();
+      const buffer = await file.arrayBuffer();
+      const pdf = await lib.getDocument({ data: new Uint8Array(buffer) }).promise;
+      const total = pdf.numPages;
+
+      // Try native text extraction first
+      let nativeText = '';
+      let hasText = false;
+
+      for (let i = 1; i <= total; i++) {
+        setProgressLabel(`Reading Page ${i} of ${total}...`);
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const pageText = content.items.map(item => item.str).join(' ');
+        if (pageText.trim().length > 30) hasText = true;
+        nativeText += pageText + '\n\n';
+        setProgress(Math.round((i / total) * (hasText ? 100 : 50)));
+      }
+
+      if (hasText) {
+        setExtractedText(nativeText.trim());
         setStatus('completed');
         setProgress(100);
         return;
       }
 
-      // ── PDF ──
-      if (file.type === 'application/pdf') {
-        setProgressLabel('Loading PDF engine…');
-        const lib = await getPdfJs();
-
-        setProgressLabel('Parsing PDF…');
-        const buffer  = await file.arrayBuffer();
-        const pdf     = await lib.getDocument({ data: new Uint8Array(buffer) }).promise;
-        const total   = pdf.numPages;
-
-        // Pass 1 — native text layer (instant for text-based PDFs)
-        setProgressLabel(`Extracting text (${total} page${total > 1 ? 's' : ''})…`);
-        let nativeText = '';
-        let hasText    = false;
-
-        for (let i = 1; i <= total; i++) {
-          const page    = await pdf.getPage(i);
-          const content = await page.getTextContent();
-
-          let pageText = '';
-          let lastY    = null;
-
-          for (const item of content.items) {
-            if (!item.str) continue;
-            if (lastY !== null && Math.abs(item.transform[5] - lastY) > 5)
-              pageText += '\n';
-            pageText += item.str + ' ';
-            lastY = item.transform[5];
-          }
-
-          const trimmed = pageText.trim();
-          if (trimmed.length > 30) hasText = true;
-          nativeText += trimmed + '\n\n';
-          setProgress(Math.round((i / total) * (hasText ? 100 : 50)));
-        }
-
-        if (hasText) {
-          setExtractedText(nativeText.trim());
-          setStatus('completed');
-          setProgress(100);
-          return;
-        }
-
-        // Pass 2 — scanned PDF: render each page → Tesseract OCR
-        setProgressLabel('Scanned PDF — running OCR on each page…');
-        let ocrText = '';
-
-        for (let i = 1; i <= total; i++) {
-          setProgressLabel(`OCR: page ${i} / ${total}…`);
-          const page  = await pdf.getPage(i);
-          const blob  = await pageToBlob(page);
-          const text  = await ocrBlob(blob, i - 1, total);
-          ocrText += (total > 1 ? `─── Page ${i} ───\n` : '') + text.trim() + '\n\n';
-        }
-
-        setExtractedText(ocrText.trim() || '(No text could be extracted)');
-        setStatus('completed');
-        setProgress(100);
-        return;
+      // Scanned PDF — use OCR
+      let ocrText = '';
+      for (let i = 1; i <= total; i++) {
+        setProgressLabel(`AI Scanning Page ${i} of ${total}...`);
+        const page = await pdf.getPage(i);
+        const blob = await pageToBlob(page);
+        const text = await ocrBlob(blob, i - 1, total);
+        ocrText += (total > 1 ? `─── Page ${i} ───\n` : '') + text.trim() + '\n\n';
       }
 
-      throw new Error('Unsupported file type. Please upload a PDF or image.');
+      setExtractedText(ocrText.trim() || '(No text found in this PDF)');
+      setStatus('completed');
+      setProgress(100);
 
     } catch (err) {
-      console.error(err);
-      setErrorMsg(err.message || 'Unknown error');
+      setErrorMsg(err.message || 'An error occurred during text extraction.');
       setStatus('error');
     }
   };
 
-  const onInputChange = (e) => handleFile(e.target.files?.[0]);
+  // Drag & drop support
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file) handleFile(file);
+  };
+
+  const handleDragOver = (e) => e.preventDefault();
 
   const copyText = () => {
     navigator.clipboard.writeText(extractedText);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
+  };
+
+  const downloadText = () => {
+    const blob = new Blob([extractedText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName.replace('.pdf', '') + '-extracted.txt';
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const reset = () => {
@@ -180,130 +213,250 @@ export default function OCRToolPage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-              <Header />
 
-      <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-10 px-4 md:px-6">
+      {/* ── SEO HEAD ─────────────────────────────────────────────────────────── */}
+      <Head>
+        {/* Primary SEO */}
+        <title>Free Online OCR – Extract Text from Scanned PDF | FreePDFConvert</title>
+        <meta name="description" content="Extract text from scanned PDF files free online. AI-powered OCR converts non-selectable PDF text into editable content instantly. No signup, no watermark." />
+        <meta name="keywords" content="extract text from pdf, pdf ocr online free, ocr pdf to text, scanned pdf to text, pdf text extractor, copy text from pdf online, free ocr tool" />
 
-        {/* ── IDLE ── */}
-        {status === 'idle' && (
-          <article className="w-full max-w-4xl flex flex-col items-center">
-            <header className="text-center mb-12">
-              <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                OCR Extractor
-              </h1>
-              <p className="text-gray-500 font-medium">
-                Extract text from images &amp; PDFs — including scanned documents.
-              </p>
-            </header>
+        {/* Canonical & hreflang */}
+        <link rel="canonical" href="https://freepdfconvert.io/extract-text-from-pdf" />
+        <link rel="alternate" hreflang="en" href="https://freepdfconvert.io/extract-text-from-pdf" />
 
-            <div className="relative mb-20 w-full max-w-2xl min-h-[300px] rounded-[2.5rem] border-2 border-dashed border-gray-200 bg-white hover:border-rose-300 flex flex-col items-center justify-center p-8 transition-all ">
+        {/* Robots */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Free Online OCR – Extract Text from Scanned PDF | FreePDFConvert" />
+        <meta property="og:description" content="Extract text from any scanned PDF free online. AI OCR engine. No signup, no watermark, 100% private browser-based processing." />
+        <meta property="og:url" content="https://freepdfconvert.io/extract-text-from-pdf" />
+        <meta property="og:site_name" content="FreePDFConvert" />
+        <meta property="og:image" content="https://freepdfconvert.io/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Free OCR tool to extract text from scanned PDF" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@freepdfconvert" />
+        <meta name="twitter:title" content="Free Online OCR – Extract Text from Scanned PDF" />
+        <meta name="twitter:description" content="Extract text from scanned PDFs free. AI OCR. No signup required." />
+        <meta name="twitter:image" content="https://freepdfconvert.io/og-image.png" />
+
+        {/* Structured Data: WebApplication */}
+        <script type="application/ld+json">{JSON.stringify(toolSchema)}</script>
+
+        {/* Structured Data: FAQ — helps Google show rich results */}
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Head>
+
+      <Header />
+
+      <main className="flex-1 flex flex-col items-center justify-start pt-10 px-4 md:px-6 max-w-5xl mx-auto w-full">
+
+        {/* ── SEO: H1 + Intro ──────────────────────────────────────────────── */}
+        <header className="text-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+            Free Online <span className="text-rose-600">OCR</span> – Extract Text from PDF
+          </h1>
+          <p className="text-gray-500 font-medium text-lg max-w-2xl mx-auto">
+            Convert scanned and non-selectable PDFs into editable text instantly.
+            100% free, no signup, no watermark. AI-powered accuracy.
+          </p>
+        </header>
+
+        {/* ── TOOL CORE ────────────────────────────────────────────────────── */}
+        <section aria-label="PDF OCR Tool" className="w-full flex justify-center">
+
+          {/* IDLE: Upload Zone */}
+          {status === 'idle' && (
+            <div
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              className="w-full max-w-2xl min-h-[320px] rounded-[2.5rem] border-2 border-dashed border-gray-200 bg-white hover:border-rose-300 flex flex-col items-center justify-center p-8 transition-all shadow-sm"
+            >
               <label className="group cursor-pointer flex flex-col items-center w-full gap-4">
-                <div className="bg-rose-600 text-white p-6 rounded-2xl shadow-xl transition-all group-hover:scale-110">
-                  <Plus size={32} strokeWidth={3} />
+                <div className="bg-rose-50 text-rose-600 p-6 rounded-2xl transition-all group-hover:scale-105">
+                  <Plus size={36} strokeWidth={3} />
                 </div>
-                <p className="text-gray-400 text-sm font-medium text-center">
-                   PDF
-                </p>
-                <span className="bg-rose-600 text-white px-12 py-5 rounded-2xl text-xl font-bold shadow-lg hover:bg-rose-700 transition-colors">
-                  Select File
+                <h2 className="text-xl font-bold text-gray-800">Upload Scanned PDF File</h2>
+                <p className="text-sm text-gray-400 text-center">Drag & drop your PDF here, or click to select</p>
+                <span className="bg-rose-600 text-white px-12 py-5 rounded-2xl text-xl font-bold shadow-lg hover:bg-rose-700 transition-all">
+                  Select PDF File
                 </span>
-                <input type="file" className="hidden" onChange={onInputChange}   accept=".pdf,application/pdf"
- />
+                {/* PDF ONLY — accept only .pdf */}
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={(e) => handleFile(e.target.files?.[0])}
+                  accept="application/pdf,.pdf"
+                />
               </label>
             </div>
-          </article>
-        )}
+          )}
 
-        {/* ── PROCESSING ── */}
-        {status === 'processing' && (
-          <div className="bg-white p-16 rounded-[3rem] shadow-2xl mb-20 text-center w-full max-w-lg">
-            <Loader2 className="text-rose-600 animate-spin w-16 h-16 mx-auto mb-8" />
-            <h2 className="text-2xl font-black text-gray-800 uppercase tracking-wide">
-              Processing…
-            </h2>
-            {fileName && (
-              <p className="text-gray-400 text-sm mt-2 truncate max-w-xs mx-auto">{fileName}</p>
-            )}
-            <div className="w-full bg-gray-100 h-3 rounded-full mt-8 overflow-hidden">
-              <div
-                className="bg-rose-600 h-full rounded-full transition-all duration-300"
-                style={{ width: `${progress}%` }}
-              />
+          {/* PROCESSING */}
+          {status === 'processing' && (
+            <div className="bg-white p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg border border-gray-50">
+              <Loader2 className="text-rose-600 animate-spin w-16 h-16 mx-auto mb-8" />
+              <h2 className="text-2xl font-black text-gray-800 uppercase tracking-wide">{progressLabel}</h2>
+              <p className="text-gray-400 text-sm mt-2">{fileName}</p>
+              <div className="w-full bg-gray-100 h-3 rounded-full mt-8 overflow-hidden">
+                <div
+                  className="bg-rose-600 h-full transition-all duration-300"
+                  style={{ width: `${progress}%` }}
+                  role="progressbar"
+                  aria-valuenow={progress}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                />
+              </div>
+              <p className="mt-4 font-bold text-rose-600 text-lg">{progress}%</p>
             </div>
-            <p className="mt-3 font-bold text-rose-500">{progress}%</p>
-            {progressLabel && (
-              <p className="mt-2 text-gray-400 text-sm">{progressLabel}</p>
-            )}
-          </div>
-        )}
+          )}
 
-        {/* ── ERROR ── */}
-        {status === 'error' && (
-          <div className="bg-white p-12 rounded-[2.5rem] shadow-2xl text-center w-full max-w-lg">
-            <AlertCircle className="text-red-500 w-16 h-16 mx-auto mb-6" />
-            <h2 className="text-2xl font-black text-gray-800 mb-3">Something went wrong</h2>
-            <p className="text-gray-500 text-sm mb-8 leading-relaxed">{errorMsg}</p>
-            <button
-              onClick={reset}
-              className="bg-rose-600 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-rose-700 transition-colors"
-            >
-              Try Again
-            </button>
-          </div>
-        )}
-
-        {/* ── COMPLETED ── */}
-        {status === 'completed' && (
-          <div className="w-full max-w-4xl mb-10">
-            <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl border border-gray-100">
-
+          {/* COMPLETED */}
+          {status === 'completed' && (
+            <article className="w-full bg-white p-8 rounded-[2.5rem] shadow-2xl border border-gray-100">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-5 mb-6">
-                <div className="flex items-center gap-2 min-w-0">
-                  <CheckCircle2 className="text-emerald-500 flex-shrink-0" size={20} />
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="text-emerald-500" size={20} />
                   <span className="font-bold text-gray-700 uppercase tracking-widest text-sm">
-                    Extracted Text
+                    Text Extracted — {fileName}
                   </span>
-                  {fileName && (
-                    <span className="text-gray-400 text-xs truncate max-w-[180px]">
-                      — {fileName}
-                    </span>
-                  )}
                 </div>
-                <div className="flex gap-2 flex-shrink-0">
+                <div className="flex gap-2 flex-wrap">
                   <button
                     onClick={copyText}
-                    className="bg-gray-900 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm hover:bg-gray-700 transition-colors"
+                    className="bg-gray-900 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm hover:bg-gray-700 transition-all"
+                    aria-label="Copy extracted text"
                   >
                     {isCopied ? <ClipboardCheck size={16} /> : <Copy size={16} />}
                     {isCopied ? 'Copied!' : 'Copy Text'}
                   </button>
                   <button
-                    onClick={reset}
-                    className="p-2.5 bg-gray-50 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition-colors"
-                    title="Start over"
+                    onClick={downloadText}
+                    className="bg-rose-600 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm hover:bg-rose-700 transition-all"
+                    aria-label="Download extracted text as .txt"
                   >
-                    <RefreshCw size={16} />
+                    Download .txt
+                  </button>
+                  <button
+                    onClick={reset}
+                    className="p-2.5 bg-gray-50 rounded-xl hover:text-rose-600 transition-colors shadow-sm"
+                    aria-label="Reset and upload another PDF"
+                  >
+                    <RefreshCw size={18} />
                   </button>
                 </div>
               </div>
-
               <textarea
                 value={extractedText}
                 onChange={(e) => setExtractedText(e.target.value)}
-                className="w-full h-[450px] p-5 bg-gray-50 rounded-2xl text-base text-gray-700 leading-relaxed font-medium resize-y border border-gray-100 focus:outline-none focus:ring-2 focus:ring-rose-200"
+                className="w-full h-[450px] p-6 bg-gray-50 rounded-2xl text-gray-700 leading-relaxed font-medium resize-none focus:ring-2 focus:ring-rose-200 outline-none border border-transparent"
+                aria-label="Extracted text content"
               />
-
-              <div className="flex justify-between items-center mt-3 text-xs text-gray-400">
-                <span>{fmt(wordCount)} words · {fmt(extractedText.length)} characters</span>
-                <span className="text-gray-300">Editable — make changes above</span>
+              <div className="flex justify-between mt-4 text-xs text-gray-400 font-bold px-2">
+                <span>WORDS: {fmt(wordCount)}</span>
+                <span>CHARACTERS: {fmt(extractedText.length)}</span>
               </div>
+            </article>
+          )}
+
+          {/* ERROR */}
+          {status === 'error' && (
+            <div className="bg-white p-12 rounded-[2.5rem] shadow-xl text-center max-w-md border border-red-50">
+              <AlertCircle className="text-red-500 w-16 h-16 mx-auto mb-6" />
+              <h2 className="text-xl font-bold text-gray-800">Extraction Failed</h2>
+              <p className="text-gray-500 text-sm mb-8">{errorMsg}</p>
+              <button
+                onClick={reset}
+                className="bg-rose-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-rose-700"
+              >
+                Try Again
+              </button>
+            </div>
+          )}
+        </section>
+
+        {/* ── SEO: Feature Cards ───────────────────────────────────────────── */}
+        <section
+          aria-label="Tool features"
+          className="grid md:grid-cols-3 gap-8 mt-24 mb-10 w-full"
+        >
+          <div className="p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
+            <Zap className="text-rose-600 mb-4" aria-hidden="true" />
+            <h3 className="font-bold text-lg mb-2">Instant OCR</h3>
+            <p className="text-gray-500 text-sm">
+              Extract non-selectable text from any scanned PDF in seconds using AI-powered OCR technology.
+            </p>
+          </div>
+          <div className="p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
+            <ShieldCheck className="text-rose-600 mb-4" aria-hidden="true" />
+            <h3 className="font-bold text-lg mb-2">100% Private</h3>
+            <p className="text-gray-500 text-sm">
+              Your PDF is processed entirely inside your browser. Files never leave your device and are never uploaded to any server.
+            </p>
+          </div>
+          <div className="p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
+            <Search className="text-rose-600 mb-4" aria-hidden="true" />
+            <h3 className="font-bold text-lg mb-2">High Accuracy</h3>
+            <p className="text-gray-500 text-sm">
+              Powered by the Tesseract.js OCR engine — recognizes text from complex layouts, multiple columns, and various fonts.
+            </p>
+          </div>
+        </section>
+
+        {/* ── SEO: How It Works (H2 content) ──────────────────────────────── */}
+        <section className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-10 mb-10">
+          <h2 className="text-2xl font-black text-gray-900 mb-6">
+            How to Extract Text from a Scanned PDF
+          </h2>
+          <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
+            <li><strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your scanned PDF into the upload area above.</li>
+            <li><strong className="text-gray-900">Step 2 —</strong> The tool automatically detects whether the PDF contains native text or is a scanned image. If scanned, the AI OCR engine activates.</li>
+            <li><strong className="text-gray-900">Step 3 —</strong> Wait a few seconds while each page is processed. A progress bar tracks the OCR scan.</li>
+            <li><strong className="text-gray-900">Step 4 —</strong> Copy the extracted text to your clipboard or download it as a .txt file.</li>
+          </ol>
+        </section>
+
+        {/* ── SEO: FAQ Section (H2 + Q&A for featured snippets) ───────────── */}
+        <section className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-10 mb-16">
+          <h2 className="text-2xl font-black text-gray-900 mb-8">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-bold text-gray-800 mb-1">How do I extract text from a scanned PDF?</h3>
+              <p className="text-gray-500 text-sm">Upload your scanned PDF above. The tool will automatically use OCR to read the page images and convert them into selectable, editable text.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-800 mb-1">Is this OCR tool completely free?</h3>
+              <p className="text-gray-500 text-sm">Yes. FreePDFConvert's OCR extractor is 100% free with no signup, no watermark, and no file size limits for standard PDFs.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-800 mb-1">Is my uploaded PDF secure?</h3>
+              <p className="text-gray-500 text-sm">Yes. All processing happens inside your browser using client-side JavaScript. Your PDF is never sent to our servers.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-800 mb-1">Can it read multi-page scanned PDFs?</h3>
+              <p className="text-gray-500 text-sm">Yes. The tool processes each page individually and combines all extracted text into a single output, clearly labeled by page number.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-800 mb-1">What languages does the OCR support?</h3>
+              <p className="text-gray-500 text-sm">Currently optimized for English. Tesseract.js supports many languages — multi-language support is coming soon.</p>
             </div>
           </div>
-        )}
+        </section>
 
       </main>
-            <Footer />
 
+      <Footer />
     </div>
   );
 }

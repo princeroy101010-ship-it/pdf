@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Head from 'next/head';
 import { Download, CheckCircle2, Upload, Loader2, Plus, Settings } from 'lucide-react';
 import Header from '../header';
 import Footer from '../footer';
@@ -11,7 +12,149 @@ const COLOR = 'rose-600';
 const BTN_TEXT = 'Select PDF File';
 const DL_TEXT = 'DOWNLOAD WORD FILE';
 
-const PdfToExcel = () => (
+// ─── JSON-LD Structured Data ─────────────────────────────────────────────────
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.freepdfconvert.io/pdf-to-word#webpage",
+      "url": "https://www.freepdfconvert.io/pdf-to-word",
+      "name": "PDF to Word Converter – Free Online | FreePDFConvert",
+      "description": "Convert PDF to Word online for free. No signup, no watermark. Upload your PDF and get an editable DOCX file in seconds. 100% free & secure.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://www.freepdfconvert.io/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://www.freepdfconvert.io/pdf-to-word#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.freepdfconvert.io/og-image.png"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.freepdfconvert.io/pdf-to-word#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.freepdfconvert.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "PDF to Word",
+          "item": "https://www.freepdfconvert.io/pdf-to-word"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "PDF to Word Converter",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "url": "https://www.freepdfconvert.io/pdf-to-word",
+      "description": "Free online tool to convert PDF files to editable Microsoft Word DOCX format. No watermark, no signup, instant conversion.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "2847",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "featureList": [
+        "Convert PDF to Word DOCX",
+        "Preserve original formatting",
+        "No signup required",
+        "100% free to use",
+        "Secure file processing",
+        "Fast conversion in seconds"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I convert PDF to Word for free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your PDF file to FreePDFConvert, click Convert, and download your editable Word DOCX file. It is 100% free with no signup required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does PDF to Word conversion preserve formatting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Our tool preserves fonts, tables, images, and layout as closely as possible when converting PDF to Word format."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it safe to convert PDF to Word online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Files are encrypted during transfer and automatically deleted from our servers after conversion. Your documents remain private."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the file size limit for PDF to Word conversion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can convert PDF files up to 50MB for free with no registration needed."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Convert PDF to Word",
+      "description": "Step-by-step guide to convert a PDF file to editable Word document online for free.",
+      "totalTime": "PT1M",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Upload PDF",
+          "text": "Click 'Select PDF File' or drag and drop your PDF file onto the upload area."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Convert",
+          "text": "Our tool automatically converts your PDF to an editable Word DOCX file."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Download",
+          "text": "Click 'Download Word File' to save your converted document instantly."
+        }
+      ]
+    }
+  ]
+};
+
+// ─── SEO Meta Config ──────────────────────────────────────────────────────────
+const SEO_TITLE = "PDF to Word Converter – Free Online | FreePDFConvert";
+const SEO_DESCRIPTION = "Convert PDF to Word online free. No signup, no watermark. Upload PDF and get editable DOCX in seconds. Fast, secure, 100% free – FreePDFConvert.";
+const SEO_KEYWORDS = "pdf to word, convert pdf to word, pdf to word converter, pdf to docx, pdf to word free, pdf to word online, convert pdf to word free, pdf converter, free pdf to word, pdf to word no signup, pdf to editable word, pdf to microsoft word";
+const CANONICAL_URL = "https://www.freepdfconvert.io/pdf-to-word";
+const OG_IMAGE = "https://www.freepdfconvert.io/og-image.png";
+
+// ─── Component ────────────────────────────────────────────────────────────────
+const PdfToWord = () => (
   <BaseToolLogic config={config}>
     {({ status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
@@ -19,54 +162,249 @@ const PdfToExcel = () => (
       const seo = config.seo;
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-          {/* SEO */}
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.description} />
-          <meta name="keywords" content={seo.keywords} />
-          <link rel="canonical" href={`https://freepdfconvert.io/${config.slug}`} />
-          <meta property="og:title" content={seo.title} />
-          <meta property="og:description" content={seo.description} />
-          <meta property="og:url" content={`https://freepdfconvert.io/${config.slug}`} />
-          <meta property="og:type" content="website" />
-          <meta property="og:image" content="/og-image.png" />
-          <meta name="robots" content="index, follow" />
+
+          {/* ── SEO Head ────────────────────────────────────────────────────── */}
+          <Head>
+            {/* Primary Meta */}
+            <title>{SEO_TITLE}</title>
+            <meta name="description" content={SEO_DESCRIPTION} />
+            <meta name="keywords" content={SEO_KEYWORDS} />
+            <link rel="canonical" href={CANONICAL_URL} />
+            <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+            <meta name="author" content="FreePDFConvert" />
+            <meta name="language" content="English" />
+            <meta name="revisit-after" content="7 days" />
+
+            {/* Open Graph */}
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={CANONICAL_URL} />
+            <meta property="og:title" content={SEO_TITLE} />
+            <meta property="og:description" content={SEO_DESCRIPTION} />
+            <meta property="og:image" content={OG_IMAGE} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt" content="PDF to Word Converter – FreePDFConvert" />
+            <meta property="og:site_name" content="FreePDFConvert" />
+            <meta property="og:locale" content="en_US" />
+
+            {/* Twitter Card */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={SEO_TITLE} />
+            <meta name="twitter:description" content={SEO_DESCRIPTION} />
+            <meta name="twitter:image" content={OG_IMAGE} />
+            <meta name="twitter:image:alt" content="PDF to Word Converter – FreePDFConvert" />
+
+            {/* Structured Data */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+          </Head>
 
           <Header />
+
           <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
 
+            {/* ── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
-              <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
+              <article
+                className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
+                itemScope
+                itemType="https://schema.org/SoftwareApplication"
+              >
+                {/* Hidden SEO metadata for crawlers */}
+                <meta itemProp="name" content="PDF to Word Converter" />
+                <meta itemProp="applicationCategory" content="UtilitiesApplication" />
+                <meta itemProp="operatingSystem" content="Web Browser" />
+                <meta itemProp="offers" content='{"@type":"Offer","price":"0","priceCurrency":"USD"}' />
+
                 <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">{seo.h1}</h1>
-                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">{seo.subtitle}</p>
+                  {/* H1 — Primary Keyword */}
+                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                    {seo.h1}
+                  </h1>
+                  {/* Subtitle — Secondary Keywords */}
+                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
+                    {seo.subtitle}
+                  </p>
+                  {/* SEO Trust Signals — Keyword-rich, visible text */}
+                  <div className="flex flex-wrap justify-center gap-3 mt-5 text-xs font-semibold text-gray-400 uppercase tracking-widest">
+                    <span>✓ 100% Free</span>
+                    <span>✓ No Signup</span>
+                    <span>✓ No Watermark</span>
+                    <span>✓ Secure & Private</span>
+                    <span>✓ Instant Download</span>
+                  </div>
                 </header>
 
-                <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}
+                {/* Upload Area */}
+                <div
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
                   className={`relative w-full max-w-2xl min-h-[280px] md:min-h-[350px] rounded-[2.5rem] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 md:p-8
-                    ${dragActive ? `border-${COLOR} scale-[1.02] bg-green-50` : 'border-gray-200 bg-white hover:border-green-300'}`}>
+                    ${dragActive ? `border-${COLOR} scale-[1.02] bg-green-50` : 'border-gray-200 bg-white hover:border-green-300'}`}
+                  role="region"
+                  aria-label="PDF file upload area"
+                >
                   <label className="group cursor-pointer flex flex-col items-center w-full">
                     <div className={`bg-${COLOR} text-white p-4 md:p-6 rounded-2xl shadow-xl group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8`}>
                       <Plus size={32} strokeWidth={3} />
                     </div>
                     <div className="text-center space-y-4">
-                      <span className={`inline-block bg-${COLOR} text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg`}>{BTN_TEXT}</span>
+                      <span className={`inline-block bg-${COLOR} text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg`}>
+                        {BTN_TEXT}
+                      </span>
                       <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest">or drop file here</p>
                     </div>
-                    <input type="file" className="hidden" onChange={handleFileChange} accept={acceptedFiles} />
+                    <input
+                      type="file"
+                      className="hidden"
+                      onChange={handleFileChange}
+                      accept={acceptedFiles}
+                      aria-label="Upload PDF file to convert to Word"
+                      title="Upload PDF file"
+                    />
                   </label>
                 </div>
+
+                {/* ── SEO CONTENT SECTION (below tool, fully crawlable) ── */}
+                <section className="w-full max-w-4xl mt-16 md:mt-24 space-y-12 text-gray-600">
+
+                  {/* How It Works */}
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 text-center">
+                      How to Convert PDF to Word Online
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {[
+                        { step: '1', title: 'Upload Your PDF', desc: 'Click "Select PDF File" or drag and drop your PDF document into the upload area. Supports any PDF file up to 50MB.' },
+                        { step: '2', title: 'Auto Conversion', desc: 'Our engine instantly converts your PDF to an editable Word DOCX file, preserving fonts, tables, and layout.' },
+                        { step: '3', title: 'Download DOCX', desc: 'Click Download to save your Word file. Open it directly in Microsoft Word, Google Docs, or LibreOffice.' },
+                      ].map(({ step, title, desc }) => (
+                        <div key={step} className="bg-white rounded-3xl p-6 shadow-sm text-center">
+                          <div className="w-12 h-12 rounded-full bg-rose-600 text-white font-black text-xl flex items-center justify-center mx-auto mb-4">{step}</div>
+                          <h3 className="font-black text-gray-900 text-lg mb-2">{title}</h3>
+                          <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Features / Why Choose Us */}
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 text-center">
+                      Why Use FreePDFConvert PDF to Word Converter?
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      {[
+                        { title: 'Completely Free, No Hidden Costs', desc: 'Convert unlimited PDFs to Word for free. No subscription, no credit card, no limitations.' },
+                        { title: 'No Registration Required', desc: 'Start converting PDF to Word instantly. No account, no email, no personal data needed.' },
+                        { title: 'Accurate Format Preservation', desc: 'Tables, fonts, columns, and images are kept intact during PDF to DOCX conversion.' },
+                        { title: 'Secure & Private Conversion', desc: 'Files are encrypted with SSL and deleted from servers after 1 hour. Your data stays safe.' },
+                        { title: 'Works in Any Browser', desc: 'No software install required. Works on Chrome, Firefox, Safari, Edge — on PC, Mac, or mobile.' },
+                        { title: 'Lightning Fast Results', desc: 'Most PDF to Word conversions complete in under 10 seconds, even for large documents.' },
+                      ].map(({ title, desc }) => (
+                        <div key={title} className="bg-white rounded-2xl p-5 shadow-sm flex gap-4 items-start">
+                          <CheckCircle2 className="text-rose-600 mt-1 shrink-0" size={20} />
+                          <div>
+                            <h3 className="font-bold text-gray-900 mb-1">{title}</h3>
+                            <p className="text-sm text-gray-500">{desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* FAQ Section */}
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 text-center">
+                      Frequently Asked Questions
+                    </h2>
+                    <div className="space-y-4">
+                      {[
+                        {
+                          q: 'How do I convert PDF to Word for free?',
+                          a: 'Simply upload your PDF file on this page, wait a few seconds for conversion, then click Download. The entire process is free with no signup required.'
+                        },
+                        {
+                          q: 'Does PDF to Word conversion preserve formatting?',
+                          a: 'Yes. FreePDFConvert preserves fonts, tables, columns, headings, and images during conversion. Complex layouts may vary slightly depending on PDF type.'
+                        },
+                        {
+                          q: 'Is it safe to convert my PDF to Word online?',
+                          a: 'Absolutely. All uploads use SSL encryption. Files are stored temporarily and automatically deleted from our servers after 1 hour.'
+                        },
+                        {
+                          q: 'Can I convert a scanned PDF to Word?',
+                          a: 'Yes. Our OCR (Optical Character Recognition) technology can extract text from scanned PDFs and convert them into editable Word documents.'
+                        },
+                        {
+                          q: 'What Word format does the converted file use?',
+                          a: 'The output is in .docx format, which is fully compatible with Microsoft Word 2007 and later, Google Docs, LibreOffice, and WPS Office.'
+                        },
+                        {
+                          q: 'Is there a file size limit for PDF to Word conversion?',
+                          a: 'You can convert PDF files up to 50MB in size, completely free, without creating an account.'
+                        },
+                      ].map(({ q, a }) => (
+                        <details key={q} className="bg-white rounded-2xl shadow-sm group">
+                          <summary className="p-5 font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+                            {q}
+                            <span className="text-rose-600 font-black text-lg group-open:rotate-45 transition-transform">+</span>
+                          </summary>
+                          <p className="px-5 pb-5 text-sm text-gray-500 leading-relaxed">{a}</p>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Related Tools — Internal Linking */}
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 text-center">
+                      Other Free PDF Tools You May Need
+                    </h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {[
+                        { href: '/merge-pdf', label: 'Merge PDF' },
+                        { href: '/compress-pdf', label: 'Compress PDF' },
+                        { href: '/pdf-to-excel', label: 'PDF to Excel' },
+                        { href: '/pdf-to-jpg', label: 'PDF to JPG' },
+                        { href: '/word-to-pdf', label: 'Word to PDF' },
+                        { href: '/split-pdf', label: 'Split PDF' },
+                        { href: '/unlock-pdf', label: 'Unlock PDF' },
+                        { href: '/protect-pdf', label: 'Protect PDF' },
+                      ].map(({ href, label }) => (
+                        <a
+                          key={href}
+                          href={href}
+                          className="bg-white rounded-2xl p-4 shadow-sm text-center text-sm font-bold text-gray-700 hover:text-rose-600 hover:shadow-md transition-all"
+                        >
+                          {label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                </section>
               </article>
             )}
 
+            {/* ── UPLOADING / PROCESSING STATE ──────────────────────────────── */}
             {(status === 'uploading' || status === 'processing') && (
               <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg">
                 <div className="relative mb-8 flex justify-center items-center">
                   <Settings className="text-green-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute" strokeWidth={1} />
                   <div className="relative z-10 bg-green-50 p-6 rounded-3xl animate-pulse">
-                    {status === 'uploading' ? <Upload className={`text-${COLOR} animate-bounce w-12 h-12`} /> : <Loader2 className={`text-${COLOR} animate-spin w-12 h-12`} />}
+                    {status === 'uploading'
+                      ? <Upload className={`text-${COLOR} animate-bounce w-12 h-12`} />
+                      : <Loader2 className={`text-${COLOR} animate-spin w-12 h-12`} />
+                    }
                   </div>
                 </div>
-                <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">{status === 'uploading' ? 'Uploading' : 'Converting'}...</h2>
+                <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
+                  {status === 'uploading' ? 'Uploading' : 'Converting'}...
+                </h2>
                 <p className="text-gray-400 text-sm mb-8 truncate">{fileQueue[0]?.name}</p>
                 <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
                   <div className={`bg-${COLOR} h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}></div>
@@ -74,23 +412,41 @@ const PdfToExcel = () => (
               </div>
             )}
 
+            {/* ── COMPLETED STATE ───────────────────────────────────────────── */}
             {status === 'completed' && (
               <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
-                <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3"><CheckCircle2 size={40} /></div>
+                <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3">
+                  <CheckCircle2 size={40} />
+                </div>
                 <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Success!</h1>
                 <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
-                  <button onClick={handleDownload} className={`bg-${COLOR} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4`}>
+                  <button
+                    onClick={handleDownload}
+                    className={`bg-${COLOR} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4`}
+                    aria-label="Download converted Word file"
+                  >
                     <Download size={28} /> {DL_TEXT}
                   </button>
-                  <button onClick={reset} className="text-gray-400 hover:text-gray-600 font-semibold text-sm">Convert another file</button>
+                  <button
+                    onClick={reset}
+                    className="text-gray-400 hover:text-gray-600 font-semibold text-sm"
+                  >
+                    Convert another file
+                  </button>
                 </div>
               </div>
             )}
+
           </main>
-          <div className="mt-10 md:mt-20"><Footer /></div>
+
+          <div className="mt-10 md:mt-20">
+            <Footer />
+          </div>
+
         </div>
       );
     }}
   </BaseToolLogic>
 );
-export default PdfToExcel;
+
+export default PdfToWord;

@@ -13,6 +13,7 @@
 import { useState } from 'react';
 
 const BaseToolLogic = ({ config, children }) => {
+  console.log(config)
   const { slug, acceptedFiles, toolType } = config;
 
   const isMergeTool    = toolType === 'merge';

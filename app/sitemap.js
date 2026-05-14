@@ -1,8 +1,8 @@
 // app/sitemap.js
-
 export default function sitemap() {
   const baseUrl = "https://freepdfconvert.io";
-
+  
+  // ── All High-Traffic Tools ────────────────────────────────
   const tools = [
     "pdf-to-word", "word-to-pdf", "pdf-to-excel", "excel-to-pdf",
     "image-to-pdf", "pdf-to-jpg", "jpg-to-pdf", "merge-pdf",
@@ -13,37 +13,35 @@ export default function sitemap() {
     "extract-text-from-pdf", "extract-text-from-image",
   ];
 
-  // ── Tool pages ─────────────────────────────────────────────
+  // Tool pages logic - SEO focus on high competition keywords
   const toolPages = tools.map((slug) => ({
     url: `${baseUrl}/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "daily", // Taake Google daily update check kare
+    priority: 0.9,            // Standard pages se zyada priority
   }));
 
-  // ── Static pages — jo tumhare paas hain woh rakho ──────────
+  // Static pages - Support and Trust pages
   const staticPages = [
-    { url: `${baseUrl}/about-us`,       priority: 0.5, changeFrequency: "yearly"  },
-    { url: `${baseUrl}/contact-us`,     priority: 0.5, changeFrequency: "yearly"  },
-    { url: `${baseUrl}/privacy-policy`,     priority: 0.4, changeFrequency: "yearly"  },
-    { url: `${baseUrl}/terms-of-service`,       priority: 0.4, changeFrequency: "yearly"  },
-    { url: `${baseUrl}/how-work`,        priority: 0.6, changeFrequency: "yearly"  },
-    { url: `${baseUrl}/cookie-policy`,        priority: 0.6, changeFrequency: "yearly"  },
-    { url: `${baseUrl}/features`,        priority: 0.6, changeFrequency: "yearly"  },
-    { url: `${baseUrl}/security`,        priority: 0.6, changeFrequency: "yearly"  },
-  ].map((page) => ({ ...page, lastModified: new Date() }));
+    { url: `${baseUrl}/how-work`,        priority: 0.8, changeFrequency: "weekly"  },
+    { url: `${baseUrl}/features`,        priority: 0.7, changeFrequency: "monthly" },
+    { url: `${baseUrl}/security`,        priority: 0.7, changeFrequency: "monthly" },
+    { url: `${baseUrl}/about-us`,        priority: 0.6, changeFrequency: "monthly" },
+    { url: `${baseUrl}/contact-us`,      priority: 0.6, changeFrequency: "monthly" },
+    { url: `${baseUrl}/privacy-policy`,  priority: 0.3, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/terms-of-service`, priority: 0.3, changeFrequency: "yearly"  },
+    { url: `${baseUrl}/cookie-policy`,   priority: 0.3, changeFrequency: "yearly"  },
+  ].map((page) => ({ ...page, lastModified: new Date().toISOString() }));
 
   return [
-    // Homepage — highest priority
+    // Homepage - The King Page
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "always",
       priority: 1.0,
     },
-    // Tool pages
     ...toolPages,
-    // Static pages
     ...staticPages,
   ];
 }

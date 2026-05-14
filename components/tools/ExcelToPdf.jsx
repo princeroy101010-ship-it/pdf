@@ -7,11 +7,11 @@ import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['excel-to-pdf'];
-const COLOR = 'rose-600';
+const COLOR = 'rose-600';          // ✅ Original color — bilkul same
 const BTN_TEXT = 'Select Excel File';
 const DL_TEXT = 'DOWNLOAD PDF';
 
-const PdfToExcel = () => (
+const ExcelToPdf = () => (
   <BaseToolLogic config={config}>
     {({ status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
@@ -19,19 +19,10 @@ const PdfToExcel = () => (
       const seo = config.seo;
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-          {/* SEO */}
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.description} />
-          <meta name="keywords" content={seo.keywords} />
-          <link rel="canonical" href={`https://freepdfconvert.io/${config.slug}`} />
-          <meta property="og:title" content={seo.title} />
-          <meta property="og:description" content={seo.description} />
-          <meta property="og:url" content={`https://freepdfconvert.io/${config.slug}`} />
-          <meta property="og:type" content="website" />
-          <meta property="og:image" content="/og-image.png" />
-          <meta name="robots" content="index, follow" />
 
+          {/* ✅ SEO: Koi bhi <title>/<meta> nahi — [slug]/page.jsx handle karta hai */}
           <Header />
+
           <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
 
             {status === 'idle' && (
@@ -77,7 +68,8 @@ const PdfToExcel = () => (
             {status === 'completed' && (
               <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
                 <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3"><CheckCircle2 size={40} /></div>
-                <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Success!</h1>
+                {/* ✅ SEO Fix only: h1 → h2 */}
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Success!</h2>
                 <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
                   <button onClick={handleDownload} className={`bg-${COLOR} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4`}>
                     <Download size={28} /> {DL_TEXT}
@@ -86,6 +78,7 @@ const PdfToExcel = () => (
                 </div>
               </div>
             )}
+
           </main>
           <div className="mt-10 md:mt-20"><Footer /></div>
         </div>
@@ -93,4 +86,5 @@ const PdfToExcel = () => (
     }}
   </BaseToolLogic>
 );
-export default PdfToExcel;
+
+export default ExcelToPdf;
