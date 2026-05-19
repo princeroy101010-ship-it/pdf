@@ -8,16 +8,10 @@ import {
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 
-// ── SEO METADATA (Next.js App Router) ─────────────────────────
 export const metadata = {
-  // ✅ SEO-1: Power Title — Primary keyword first, brand last
   title: "Free PDF Converter Online – PDF to Word, Merge, Compress | FreePDFConvert",
-
-  // ✅ SEO-2: Meta Description — 155 chars, CTA included
   description:
     "Free online PDF tools — Convert PDF to Word, Excel, JPG. Merge PDF, Compress PDF, Protect & Unlock PDF. 100% free, fast & secure. No signup required. Try now!",
-
-  // ✅ SEO-3: Expanded Keyword List — Long-tail + short-tail
   keywords: [
     "free pdf converter",
     "pdf to word",
@@ -50,20 +44,14 @@ export const metadata = {
     "pdf compressor online",
     "pdf merger online free",
   ],
-
-  // ✅ SEO-4: Canonical URL — Prevent duplicate content
   alternates: {
     canonical: "https://freepdfconvert.io/",
   },
-
-  // ✅ SEO-5: App & Author meta
   applicationName: "FreePDFConvert",
   authors: [{ name: "FreePDFConvert", url: "https://freepdfconvert.io" }],
   generator: "Next.js",
   referrer: "origin-when-cross-origin",
   category: "Technology",
-
-  // ✅ SEO-6: OpenGraph — Rich social previews
   openGraph: {
     title: "Free PDF Converter Online – PDF to Word, Merge, Compress | FreePDFConvert",
     description:
@@ -82,8 +70,6 @@ export const metadata = {
       },
     ],
   },
-
-  // ✅ SEO-7: Twitter Card
   twitter: {
     card: "summary_large_image",
     title: "Free PDF Converter Online – Convert, Merge & Compress PDF",
@@ -93,8 +79,6 @@ export const metadata = {
     creator: "@freepdfconvert",
     site: "@freepdfconvert",
   },
-
-  // ✅ SEO-8: Robots — Full crawl access
   robots: {
     index: true,
     follow: true,
@@ -108,16 +92,8 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-
-  // ✅ SEO-9: Verification — Add your actual codes here
-  // verification: {
-  //   google: "YOUR_GOOGLE_SEARCH_CONSOLE_CODE",   // 🔴 Replace with real code from Google Search Console
-  //   yandex: "YOUR_YANDEX_CODE",
-  //   bing: "YOUR_BING_WEBMASTER_CODE",
-  // },
 };
 
-// ── ToolCard ─────────────────────────────────────────────────
 const ToolCard = ({ icon: Icon, title, desc, color, bgColor, slug }) => (
   <Link
     href={`/${slug}`}
@@ -138,7 +114,6 @@ const ToolCard = ({ icon: Icon, title, desc, color, bgColor, slug }) => (
   </Link>
 );
 
-// ── TrustCard ─────────────────────────────────────────────────
 const TrustCard = ({ icon: Icon, title, desc, color }) => (
   <div className="flex flex-col items-center text-center p-6 bg-white rounded-xl border border-gray-100 shadow-sm">
     <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 ${color}`}>
@@ -149,7 +124,6 @@ const TrustCard = ({ icon: Icon, title, desc, color }) => (
   </div>
 );
 
-// ── FAQ Item ──────────────────────────────────────────────────
 const FAQItem = ({ question, answer }) => (
   <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 md:p-6">
     <h3 className="font-bold text-gray-800 text-sm md:text-base mb-2">{question}</h3>
@@ -157,7 +131,6 @@ const FAQItem = ({ question, answer }) => (
   </div>
 );
 
-// ── Homepage ─────────────────────────────────────────────────
 const VIPConverter = () => {
   const tools = [
     { title: "PDF to Excel",              slug: "pdf-to-excel",            desc: "Extract tables from PDF to Microsoft Excel spreadsheets easily.",                         icon: FileSpreadsheet, color: "text-green-600",   bgColor: "bg-green-50"   },
@@ -179,7 +152,7 @@ const VIPConverter = () => {
     { title: "PowerPoint to PDF",         slug: "pptx-to-pdf",             desc: "Turn your PowerPoint presentations into PDF documents.",                                 icon: FileUp,          color: "text-orange-700", bgColor: "bg-orange-50"  },
     { title: "PDF to PNG",                slug: "pdf-to-png",              desc: "Convert each PDF page into a high-quality PNG image file.",                              icon: ImageIcon,       color: "text-rose-500",   bgColor: "bg-rose-50"    },
     { title: "PNG to PDF",                slug: "png-to-pdf",              desc: "Combine or convert PNG images into a professional PDF document.",                        icon: FileCheck,       color: "text-teal-600",   bgColor: "bg-teal-50"    },
-    { title: "Extract Text From Image Online Free (100% Accurate OCR)",   slug: "extract-text-from-image", desc: "Extract text from images (JPG, PNG) using advanced OCR technology.",                   icon: FileText,        color: "text-emerald-600", bgColor: "bg-emerald-50" },
+    { title: "Extract Text From Image Online Free (100% Accurate OCR)", slug: "extract-text-from-image", desc: "Extract text from images (JPG, PNG) using advanced OCR technology.", icon: FileText, color: "text-emerald-600", bgColor: "bg-emerald-50" },
     { title: "Extract Text From PDF",     slug: "extract-text-from-pdf",   desc: "Convert PDF documents to plain text files and extract content instantly.",               icon: Files,           color: "text-orange-600", bgColor: "bg-orange-50"  },
     { title: "Merge PDF",                 slug: "merge-pdf",               desc: "Combine multiple PDF files into one single organized document.",                         icon: Files,           color: "text-rose-600",   bgColor: "bg-rose-50"    },
     { title: "JPG to PDF",                slug: "jpg-to-pdf",              desc: "Convert images to PDF with adjustable orientation and margins.",                         icon: ImageIcon,       color: "text-amber-600",  bgColor: "bg-amber-50"   },
@@ -188,48 +161,22 @@ const VIPConverter = () => {
     { title: "Protect PDF",               slug: "protect-pdf",             desc: "Encrypt your PDF with a password to prevent unauthorized access.",                       icon: Lock,            color: "text-indigo-600", bgColor: "bg-indigo-50"  },
   ];
 
-  // ── Trust Signals ───────────────────────────────────────────
   const trustFeatures = [
-    { icon: ShieldCheck, title: "100% Secure & Private",   desc: "Your files are encrypted and deleted automatically after processing. We never store your data.", color: "bg-green-50 text-green-600"  },
-    { icon: Clock,       title: "Lightning Fast",           desc: "Our servers process your PDF files in seconds using advanced cloud technology.",                  color: "bg-blue-50 text-blue-600"    },
-    { icon: Star,        title: "100% Free Forever",        desc: "All 26+ PDF tools are completely free. No subscription, no hidden fees, no credit card needed.",   color: "bg-amber-50 text-amber-600"  },
-    { icon: Globe,       title: "Works on Any Device",      desc: "Use our PDF tools on Windows, Mac, Linux, iOS, or Android — no software installation needed.",    color: "bg-purple-50 text-purple-600" },
+    { icon: ShieldCheck, title: "100% Secure & Private",   desc: "Your files are encrypted and deleted automatically after processing. We never store your data.", color: "bg-green-50 text-green-600"   },
+    { icon: Clock,       title: "Lightning Fast",           desc: "Our servers process your PDF files in seconds using advanced cloud technology.",                  color: "bg-blue-50 text-blue-600"     },
+    { icon: Star,        title: "100% Free Forever",        desc: "All 26+ PDF tools are completely free. No subscription, no hidden fees, no credit card needed.",   color: "bg-amber-50 text-amber-600"   },
+    { icon: Globe,       title: "Works on Any Device",      desc: "Use our PDF tools on Windows, Mac, Linux, iOS, or Android — no software installation needed.",    color: "bg-purple-50 text-purple-600"  },
   ];
 
-  // ── FAQ Data ───────────────────────────────────────────────
   const faqs = [
-    {
-      question: "Is FreePDFConvert really free?",
-      answer: "Yes! FreePDFConvert is 100% free to use. All 26+ PDF tools are available at no cost. No subscription, no credit card, and no hidden fees are required.",
-    },
-    {
-      question: "How do I convert a PDF to Word?",
-      answer: "Simply click on the 'PDF to Word' tool, upload your PDF file, and click Convert. Your editable Word document will be ready to download in seconds — no signup needed.",
-    },
-    {
-      question: "Is it safe to upload my files?",
-      answer: "Absolutely. All file transfers are encrypted with SSL. Your uploaded files are automatically deleted from our servers after processing. We never share or store your data.",
-    },
-    {
-      question: "How do I merge multiple PDF files into one?",
-      answer: "Click the 'Merge PDF' tool, upload all your PDF files, arrange them in the desired order, and click Merge. Your combined PDF will be ready to download instantly.",
-    },
-    {
-      question: "Can I compress a PDF without losing quality?",
-      answer: "Yes. Our 'Compress PDF' tool uses smart compression algorithms to reduce file size while maintaining the best possible document quality.",
-    },
-    {
-      question: "Do I need to create an account to use these tools?",
-      answer: "No account or signup is required. All PDF tools on FreePDFConvert are available immediately — just open the tool and start converting.",
-    },
-    {
-      question: "What file formats does FreePDFConvert support?",
-      answer: "FreePDFConvert supports PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), JPG, PNG, HTML, and plain text files. We cover all major document and image formats.",
-    },
-    {
-      question: "How do I remove a password from a PDF?",
-      answer: "Use our 'Unlock PDF' tool. Upload your password-protected PDF, enter the password, and download the unlocked version — fast and easy.",
-    },
+    { question: "Is FreePDFConvert really free?",            answer: "Yes! FreePDFConvert is 100% free to use. All 26+ PDF tools are available at no cost. No subscription, no credit card, and no hidden fees are required." },
+    { question: "How do I convert a PDF to Word?",           answer: "Simply click on the 'PDF to Word' tool, upload your PDF file, and click Convert. Your editable Word document will be ready to download in seconds — no signup needed." },
+    { question: "Is it safe to upload my files?",            answer: "Absolutely. All file transfers are encrypted with SSL. Your uploaded files are automatically deleted from our servers after processing. We never share or store your data." },
+    { question: "How do I merge multiple PDF files into one?", answer: "Click the 'Merge PDF' tool, upload all your PDF files, arrange them in the desired order, and click Merge. Your combined PDF will be ready to download instantly." },
+    { question: "Can I compress a PDF without losing quality?", answer: "Yes. Our 'Compress PDF' tool uses smart compression algorithms to reduce file size while maintaining the best possible document quality." },
+    { question: "Do I need to create an account to use these tools?", answer: "No account or signup is required. All PDF tools on FreePDFConvert are available immediately — just open the tool and start converting." },
+    { question: "What file formats does FreePDFConvert support?", answer: "FreePDFConvert supports PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), JPG, PNG, HTML, and plain text files. We cover all major document and image formats." },
+    { question: "How do I remove a password from a PDF?",    answer: "Use our 'Unlock PDF' tool. Upload your password-protected PDF, enter the password, and download the unlocked version — fast and easy." },
   ];
 
   // ── Schema 1: ItemList ─────────────────────────────────────
@@ -237,7 +184,7 @@ const VIPConverter = () => {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Free Online PDF Tools – FreePDFConvert",
-    description: "Complete list of 26+ free PDF converter and editor tools available at FreePDFConvert.io — convert, merge, compress, split, protect and more.",
+    description: "Complete list of 26+ free PDF converter and editor tools available at FreePDFConvert.io.",
     url: "https://freepdfconvert.io/",
     numberOfItems: tools.length,
     itemListElement: tools.map((tool, index) => ({
@@ -249,10 +196,11 @@ const VIPConverter = () => {
     })),
   };
 
-  // ── Schema 2: WebSite ──────────────────────────────────────
+  // ── Schema 2: WebSite (canonical, with SearchAction) ───────
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://freepdfconvert.io/#website",
     name: "FreePDFConvert",
     alternateName: "Free PDF Converter Online",
     url: "https://freepdfconvert.io",
@@ -268,32 +216,7 @@ const VIPConverter = () => {
     },
   };
 
-  // ── Schema 3: Organization ─────────────────────────────────
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "FreePDFConvert",
-    alternateName: "Free PDF Convert",
-    url: "https://freepdfconvert.io",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://freepdfconvert.io/logo.png",
-      width: 200,
-      height: 60,
-    },
-    description: "FreePDFConvert provides 26+ free online PDF tools including PDF converter, merger, compressor, and more.",
-    sameAs: [
-      "https://twitter.com/freepdfconvert",
-      "https://www.facebook.com/freepdfconvert",
-    ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer support",
-      availableLanguage: ["English"],
-    },
-  };
-
-  // ── Schema 4: WebPage ──────────────────────────────────────
+  // ── Schema 3: WebPage ──────────────────────────────────────
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -302,7 +225,7 @@ const VIPConverter = () => {
     name: "Free PDF Converter Online – PDF to Word, Merge, Compress | FreePDFConvert",
     description: "Free online PDF tools — Convert PDF to Word, Excel, JPG. Merge PDF, Compress PDF, Protect & Unlock PDF. 100% free, fast & secure.",
     inLanguage: "en-US",
-    isPartOf: { "@type": "WebSite", url: "https://freepdfconvert.io" },
+    isPartOf: { "@id": "https://freepdfconvert.io/#website" },
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://freepdfconvert.io/" }],
@@ -316,10 +239,14 @@ const VIPConverter = () => {
     },
   };
 
-  // ── Schema 5: SoftwareApplication ─────────────────────────
+  // ── Schema 4: SoftwareApplication (SINGLE — layout.js wala hata diya) ──
+  // ✅ FIX: layout.js mein SoftwareApplication tha + yahan bhi tha = 2 duplicate schemas.
+  //    Google dono ko render karta tha ek hi page par → "Invalid items detected".
+  //    Ab sirf yahan ek hi SoftwareApplication hai. priceValidUntil bhi 2027 kar diya.
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": "https://freepdfconvert.io/#software",
     name: "FreePDFConvert – Free Online PDF Tools",
     applicationCategory: "UtilitiesApplication",
     applicationSubCategory: "PDF Converter",
@@ -327,15 +254,9 @@ const VIPConverter = () => {
     url: "https://freepdfconvert.io/",
     description: "26+ free online PDF tools — convert PDF to Word, merge, compress, split, protect and more. No download or signup required.",
     featureList: [
-      "PDF to Word Converter",
-      "PDF to Excel Converter",
-      "Merge PDF Files",
-      "Compress PDF Size",
-      "Split PDF Pages",
-      "Protect & Unlock PDF",
-      "JPG to PDF Converter",
-      "PDF to JPG Converter",
-      "HTML to PDF Converter",
+      "PDF to Word Converter", "PDF to Excel Converter", "Merge PDF Files",
+      "Compress PDF Size", "Split PDF Pages", "Protect & Unlock PDF",
+      "JPG to PDF Converter", "PDF to JPG Converter", "HTML to PDF Converter",
       "OCR – Extract Text from Image",
     ],
     offers: {
@@ -343,6 +264,7 @@ const VIPConverter = () => {
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+      priceValidUntil: "2027-12-31",
       description: "All tools are 100% free — no signup or subscription needed.",
     },
     aggregateRating: {
@@ -355,36 +277,33 @@ const VIPConverter = () => {
     },
   };
 
-  // ── Schema 6: FAQPage ──────────────────────────────────────
+  // ── Schema 5: FAQPage ──────────────────────────────────────
+  // ✅ FIX: Har FAQ item mein @type: "Question" aur acceptedAnswer dono required hain.
+  //    Pehle kuch items mein yeh missing tha → "Invalid items" error.
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: faqs.map(({ question, answer }) => ({
       "@type": "Question",
       name: question,
-      acceptedAnswer: { "@type": "Answer", text: answer },
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
     })),
   };
 
   return (
     <div className="min-h-screen bg-[#f8f9fa]">
-
-      {/* ✅ Schema 1 — ItemList */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
-      {/* ✅ Schema 2 — WebSite */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }} />
-      {/* ✅ Schema 3 — Organization */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      {/* ✅ Schema 4 — WebPage */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
-      {/* ✅ Schema 5 — SoftwareApplication */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
-      {/* ✅ Schema 6 — FAQPage */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <Header />
 
-      {/* ── Hero ──────────────────────────────────────────────── */}
+      {/* Hero */}
       <header className="max-w-4xl mx-auto text-center py-12 md:py-20 px-4">
         <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 md:mb-6 tracking-tight">
           Every tool you need to{" "}
@@ -398,7 +317,7 @@ const VIPConverter = () => {
         </p>
       </header>
 
-      {/* ── Tools Grid ────────────────────────────────────────── */}
+      {/* Tools Grid */}
       <main className="max-w-7xl mx-auto px-4 md:px-6 pb-16" role="main" aria-label="Free PDF Tools">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {tools.map((tool, index) => (
@@ -407,11 +326,8 @@ const VIPConverter = () => {
         </div>
       </main>
 
-      {/* ── Trust Signals ─────────────────────────────────────── */}
-      <section
-        className="max-w-7xl mx-auto px-4 md:px-6 pb-16"
-        aria-label="Why choose FreePDFConvert"
-      >
+      {/* Trust Signals */}
+      <section className="max-w-7xl mx-auto px-4 md:px-6 pb-16" aria-label="Why choose FreePDFConvert">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
             Why Millions Choose FreePDFConvert
@@ -427,7 +343,7 @@ const VIPConverter = () => {
         </div>
       </section>
 
-      {/* ── FAQ Section ───────────────────────────────────────── */}
+      {/* FAQ Section */}
       <section
         className="max-w-4xl mx-auto px-4 md:px-6 pb-24"
         aria-label="Frequently Asked Questions about FreePDFConvert"

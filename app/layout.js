@@ -16,24 +16,17 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// ============================================================
-// ✅ 100% SEO OPTIMIZED METADATA — freepdfconvert.io
-// ============================================================
 export const metadata = {
   metadataBase: new URL("https://freepdfconvert.io"),
 
-  // ── TITLE ──────────────────────────────────────────────────
   title: {
-    default:
-      "FreePDFConvert – Free PDF Converter, Merger, Compressor & Editor Online",
-    template: "%s | FreePDFConvert",   // ✅ FIXED: was "%s" — now every page gets brand suffix
+    default: "FreePDFConvert – Free PDF Converter, Merger, Compressor & Editor Online",
+    template: "%s | FreePDFConvert",
   },
 
-  // ── META DESCRIPTION ───────────────────────────────────────
   description:
     "FreePDFConvert: 100% free online PDF tools. Convert PDF to Word, Excel, JPG & more. Merge, split, compress, rotate, unlock & protect PDF files. No signup, no watermark. Fast & secure.",
 
-  // ── KEYWORDS ───────────────────────────────────────────────
   keywords: [
     "free pdf converter",
     "pdf converter online free",
@@ -84,23 +77,18 @@ export const metadata = {
     "freepdfconvert.io",
   ],
 
-  // ── AUTHOR & CREATOR ───────────────────────────────────────
   authors: [{ name: "FreePDFConvert Team", url: "https://freepdfconvert.io" }],
   creator: "FreePDFConvert",
   publisher: "FreePDFConvert",
-
-  // ── CATEGORY ───────────────────────────────────────────────
   category: "Technology",
   applicationName: "FreePDFConvert",
 
-  // ── FORMAT DETECTION ───────────────────────────────────────
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
 
-  // ── CANONICAL ──────────────────────────────────────────────
   alternates: {
     canonical: "https://freepdfconvert.io",
     languages: {
@@ -108,10 +96,8 @@ export const metadata = {
     },
   },
 
-  // ── OPEN GRAPH ─────────────────────────────────────────────
   openGraph: {
-    title:
-      "FreePDFConvert – Free PDF Converter, Merger & Compressor Online",
+    title: "FreePDFConvert – Free PDF Converter, Merger & Compressor Online",
     description:
       "100% free PDF tools online. Convert, merge, split, compress, unlock & protect PDF files. No signup or watermark required. Works on any device.",
     url: "https://freepdfconvert.io",
@@ -129,7 +115,6 @@ export const metadata = {
     type: "website",
   },
 
-  // ── TWITTER CARD ───────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
     site: "@freepdfconvert",
@@ -140,7 +125,6 @@ export const metadata = {
     images: ["https://freepdfconvert.io/og-image.png"],
   },
 
-  // ── ROBOTS ─────────────────────────────────────────────────
   robots: {
     index: true,
     follow: true,
@@ -155,15 +139,13 @@ export const metadata = {
     },
   },
 
-  // ── GOOGLE VERIFICATION ────────────────────────────────────
   verification: {
-    google: "G-X7HW9F8FV6",
+    google: "YOUR_SEARCH_CONSOLE_VERIFICATION_TOKEN", // 🔴 Replace with real token
   },
 
   referrer: "origin-when-cross-origin",
 };
 
-// ── VIEWPORT ───────────────────────────────────────────────
 export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
@@ -174,95 +156,15 @@ export const viewport = {
   maximumScale: 5,
 };
 
-// ============================================================
-// ✅ COMBINED JSON-LD SCHEMAS
-// ============================================================
 export default function RootLayout({ children }) {
+  // ✅ layout.js mein sirf Organization schema rakha hai.
+  //    SoftwareApplication → page.jsx mein hai (duplicate avoid karne ke liye).
+  //    WebSite → page.jsx mein hai (canonical @id "#website" wahan define hota hai).
+  //    Yeh fixes "Invalid items detected" Google Search Console error solve karta hai.
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-
-      // ── 1. WebSite + SearchAction ───────────────────────────
-      {
-        "@type": "WebSite",
-        "@id": "https://freepdfconvert.io/#website",
-        "url": "https://freepdfconvert.io",
-        "name": "FreePDFConvert",
-        "description":
-          "100% free online PDF tools – Convert, Merge, Compress, Split, Unlock & Protect PDF files. No signup required.",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate":
-              "https://freepdfconvert.io/search?q={search_term_string}",
-          },
-          "query-input": "required name=search_term_string",
-        },
-        "inLanguage": "en-US",
-      },
-
-      // ── 2. SoftwareApplication ─────────────────────────────
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://freepdfconvert.io/#app",
-        "name": "FreePDFConvert",
-        "url": "https://freepdfconvert.io",
-        "applicationCategory": "UtilitiesApplication",
-        "applicationSubCategory": "PDF Tools",
-        "operatingSystem": "Windows, macOS, Linux, Android, iOS",
-        "browserRequirements": "Requires JavaScript enabled",
-        "softwareVersion": "2.0",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "priceValidUntil": "2026-12-31",   // ✅ FIXED: was 2025-12-31 (expired)
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "bestRating": "5",
-          "worstRating": "1",
-          "ratingCount": "2341",
-          "reviewCount": "2341",
-        },
-        "featureList": [
-          "PDF to Word Converter",
-          "PDF to Excel Converter",
-          "PDF to JPG Converter",
-          "Merge PDF Files",
-          "Split PDF Files",
-          "Compress PDF",
-          "Unlock PDF",
-          "Protect PDF",
-          "Rotate PDF",
-          "Sign PDF Online",
-          "Word to PDF",
-          "Excel to PDF",
-          "JPG to PDF",
-        ],
-        "screenshot": "https://freepdfconvert.io/og-image.png",
-      },
-
-      // ── 3. WebApplication ──────────────────────────────────
-      {
-        "@type": "WebApplication",
-        "@id": "https://freepdfconvert.io/#webapp",
-        "name": "FreePDFConvert – Free PDF Tools Online",
-        "url": "https://freepdfconvert.io",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "All",
-        "isAccessibleForFree": true,
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-        },
-      },
-
-      // ── 4. Organization ────────────────────────────────────
+      // ── 1. Organization ────────────────────────────────────
       {
         "@type": "Organization",
         "@id": "https://freepdfconvert.io/#organization",
@@ -288,87 +190,25 @@ export default function RootLayout({ children }) {
         },
       },
 
-      // ── 5. FAQPage ─────────────────────────────────────────
+      // ── 2. WebApplication ──────────────────────────────────
+      // ✅ WebApplication yahan rakha — SoftwareApplication SIRF page.jsx mein.
+      //    Dono same page par hone se Google "duplicate/unnamed item" flag karta tha.
       {
-        "@type": "FAQPage",
-        "@id": "https://freepdfconvert.io/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Is FreePDFConvert completely free?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "Yes, FreePDFConvert is 100% free. All PDF tools including converter, merger, compressor, and splitter are available at no cost with no hidden fees.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "Do I need to create an account to use FreePDFConvert?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "No signup or registration is required. You can use all PDF tools on FreePDFConvert instantly without creating an account.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "Is my PDF file safe on FreePDFConvert?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "Yes, your files are completely secure. All uploaded files are automatically deleted after processing. FreePDFConvert uses SSL encryption to protect your data.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "How do I convert PDF to Word for free?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "Simply go to freepdfconvert.io, select the PDF to Word tool, upload your PDF file, and click Convert. Your Word document will be ready to download in seconds.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "Can I compress a PDF without losing quality?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "Yes, FreePDFConvert's PDF compressor reduces file size while maintaining the best possible quality. You can compress PDF files up to 90% of their original size.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "Does FreePDFConvert add a watermark to my PDF?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "No, FreePDFConvert never adds watermarks to your converted or processed PDF files. All outputs are clean and watermark-free.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "What is the best free alternative to iLovePDF?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "FreePDFConvert is one of the best free alternatives to iLovePDF and SmallPDF. It offers all the same features completely free with no file size limits for most tools.",
-            },
-          },
-          {
-            "@type": "Question",
-            "name": "Can I merge PDF files online for free?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "Yes, FreePDFConvert lets you merge multiple PDF files into one online for free. Just upload your PDFs, arrange them in the desired order, and click Merge.",
-            },
-          },
-        ],
+        "@type": "WebApplication",
+        "@id": "https://freepdfconvert.io/#webapp",
+        "name": "FreePDFConvert – Free PDF Tools Online",
+        "url": "https://freepdfconvert.io",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+        },
       },
 
-      // ── 6. BreadcrumbList ──────────────────────────────────
+      // ── 3. BreadcrumbList ──────────────────────────────────
       {
         "@type": "BreadcrumbList",
         "@id": "https://freepdfconvert.io/#breadcrumb",
@@ -387,23 +227,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr">
       <head>
-        {/* ── Performance: Preconnect & DNS-Prefetch ────────────
-            Faster load = better Core Web Vitals = better ranking  */}
+        {/* Performance: Preconnect & DNS-Prefetch */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-
-        {/* ✅ NEW: Preconnect to Vercel analytics for faster reporting */}
         <link rel="preconnect" href="https://vitals.vercel-insights.com" />
 
-        {/* ── Favicon Set ───────────────────────────────────────── */}
+        {/* Favicon Set */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* ── Extra SEO Meta Tags ───────────────────────────────── */}
+        {/* Extra SEO Meta Tags */}
         <meta name="language" content="English" />
         <meta name="revisit-after" content="7 days" />
         <meta name="rating" content="general" />
@@ -414,17 +251,14 @@ export default function RootLayout({ children }) {
         <meta name="distribution" content="Global" />
         <meta name="target" content="all" />
 
-        {/* ── Geo Tags ──────────────────────────────────────────── */}
+        {/* Geo Tags */}
         <meta name="geo.region" content="US" />
         <meta name="geo.placename" content="United States" />
 
-        {/* ✅ NEW: X-UA-Compatible for legacy browser safety */}
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-
-        {/* ✅ NEW: Content-Type explicit declaration */}
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
 
-        {/* ── Google Analytics (afterInteractive = no CWV penalty) ─ */}
+        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-X7HW9F8FV6"
           strategy="afterInteractive"
@@ -442,7 +276,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* ── Combined JSON-LD Schemas ──────────────────────────── */}
+        {/* Global JSON-LD: Organization + WebApplication only */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
