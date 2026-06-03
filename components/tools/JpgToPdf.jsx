@@ -64,14 +64,16 @@ const jsonLd = {
         'Convert JPG to PDF free online in seconds. Upload your JPG or JPEG image and download a clean PDF instantly. No signup, no watermark, no software needed.',
       isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
       about: { '@id': 'https://freepdfconvert.io/jpg-to-pdf/#software' },
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-          { '@type': 'ListItem', position: 2, name: 'JPG to PDF', item: 'https://freepdfconvert.io/jpg-to-pdf' },
-        ],
-      },
+      breadcrumb: { '@id': 'https://freepdfconvert.io/jpg-to-pdf/#breadcrumb' },
     },
+    {
+  '@type': 'BreadcrumbList',
+  '@id': 'https://freepdfconvert.io/jpg-to-pdf/#breadcrumb',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
+    { '@type': 'ListItem', position: 2, name: 'JPG to PDF', item: 'https://freepdfconvert.io/jpg-to-pdf' },
+  ],
+},
     {
       '@type': 'SoftwareApplication',
       '@id': 'https://freepdfconvert.io/jpg-to-pdf/#software',

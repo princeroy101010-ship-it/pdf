@@ -65,23 +65,25 @@ const FAQ_ITEMS = [
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://freepdfconvert.io/compress-pdf',
-      url: 'https://freepdfconvert.io/compress-pdf',
-      name: 'Compress PDF Online Free – Reduce PDF File Size | FreePDFConvert',
-      description:
-        'Compress PDF files online for free. Reduce PDF size up to 90% without losing quality. No signup, no watermark, instant download. Fast & secure.',
-      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-      about: { '@id': 'https://freepdfconvert.io/compress-pdf/#software' },
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-          { '@type': 'ListItem', position: 2, name: 'Compress PDF', item: 'https://freepdfconvert.io/compress-pdf' },
-        ],
-      },
-    },
+   {
+  '@type': 'WebPage',
+  '@id': 'https://freepdfconvert.io/compress-pdf',
+  url: 'https://freepdfconvert.io/compress-pdf',
+  name: 'Compress PDF Online Free – Reduce PDF File Size | FreePDFConvert',
+  description:
+    'Compress PDF files online for free. Reduce PDF size up to 90% without losing quality. No signup, no watermark, instant download. Fast & secure.',
+  isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
+  about: { '@id': 'https://freepdfconvert.io/compress-pdf/#software' },
+  breadcrumb: { '@id': 'https://freepdfconvert.io/compress-pdf/#breadcrumb' },
+},
+{
+  '@type': 'BreadcrumbList',
+  '@id': 'https://freepdfconvert.io/compress-pdf/#breadcrumb',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
+    { '@type': 'ListItem', position: 2, name: 'Compress PDF', item: 'https://freepdfconvert.io/compress-pdf' },
+  ],
+},
     {
       '@type': 'SoftwareApplication',
       '@id': 'https://freepdfconvert.io/compress-pdf/#software',
