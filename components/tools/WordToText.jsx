@@ -18,13 +18,13 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://www.freepdfconvert.io/word-to-Text#webpage",
-      "url": "https://www.freepdfconvert.io/word-to-Text",
+      "@id": "https://www.freepdfconvert.io/word-to-text#webpage",
+      "url": "https://www.freepdfconvert.io/word-to-text",
       "name": "Word to Text Converter – Free Online | FreePDFConvert",
       "description": "Convert Word to Text online free. Extract plain text from DOC or DOCX files instantly. No signup, no watermark, 100% free & secure.",
       "inLanguage": "en-US",
       "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://www.freepdfconvert.io/word-to-Text#breadcrumb" },
+      "breadcrumb": { "@id": "https://www.freepdfconvert.io/word-to-text#breadcrumb" },
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "url": "https://www.freepdfconvert.io/og-image.png"
@@ -32,10 +32,10 @@ const jsonLd = {
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://www.freepdfconvert.io/word-to-Text#breadcrumb",
+      "@id": "https://www.freepdfconvert.io/word-to-text#breadcrumb",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home",         "item": "https://www.freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Word to Text", "item": "https://www.freepdfconvert.io/word-to-Text" }
+        { "@type": "ListItem", "position": 2, "name": "Word to Text", "item": "https://www.freepdfconvert.io/word-to-text" }
       ]
     },
     {
@@ -43,7 +43,7 @@ const jsonLd = {
       "name": "Word to Text Converter",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Web Browser",
-      "url": "https://www.freepdfconvert.io/word-to-Text",
+      "url": "https://www.freepdfconvert.io/word-to-text",
       "description": "Free online tool to extract and convert plain text from Microsoft Word DOC and DOCX files. No signup required, instant results.",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "aggregateRating": {
@@ -125,7 +125,7 @@ const jsonLd = {
 const SEO_TITLE       = "Word to Text Converter – Free Online | FreePDFConvert";
 const SEO_DESCRIPTION = "Convert Word to Text online free. Extract plain text from DOC or DOCX files instantly. No signup, no watermark, 100% free & secure – FreePDFConvert.";
 const SEO_KEYWORDS    = "word to text, convert word to text, word to txt, docx to text, doc to txt, extract text from word, word to plain text, word to text converter free, docx to txt online, convert docx to txt, word document to text, word to text online free";
-const CANONICAL_URL   = "https://www.freepdfconvert.io/word-to-Text";
+const CANONICAL_URL   = "https://www.freepdfconvert.io/word-to-text";
 const OG_IMAGE        = "https://www.freepdfconvert.io/og-image.png";
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -351,7 +351,7 @@ const WordToText = () => (
                       {[
                         { href: '/word-to-pdf',    label: 'Word to PDF'    },
                         { href: '/pdf-to-word',    label: 'PDF to Word'    },
-                        { href: '/pdf-to-Text',    label: 'PDF to Text'    },
+                        { href: '/pdf-to-text',    label: 'PDF to Text'    },
                         { href: '/Text-to-word',   label: 'Text to Word'   },
                         { href: '/merge-pdf',      label: 'Merge PDF'      },
                         { href: '/compress-pdf',   label: 'Compress PDF'   },
