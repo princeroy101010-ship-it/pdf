@@ -14,7 +14,6 @@ const jsonLd = {
       "url": "https://www.freepdfconvert.io/features",
       "name": "Free PDF Tools Features FreePDFConvert.io",
       "description": "FreePDFConvert offers 20+ free PDF tools with lightning fast processing, AI compression, mobile-first design, and 100% privacy. No signup required.",
-      "inLanguage": "en-US",
       "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
       "breadcrumb": { "@id": "https://www.freepdfconvert.io/features#breadcrumb" },
       "primaryImageOfPage": {

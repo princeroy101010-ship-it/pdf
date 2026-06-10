@@ -56,26 +56,26 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://freepdfconvert.io/extract-text-from-pdf",
-      "url": "https://freepdfconvert.io/extract-text-from-pdf",
+      "@id": "https://www.freepdfconvert.io/extract-text-from-pdf",
+      "url": "https://www.freepdfconvert.io/extract-text-from-pdf",
       "name": "Free Online OCR – Extract Text from Scanned PDF | FreePDFConvert",
       "description": "Extract text from scanned PDF files free online. AI-powered OCR converts non-selectable PDF text into editable content instantly. No signup, no watermark.",
-      "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://freepdfconvert.io/extract-text-from-pdf/#breadcrumb" }
+      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
+      "breadcrumb": { "@id": "https://www.freepdfconvert.io/extract-text-from-pdf/#breadcrumb" }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://freepdfconvert.io/extract-text-from-pdf/#breadcrumb",
+      "@id": "https://www.freepdfconvert.io/extract-text-from-pdf/#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Extract Text From PDF", "item": "https://freepdfconvert.io/extract-text-from-pdf" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Extract Text From PDF", "item": "https://www.freepdfconvert.io/extract-text-from-pdf" }
       ]
     },
     {
       "@type": "WebApplication",
-      "@id": "https://freepdfconvert.io/extract-text-from-pdf/#software",
+      "@id": "https://www.freepdfconvert.io/extract-text-from-pdf/#software",
       "name": "Free Online OCR – Extract Text from PDF",
-      "url": "https://freepdfconvert.io/extract-text-from-pdf",
+      "url": "https://www.freepdfconvert.io/extract-text-from-pdf",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "All",
       "description": "Free online OCR tool to extract text from scanned PDFs. No signup required. 100% secure browser-based processing.",
@@ -88,7 +88,7 @@ const jsonLd = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://freepdfconvert.io/extract-text-from-pdf/#faq",
+      "@id": "https://www.freepdfconvert.io/extract-text-from-pdf/#faq",
       "mainEntity": FAQ_ITEMS.map(({ q, a }) => ({
         "@type": "Question",
         "name": q,

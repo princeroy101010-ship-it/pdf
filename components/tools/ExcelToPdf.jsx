@@ -41,26 +41,26 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://freepdfconvert.io/excel-to-pdf',
-      url: 'https://freepdfconvert.io/excel-to-pdf',
+      '@id': 'https://www.freepdfconvert.io/excel-to-pdf',
+      url: 'https://www.freepdfconvert.io/excel-to-pdf',
       name: 'Convert Excel to PDF Online Free – Workbooks to PDF | FreePDFConvert',
       description: 'Convert Excel spreadsheets to PDF online for free. Convert XLS and XLSX grids to clean PDF documents with no watermark, no signup. Fast & secure.',
-      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-      breadcrumb: { '@id': 'https://freepdfconvert.io/excel-to-pdf/#breadcrumb' },
+      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
+      breadcrumb: { '@id': 'https://www.freepdfconvert.io/excel-to-pdf/#breadcrumb' },
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://freepdfconvert.io/excel-to-pdf/#breadcrumb',
+      '@id': 'https://www.freepdfconvert.io/excel-to-pdf/#breadcrumb',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'Excel to PDF', item: 'https://freepdfconvert.io/excel-to-pdf' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'Excel to PDF', item: 'https://www.freepdfconvert.io/excel-to-pdf' },
       ],
     },
     {
       '@type': 'SoftwareApplication',
-      '@id': 'https://freepdfconvert.io/excel-to-pdf/#software',
+      '@id': 'https://www.freepdfconvert.io/excel-to-pdf/#software',
       name: 'Excel to PDF Converter – FreePDFConvert',
-      url: 'https://freepdfconvert.io/excel-to-pdf',
+      url: 'https://www.freepdfconvert.io/excel-to-pdf',
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'All – Web Browser',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -74,7 +74,7 @@ const jsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://freepdfconvert.io/excel-to-pdf/#faq',
+      '@id': 'https://www.freepdfconvert.io/excel-to-pdf/#faq',
       mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
@@ -194,7 +194,55 @@ const ExcelToPdf = () => (
                   ))}
                 </section>
 
-                {/* Content Section: How It Works */}
+       
+
+              </article>
+            )}
+
+            {/* ── LOADING STATE ────────────────────────────────────────────── */}
+            {(status === 'uploading' || status === 'processing') && (
+              <div 
+                className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100 text-center w-full max-w-md my-auto animate-in zoom-in-95 duration-200"
+                role="status"
+                aria-live="polite"
+              >
+                <div className="relative mb-8 flex justify-center items-center">
+                  <Settings className="text-slate-100 animate-[spin_10s_linear_infinite] w-28 h-28 absolute" strokeWidth={1} />
+                  <div className="relative z-10 bg-rose-50 text-rose-600 p-5 rounded-2xl animate-pulse">
+                    {status === 'uploading' ? <Upload className="animate-bounce w-10 h-10" /> : <Loader2 className="animate-spin w-10 h-10" />}
+                  </div>
+                </div>
+                <h2 className="text-xl font-black text-slate-850 mb-1 tracking-tight uppercase">
+                  {status === 'uploading' ? 'Uploading' : 'Converting'}...
+                </h2>
+                <p className="text-slate-400 font-medium text-xs mb-6 truncate px-4">{fileQueue[0]?.name}</p>
+                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner">
+                  <div className="bg-rose-600 h-full transition-all duration-500 ease-out" style={{ width: status === 'processing' ? '92%' : '45%' }}></div>
+                </div>
+              </div>
+            )}
+
+            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
+            {status === 'completed' && (
+              <div 
+                className="text-center w-full max-w-md my-auto animate-in fade-in slide-in-from-bottom-4 duration-400"
+                role="status"
+                aria-live="polite"
+              >
+                <div className="bg-emerald-500 text-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-100"><CheckCircle2 size={32} /></div>
+                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Success!</h2>
+                <p className="text-slate-400 text-sm mb-6">Your Excel cell framework converted to premium PDF cleanly.</p>
+                
+                <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center gap-4">
+                  <button onClick={handleDownload} className="bg-rose-600 hover:bg-rose-700 text-white w-full py-4 text-base font-black rounded-xl transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <Download size={20} /> {DL_TEXT}
+                  </button>
+                  <button onClick={reset} className="text-slate-400 hover:text-slate-600 font-bold text-xs tracking-wide transition-colors uppercase mt-1">Convert another file</button>
+                </div>
+              </div>
+            )}
+
+         {/* Content Section: How It Works */}
                 <section aria-labelledby="how-it-works-heading" className="mt-20 w-full max-w-3xl border-t border-slate-100 pt-16">
                   <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
                     How to Convert Excel to PDF — 3 Simple Steps
@@ -262,53 +310,6 @@ const ExcelToPdf = () => (
                     </p>
                   </div>
                 </section>
-
-              </article>
-            )}
-
-            {/* ── LOADING STATE ────────────────────────────────────────────── */}
-            {(status === 'uploading' || status === 'processing') && (
-              <div 
-                className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100 text-center w-full max-w-md my-auto animate-in zoom-in-95 duration-200"
-                role="status"
-                aria-live="polite"
-              >
-                <div className="relative mb-8 flex justify-center items-center">
-                  <Settings className="text-slate-100 animate-[spin_10s_linear_infinite] w-28 h-28 absolute" strokeWidth={1} />
-                  <div className="relative z-10 bg-rose-50 text-rose-600 p-5 rounded-2xl animate-pulse">
-                    {status === 'uploading' ? <Upload className="animate-bounce w-10 h-10" /> : <Loader2 className="animate-spin w-10 h-10" />}
-                  </div>
-                </div>
-                <h2 className="text-xl font-black text-slate-850 mb-1 tracking-tight uppercase">
-                  {status === 'uploading' ? 'Uploading' : 'Converting'}...
-                </h2>
-                <p className="text-slate-400 font-medium text-xs mb-6 truncate px-4">{fileQueue[0]?.name}</p>
-                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner">
-                  <div className="bg-rose-600 h-full transition-all duration-500 ease-out" style={{ width: status === 'processing' ? '92%' : '45%' }}></div>
-                </div>
-              </div>
-            )}
-
-            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
-            {status === 'completed' && (
-              <div 
-                className="text-center w-full max-w-md my-auto animate-in fade-in slide-in-from-bottom-4 duration-400"
-                role="status"
-                aria-live="polite"
-              >
-                <div className="bg-emerald-500 text-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-100"><CheckCircle2 size={32} /></div>
-                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Success!</h2>
-                <p className="text-slate-400 text-sm mb-6">Your Excel cell framework converted to premium PDF cleanly.</p>
-                
-                <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center gap-4">
-                  <button onClick={handleDownload} className="bg-rose-600 hover:bg-rose-700 text-white w-full py-4 text-base font-black rounded-xl transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                    <Download size={20} /> {DL_TEXT}
-                  </button>
-                  <button onClick={reset} className="text-slate-400 hover:text-slate-600 font-bold text-xs tracking-wide transition-colors uppercase mt-1">Convert another file</button>
-                </div>
-              </div>
-            )}
-
           </main>
           
           <div className="mt-auto"><Footer /></div>

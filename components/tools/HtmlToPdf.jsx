@@ -48,26 +48,26 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://freepdfconvert.io/html-to-pdf",
-      "url": "https://freepdfconvert.io/html-to-pdf",
+      "@id": "https://www.freepdfconvert.io/html-to-pdf",
+      "url": "https://www.freepdfconvert.io/html-to-pdf",
       "name": "Free HTML to PDF Converter Online – No Signup, No Watermark | FreePDFConvert",
       "description": "Convert HTML to PDF free online in seconds. Upload your .html file and download a clean PDF instantly. No signup, no watermark, no software needed.",
-      "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://freepdfconvert.io/html-to-pdf/#breadcrumb" }
+      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
+      "breadcrumb": { "@id": "https://www.freepdfconvert.io/html-to-pdf/#breadcrumb" }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://freepdfconvert.io/html-to-pdf/#breadcrumb",
+      "@id": "https://www.freepdfconvert.io/html-to-pdf/#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "HTML to PDF Converter", "item": "https://freepdfconvert.io/html-to-pdf" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
+        { "@type": "ListItem", "position": 2, "name": "HTML to PDF Converter", "item": "https://www.freepdfconvert.io/html-to-pdf" }
       ]
     },
     {
       "@type": "WebApplication",
-      "@id": "https://freepdfconvert.io/html-to-pdf/#software",
+      "@id": "https://www.freepdfconvert.io/html-to-pdf/#software",
       "name": "Free HTML to PDF Converter Online",
-      "url": "https://freepdfconvert.io/html-to-pdf",
+      "url": "https://www.freepdfconvert.io/html-to-pdf",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "All",
       "description": "Convert HTML files to PDF online free. No signup required. Fast, secure, and 100% free HTML to PDF converter with no watermark.",
@@ -80,7 +80,7 @@ const jsonLd = {
     },
     {
       "@type": "HowTo",
-      "@id": "https://freepdfconvert.io/html-to-pdf/#howto",
+      "@id": "https://www.freepdfconvert.io/html-to-pdf/#howto",
       "name": "How to Convert HTML to PDF Online Free",
       "description": "Convert any HTML file to PDF in 3 simple steps using FreePDFConvert.",
       "step": [
@@ -106,7 +106,7 @@ const jsonLd = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://freepdfconvert.io/html-to-pdf/#faq",
+      "@id": "https://www.freepdfconvert.io/html-to-pdf/#faq",
       "mainEntity": FAQ_ITEMS.map(({ q, a }) => ({
         "@type": "Question",
         "name": q,
@@ -186,60 +186,7 @@ const HtmlToPdf = () => (
                   </label>
                 </div>
 
-                {/* Feature Cards */}
-                <section
-                  aria-label="Core workspace options and service advantages"
-                  className="grid md:grid-cols-3 gap-6 mt-16 mb-4 w-full"
-                >
-                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
-                    <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                    <h3 className="font-black text-slate-900 text-base mb-2">Instant Conversion</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">Upload your HTML file and get a perfectly formatted PDF in seconds. No waiting, no queue.</p>
-                  </div>
-                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
-                    <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                    <h3 className="font-black text-slate-900 text-base mb-2">Secure & Private</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">Your HTML files are encrypted during transfer and automatically deleted after conversion. We never store your data.</p>
-                  </div>
-                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
-                    <FileText className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                    <h3 className="font-black text-slate-900 text-base mb-2">No Watermark</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">Every converted PDF is completely clean. No FreePDFConvert branding, no watermarks — ever.</p>
-                  </div>
-                </section>
-
-                {/* How It Works — H2 for SEO */}
-                <section aria-labelledby="how-it-works-heading" className="w-full bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10 mt-6 mb-6">
-                  <h2 id="how-it-works-heading" className="text-2xl font-black text-slate-900 mb-6 uppercase tracking-wide">
-                    How to Convert HTML to PDF Online (3 Steps)
-                  </h2>
-                  <ol className="space-y-4 text-slate-500 text-sm font-medium leading-relaxed" role="list">
-                    <li>
-                      <strong className="text-slate-900">Step 1 — Upload Document:</strong> Click "Select HTML File" or drag and drop your <code className="bg-slate-50 px-1.5 py-0.5 rounded text-xs text-rose-600 font-bold border border-slate-100">.html</code> file into the upload area above.
-                    </li>
-                    <li>
-                      <strong className="text-slate-900">Step 2 — Auto Rendering:</strong> The converter automatically processes your file, preserving your layout, CSS styles, typography frameworks, and links inside the output PDF.
-                    </li>
-                    <li>
-                      <strong className="text-slate-900">Step 3 — Download Asset:</strong> Click "Download PDF" to save your fresh, structural document. No validation email or signup requested.
-                    </li>
-                  </ol>
-                </section>
-
-                {/* FAQ Section — H2 + structured Q&A for featured snippets */}
-                <section aria-labelledby="faq-main-heading" className="w-full bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10 mt-0 mb-16">
-                  <h2 id="faq-main-heading" className="text-2xl font-black text-slate-900 mb-8 uppercase tracking-wide">
-                    Frequently Asked Questions
-                  </h2>
-                  <div className="space-y-6">
-                    {FAQ_ITEMS.map((item, idx) => (
-                      <div key={idx} className="border-b border-slate-50 pb-5 last:border-0 last:pb-0">
-                        <h3 className="font-black text-slate-800 text-base mb-2">{item.q}</h3>
-                        <p className="text-slate-500 text-sm leading-relaxed">{item.a}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
+            
 
               </article>
             )}
@@ -304,6 +251,62 @@ const HtmlToPdf = () => (
               </div>
             )}
 
+
+
+    {/* Feature Cards */}
+                <section
+                  aria-label="Core workspace options and service advantages"
+                  className="grid md:grid-cols-3 gap-6 mt-16 mb-4 w-full"
+                >
+                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
+                    <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                    <h3 className="font-black text-slate-900 text-base mb-2">Instant Conversion</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">Upload your HTML file and get a perfectly formatted PDF in seconds. No waiting, no queue.</p>
+                  </div>
+                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
+                    <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                    <h3 className="font-black text-slate-900 text-base mb-2">Secure & Private</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">Your HTML files are encrypted during transfer and automatically deleted after conversion. We never store your data.</p>
+                  </div>
+                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
+                    <FileText className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                    <h3 className="font-black text-slate-900 text-base mb-2">No Watermark</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">Every converted PDF is completely clean. No FreePDFConvert branding, no watermarks — ever.</p>
+                  </div>
+                </section>
+
+                {/* How It Works — H2 for SEO */}
+                <section aria-labelledby="how-it-works-heading" className="w-full bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10 mt-6 mb-6">
+                  <h2 id="how-it-works-heading" className="text-2xl font-black text-slate-900 mb-6 uppercase tracking-wide">
+                    How to Convert HTML to PDF Online (3 Steps)
+                  </h2>
+                  <ol className="space-y-4 text-slate-500 text-sm font-medium leading-relaxed" role="list">
+                    <li>
+                      <strong className="text-slate-900">Step 1 — Upload Document:</strong> Click "Select HTML File" or drag and drop your <code className="bg-slate-50 px-1.5 py-0.5 rounded text-xs text-rose-600 font-bold border border-slate-100">.html</code> file into the upload area above.
+                    </li>
+                    <li>
+                      <strong className="text-slate-900">Step 2 — Auto Rendering:</strong> The converter automatically processes your file, preserving your layout, CSS styles, typography frameworks, and links inside the output PDF.
+                    </li>
+                    <li>
+                      <strong className="text-slate-900">Step 3 — Download Asset:</strong> Click "Download PDF" to save your fresh, structural document. No validation email or signup requested.
+                    </li>
+                  </ol>
+                </section>
+
+                {/* FAQ Section — H2 + structured Q&A for featured snippets */}
+                <section aria-labelledby="faq-main-heading" className="w-full bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10 mt-0 mb-16">
+                  <h2 id="faq-main-heading" className="text-2xl font-black text-slate-900 mb-8 uppercase tracking-wide">
+                    Frequently Asked Questions
+                  </h2>
+                  <div className="space-y-6">
+                    {FAQ_ITEMS.map((item, idx) => (
+                      <div key={idx} className="border-b border-slate-50 pb-5 last:border-0 last:pb-0">
+                        <h3 className="font-black text-slate-800 text-base mb-2">{item.q}</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed">{item.a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
           </main>
 
           <div className="mt-10 md:mt-20">

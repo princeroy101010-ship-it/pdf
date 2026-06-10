@@ -50,26 +50,26 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://freepdfconvert.io/image-to-pdf",
-      "url": "https://freepdfconvert.io/image-to-pdf",
+      "@id": "https://www.freepdfconvert.io/image-to-pdf",
+      "url": "https://www.freepdfconvert.io/image-to-pdf",
       "name": "Free Image to PDF Converter – JPG & PNG to PDF Online",
       "description": "Convert JPG, PNG images to PDF free online. Combine multiple images into one PDF instantly. No signup, no watermark. Fast and secure image to PDF converter.",
-      "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://freepdfconvert.io/image-to-pdf/#breadcrumb" }
+      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
+      "breadcrumb": { "@id": "https://www.freepdfconvert.io/image-to-pdf/#breadcrumb" }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://freepdfconvert.io/image-to-pdf/#breadcrumb",
+      "@id": "https://www.freepdfconvert.io/image-to-pdf/#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Image to PDF Converter", "item": "https://freepdfconvert.io/image-to-pdf" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Image to PDF Converter", "item": "https://www.freepdfconvert.io/image-to-pdf" }
       ]
     },
     {
       "@type": "WebApplication",
-      "@id": "https://freepdfconvert.io/image-to-pdf/#software",
+      "@id": "https://www.freepdfconvert.io/image-to-pdf/#software",
       "name": "Free Image to PDF Converter Online",
-      "url": "https://freepdfconvert.io/image-to-pdf",
+      "url": "https://www.freepdfconvert.io/image-to-pdf",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "All",
       "description": "Convert JPG, PNG and other images to PDF free online. Combine multiple images into one PDF. No signup, no watermark.",
@@ -82,7 +82,7 @@ const jsonLd = {
     },
     {
       "@type": "HowTo",
-      "@id": "https://freepdfconvert.io/image-to-pdf/#howto",
+      "@id": "https://www.freepdfconvert.io/image-to-pdf/#howto",
       "name": "How to Convert Image to PDF Online Free",
       "description": "Convert JPG or PNG images to PDF in 3 easy steps using FreePDFConvert.",
       "step": [
@@ -108,7 +108,7 @@ const jsonLd = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://freepdfconvert.io/image-to-pdf/#faq",
+      "@id": "https://www.freepdfconvert.io/image-to-pdf/#faq",
       "mainEntity": FAQ_ITEMS.map(item => ({
         "@type": "Question",
         "name": item.q,
@@ -235,66 +235,7 @@ const ImageToPdf = () => (
                   </label>
                 </div>
 
-                {/* Feature Cards */}
-                <section
-                  aria-label="Service performance parameters"
-                  className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full"
-                >
-                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
-                    <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                    <h3 className="font-black text-slate-900 text-base mb-2">Instant Conversion</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">
-                      Upload your JPG or PNG files and get a properly formatted PDF in seconds. No waiting, no queue.
-                    </p>
-                  </div>
-                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
-                    <Layers className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                    <h3 className="font-black text-slate-900 text-base mb-2">Multiple Images → One PDF</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">
-                      Select multiple JPG or PNG images at once and combine them all into a single PDF document automatically.
-                    </p>
-                  </div>
-                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
-                    <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                    <h3 className="font-black text-slate-900 text-base mb-2">Secure & Watermark-Free</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">
-                      All files use SSL encryption during transfer and are deleted after conversion. Zero watermarks on output.
-                    </p>
-                  </div>
-                </section>
-
-                {/* How It Works — H2 for SEO */}
-                <section aria-labelledby="steps-section-heading" className="w-full bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
-                  <h2 id="steps-section-heading" className="text-2xl font-black text-slate-900 mb-6 uppercase tracking-wide">
-                    How to Convert Image to PDF Online (3 Steps)
-                  </h2>
-                  <ol className="space-y-4 text-slate-500 text-sm font-medium leading-relaxed" role="list">
-                    <li>
-                      <strong className="text-slate-900">Step 1 — Choose Files:</strong> Click "Select Images" or drag and drop your JPG or PNG files into the upload area. You can select multiple images at once.
-                    </li>
-                    <li>
-                      <strong className="text-slate-900">Step 2 — Verify Layout:</strong> Review your selected images in the preview grid. Remove any you don't need. Then click "Convert to PDF".
-                    </li>
-                    <li>
-                      <strong className="text-slate-900">Step 3 — Instant Save:</strong> Click "Download PDF" to save your file instantly. No account, no email, no watermark.
-                    </li>
-                  </ol>
-                </section>
-
-                {/* FAQ Section — H2 + Q&A for featured snippets */}
-                <section aria-labelledby="faq-section-heading" className="w-full bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10 mb-16">
-                  <h2 id="faq-section-heading" className="text-2xl font-black text-slate-900 mb-8 uppercase tracking-wide">
-                    Frequently Asked Questions
-                  </h2>
-                  <div className="space-y-6">
-                    {FAQ_ITEMS.map((item, idx) => (
-                      <div key={idx} className="border-b border-slate-50 pb-5 last:border-0 last:pb-0">
-                        <h3 className="font-black text-slate-800 text-base mb-2">{item.q}</h3>
-                        <p className="text-slate-500 text-sm leading-relaxed">{item.a}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
+           
 
               </article>
             )}
@@ -360,6 +301,66 @@ const ImageToPdf = () => (
               </div>
             )}
 
+     {/* Feature Cards */}
+                <section
+                  aria-label="Service performance parameters"
+                  className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full"
+                >
+                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
+                    <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                    <h3 className="font-black text-slate-900 text-base mb-2">Instant Conversion</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">
+                      Upload your JPG or PNG files and get a properly formatted PDF in seconds. No waiting, no queue.
+                    </p>
+                  </div>
+                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
+                    <Layers className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                    <h3 className="font-black text-slate-900 text-base mb-2">Multiple Images → One PDF</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">
+                      Select multiple JPG or PNG images at once and combine them all into a single PDF document automatically.
+                    </p>
+                  </div>
+                  <div className="p-7 bg-white rounded-3xl shadow-sm border border-slate-100">
+                    <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                    <h3 className="font-black text-slate-900 text-base mb-2">Secure & Watermark-Free</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">
+                      All files use SSL encryption during transfer and are deleted after conversion. Zero watermarks on output.
+                    </p>
+                  </div>
+                </section>
+
+                {/* How It Works — H2 for SEO */}
+                <section aria-labelledby="steps-section-heading" className="w-full bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
+                  <h2 id="steps-section-heading" className="text-2xl font-black text-slate-900 mb-6 uppercase tracking-wide">
+                    How to Convert Image to PDF Online (3 Steps)
+                  </h2>
+                  <ol className="space-y-4 text-slate-500 text-sm font-medium leading-relaxed" role="list">
+                    <li>
+                      <strong className="text-slate-900">Step 1 — Choose Files:</strong> Click "Select Images" or drag and drop your JPG or PNG files into the upload area. You can select multiple images at once.
+                    </li>
+                    <li>
+                      <strong className="text-slate-900">Step 2 — Verify Layout:</strong> Review your selected images in the preview grid. Remove any you don't need. Then click "Convert to PDF".
+                    </li>
+                    <li>
+                      <strong className="text-slate-900">Step 3 — Instant Save:</strong> Click "Download PDF" to save your file instantly. No account, no email, no watermark.
+                    </li>
+                  </ol>
+                </section>
+
+                {/* FAQ Section — H2 + Q&A for featured snippets */}
+                <section aria-labelledby="faq-section-heading" className="w-full bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10 mb-16">
+                  <h2 id="faq-section-heading" className="text-2xl font-black text-slate-900 mb-8 uppercase tracking-wide">
+                    Frequently Asked Questions
+                  </h2>
+                  <div className="space-y-6">
+                    {FAQ_ITEMS.map((item, idx) => (
+                      <div key={idx} className="border-b border-slate-50 pb-5 last:border-0 last:pb-0">
+                        <h3 className="font-black text-slate-800 text-base mb-2">{item.q}</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed">{item.a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
           </main>
 
           <div className="mt-10 md:mt-20">

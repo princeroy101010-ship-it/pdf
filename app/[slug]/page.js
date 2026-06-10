@@ -48,14 +48,14 @@ export async function generateMetadata({ params }) {
   if (!config) return {};
 
   const { seo } = config;
-  const canonicalUrl = `https://freepdfconvert.io/${slug}`;
+  const canonicalUrl = `https://www.freepdfconvert.io/${slug}`;
 
   // ── OG Image ─────────────────────────────────────────────
   // Per-tool image if available, fallback to global OG image.
   // Must be absolute URL (https://...) — relative URLs break OG sharing.
   const ogImage = seo.og_image
-    ? `https://freepdfconvert.io${seo.og_image}`
-    : `https://freepdfconvert.io/og-image.png`;
+    ? `https://www.freepdfconvert.io${seo.og_image}`
+    : `https://www.freepdfconvert.io/og-image.png`;
 
   return {
     // ── metadataBase ───────────────────────────────────────
@@ -63,7 +63,7 @@ export async function generateMetadata({ params }) {
     // Without this, Next.js cannot resolve relative URLs in metadata.
     // This fixes "31 URLs with temporary redirect" — caused by
     // Next.js generating http:// instead of https:// URLs for OG images.
-    metadataBase: new URL('https://freepdfconvert.io'),
+    metadataBase: new URL('https://www.freepdfconvert.io'),
 
     // ── Title ─────────────────────────────────────────────
     // ✅ Google policy: 50–60 chars. Over 60 = truncated in SERP.
@@ -91,7 +91,7 @@ export async function generateMetadata({ params }) {
     // ── E-E-A-T Signals ───────────────────────────────────
     // ✅ Google uses these for Experience, Expertise, Authoritativeness,
     //    Trustworthiness evaluation — important for ranking in YMYL niches.
-    authors: [{ name: 'FreePDFConvert', url: 'https://freepdfconvert.io' }],
+    authors: [{ name: 'FreePDFConvert', url: 'https://www.freepdfconvert.io' }],
     creator: 'FreePDFConvert',
     publisher: 'FreePDFConvert',
     applicationName: 'FreePDFConvert',

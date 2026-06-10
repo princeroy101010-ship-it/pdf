@@ -26,25 +26,25 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://freepdfconvert.io/pdf-to-text",
-      "url": "https://freepdfconvert.io/pdf-to-text",
+      "@id": "https://www.freepdfconvert.io/pdf-to-text",
+      "url": "https://www.freepdfconvert.io/pdf-to-text",
       "name": "PDF to Text Converter – Free Online Tool | FreePDFConvert",
       "description": "Convert PDF to plain text online for free. No installation, no sign-up. Extract text from any PDF instantly with our fast and secure converter.",
-      "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
-      "about": { "@id": "https://freepdfconvert.io/pdf-to-text/#software" },
+      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
+      "about": { "@id": "https://www.freepdfconvert.io/pdf-to-text/#software" },
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freepdfconvert.io/" },
-          { "@type": "ListItem", "position": 2, "name": "PDF to Text", "item": "https://freepdfconvert.io/pdf-to-text" }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
+          { "@type": "ListItem", "position": 2, "name": "PDF to Text", "item": "https://www.freepdfconvert.io/pdf-to-text" }
         ]
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://freepdfconvert.io/pdf-to-text/#software",
+      "@id": "https://www.freepdfconvert.io/pdf-to-text/#software",
       "name": "PDF to Text Converter",
-      "url": "https://freepdfconvert.io/pdf-to-text",
+      "url": "https://www.freepdfconvert.io/pdf-to-text",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "All – Web Browser",
       "offers": {
@@ -115,15 +115,15 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://freepdfconvert.io/#website",
-      "url": "https://freepdfconvert.io/",
+      "@id": "https://www.freepdfconvert.io/#website",
+      "url": "https://www.freepdfconvert.io/",
       "name": "FreePDFConvert",
       "description": "Free online PDF conversion tools. Convert PDF to Word, Excel, Text, JPG and more.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://freepdfconvert.io/?q={search_term_string}"
+          "urlTemplate": "https://www.freepdfconvert.io/?q={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }
@@ -143,7 +143,7 @@ const PdfToText = () => (
           {/* ─── HEAD / SEO ─────────────────────────────────────────────── */}
           <Head>
             {/* Primary Meta */}
-            <title>PDF to Text Converter – Free Online, No Sign-Up | FreePDFConvert</title>
+            <title>PDF to Text Converter Free Online, No Sign-Up</title>
             <meta name="description" content="Convert PDF to text online free — no email, no install. Extract plain text from any PDF in seconds. Supports scanned PDFs with OCR. Fast, private & 100% free." />
             <meta name="keywords" content="pdf to text, pdf to text converter, convert pdf to text, pdf to txt, extract text from pdf, pdf text extractor, online pdf to text, free pdf to text, pdf to plain text, scanned pdf to text, ocr pdf to text, pdf converter free" />
             <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -151,16 +151,16 @@ const PdfToText = () => (
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             
             {/* Semantic Link Targets */}
-            <link rel="canonical" href="https://freepdfconvert.io/pdf-to-text" />
-            <link rel="alternate" href="https://freepdfconvert.io/pdf-to-text" hrefLang="x-default" />
+            <link rel="canonical" href="https://www.freepdfconvert.io/pdf-to-text" />
+            <link rel="alternate" href="https://www.freepdfconvert.io/pdf-to-text" hrefLang="x-default" />
 
             {/* Open Graph */}
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="FreePDFConvert" />
             <meta property="og:title" content="PDF to Text Converter – Free Online, No Sign-Up | FreePDFConvert" />
             <meta property="og:description" content="Convert PDF to text online free — no email, no install. Extract plain text from any PDF in seconds. Supports scanned PDFs with OCR." />
-            <meta property="og:url" content="https://freepdfconvert.io/pdf-to-text" />
-            <meta property="og:image" content="https://freepdfconvert.io/og-pdf-to-text.png" />
+            <meta property="og:url" content="https://www.freepdfconvert.io/pdf-to-text" />
+            <meta property="og:image" content="https://www.freepdfconvert.io/og-pdf-to-text.png" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content="FreePDFConvert – Free PDF to Text Converter" />
@@ -171,7 +171,7 @@ const PdfToText = () => (
             <meta name="twitter:site" content="@freepdfconvert" />
             <meta name="twitter:title" content="PDF to Text Converter – Free Online | FreePDFConvert" />
             <meta name="twitter:description" content="Extract text from any PDF online for free. No sign-up needed. Supports scanned PDFs with OCR." />
-            <meta name="twitter:image" content="https://freepdfconvert.io/og-pdf-to-text.png" />
+            <meta name="twitter:image" content="https://www.freepdfconvert.io/og-pdf-to-text.png" />
 
             {/* JSON-LD Structured Data */}
             <script
@@ -277,6 +277,92 @@ const PdfToText = () => (
                       </span>
                     ))}
                   </section>
+
+
+
+                </article>
+              )}
+
+              {/* ── UPLOADING / PROCESSING STATE ───────────────────────── */}
+              {(status === 'uploading' || status === 'processing') && (
+                <div
+                  className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg"
+                  role="status"
+                  aria-live="polite"
+                  aria-label={status === 'uploading' ? 'Uploading your PDF file' : 'Converting PDF to text'}
+                >
+                  <div className="relative mb-8 flex justify-center items-center">
+                    <Settings
+                      className="text-green-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute"
+                      strokeWidth={1}
+                      aria-hidden="true"
+                    >
+                      <title>Processing settings</title>
+                    </Settings>
+                    <div className="relative z-10 bg-green-50 p-6 rounded-3xl animate-pulse">
+                      {status === 'uploading'
+                        ? <Upload className={`${COLOR_CLASSES.text} animate-bounce w-12 h-12`} aria-hidden="true" />
+                        : <Loader2 className={`${COLOR_CLASSES.text} animate-spin w-12 h-12`} aria-hidden="true" />
+                      }
+                    </div>
+                  </div>
+                  <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
+                    {status === 'uploading' ? 'Uploading' : 'Converting'}...
+                  </h2>
+                  <p className="text-gray-400 text-sm mb-8 truncate" aria-label={`File: ${fileQueue[0]?.name}`}>
+                    {fileQueue[0]?.name}
+                  </p>
+                  <div
+                    className="w-full bg-gray-100 h-3 rounded-full overflow-hidden"
+                    role="progressbar"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={status === 'processing' ? 92 : 45}
+                    aria-label="Conversion progress"
+                  >
+                    <div
+                      className={`${COLOR_CLASSES.bg} h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* ── COMPLETED STATE ─────────────────────────────────────── */}
+              {status === 'completed' && (
+                <div
+                  className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"
+                  role="status"
+                  aria-live="polite"
+                  aria-label="Conversion complete. Your text file is ready to download."
+                >
+                  <div
+                    className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3"
+                    aria-hidden="true"
+                  >
+                    <CheckCircle2 size={40} />
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">
+                    Conversion Complete!
+                  </h2>
+                  <p className="text-gray-500 mb-6">Your PDF has been converted to text. Click below to download.</p>
+                  <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
+                    <button
+                      onClick={handleDownload}
+                      className={`${COLOR_CLASSES.bg} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4 transition-transform`}
+                      aria-label="Download your converted text file"
+                    >
+                      <Download size={28} aria-hidden="true" /> {DL_TEXT}
+                    </button>
+                    <button
+                      onClick={reset}
+                      className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors"
+                      aria-label="Convert another PDF file"
+                    >
+                      Convert another file
+                    </button>
+                  </div>
+                </div>
+              )}
 
                   {/* ── HOW IT WORKS ──────────────────────────────────── */}
                   <section
@@ -474,91 +560,6 @@ const PdfToText = () => (
                       </p>
                     </div>
                   </section>
-
-                </article>
-              )}
-
-              {/* ── UPLOADING / PROCESSING STATE ───────────────────────── */}
-              {(status === 'uploading' || status === 'processing') && (
-                <div
-                  className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg"
-                  role="status"
-                  aria-live="polite"
-                  aria-label={status === 'uploading' ? 'Uploading your PDF file' : 'Converting PDF to text'}
-                >
-                  <div className="relative mb-8 flex justify-center items-center">
-                    <Settings
-                      className="text-green-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute"
-                      strokeWidth={1}
-                      aria-hidden="true"
-                    >
-                      <title>Processing settings</title>
-                    </Settings>
-                    <div className="relative z-10 bg-green-50 p-6 rounded-3xl animate-pulse">
-                      {status === 'uploading'
-                        ? <Upload className={`${COLOR_CLASSES.text} animate-bounce w-12 h-12`} aria-hidden="true" />
-                        : <Loader2 className={`${COLOR_CLASSES.text} animate-spin w-12 h-12`} aria-hidden="true" />
-                      }
-                    </div>
-                  </div>
-                  <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
-                    {status === 'uploading' ? 'Uploading' : 'Converting'}...
-                  </h2>
-                  <p className="text-gray-400 text-sm mb-8 truncate" aria-label={`File: ${fileQueue[0]?.name}`}>
-                    {fileQueue[0]?.name}
-                  </p>
-                  <div
-                    className="w-full bg-gray-100 h-3 rounded-full overflow-hidden"
-                    role="progressbar"
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={status === 'processing' ? 92 : 45}
-                    aria-label="Conversion progress"
-                  >
-                    <div
-                      className={`${COLOR_CLASSES.bg} h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* ── COMPLETED STATE ─────────────────────────────────────── */}
-              {status === 'completed' && (
-                <div
-                  className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"
-                  role="status"
-                  aria-live="polite"
-                  aria-label="Conversion complete. Your text file is ready to download."
-                >
-                  <div
-                    className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3"
-                    aria-hidden="true"
-                  >
-                    <CheckCircle2 size={40} />
-                  </div>
-                  <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">
-                    Conversion Complete!
-                  </h2>
-                  <p className="text-gray-500 mb-6">Your PDF has been converted to text. Click below to download.</p>
-                  <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
-                    <button
-                      onClick={handleDownload}
-                      className={`${COLOR_CLASSES.bg} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4 transition-transform`}
-                      aria-label="Download your converted text file"
-                    >
-                      <Download size={28} aria-hidden="true" /> {DL_TEXT}
-                    </button>
-                    <button
-                      onClick={reset}
-                      className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors"
-                      aria-label="Convert another PDF file"
-                    >
-                      Convert another file
-                    </button>
-                  </div>
-                </div>
-              )}
-
             </main>
 
             <div className="mt-10 md:mt-20">

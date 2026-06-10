@@ -11,26 +11,25 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://freepdfconvert.io/contact-us#webpage",
-      "url": "https://freepdfconvert.io/contact-us",
+      "@id": "https://www.freepdfconvert.io/contact-us#webpage",
+      "url": "https://www.freepdfconvert.io/contact-us",
       "name": "Contact FreePDFConvert – Support & Customer Help",
       "description": "Get in touch with the FreePDFConvert support team for PDF tool inquiries, error handling, performance issues, and feature requests. 24-hour response guaranteed.",
-      "inLanguage": "en-US",
-      "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://freepdfconvert.io/contact-us#breadcrumb" },
+      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
+      "breadcrumb": { "@id": "https://www.freepdfconvert.io/contact-us#breadcrumb" },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://freepdfconvert.io/og-image.png",
+        "url": "https://www.freepdfconvert.io/og-image.png",
         "width": 1200,
         "height": 630
       }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://freepdfconvert.io/contact-us#breadcrumb",
+      "@id": "https://www.freepdfconvert.io/contact-us#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://freepdfconvert.io/contact-us" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://www.freepdfconvert.io/contact-us" }
       ]
     },
     {
@@ -83,23 +82,23 @@ const jsonLd = {
 
 // ─── NEXT.JS METADATA EXPORT ──────────────────────────────────────────────────
 export const metadata = {
-  title: "Contact FreePDFConvert – Support & Customer Help",
+  title: "Contact FreePDFConvert Support & Customer Help",
   description:
     "Need technical help with file tools? Contact the FreePDFConvert help center via email or chat. Complete support for our document converters with quick response times.",
   keywords:
     "contact freepdfconvert, pdf tool support, free pdf converter help, pdf conversion error fix, freepdfconvert email support, online pdf tool help, pdf support 24 hours, contact pdf converter online, freepdfconvert feedback, report pdf bug, free pdf tool customer service, pdf to word help, compress pdf support",
   alternates: {
-    canonical: "https://freepdfconvert.io/contact-us",
+    canonical: "https://www.freepdfconvert.io/contact-us",
   },
   openGraph: {
     title: "Contact FreePDFConvert – Support & Customer Help",
     description:
       "Get rapid technical help for your conversion setups. Drop a note to our support channels directly. Free support services on any device.",
-    url: "https://freepdfconvert.io/contact-us",
+    url: "https://www.freepdfconvert.io/contact-us",
     type: "website",
     images: [
       {
-        url: "https://freepdfconvert.io/og-image.png",
+        url: "https://www.freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
         alt: "Contact FreePDFConvert Customer Support Desk"
@@ -113,7 +112,7 @@ export const metadata = {
     title: "Contact FreePDFConvert – Support & Customer Help",
     description:
       "Reach out directly for any operational errors, data feedback, or feature proposals. Our support handles respond promptly.",
-    images: ["https://freepdfconvert.io/og-image.png"],
+    images: ["https://www.freepdfconvert.io/og-image.png"],
   },
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   authors: [{ name: "FreePDFConvert" }],

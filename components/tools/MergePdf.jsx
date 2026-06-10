@@ -52,27 +52,27 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://freepdfconvert.io/merge-pdf',
-      url: 'https://freepdfconvert.io/merge-pdf',
+      '@id': 'https://www.freepdfconvert.io/merge-pdf',
+      url: 'https://www.freepdfconvert.io/merge-pdf',
       name: 'Merge PDF Files Online Free – Combine PDFs Instantly | FreePDFConvert',
       description: 'Merge multiple PDF files into one online free. Combine PDFs in any order instantly. No signup, no watermark, 100% secure. Fast and easy PDF merger.',
-      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-      about: { '@id': 'https://freepdfconvert.io/merge-pdf/#software' },
-      breadcrumb: { '@id': 'https://freepdfconvert.io/merge-pdf/#breadcrumb' },
+      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
+      about: { '@id': 'https://www.freepdfconvert.io/merge-pdf/#software' },
+      breadcrumb: { '@id': 'https://www.freepdfconvert.io/merge-pdf/#breadcrumb' },
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://freepdfconvert.io/merge-pdf/#breadcrumb',
+      '@id': 'https://www.freepdfconvert.io/merge-pdf/#breadcrumb',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'Merge PDF', item: 'https://freepdfconvert.io/merge-pdf' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'Merge PDF', item: 'https://www.freepdfconvert.io/merge-pdf' },
       ],
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://freepdfconvert.io/merge-pdf/#software',
+      '@id': 'https://www.freepdfconvert.io/merge-pdf/#software',
       name: 'Free PDF Merger – Merge PDF Files Online',
-      url: 'https://freepdfconvert.io/merge-pdf',
+      url: 'https://www.freepdfconvert.io/merge-pdf',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'All',
       isAccessibleForFree: true,
@@ -105,7 +105,7 @@ const jsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://freepdfconvert.io/merge-pdf/#faq',
+      '@id': 'https://www.freepdfconvert.io/merge-pdf/#faq',
       mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
@@ -235,58 +235,7 @@ const MergePdf = () => (
                 </label>
               </section>
 
-              {/* Structural Value Verification Cards */}
-              <section aria-label="Tool features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Instant Merging</h3>
-                  <p className="text-gray-500 text-sm">Upload your PDFs and get a combined file in seconds. No waiting, no queue — fast server-side processing.</p>
-                </div>
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <Layers className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Merge in Any Order</h3>
-                  <p className="text-gray-500 text-sm">Add PDFs one by one and control the page order. Remove files from the queue before merging if needed.</p>
-                </div>
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
-                  <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF files are automatically deleted after merging and never shared with anyone.</p>
-                </div>
-              </section>
-
-              {/* Execution Steps Description Node */}
-              <section aria-labelledby="how-it-works-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
-                <h2 id="how-it-works-heading" className="text-2xl font-black text-gray-900 mb-6">
-                  How to Merge PDF Files Online (3 Steps)
-                </h2>
-                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
-                  <li>
-                    <strong className="text-gray-900">Step 1 —</strong> Click "Select Files to Merge" or drag and drop your PDF files into the upload area. You can add as many PDFs as needed.
-                  </li>
-                  <li>
-                    <strong className="text-gray-900">Step 2 —</strong> Review the file order in the merge queue. Remove any files you don't want, then click "Merge All Files".
-                  </li>
-                  <li>
-                    <strong className="text-gray-900">Step 3 —</strong> Click "Download Merged PDF" to save your combined file. No account, no email, no watermark.
-                  </li>
-                </ol>
-              </section>
-
-              {/* Document Textual Validation FAQs */}
-              <section aria-labelledby="faq-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
-                <h2 id="faq-heading" className="text-2xl font-black text-gray-900 mb-8">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  {FAQ_ITEMS.map(({ q, a }) => (
-                    <div key={q}>
-                      <h3 className="font-bold text-gray-800 mb-1">{q}</h3>
-                      <p className="text-gray-500 text-sm">{a}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
+           
             </article>
           )}
 
@@ -362,6 +311,57 @@ const MergePdf = () => (
               </div>
             </div>
           )}
+   {/* Structural Value Verification Cards */}
+              <section aria-label="Tool features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Instant Merging</h3>
+                  <p className="text-gray-500 text-sm">Upload your PDFs and get a combined file in seconds. No waiting, no queue — fast server-side processing.</p>
+                </div>
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <Layers className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Merge in Any Order</h3>
+                  <p className="text-gray-500 text-sm">Add PDFs one by one and control the page order. Remove files from the queue before merging if needed.</p>
+                </div>
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
+                  <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF files are automatically deleted after merging and never shared with anyone.</p>
+                </div>
+              </section>
+
+              {/* Execution Steps Description Node */}
+              <section aria-labelledby="how-it-works-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
+                <h2 id="how-it-works-heading" className="text-2xl font-black text-gray-900 mb-6">
+                  How to Merge PDF Files Online (3 Steps)
+                </h2>
+                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
+                  <li>
+                    <strong className="text-gray-900">Step 1 —</strong> Click "Select Files to Merge" or drag and drop your PDF files into the upload area. You can add as many PDFs as needed.
+                  </li>
+                  <li>
+                    <strong className="text-gray-900">Step 2 —</strong> Review the file order in the merge queue. Remove any files you don't want, then click "Merge All Files".
+                  </li>
+                  <li>
+                    <strong className="text-gray-900">Step 3 —</strong> Click "Download Merged PDF" to save your combined file. No account, no email, no watermark.
+                  </li>
+                </ol>
+              </section>
+
+              {/* Document Textual Validation FAQs */}
+              <section aria-labelledby="faq-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
+                <h2 id="faq-heading" className="text-2xl font-black text-gray-900 mb-8">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-6">
+                  {FAQ_ITEMS.map(({ q, a }) => (
+                    <div key={q}>
+                      <h3 className="font-bold text-gray-800 mb-1">{q}</h3>
+                      <p className="text-gray-500 text-sm">{a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
 
         </main>
 

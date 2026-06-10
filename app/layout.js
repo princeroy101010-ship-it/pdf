@@ -35,14 +35,14 @@ export const metadata = {
   // ── metadataBase ─────────────────────────────────────────────
   // CRITICAL: Must be exact live domain. Next.js uses this to resolve
   // all relative image/OG/Twitter URLs. Wrong domain = broken OG images.
-  metadataBase: new URL("https://freepdfconvert.io"),
+  metadataBase: new URL("https://www.freepdfconvert.io"),
 
   // ── Title ────────────────────────────────────────────────────
   // Google displays 50–60 chars. Over 60 = truncated with "..."
   // Rule: Brand keyword + primary keyword + value prop
   // 52 chars ✅
   title: {
-    default: "Free PDF Converter – Convert, Merge & Compress PDF",
+    default: "Free PDF Converter Convert, Merge & Compress PDF",
     // %s = page-level title from page.jsx metadata export
     template: "%s | FreePDFConvert",
   },
@@ -117,7 +117,7 @@ export const metadata = {
   ],
 
   // ── Authorship ───────────────────────────────────────────────
-  authors: [{ name: "FreePDFConvert Team", url: "https://freepdfconvert.io" }],
+  authors: [{ name: "FreePDFConvert Team", url: "https://www.freepdfconvert.io" }],
   creator: "FreePDFConvert",
   publisher: "FreePDFConvert",
   category: "Technology",
@@ -142,13 +142,13 @@ export const metadata = {
   //
   // Google's rule: hreflang is ONLY for sites with the same content
   // in multiple languages at DIFFERENT URLs (e.g. /en/, /fr/, /de/).
-  // If all hreflang tags point to https://freepdfconvert.io — that's
+  // If all hreflang tags point to https://www.freepdfconvert.io — that's
   // a conflict because Google sees multiple declarations for one URL.
   //
   // Solution: canonical URL only. Add hreflang only when you create
   // actual translated pages at separate URLs.
   alternates: {
-    canonical: "https://freepdfconvert.io",
+    canonical: "https://www.freepdfconvert.io",
     // ❌ DO NOT ADD languages here until you have real translated pages
   },
 
@@ -161,11 +161,11 @@ export const metadata = {
     // 160 chars ✅
     description:
       "100% free PDF tools online. Convert PDF to Word, Excel, JPG. Merge, split, compress, unlock & protect PDF files. No signup, no watermark. Works on all devices.",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
     siteName: "FreePDFConvert",
     images: [
       {
-        url: "https://freepdfconvert.io/og-image.png",
+        url: "https://www.freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
         alt: "FreePDFConvert – Free Online PDF Tools: Convert, Merge, Compress",
@@ -184,7 +184,7 @@ export const metadata = {
     title: "Free PDF Converter – Convert, Merge & Compress PDF",
     description:
       "Convert, merge, compress & edit PDF files 100% free. No signup, no watermark. Fast & secure. Works on any device.",
-    images: ["https://freepdfconvert.io/og-image.png"],
+    images: ["https://www.freepdfconvert.io/og-image.png"],
   },
 
   // ── Robots ───────────────────────────────────────────────────
@@ -257,15 +257,15 @@ export default function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "Organization",
     // @id must be a stable URL fragment — never changes
-    "@id": "https://freepdfconvert.io/#organization",
+    "@id": "https://www.freepdfconvert.io/#organization",
     "name": "FreePDFConvert",
     "alternateName": "Free PDF Convert",
-    "url": "https://freepdfconvert.io",
+    "url": "https://www.freepdfconvert.io",
     "logo": {
       "@type": "ImageObject",
-      "@id": "https://freepdfconvert.io/#logo",
+      "@id": "https://www.freepdfconvert.io/#logo",
       // ✅ logo.png must exist at this path for Google Knowledge Panel
-      "url": "https://freepdfconvert.io/logo.png",
+      "url": "https://www.freepdfconvert.io/logo.png",
       "width": 200,
       "height": 60,
       "caption": "FreePDFConvert – Free Online PDF Tools",
@@ -273,7 +273,7 @@ export default function RootLayout({ children }) {
     "description":
       "FreePDFConvert provides 100% free online PDF tools including PDF converter, merger, compressor, splitter, and more. No signup required. Works on all devices.",
     "foundingDate": "2023",
-    "inLanguage": "en-US",
+    
     // sameAs: only add URLs that actually exist and link back to your site
     "sameAs": [
       "https://twitter.com/freepdfconvert",
@@ -284,7 +284,7 @@ export default function RootLayout({ children }) {
       "availableLanguage": ["English"],
       // ✅ FIX: Only add contactPoint.url if /contact page exists & returns 200.
       //    A contactPoint pointing to a 404 = invalid structured data error.
-      "url": "https://freepdfconvert.io/contact",
+      "url": "https://www.freepdfconvert.io/contact",
     },
   };
 

@@ -11,17 +11,17 @@ export const metadata = {
   keywords:
     "how to convert pdf free, free pdf converter online, convert pdf online free, pdf to word free online, compress pdf free, pdf conversion steps, free online pdf tool, pdf converter no signup, convert pdf instantly, pdf tools no watermark, free pdf convert, how freepdfconvert works, online pdf converter fast, pdf to jpg free, pdf merge free online",
   alternates: {
-    canonical: "https://freepdfconvert.io/how-work",
+    canonical: "https://www.freepdfconvert.io/how-work",
   },
   openGraph: {
     title: "Convert PDF Free Online How FreePDFConvert Works",
     description:
       "Upload, configure and download. Convert any PDF file free online in seconds. No signup, no watermark, 100% free.",
-    url: "https://freepdfconvert.io/how-work",
+    url: "https://www.freepdfconvert.io/how-work",
     type: "website",
     images: [
       {
-        url: "https://freepdfconvert.io/og-image.png",
+        url: "https://www.freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
         alt: "How to Convert PDF Free Online FreePDFConvert",
@@ -35,7 +35,7 @@ export const metadata = {
     title: "Convert PDF Free Online How FreePDFConvert Works",
     description:
       "Upload, configure, download. Free PDF conversion in seconds. No signup, no watermark, 100% free & secure.",
-    images: ["https://freepdfconvert.io/og-image.png"],
+    images: ["https://www.freepdfconvert.io/og-image.png"],
   },
   robots: {
     index: true,
@@ -68,7 +68,7 @@ const schemaHowTo = {
     {
       "@type": "HowToTool",
       name: "FreePDFConvert Free Online PDF Converter",
-      url: "https://freepdfconvert.io",
+      url: "https://www.freepdfconvert.io",
     },
   ],
   step: [
@@ -77,21 +77,21 @@ const schemaHowTo = {
       position: 1,
       name: "Upload Your PDF or Document",
       text: "Click the upload button or drag and drop your PDF or document file onto the page. FreePDFConvert supports PDF, Word, Excel, JPG, PNG, and PPTX formats.",
-      url: "https://freepdfconvert.io/how-work#step-1",
+      url: "https://www.freepdfconvert.io/how-work#step-1",
     },
     {
       "@type": "HowToStep",
       position: 2,
       name: "Choose Your Conversion Settings",
       text: "Select your desired output format — such as Word, Excel, JPG — or choose a compression level to reduce file size. No technical knowledge needed.",
-      url: "https://freepdfconvert.io/how-work#step-2",
+      url: "https://www.freepdfconvert.io/how-work#step-2",
     },
     {
       "@type": "HowToStep",
       position: 3,
       name: "Download Your Converted File Instantly",
       text: "Your file is processed and ready to download in seconds. No watermark, no signup, and your file is automatically deleted after conversion for your privacy.",
-      url: "https://freepdfconvert.io/how-work#step-3",
+      url: "https://www.freepdfconvert.io/how-work#step-3",
     },
   ],
 };
@@ -159,13 +159,13 @@ const schemaBreadcrumb = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://freepdfconvert.io",
+      item: "https://www.freepdfconvert.io",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "How It Works",
-      item: "https://freepdfconvert.io/how-work",
+      item: "https://www.freepdfconvert.io/how-work",
     },
   ],
 };
@@ -174,22 +174,21 @@ const schemaWebPage = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Convert PDF Free Online How FreePDFConvert Works",
-  url: "https://freepdfconvert.io/how-work",
+  url: "https://www.freepdfconvert.io/how-work",
   description:
     "Free PDF converter online upload, choose format, download in seconds. No signup, no watermark, 100% free. Works on all devices.",
-  inLanguage: "en-US",
   isPartOf: {
     "@type": "WebSite",
     name: "FreePDFConvert",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
   },
   publisher: {
     "@type": "Organization",
     name: "FreePDFConvert",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
     logo: {
       "@type": "ImageObject",
-      url: "https://freepdfconvert.io/logo.png",
+      url: "https://www.freepdfconvert.io/logo.png",
     },
   },
   dateModified: "2026-06-09",

@@ -24,7 +24,7 @@ export const metadata = {
   // ── Title ──────────────────────────────────────────────────
   // 50 chars ✅ — under 60, contains primary keyword + brand
   // Google search snippet title = this value
-  title: "Free PDF Converter – PDF to Word, Merge & Compress",
+  title: "Free PDF Converter PDF to Word, Merge & Compress",
 
   // ── Description ────────────────────────────────────────────
   // 158 chars ✅ — contains keyword, benefit, differentiator, CTA
@@ -33,9 +33,9 @@ export const metadata = {
 
   // ── Canonical ──────────────────────────────────────────────
   // ✅ Required on every page. Prevents Google treating
-  //    freepdfconvert.io and freepdfconvert.io/ as duplicates.
+  //    www.freepdfconvert.io and www.freepdfconvert.io/ as duplicates.
   alternates: {
-    canonical: "https://freepdfconvert.io",
+    canonical: "https://www.freepdfconvert.io",
   },
 
   // ── Open Graph (page-level override) ───────────────────────
@@ -43,7 +43,7 @@ export const metadata = {
     title: "Free PDF Converter – PDF to Word, Merge & Compress",
     description:
       "Convert PDF to Word, Excel, JPG for free. Merge, split, compress & protect PDFs online. No signup, no watermark. 26+ free PDF tools.",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
     type: "website",
   },
 };
@@ -422,21 +422,21 @@ const VIPConverter = () => {
 
   // ── Schema 1: WebSite ───────────────────────────────────────
   // Tells Google the site name, URL, and description.
-  // ✅ No SearchAction — freepdfconvert.io has no /search endpoint.
+  // ✅ No SearchAction — www.freepdfconvert.io has no /search endpoint.
   //    A SearchAction pointing to a non-existent URL causes invalid structured data.
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://freepdfconvert.io/#website",
+    "@id": "https://www.freepdfconvert.io/#website",
     "name": "FreePDFConvert",
     "alternateName": "Free PDF Converter Online",
-    "url": "https://freepdfconvert.io",
+    "url": "https://www.freepdfconvert.io",
     "description":
       "Free online PDF tools — convert, merge, compress, split, protect PDF files. No signup required. 100% free forever.",
     "inLanguage": "en-US",
     "publisher": {
       // References Organization in layout.jsx by @id — no duplication
-      "@id": "https://freepdfconvert.io/#organization",
+      "@id": "https://www.freepdfconvert.io/#organization",
     },
   };
 
@@ -447,24 +447,24 @@ const VIPConverter = () => {
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://freepdfconvert.io/#webpage",
-    "url": "https://freepdfconvert.io/",
+    "@id": "https://www.freepdfconvert.io/#webpage",
+    "url": "https://www.freepdfconvert.io/",
     // Must match page title tag — 50 chars ✅
-    "name": "Free PDF Converter – PDF to Word, Merge & Compress",
+    "name": "Free PDF Converter PDF to Word, Merge & Compress",
     "description":
       "Convert PDF to Word, Excel, JPG for free. Merge, split, compress & protect PDFs online. No signup, no watermark. 26+ free PDF tools — fast, secure.",
     "inLanguage": "en-US",
-    "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
-    "about": { "@id": "https://freepdfconvert.io/#organization" },
+    "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
+    "about": { "@id": "https://www.freepdfconvert.io/#organization" },
     "breadcrumb": {
       "@type": "BreadcrumbList",
-      "@id": "https://freepdfconvert.io/#breadcrumb",
+      "@id": "https://www.freepdfconvert.io/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://freepdfconvert.io/",
+          "item": "https://www.freepdfconvert.io/",
         },
       ],
     },
@@ -473,7 +473,7 @@ const VIPConverter = () => {
     "dateModified": "2025-06-01",
     "primaryImageOfPage": {
       "@type": "ImageObject",
-      "url": "https://freepdfconvert.io/og-image.png",
+      "url": "https://www.freepdfconvert.io/og-image.png",
       "width": 1200,
       "height": 630,
     },
@@ -488,13 +488,13 @@ const VIPConverter = () => {
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "@id": "https://freepdfconvert.io/#software",
+    "@id": "https://www.freepdfconvert.io/#software",
     "name": "FreePDFConvert – Free Online PDF Tools",
     "applicationCategory": "UtilitiesApplication",
     "applicationSubCategory": "PDF Converter",
     // ✅ operatingSystem must reflect actual supported environments
     "operatingSystem": "Windows, macOS, Linux, iOS, Android (Web Browser)",
-    "url": "https://freepdfconvert.io/",
+    "url": "https://www.freepdfconvert.io/",
     "description":
       "26+ free online PDF tools — convert PDF to Word, merge PDF, compress PDF, split PDF, protect and unlock PDF. No download or signup required. Works in any web browser.",
     "featureList": [
@@ -566,14 +566,14 @@ const VIPConverter = () => {
     "@type": "ItemList",
     "name": "Free Online PDF Tools – FreePDFConvert",
     "description":
-      "Complete list of 26+ free PDF converter and PDF editor tools available at FreePDFConvert.io.",
-    "url": "https://freepdfconvert.io/",
+      "Complete list of 26+ free PDF converter and PDF editor tools available at www.freepdfconvert.io.",
+    "url": "https://www.freepdfconvert.io/",
     "numberOfItems": tools.length,
     "itemListElement": tools.map((tool, index) => ({
       "@type": "ListItem",
       "position": index + 1,
       "name": tool.title,
-      "url": `https://freepdfconvert.io/${tool.slug}`,
+      "url": `https://www.freepdfconvert.io/${tool.slug}`,
       "description": tool.desc,
     })),
   };

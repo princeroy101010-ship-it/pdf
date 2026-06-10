@@ -12,20 +12,18 @@ export const metadata = {
   keywords:
     "freepdfconvert terms of service, pdf converter terms and conditions, free pdf tool legal agreement, pdf converter usage rights, freepdfconvert legal, online pdf converter policy, pdf converter acceptable use, freepdfconvert disclaimer, pdf tool terms",
   alternates: {
-    canonical: "https://freepdfconvert.io/terms-of-service",
-    languages: {
-      "en-US": "https://freepdfconvert.io/terms-of-service",
-    },
+    canonical: "https://www.freepdfconvert.io/terms-of-service",
+    
   },
   openGraph: {
-    title: "Terms of Service FreePDFConvert | Free PDF Tools Legal Agreement",
+    title: "Terms of Service FreePDFConvert Free PDF Tools Legal Agreement",
     description:
       "Usage rights, prohibited content, and liability terms for FreePDFConvert free PDF tools. Clear, fair, and easy to understand.",
-    url: "https://freepdfconvert.io/terms-of-service",
+    url: "https://www.freepdfconvert.io/terms-of-service",
     type: "website",
     images: [
       {
-        url: "https://freepdfconvert.io/og-image.png",
+        url: "https://www.freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
         alt: "FreePDFConvert Terms of Service",
@@ -39,7 +37,7 @@ export const metadata = {
     title: "Terms of Service Free PDF Converter | FreePDFConvert",
     description:
       "Read our terms before using FreePDFConvert. Free PDF tools with clear, fair usage policies. No hidden clauses.",
-    images: ["https://freepdfconvert.io/og-image.png"],
+    images: ["https://www.freepdfconvert.io/og-image.png"],
     site: "@freepdfconvert",
   },
   robots: {
@@ -61,22 +59,21 @@ const schemaWebPage = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Terms of Service FreePDFConvert",
-  url: "https://freepdfconvert.io/terms-of-service",
+  url: "https://www.freepdfconvert.io/terms-of-service",
   description:
     "Terms of Service for FreePDFConvert — usage rights, prohibited content, liability limitations, and service modification policies for our free online PDF tools.",
-  inLanguage: "en-US",
   isPartOf: {
     "@type": "WebSite",
     name: "FreePDFConvert",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
   },
   publisher: {
     "@type": "Organization",
     name: "FreePDFConvert",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
     logo: {
       "@type": "ImageObject",
-      url: "https://freepdfconvert.io/logo.png",
+      url: "https://www.freepdfconvert.io/logo.png",
     },
   },
   datePublished: "2025-01-01",
@@ -138,13 +135,13 @@ const schemaBreadcrumb = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://freepdfconvert.io",
+      item: "https://www.freepdfconvert.io",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Terms of Service",
-      item: "https://freepdfconvert.io/terms-of-service",
+      item: "https://www.freepdfconvert.io/terms-of-service",
     },
   ],
 };

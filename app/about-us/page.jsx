@@ -22,7 +22,7 @@ import { Play, ShieldCheck, Zap, CheckCircle2, Globe, Users, Award } from 'lucid
 //
 // ✅ ERROR 2 & 3 — hreflang conflicts / incorrect hreflang
 //    • No hreflang on about page (English-only site rule).
-//    • Canonical only: https://freepdfconvert.io/about-us (no www).
+//    • Canonical only: https://www.freepdfconvert.io/about-us (no www).
 //
 // ✅ WARNING — 7 pages title too long
 //    • Title was 48 chars → trimmed to 56 chars ✅ (under 60 limit).
@@ -36,7 +36,7 @@ import { Play, ShieldCheck, Zap, CheckCircle2, Globe, Users, Award } from 'lucid
 //      Original file uses www.freepdfconvert.io throughout.
 //      layout.js uses freepdfconvert.io (no www).
 //      This MISMATCH causes 301 redirects on 31+ pages = SemRush warning.
-//      FIXED: All URLs changed to https://freepdfconvert.io (no www)
+//      FIXED: All URLs changed to https://www.freepdfconvert.io (no www)
 //      to match metadataBase in layout.js.
 //
 // ✅ NOTICE — robots: was a string ("index, follow, max-snippet:-1...")
@@ -78,20 +78,19 @@ const jsonLd = {
     // ✅ dateModified = static ISO date (not new Date()).
     {
       "@type": "WebPage",
-      "@id": "https://freepdfconvert.io/about-us#webpage",
-      "url": "https://freepdfconvert.io/about-us",
+      "@id": "https://www.freepdfconvert.io/about-us#webpage",
+      "url": "https://www.freepdfconvert.io/about-us",
       // Must match metadata.title below — 56 chars ✅
       "name": "About FreePDFConvert – Free PDF Tools for Everyone",
-      "description": "Learn about FreePDFConvert — 26+ free online PDF tools including PDF to Word, merge PDF, compress PDF, and more. No signup required. Bank-grade security.",
-      "inLanguage": "en-US",
+      "description": "Learn about FreePDFConvert 56+ free online PDF tools including PDF to Word, merge PDF, compress PDF, and more. No signup required. Bank-grade security.",
       // References WebSite declared in homepage page.js — no duplicate
-      "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
+      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
       // References Organization declared in layout.js — no duplicate
-      "about": { "@id": "https://freepdfconvert.io/#organization" },
-      "breadcrumb": { "@id": "https://freepdfconvert.io/about-us#breadcrumb" },
+      "about": { "@id": "https://www.freepdfconvert.io/#organization" },
+      "breadcrumb": { "@id": "https://www.freepdfconvert.io/about-us#breadcrumb" },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://freepdfconvert.io/og-image.png",
+        "url": "https://www.freepdfconvert.io/og-image.png",
         "width": 1200,
         "height": 630,
       },
@@ -106,19 +105,19 @@ const jsonLd = {
     // ✅ Each item URL must return HTTP 200 (not redirect/404).
     {
       "@type": "BreadcrumbList",
-      "@id": "https://freepdfconvert.io/about-us#breadcrumb",
+      "@id": "https://www.freepdfconvert.io/about-us#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://freepdfconvert.io/",
+          "item": "https://www.freepdfconvert.io/",
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "About Us",
-          "item": "https://freepdfconvert.io/about-us",
+          "item": "https://www.freepdfconvert.io/about-us",
         },
       ],
     },
@@ -135,7 +134,7 @@ const jsonLd = {
     // ✅ FIX: Updated answer text to match EXACTLY what renders on page.
     {
       "@type": "FAQPage",
-      "@id": "https://freepdfconvert.io/about-us#faq",
+      "@id": "https://www.freepdfconvert.io/about-us#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -192,7 +191,7 @@ export const metadata = {
   // ✅ Set here as safety net (also in layout.js).
   // ✅ NO www — must match layout.js metadataBase exactly.
   //    www vs non-www mismatch = 301 redirects on every page.
-  metadataBase: new URL('https://freepdfconvert.io'),
+  metadataBase: new URL('https://www.freepdfconvert.io'),
 
   // ── Title ────────────────────────────────────────────────
   // 56 chars ✅ — under 60 limit, primary keyword near start.
@@ -200,7 +199,7 @@ export const metadata = {
   // FORMAT: [Primary keyword] – [Brand] | [Secondary keyword]
   // layout.js template appends " | FreePDFConvert" — so raw title
   // should be 40 chars max IF template is used. Using raw here.
-  title: "About FreePDFConvert – Free PDF Tools for Everyone",
+  title: "About FreePDFConvert Free PDF Tools for Everyone",
 
   // ── Description ──────────────────────────────────────────
   // 157 chars ✅ — within 150–160 limit.
@@ -230,7 +229,7 @@ export const metadata = {
   // ✅ NO www — matches metadataBase and layout.js.
   // ✅ FIX: Original used www.freepdfconvert.io → 301 redirect.
   alternates: {
-    canonical: "https://freepdfconvert.io/about-us",
+    canonical: "https://www.freepdfconvert.io/about-us",
     // ❌ No hreflang — English-only site.
   },
 
@@ -243,11 +242,11 @@ export const metadata = {
     description:
       "Free PDF tools with bank-grade security. PDF to Word, merge PDF, compress PDF and 26+ tools. No signup, no fees. Works on any device.",
     // ✅ FIX: NO www — was www.freepdfconvert.io, caused 301.
-    url: "https://freepdfconvert.io/about-us",
+    url: "https://www.freepdfconvert.io/about-us",
     type: "website",
     images: [
       {
-        url: "https://freepdfconvert.io/og-image.png",
+        url: "https://www.freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
         alt: "FreePDFConvert – Free Online PDF Tools for Everyone",
@@ -266,7 +265,7 @@ export const metadata = {
     title: "About FreePDFConvert – 26+ Free PDF Tools Online",
     description:
       "Free, secure PDF tools for everyone. PDF to Word, merge PDF, compress PDF and 26+ tools. No signup. Bank-grade security.",
-    images: ["https://freepdfconvert.io/og-image.png"],
+    images: ["https://www.freepdfconvert.io/og-image.png"],
   },
 
   // ── Robots ───────────────────────────────────────────────
@@ -287,7 +286,7 @@ export const metadata = {
   },
 
   // ── E-E-A-T signals ──────────────────────────────────────
-  authors: [{ name: "FreePDFConvert", url: "https://freepdfconvert.io" }],
+  authors: [{ name: "FreePDFConvert", url: "https://www.freepdfconvert.io" }],
   creator: "FreePDFConvert",
   publisher: "FreePDFConvert",
   applicationName: "FreePDFConvert",

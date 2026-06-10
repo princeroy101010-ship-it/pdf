@@ -12,17 +12,17 @@ export const metadata = {
   keywords:
     "freepdfconvert privacy policy, pdf converter privacy, secure pdf converter online, ssl encrypted pdf converter, no data storage pdf tool, safe pdf converter, pdf tool gdpr compliant, file privacy pdf, secure file conversion free, pdf converter no data sharing, private pdf tool, pdf files deleted after conversion",
   alternates: {
-    canonical: "https://freepdfconvert.io/privacy-policy",
+    canonical: "https://www.freepdfconvert.io/privacy-policy",
   },
   openGraph: {
     title: "Privacy Policy | FreePDFConvert Safe & Secure PDF Tool",
     description:
       "We never store or share your files. SSL encryption, automatic deletion in 2 hours, zero human access. The most private free PDF converter online.",
-    url: "https://freepdfconvert.io/privacy-policy",
+    url: "https://www.freepdfconvert.io/privacy-policy",
     type: "website",
     images: [
       {
-        url: "https://freepdfconvert.io/og-image.png",
+        url: "https://www.freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
         alt: "FreePDFConvert Privacy Policy Safe & Secure PDF Converter",
@@ -36,7 +36,7 @@ export const metadata = {
     title: "Privacy Policy | FreePDFConvert Safe & Secure PDF Tool",
     description:
       "Files SSL encrypted, never stored, deleted in 2 hours. No data selling. The most private free PDF tool online.",
-    images: ["https://freepdfconvert.io/og-image.png"],
+    images: ["https://www.freepdfconvert.io/og-image.png"],
   },
   robots: {
     index: true,
@@ -57,23 +57,22 @@ const schemaWebPage = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Privacy Policy | FreePDFConvert Safe & Secure PDF Tool",
-  url: "https://freepdfconvert.io/privacy-policy",
+  url: "https://www.freepdfconvert.io/privacy-policy",
   description:
     "FreePDFConvert never stores, reads, or sells your files. All uploads are SSL encrypted and automatically deleted within 2 hours.",
-  inLanguage: "en-US",
   dateModified: "2026-06-10",
   isPartOf: {
     "@type": "WebSite",
     name: "FreePDFConvert",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
   },
   publisher: {
     "@type": "Organization",
     name: "FreePDFConvert",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
     logo: {
       "@type": "ImageObject",
-      url: "https://freepdfconvert.io/logo.png",
+      url: "https://www.freepdfconvert.io/logo.png",
     },
   },
 };
@@ -82,14 +81,14 @@ const schemaWebSite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "FreePDFConvert",
-  url: "https://freepdfconvert.io",
+  url: "https://www.freepdfconvert.io",
   description:
     "Free online PDF converter — convert, compress, merge and manage PDF files instantly. No signup, no watermark, 100% free.",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://freepdfconvert.io/?q={search_term_string}",
+      urlTemplate: "https://www.freepdfconvert.io/?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -150,13 +149,13 @@ const schemaBreadcrumb = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://freepdfconvert.io",
+      item: "https://www.freepdfconvert.io",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Privacy Policy",
-      item: "https://freepdfconvert.io/privacy-policy",
+      item: "https://www.freepdfconvert.io/privacy-policy",
     },
   ],
 };

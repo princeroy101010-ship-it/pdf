@@ -51,27 +51,27 @@ const unifiedGraphSchema = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://freepdfconvert.io/pdf-to-png',
-      url: 'https://freepdfconvert.io/pdf-to-png',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-png',
+      url: 'https://www.freepdfconvert.io/pdf-to-png',
       name: 'Free PDF to PNG Converter Online – PDF to Image No Signup | FreePDFConvert',
       description: 'Convert PDF to PNG free online. Extract high-quality lossless PNG images from every PDF page instantly. No signup, no watermark, 100% secure.',
-      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-      about: { '@id': 'https://freepdfconvert.io/pdf-to-png/#software' },
-      breadcrumb: { '@id': 'https://freepdfconvert.io/pdf-to-png/#breadcrumb' }
+      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
+      about: { '@id': 'https://www.freepdfconvert.io/pdf-to-png/#software' },
+      breadcrumb: { '@id': 'https://www.freepdfconvert.io/pdf-to-png/#breadcrumb' }
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://freepdfconvert.io/pdf-to-png/#breadcrumb',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-png/#breadcrumb',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'PDF to PNG', item: 'https://freepdfconvert.io/pdf-to-png' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'PDF to PNG', item: 'https://www.freepdfconvert.io/pdf-to-png' }
       ]
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://freepdfconvert.io/pdf-to-png/#software',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-png/#software',
       name: 'Free PDF to PNG Converter Online',
-      url: 'https://freepdfconvert.io/pdf-to-png',
+      url: 'https://www.freepdfconvert.io/pdf-to-png',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'All',
       isAccessibleForFree: true,
@@ -104,7 +104,7 @@ const unifiedGraphSchema = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://freepdfconvert.io/pdf-to-png/#faq',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-png/#faq',
       mainEntity: FAQ_ITEMS.map((item) => ({
         '@type': 'Question',
         name: item.q,
@@ -188,57 +188,6 @@ const PdfToPng = () => (
                 </label>
               </section>
 
-              {/* Value Proposition Grid Cards */}
-              <section aria-label="Tool core features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <ImageIcon className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Lossless PNG Quality</h3>
-                  <p className="text-gray-500 text-sm">PNG uses lossless compression — every pixel from your PDF is preserved perfectly with no quality degradation.</p>
-                </div>
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Instant Conversion</h3>
-                  <p className="text-gray-500 text-sm">Upload your PDF and get PNG images in seconds. No waiting, no queue, no software to install on your device.</p>
-                </div>
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
-                  <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after conversion and never stored or shared with anyone.</p>
-                </div>
-              </section>
-
-              {/* Multi-Step Workflow Instructions */}
-              <section aria-labelledby="how-to-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
-                <h2 id="how-to-heading" className="text-2xl font-black text-gray-900 mb-6">
-                  How to Convert PDF to PNG Online (3 Steps)
-                </h2>
-                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
-                  <li>
-                    <strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pdf</code> into the upload area above.
-                  </li>
-                  <li>
-                    <strong className="text-gray-900">Step 2 —</strong> The converter renders each page of your PDF into a lossless <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.png</code> image with full sharpness and detail preserved.
-                  </li>
-                  <li>
-                    <strong className="text-gray-900">Step 3 —</strong> Click "Download PNG" to save your images. No account, no email, no watermark.
-                  </li>
-                </ol>
-              </section>
-
-              {/* FAQ Section */}
-              <section aria-labelledby="faq-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
-                <h2 id="faq-heading" className="text-2xl font-black text-gray-900 mb-8">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  {FAQ_ITEMS.map((item) => (
-                    <div key={item.q}>
-                      <h3 className="font-bold text-gray-800 mb-1">{item.q}</h3>
-                      <p className="text-gray-500 text-sm">{item.a}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
 
             </article>
           )}
@@ -310,6 +259,57 @@ const PdfToPng = () => (
             </div>
           )}
 
+              {/* Value Proposition Grid Cards */}
+              <section aria-label="Tool core features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <ImageIcon className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Lossless PNG Quality</h3>
+                  <p className="text-gray-500 text-sm">PNG uses lossless compression — every pixel from your PDF is preserved perfectly with no quality degradation.</p>
+                </div>
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Instant Conversion</h3>
+                  <p className="text-gray-500 text-sm">Upload your PDF and get PNG images in seconds. No waiting, no queue, no software to install on your device.</p>
+                </div>
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
+                  <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after conversion and never stored or shared with anyone.</p>
+                </div>
+              </section>
+
+              {/* Multi-Step Workflow Instructions */}
+              <section aria-labelledby="how-to-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
+                <h2 id="how-to-heading" className="text-2xl font-black text-gray-900 mb-6">
+                  How to Convert PDF to PNG Online (3 Steps)
+                </h2>
+                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
+                  <li>
+                    <strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pdf</code> into the upload area above.
+                  </li>
+                  <li>
+                    <strong className="text-gray-900">Step 2 —</strong> The converter renders each page of your PDF into a lossless <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.png</code> image with full sharpness and detail preserved.
+                  </li>
+                  <li>
+                    <strong className="text-gray-900">Step 3 —</strong> Click "Download PNG" to save your images. No account, no email, no watermark.
+                  </li>
+                </ol>
+              </section>
+
+              {/* FAQ Section */}
+              <section aria-labelledby="faq-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
+                <h2 id="faq-heading" className="text-2xl font-black text-gray-900 mb-8">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-6">
+                  {FAQ_ITEMS.map((item) => (
+                    <div key={item.q}>
+                      <h3 className="font-bold text-gray-800 mb-1">{item.q}</h3>
+                      <p className="text-gray-500 text-sm">{item.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
         </main>
 
         <div className="mt-10 md:mt-20">

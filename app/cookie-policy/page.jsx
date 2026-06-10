@@ -13,7 +13,6 @@ const jsonLd = {
       "url": "https://www.freepdfconvert.io/cookie-policy",
       "name": "Cookie Policy | FreePDFConvert.io",
       "description": "FreePDFConvert uses only essential, preference, and anonymous analytics cookies. No advertising tracking, no data selling. Full GDPR-friendly cookie transparency.",
-      "inLanguage": "en-US",
       "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
       "breadcrumb": { "@id": "https://www.freepdfconvert.io/cookie-policy#breadcrumb" },
       "primaryImageOfPage": {
@@ -94,7 +93,7 @@ const jsonLd = {
 
 // ─── Next.js Metadata Export ──────────────────────────────────────────────────
 export const metadata = {
-  title: "Cookie Policy | FreePDFConvert",
+  title: "Cookie Policy",
   description:
     "FreePDFConvert uses only essential and analytics cookies. No advertising tracking, no data selling. GDPR-friendly. Manage or disable cookies anytime.",
   keywords:

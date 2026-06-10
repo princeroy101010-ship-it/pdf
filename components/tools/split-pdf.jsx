@@ -11,7 +11,7 @@ const toolSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Free PDF Splitter Online",
-  "url": "https://freepdfconvert.io/split-pdf",
+  "url": "https://www.freepdfconvert.io/split-pdf",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "All",
   "description": "Split PDF files online free. Extract pages, split by range, or divide by every N pages. No signup, no watermark, 100% secure.",
@@ -275,12 +275,12 @@ const SplitPdf = () => {
 
       {/* ── SEO HEAD ────────────────────────────────────────────────────────── */}
       <Head>
-        <title>Split PDF Online Free – Extract Pages & Split by Range No Signup | FreePDFConvert</title>
+        <title>Split PDF Online Free Extract Pages & Split by Range No Signup </title>
         <meta name="description" content="Split PDF files online free. Extract specific pages, split by page range, or divide every N pages. No signup, no watermark, 100% secure. Fast free PDF splitter." />
         <meta name="keywords" content="split pdf, split pdf online free, extract pages from pdf, pdf splitter, split pdf by page, divide pdf online, separate pdf pages, pdf page extractor free, split pdf no watermark" />
 
-        <link rel="canonical" href="https://freepdfconvert.io/split-pdf" />
-        <link rel="alternate" hreflang="en" href="https://freepdfconvert.io/split-pdf" />
+        <link rel="canonical" href="https://www.freepdfconvert.io/split-pdf" />
+        <link rel="alternate" hreflang="en" href="https://www.freepdfconvert.io/split-pdf" />
 
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -288,9 +288,9 @@ const SplitPdf = () => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Split PDF Online Free – Extract Pages & Split by Range No Signup | FreePDFConvert" />
         <meta property="og:description" content="Split PDF files free online. Extract pages, split by range, or divide every N pages. No signup, no watermark." />
-        <meta property="og:url" content="https://freepdfconvert.io/split-pdf" />
+        <meta property="og:url" content="https://www.freepdfconvert.io/split-pdf" />
         <meta property="og:site_name" content="FreePDFConvert" />
-        <meta property="og:image" content="https://freepdfconvert.io/og-image.png" />
+        <meta property="og:image" content="https://www.freepdfconvert.io/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Free PDF Splitter – Split PDF Online" />
@@ -300,7 +300,7 @@ const SplitPdf = () => {
         <meta name="twitter:site" content="@freepdfconvert" />
         <meta name="twitter:title" content="Split PDF Online Free – FreePDFConvert" />
         <meta name="twitter:description" content="Split PDF free online. Extract pages by range or visually. No signup, no watermark." />
-        <meta name="twitter:image" content="https://freepdfconvert.io/og-image.png" />
+        <meta name="twitter:image" content="https://www.freepdfconvert.io/og-image.png" />
 
         <script type="application/ld+json">{JSON.stringify(toolSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -351,71 +351,7 @@ const SplitPdf = () => {
               />
             </div>
 
-            {/* Feature Cards */}
-            <section aria-label="Tool features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
-              <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                <Layers className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                <h3 className="font-bold text-base mb-2">3 Split Modes</h3>
-                <p className="text-gray-500 text-sm">Split by page range, select individual pages visually, or automatically divide every N pages into separate PDFs.</p>
-              </div>
-              <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                <h3 className="font-bold text-base mb-2">Visual Page Picker</h3>
-                <p className="text-gray-500 text-sm">See thumbnail previews of every page and click to select exactly which pages to extract — no guessing page numbers.</p>
-              </div>
-              <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                <h3 className="font-bold text-base mb-2">Secure & Private</h3>
-                <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after splitting and never stored or shared with anyone.</p>
-              </div>
-            </section>
-
-            {/* How It Works */}
-            <section className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
-              <h2 className="text-2xl font-black text-gray-900 mb-6">
-                How to Split a PDF Online (3 Steps)
-              </h2>
-              <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
-                <li>
-                  <strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pdf</code> into the upload area above.
-                </li>
-                <li>
-                  <strong className="text-gray-900">Step 2 —</strong> Choose your split mode: by page range, visually select pages, or split every N pages. Set your options and click "Split PDF".
-                </li>
-                <li>
-                  <strong className="text-gray-900">Step 3 —</strong> Download your individual PDF files. No account, no email, no watermark.
-                </li>
-              </ol>
-            </section>
-
-            {/* FAQ Section */}
-            <section className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-6">
-              <h2 className="text-2xl font-black text-gray-900 mb-8">
-                Frequently Asked Questions
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-1">How do I split a PDF online for free?</h3>
-                  <p className="text-gray-500 text-sm">Upload your PDF above, choose a split mode, configure your options, and click Split PDF. Download your files instantly with no signup required.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-1">Can I extract only specific pages from a PDF?</h3>
-                  <p className="text-gray-500 text-sm">Yes. Use "Select Pages" mode to see thumbnail previews of every page and click exactly which pages to extract into separate PDF files.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-1">How many split modes are available?</h3>
-                  <p className="text-gray-500 text-sm">Three modes: by page range (e.g. pages 1–5 into one file), by selecting individual pages visually, or automatically every N pages.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-1">Will the split PDF files have a watermark?</h3>
-                  <p className="text-gray-500 text-sm">No. FreePDFConvert never adds watermarks to any output file. All split PDFs are always completely clean.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-1">Is my PDF safe when uploaded?</h3>
-                  <p className="text-gray-500 text-sm">Yes. All transfers use SSL encryption. Your PDF is automatically deleted after splitting and is never shared with any third party.</p>
-                </div>
-              </div>
-            </section>
+      
 
           </article>
         )}
@@ -628,6 +564,72 @@ const SplitPdf = () => {
           </div>
         )}
 
+
+      {/* Feature Cards */}
+            <section aria-label="Tool features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
+              <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                <Layers className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                <h3 className="font-bold text-base mb-2">3 Split Modes</h3>
+                <p className="text-gray-500 text-sm">Split by page range, select individual pages visually, or automatically divide every N pages into separate PDFs.</p>
+              </div>
+              <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                <h3 className="font-bold text-base mb-2">Visual Page Picker</h3>
+                <p className="text-gray-500 text-sm">See thumbnail previews of every page and click to select exactly which pages to extract — no guessing page numbers.</p>
+              </div>
+              <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                <h3 className="font-bold text-base mb-2">Secure & Private</h3>
+                <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after splitting and never stored or shared with anyone.</p>
+              </div>
+            </section>
+
+            {/* How It Works */}
+            <section className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
+              <h2 className="text-2xl font-black text-gray-900 mb-6">
+                How to Split a PDF Online (3 Steps)
+              </h2>
+              <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
+                <li>
+                  <strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pdf</code> into the upload area above.
+                </li>
+                <li>
+                  <strong className="text-gray-900">Step 2 —</strong> Choose your split mode: by page range, visually select pages, or split every N pages. Set your options and click "Split PDF".
+                </li>
+                <li>
+                  <strong className="text-gray-900">Step 3 —</strong> Download your individual PDF files. No account, no email, no watermark.
+                </li>
+              </ol>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-6">
+              <h2 className="text-2xl font-black text-gray-900 mb-8">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bold text-gray-800 mb-1">How do I split a PDF online for free?</h3>
+                  <p className="text-gray-500 text-sm">Upload your PDF above, choose a split mode, configure your options, and click Split PDF. Download your files instantly with no signup required.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-800 mb-1">Can I extract only specific pages from a PDF?</h3>
+                  <p className="text-gray-500 text-sm">Yes. Use "Select Pages" mode to see thumbnail previews of every page and click exactly which pages to extract into separate PDF files.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-800 mb-1">How many split modes are available?</h3>
+                  <p className="text-gray-500 text-sm">Three modes: by page range (e.g. pages 1–5 into one file), by selecting individual pages visually, or automatically every N pages.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-800 mb-1">Will the split PDF files have a watermark?</h3>
+                  <p className="text-gray-500 text-sm">No. FreePDFConvert never adds watermarks to any output file. All split PDFs are always completely clean.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-800 mb-1">Is my PDF safe when uploaded?</h3>
+                  <p className="text-gray-500 text-sm">Yes. All transfers use SSL encryption. Your PDF is automatically deleted after splitting and is never shared with any third party.</p>
+                </div>
+              </div>
+            </section>
       </main>
 
       <Footer />

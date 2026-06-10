@@ -12,20 +12,18 @@ export const metadata = {
   keywords:
     "secure pdf converter, encrypted pdf converter, aes-256 pdf tool, safe pdf converter online, pdf converter no data storage, ssl encrypted pdf upload, private pdf converter, pdf tool gdpr compliant, secure file conversion online, pdf auto delete files, no human access pdf tool, bank level pdf security, free secure pdf tool, pdf privacy protection",
   alternates: {
-    canonical: "https://freepdfconvert.io/security",
-    languages: {
-      "en-US": "https://freepdfconvert.io/security",
-    },
+    canonical: "https://www.freepdfconvert.io/security",
+    
   },
   openGraph: {
-    title: "Secure PDF Converter AES-256 Encrypted & 100% Private | FreePDFConvert",
+    title: "Secure PDF Converter AES-256 Encrypted & 100% Private",
     description:
       "AES-256 encryption, SSL transfers, auto-deletion in 2 hours, zero human access. The most secure free PDF converter online.",
-    url: "https://freepdfconvert.io/security",
+    url: "https://www.freepdfconvert.io/security",
     type: "website",
     images: [
       {
-        url: "https://freepdfconvert.io/og-image.png",
+        url: "https://www.freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
         alt: "FreePDFConvert Security AES-256 Encrypted PDF Converter",
@@ -39,7 +37,7 @@ export const metadata = {
     title: "Secure PDF Converter AES-256 Encrypted | FreePDFConvert",
     description:
       "AES-256 encryption, SSL transfer, auto-delete in 2 hours. No human access. The safest free PDF converter online.",
-    images: ["https://freepdfconvert.io/og-image.png"],
+    images: ["https://www.freepdfconvert.io/og-image.png"],
     site: "@freepdfconvert",
   },
   robots: {
@@ -61,22 +59,21 @@ const schemaWebPage = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Secure PDF Converter AES-256 Encrypted | FreePDFConvert",
-  url: "https://freepdfconvert.io/security",
+  url: "https://www.freepdfconvert.io/security",
   description:
     "FreePDFConvert uses AES-256 encryption, SSL transfer, and automatic file deletion in 2 hours. No human access. Bank-level security for every PDF conversion.",
-  inLanguage: "en-US",
   isPartOf: {
     "@type": "WebSite",
     name: "FreePDFConvert",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
   },
   publisher: {
     "@type": "Organization",
     name: "FreePDFConvert",
-    url: "https://freepdfconvert.io",
+    url: "https://www.freepdfconvert.io",
     logo: {
       "@type": "ImageObject",
-      url: "https://freepdfconvert.io/logo.png",
+      url: "https://www.freepdfconvert.io/logo.png",
     },
   },
   datePublished: "2025-01-01",
@@ -138,13 +135,13 @@ const schemaBreadcrumb = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://freepdfconvert.io",
+      item: "https://www.freepdfconvert.io",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Security",
-      item: "https://freepdfconvert.io/security",
+      item: "https://www.freepdfconvert.io/security",
     },
   ],
 };

@@ -52,28 +52,28 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://freepdfconvert.io/jpg-to-pdf',
-      url: 'https://freepdfconvert.io/jpg-to-pdf',
+      '@id': 'https://www.freepdfconvert.io/jpg-to-pdf',
+      url: 'https://www.freepdfconvert.io/jpg-to-pdf',
       name: 'Free JPG to PDF Converter Online – No Signup, No Watermark | FreePDFConvert',
       description:
         'Convert JPG to PDF free online in seconds. Upload your JPG or JPEG image and download a clean PDF instantly. No signup, no watermark, no software needed.',
-      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-      about: { '@id': 'https://freepdfconvert.io/jpg-to-pdf/#software' },
-      breadcrumb: { '@id': 'https://freepdfconvert.io/jpg-to-pdf/#breadcrumb' },
+      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
+      about: { '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#software' },
+      breadcrumb: { '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#breadcrumb' },
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://freepdfconvert.io/jpg-to-pdf/#breadcrumb',
+      '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#breadcrumb',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'JPG to PDF', item: 'https://freepdfconvert.io/jpg-to-pdf' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'JPG to PDF', item: 'https://www.freepdfconvert.io/jpg-to-pdf' },
       ],
     },
     {
       '@type': 'SoftwareApplication',
-      '@id': 'https://freepdfconvert.io/jpg-to-pdf/#software',
+      '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#software',
       name: 'Free JPG to PDF Converter Online',
-      url: 'https://freepdfconvert.io/jpg-to-pdf',
+      url: 'https://www.freepdfconvert.io/jpg-to-pdf',
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'All – Web Browser',
       isAccessibleForFree: true,
@@ -123,7 +123,7 @@ const jsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://freepdfconvert.io/jpg-to-pdf/#faq',
+      '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#faq',
       mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
@@ -238,97 +238,7 @@ const JpgToPdf = () => (
                 ))}
               </section>
 
-              {/* Context Metric Features */}
-              <section
-                aria-label="Tool features"
-                className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full"
-              >
-                {[
-                  {
-                    Icon: Zap,
-                    title: 'Instant Conversion',
-                    desc: 'Upload your JPG file and get a clean, properly formatted PDF in seconds. No waiting, no queue.',
-                  },
-                  {
-                    Icon: FileImage,
-                    title: 'High Quality Output',
-                    desc: 'Your JPG image is embedded in the PDF at full resolution — no compression, no quality loss during conversion.',
-                  },
-                  {
-                    Icon: ShieldCheck,
-                    title: 'Secure & Private',
-                    desc: 'All file transfers use SSL encryption. Your JPG is automatically deleted after conversion and never stored or shared.',
-                  },
-                ].map(({ Icon, title, desc }) => (
-                  <div key={title} className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                    <Icon className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                    <h3 className="font-bold text-base mb-2">{title}</h3>
-                    <p className="text-gray-500 text-sm">{desc}</p>
-                  </div>
-                ))}
-              </section>
-
-              {/* Execution Steps Description Node */}
-              <section
-                aria-labelledby="how-it-works-heading"
-                className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6"
-              >
-                <h2
-                  id="how-it-works-heading"
-                  className="text-2xl font-black text-gray-900 mb-6"
-                >
-                  How to Convert JPG to PDF Online (3 Steps)
-                </h2>
-                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
-                  {[
-                    {
-                      n: 1,
-                      text: (
-                        <>
-                          Click <strong className="text-gray-900">"Select JPG File"</strong> or drag
-                          and drop your{' '}
-                          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.jpg</code> or{' '}
-                          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.jpeg</code>{' '}
-                          image into the upload area above.
-                        </>
-                      ),
-                    },
-                    {
-                      n: 2,
-                      text: 'The converter automatically processes your image and creates a properly sized PDF document.',
-                    },
-                    {
-                      n: 3,
-                      text: 'Click "Download PDF" to save your file. No account, no email, no watermark added.',
-                    },
-                  ].map(({ n, text }) => (
-                    <li key={n}>
-                      <strong className="text-gray-900">Step {n} —</strong> {text}
-                    </li>
-                  ))}
-                </ol>
-              </section>
-
-              {/* Document Textual Validation FAQs */}
-              <section
-                aria-labelledby="faq-heading"
-                className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16"
-              >
-                <h2
-                  id="faq-heading"
-                  className="text-2xl font-black text-gray-900 mb-8"
-                >
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  {FAQ_ITEMS.map(({ q, a }) => (
-                    <div key={q}>
-                      <h3 className="font-bold text-gray-800 mb-1">{q}</h3>
-                      <p className="text-gray-500 text-sm">{a}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
+           
 
             </article>
           )}
@@ -419,6 +329,97 @@ const JpgToPdf = () => (
             </div>
           )}
 
+   {/* Context Metric Features */}
+              <section
+                aria-label="Tool features"
+                className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full"
+              >
+                {[
+                  {
+                    Icon: Zap,
+                    title: 'Instant Conversion',
+                    desc: 'Upload your JPG file and get a clean, properly formatted PDF in seconds. No waiting, no queue.',
+                  },
+                  {
+                    Icon: FileImage,
+                    title: 'High Quality Output',
+                    desc: 'Your JPG image is embedded in the PDF at full resolution — no compression, no quality loss during conversion.',
+                  },
+                  {
+                    Icon: ShieldCheck,
+                    title: 'Secure & Private',
+                    desc: 'All file transfers use SSL encryption. Your JPG is automatically deleted after conversion and never stored or shared.',
+                  },
+                ].map(({ Icon, title, desc }) => (
+                  <div key={title} className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                    <Icon className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                    <h3 className="font-bold text-base mb-2">{title}</h3>
+                    <p className="text-gray-500 text-sm">{desc}</p>
+                  </div>
+                ))}
+              </section>
+
+              {/* Execution Steps Description Node */}
+              <section
+                aria-labelledby="how-it-works-heading"
+                className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6"
+              >
+                <h2
+                  id="how-it-works-heading"
+                  className="text-2xl font-black text-gray-900 mb-6"
+                >
+                  How to Convert JPG to PDF Online (3 Steps)
+                </h2>
+                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
+                  {[
+                    {
+                      n: 1,
+                      text: (
+                        <>
+                          Click <strong className="text-gray-900">"Select JPG File"</strong> or drag
+                          and drop your{' '}
+                          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.jpg</code> or{' '}
+                          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.jpeg</code>{' '}
+                          image into the upload area above.
+                        </>
+                      ),
+                    },
+                    {
+                      n: 2,
+                      text: 'The converter automatically processes your image and creates a properly sized PDF document.',
+                    },
+                    {
+                      n: 3,
+                      text: 'Click "Download PDF" to save your file. No account, no email, no watermark added.',
+                    },
+                  ].map(({ n, text }) => (
+                    <li key={n}>
+                      <strong className="text-gray-900">Step {n} —</strong> {text}
+                    </li>
+                  ))}
+                </ol>
+              </section>
+
+              {/* Document Textual Validation FAQs */}
+              <section
+                aria-labelledby="faq-heading"
+                className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16"
+              >
+                <h2
+                  id="faq-heading"
+                  className="text-2xl font-black text-gray-900 mb-8"
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-6">
+                  {FAQ_ITEMS.map(({ q, a }) => (
+                    <div key={q}>
+                      <h3 className="font-bold text-gray-800 mb-1">{q}</h3>
+                      <p className="text-gray-500 text-sm">{a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
         </main>
 
         <div className="mt-10 md:mt-20">

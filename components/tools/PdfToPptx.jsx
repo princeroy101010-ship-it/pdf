@@ -51,27 +51,27 @@ const unifiedGraphSchema = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://freepdfconvert.io/pdf-to-pptx',
-      url: 'https://freepdfconvert.io/pdf-to-pptx',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-pptx',
+      url: 'https://www.freepdfconvert.io/pdf-to-pptx',
       name: 'Free PDF to PowerPoint Converter Online – PDF to PPTX No Signup | FreePDFConvert',
       description: 'Convert PDF to PowerPoint PPTX free online. Turn PDF slides into editable presentations instantly. No signup, no watermark, 100% secure. Best free PDF to PPTX converter.',
-      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-      about: { '@id': 'https://freepdfconvert.io/pdf-to-pptx/#software' },
-      breadcrumb: { '@id': 'https://freepdfconvert.io/pdf-to-pptx/#breadcrumb' }
+      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
+      about: { '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#software' },
+      breadcrumb: { '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#breadcrumb' }
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://freepdfconvert.io/pdf-to-pptx/#breadcrumb',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#breadcrumb',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'PDF to PowerPoint', item: 'https://freepdfconvert.io/pdf-to-pptx' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'PDF to PowerPoint', item: 'https://www.freepdfconvert.io/pdf-to-pptx' }
       ]
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://freepdfconvert.io/pdf-to-pptx/#software',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#software',
       name: 'Free PDF to PowerPoint Converter Online',
-      url: 'https://freepdfconvert.io/pdf-to-pptx',
+      url: 'https://www.freepdfconvert.io/pdf-to-pptx',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'All',
       isAccessibleForFree: true,
@@ -104,7 +104,7 @@ const unifiedGraphSchema = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://freepdfconvert.io/pdf-to-pptx/#faq',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#faq',
       mainEntity: FAQ_ITEMS.map((item) => ({
         '@type': 'Question',
         name: item.q,
@@ -188,57 +188,7 @@ const PdfToPptx = () => (
                 </label>
               </section>
 
-              {/* Value Proposition Grid Cards */}
-              <section aria-label="Tool core features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <Monitor className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Each Page Becomes a Slide</h3>
-                  <p className="text-gray-500 text-sm">Every page of your PDF is converted into a separate PowerPoint slide, preserving the original layout and content.</p>
-                </div>
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Instant Conversion</h3>
-                  <p className="text-gray-500 text-sm">Upload your PDF and get a ready-to-edit PPTX file in seconds. Compatible with PowerPoint, Google Slides, and LibreOffice.</p>
-                </div>
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
-                  <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after conversion and never stored or shared with anyone.</p>
-                </div>
-              </section>
-
-              {/* Multi-Step Workflow Instructions */}
-              <section aria-labelledby="how-to-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
-                <h2 id="how-to-heading" className="text-2xl font-black text-gray-900 mb-6">
-                  How to Convert PDF to PowerPoint Online (3 Steps)
-                </h2>
-                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
-                  <li>
-                    <strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pdf</code> into the upload area above.
-                  </li>
-                  <li>
-                    <strong className="text-gray-900">Step 2 —</strong> The converter automatically transforms each PDF page into an editable slide inside a <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pptx</code> presentation file.
-                  </li>
-                  <li>
-                    <strong className="text-gray-900">Step 3 —</strong> Click "Download PPTX" to save your presentation. No account, no email, no watermark.
-                  </li>
-                </ol>
-              </section>
-
-              {/* FAQ Section */}
-              <section aria-labelledby="faq-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
-                <h2 id="faq-heading" className="text-2xl font-black text-gray-900 mb-8">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  {FAQ_ITEMS.map((item) => (
-                    <div key={item.q}>
-                      <h3 className="font-bold text-gray-800 mb-1">{item.q}</h3>
-                      <p className="text-gray-500 text-sm">{item.a}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
+        
 
             </article>
           )}
@@ -309,7 +259,57 @@ const PdfToPptx = () => (
               </div>
             </div>
           )}
+      {/* Value Proposition Grid Cards */}
+              <section aria-label="Tool core features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <Monitor className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Each Page Becomes a Slide</h3>
+                  <p className="text-gray-500 text-sm">Every page of your PDF is converted into a separate PowerPoint slide, preserving the original layout and content.</p>
+                </div>
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Instant Conversion</h3>
+                  <p className="text-gray-500 text-sm">Upload your PDF and get a ready-to-edit PPTX file in seconds. Compatible with PowerPoint, Google Slides, and LibreOffice.</p>
+                </div>
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
+                  <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after conversion and never stored or shared with anyone.</p>
+                </div>
+              </section>
 
+              {/* Multi-Step Workflow Instructions */}
+              <section aria-labelledby="how-to-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
+                <h2 id="how-to-heading" className="text-2xl font-black text-gray-900 mb-6">
+                  How to Convert PDF to PowerPoint Online (3 Steps)
+                </h2>
+                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
+                  <li>
+                    <strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pdf</code> into the upload area above.
+                  </li>
+                  <li>
+                    <strong className="text-gray-900">Step 2 —</strong> The converter automatically transforms each PDF page into an editable slide inside a <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pptx</code> presentation file.
+                  </li>
+                  <li>
+                    <strong className="text-gray-900">Step 3 —</strong> Click "Download PPTX" to save your presentation. No account, no email, no watermark.
+                  </li>
+                </ol>
+              </section>
+
+              {/* FAQ Section */}
+              <section aria-labelledby="faq-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
+                <h2 id="faq-heading" className="text-2xl font-black text-gray-900 mb-8">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-6">
+                  {FAQ_ITEMS.map((item) => (
+                    <div key={item.q}>
+                      <h3 className="font-bold text-gray-800 mb-1">{item.q}</h3>
+                      <p className="text-gray-500 text-sm">{item.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
         </main>
 
         <div className="mt-10 md:mt-20">

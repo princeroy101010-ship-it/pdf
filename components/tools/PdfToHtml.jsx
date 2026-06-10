@@ -49,27 +49,27 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://freepdfconvert.io/pdf-to-html',
-      url: 'https://freepdfconvert.io/pdf-to-html',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-html',
+      url: 'https://www.freepdfconvert.io/pdf-to-html',
       name: 'Free PDF to HTML Converter Online – PDF to HTML No Signup | FreePDFConvert',
       description: 'Convert PDF to HTML free online. Transform PDF documents into web-ready HTML files instantly. No signup, no watermark, 100% secure. Best free PDF to HTML converter.',
-      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-      about: { '@id': 'https://freepdfconvert.io/pdf-to-html/#software' },
-      breadcrumb: { '@id': 'https://freepdfconvert.io/pdf-to-html/#breadcrumb' }
+      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
+      about: { '@id': 'https://www.freepdfconvert.io/pdf-to-html/#software' },
+      breadcrumb: { '@id': 'https://www.freepdfconvert.io/pdf-to-html/#breadcrumb' }
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://freepdfconvert.io/pdf-to-html/#breadcrumb',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-html/#breadcrumb',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'PDF to HTML', item: 'https://freepdfconvert.io/pdf-to-html' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'PDF to HTML', item: 'https://www.freepdfconvert.io/pdf-to-html' }
       ]
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://freepdfconvert.io/pdf-to-html/#software',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-html/#software',
       name: 'Free PDF to HTML Converter Online',
-      url: 'https://freepdfconvert.io/pdf-to-html',
+      url: 'https://www.freepdfconvert.io/pdf-to-html',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'All',
       isAccessibleForFree: true,
@@ -102,7 +102,7 @@ const jsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://freepdfconvert.io/pdf-to-html/#faq',
+      '@id': 'https://www.freepdfconvert.io/pdf-to-html/#faq',
       mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
@@ -186,57 +186,7 @@ const PdfToHtml = () => (
                 </label>
               </section>
 
-              {/* Core Features Overview Grid */}
-              <section aria-label="Tool value propositions" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <Code className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Web-Ready HTML Output</h3>
-                  <p className="text-gray-500 text-sm">Your PDF is converted into a clean, structured HTML file — ready to open in any browser or edit in any code editor.</p>
-                </div>
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Instant Conversion</h3>
-                  <p className="text-gray-500 text-sm">Upload your PDF and get a ready-to-use HTML file in seconds. No waiting, no queue, no software to install.</p>
-                </div>
-                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
-                  <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after conversion and never stored or shared.</p>
-                </div>
-              </section>
-
-              {/* Execution Workflow Details Section */}
-              <section aria-labelledby="how-to-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
-                <h2 id="how-to-heading" className="text-2xl font-black text-gray-900 mb-6">
-                  How to Convert PDF to HTML Online (3 Steps)
-                </h2>
-                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
-                  <li>
-                    <strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pdf</code> file into the upload area above.
-                  </li>
-                  <li>
-                    <strong className="text-gray-900">Step 2 —</strong> The converter automatically extracts text, headings, and structure from your PDF and builds a clean <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.html</code> file.
-                  </li>
-                  <li>
-                    <strong className="text-gray-900">Step 3 —</strong> Click "Download HTML" to save your file. No account, no email, no watermark added.
-                  </li>
-                </ol>
-              </section>
-
-              {/* Accessible Frequently Asked Questions */}
-              <section aria-labelledby="faq-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
-                <h2 id="faq-heading" className="text-2xl font-black text-gray-900 mb-8">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  {FAQ_ITEMS.map(({ q, a }) => (
-                    <div key={q}>
-                      <h3 className="font-bold text-gray-800 mb-1">{q}</h3>
-                      <p className="text-gray-500 text-sm">{a}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
+         =
 
             </article>
           )}
@@ -307,7 +257,57 @@ const PdfToHtml = () => (
               </div>
             </div>
           )}
+     {/* Core Features Overview Grid */}
+              <section aria-label="Tool value propositions" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <Code className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Web-Ready HTML Output</h3>
+                  <p className="text-gray-500 text-sm">Your PDF is converted into a clean, structured HTML file — ready to open in any browser or edit in any code editor.</p>
+                </div>
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Instant Conversion</h3>
+                  <p className="text-gray-500 text-sm">Upload your PDF and get a ready-to-use HTML file in seconds. No waiting, no queue, no software to install.</p>
+                </div>
+                <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+                  <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
+                  <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after conversion and never stored or shared.</p>
+                </div>
+              </section>
 
+              {/* Execution Workflow Details Section */}
+              <section aria-labelledby="how-to-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6">
+                <h2 id="how-to-heading" className="text-2xl font-black text-gray-900 mb-6">
+                  How to Convert PDF to HTML Online (3 Steps)
+                </h2>
+                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
+                  <li>
+                    <strong className="text-gray-900">Step 1 —</strong> Click "Select PDF File" or drag and drop your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.pdf</code> file into the upload area above.
+                  </li>
+                  <li>
+                    <strong className="text-gray-900">Step 2 —</strong> The converter automatically extracts text, headings, and structure from your PDF and builds a clean <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.html</code> file.
+                  </li>
+                  <li>
+                    <strong className="text-gray-900">Step 3 —</strong> Click "Download HTML" to save your file. No account, no email, no watermark added.
+                  </li>
+                </ol>
+              </section>
+
+              {/* Accessible Frequently Asked Questions */}
+              <section aria-labelledby="faq-heading" className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
+                <h2 id="faq-heading" className="text-2xl font-black text-gray-900 mb-8">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-6">
+                  {FAQ_ITEMS.map(({ q, a }) => (
+                    <div key={q}>
+                      <h3 className="font-bold text-gray-800 mb-1">{q}</h3>
+                      <p className="text-gray-500 text-sm">{a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
         </main>
 
         <div className="mt-10 md:mt-20">

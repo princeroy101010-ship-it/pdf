@@ -15,7 +15,7 @@ const toolSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Free PowerPoint to Text Converter Online",
-  "url": "https://freepdfconvert.io/pptx-to-text",
+  "url": "https://www.freepdfconvert.io/pptx-to-text",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "All",
   "description": "Convert PowerPoint PPTX to plain text TXT free online. Extract all slide text from PPTX presentations instantly. No signup, no watermark, 100% secure.",
@@ -123,12 +123,12 @@ const PptxToText = () => (
 
           {/* ── SEO HEAD ──────────────────────────────────────────────────── */}
           <Head>
-            <title>Free PowerPoint to Text Converter – PPTX to TXT Online No Signup | FreePDFConvert</title>
+            <title>Free PowerPoint to Text Converter PPTX to TXT Online No Signup </title>
             <meta name="description" content="Convert PowerPoint PPTX to plain text TXT free online. Extract all slide text from presentations instantly. No signup, no watermark, 100% secure." />
             <meta name="keywords" content="pptx to text, powerpoint to text, convert pptx to txt free, extract text from pptx, powerpoint to txt online, pptx text extractor, pptx to plain text, presentation to text free" />
 
-            <link rel="canonical" href={`https://freepdfconvert.io/${targetSlug}`} />
-            <link rel="alternate" hreflang="en" href={`https://freepdfconvert.io/${targetSlug}`} />
+            <link rel="canonical" href={`https://www.freepdfconvert.io/${targetSlug}`} />
+            <link rel="alternate" hreflang="en" href={`https://www.freepdfconvert.io/${targetSlug}`} />
 
             <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
             <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -136,9 +136,9 @@ const PptxToText = () => (
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Free PowerPoint to Text Converter – PPTX to TXT Online No Signup | FreePDFConvert" />
             <meta property="og:description" content="Convert PowerPoint PPTX to plain text TXT free. Extract all slide text instantly. No signup, no watermark." />
-            <meta property="og:url" content={`https://freepdfconvert.io/${targetSlug}`} />
+            <meta property="og:url" content={`https://www.freepdfconvert.io/${targetSlug}`} />
             <meta property="og:site_name" content="FreePDFConvert" />
-            <meta property="og:image" content="https://freepdfconvert.io/og-image.png" />
+            <meta property="og:image" content="https://www.freepdfconvert.io/og-image.png" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content="Free PowerPoint to Text Converter Online" />
@@ -148,7 +148,7 @@ const PptxToText = () => (
             <meta name="twitter:site" content="@freepdfconvert" />
             <meta name="twitter:title" content="Free PowerPoint to Text Converter – FreePDFConvert" />
             <meta name="twitter:description" content="Convert PPTX to TXT text free. No signup, no watermark. Instant download." />
-            <meta name="twitter:image" content="https://freepdfconvert.io/og-image.png" />
+            <meta name="twitter:image" content="https://www.freepdfconvert.io/og-image.png" />
 
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -204,7 +204,61 @@ const PptxToText = () => (
                   </label>
                 </div>
 
-                {/* Feature Cards */}
+           
+
+              </article>
+            )}
+
+            {/* ── PROCESSING STATE ────────────────────────────────────────── */}
+            {(status === 'uploading' || status === 'processing') && (
+              <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg animate-in fade-in scale-in duration-300">
+                <div className="relative mb-8 flex justify-center items-center">
+                  <Settings className="text-rose-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute" strokeWidth={1} />
+                  <div className="relative z-10 bg-rose-50 p-6 rounded-3xl animate-pulse">
+                    {status === 'uploading'
+                      ? <Upload className="text-rose-600 animate-bounce w-12 h-12" />
+                      : <Loader2 className="text-rose-600 animate-spin w-12 h-12" />}
+                  </div>
+                </div>
+                <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
+                  {status === 'uploading' ? 'Uploading' : 'Converting'}...
+                </h2>
+                <p className="text-gray-400 text-sm mb-8 truncate max-w-xs mx-auto">{fileQueue[0]?.name}</p>
+                <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+                  <div
+                    className={`bg-rose-600 h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
+                    role="progressbar"
+                    aria-valuenow={status === 'processing' ? 92 : 45}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
+            {status === 'completed' && (
+              <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
+                <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3">
+                  <CheckCircle2 size={40} />
+                </div>
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Extraction Complete!</h2>
+                <p className="text-gray-400 mb-6 text-sm">All slide text has been extracted to a plain text file successfully.</p>
+                <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
+                  <button
+                    onClick={handleDownload}
+                    className="bg-rose-600 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 transition-all flex items-center justify-center gap-4"
+                    aria-label="Download extracted plain text TXT file"
+                  >
+                    <Download size={28} aria-hidden="true" /> DOWNLOAD TEXT FILE
+                  </button>
+                  <button onClick={reset} className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors focus:outline-none">
+                    Convert another file
+                  </button>
+                </div>
+              </div>
+            )}
+     {/* Feature Cards */}
                 <section aria-label="Tool features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
                   <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
                     <FileText className="text-rose-600 mb-3" size={24} aria-hidden="true" />
@@ -260,60 +314,6 @@ const PptxToText = () => (
                     ))}
                   </div>
                 </section>
-
-              </article>
-            )}
-
-            {/* ── PROCESSING STATE ────────────────────────────────────────── */}
-            {(status === 'uploading' || status === 'processing') && (
-              <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg animate-in fade-in scale-in duration-300">
-                <div className="relative mb-8 flex justify-center items-center">
-                  <Settings className="text-rose-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute" strokeWidth={1} />
-                  <div className="relative z-10 bg-rose-50 p-6 rounded-3xl animate-pulse">
-                    {status === 'uploading'
-                      ? <Upload className="text-rose-600 animate-bounce w-12 h-12" />
-                      : <Loader2 className="text-rose-600 animate-spin w-12 h-12" />}
-                  </div>
-                </div>
-                <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
-                  {status === 'uploading' ? 'Uploading' : 'Converting'}...
-                </h2>
-                <p className="text-gray-400 text-sm mb-8 truncate max-w-xs mx-auto">{fileQueue[0]?.name}</p>
-                <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
-                  <div
-                    className={`bg-rose-600 h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
-                    role="progressbar"
-                    aria-valuenow={status === 'processing' ? 92 : 45}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
-            {status === 'completed' && (
-              <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
-                <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3">
-                  <CheckCircle2 size={40} />
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Extraction Complete!</h2>
-                <p className="text-gray-400 mb-6 text-sm">All slide text has been extracted to a plain text file successfully.</p>
-                <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
-                  <button
-                    onClick={handleDownload}
-                    className="bg-rose-600 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 transition-all flex items-center justify-center gap-4"
-                    aria-label="Download extracted plain text TXT file"
-                  >
-                    <Download size={28} aria-hidden="true" /> DOWNLOAD TEXT FILE
-                  </button>
-                  <button onClick={reset} className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors focus:outline-none">
-                    Convert another file
-                  </button>
-                </div>
-              </div>
-            )}
-
           </main>
 
           <div className="mt-10 md:mt-20">

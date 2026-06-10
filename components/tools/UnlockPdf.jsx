@@ -15,25 +15,25 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://freepdfconvert.io/unlock-pdf",
-      "url": "https://freepdfconvert.io/unlock-pdf",
+      "@id": "https://www.freepdfconvert.io/unlock-pdf",
+      "url": "https://www.freepdfconvert.io/unlock-pdf",
       "name": "Unlock PDF – Remove PDF Password Free Online | FreePDFConvert",
       "description": "Unlock password-protected PDF files online for free. Remove PDF password instantly — no software, no sign-up. Fast, secure & 100% free PDF unlocker.",
-      "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
-      "about": { "@id": "https://freepdfconvert.io/unlock-pdf/#software" },
+      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
+      "about": { "@id": "https://www.freepdfconvert.io/unlock-pdf/#software" },
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freepdfconvert.io/" },
-          { "@type": "ListItem", "position": 2, "name": "Unlock PDF", "item": "https://freepdfconvert.io/unlock-pdf" }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Unlock PDF", "item": "https://www.freepdfconvert.io/unlock-pdf" }
         ]
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://freepdfconvert.io/unlock-pdf/#software",
+      "@id": "https://www.freepdfconvert.io/unlock-pdf/#software",
       "name": "Unlock PDF – PDF Password Remover",
-      "url": "https://freepdfconvert.io/unlock-pdf",
+      "url": "https://www.freepdfconvert.io/unlock-pdf",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "All – Web Browser",
       "offers": {
@@ -137,15 +137,15 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://freepdfconvert.io/#website",
-      "url": "https://freepdfconvert.io/",
+      "@id": "https://www.freepdfconvert.io/#website",
+      "url": "https://www.freepdfconvert.io/",
       "name": "FreePDFConvert",
       "description": "Free online PDF conversion and utility tools. Convert, merge, split, unlock and protect PDF files.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://freepdfconvert.io/?q={search_term_string}"
+          "urlTemplate": "https://www.freepdfconvert.io/?q={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }
@@ -165,21 +165,21 @@ const UnlockPdf = () => (
           {/* ─── HEAD / SEO ─────────────────────────────────────────────── */}
           <Head>
             {/* Primary Meta */}
-            <title>Unlock PDF – Remove PDF Password Free Online | FreePDFConvert</title>
+            <title>Unlock PDF Remove PDF Password Free Online</title>
             <meta name="description" content="Unlock password-protected PDF files online free — no email, no install. Remove PDF password instantly. Auto-unlock without password. Fast, secure & 100% free." />
             <meta name="keywords" content="unlock pdf, remove pdf password, pdf password remover, unlock password protected pdf, pdf unlocker, remove password from pdf, unlock pdf online free, pdf password unlock, open locked pdf, decrypt pdf online, pdf unlock tool, remove pdf restrictions" />
             <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
             <meta name="author" content="FreePDFConvert" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="canonical" href="https://freepdfconvert.io/unlock-pdf" />
+            <link rel="canonical" href="https://www.freepdfconvert.io/unlock-pdf" />
 
             {/* Open Graph */}
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="FreePDFConvert" />
             <meta property="og:title" content="Unlock PDF – Remove PDF Password Free Online | FreePDFConvert" />
             <meta property="og:description" content="Unlock password-protected PDF files online free. Remove PDF password instantly — no sign-up, no watermark. Auto-unlock without password." />
-            <meta property="og:url" content="https://freepdfconvert.io/unlock-pdf" />
-            <meta property="og:image" content="https://freepdfconvert.io/og-unlock-pdf.png" />
+            <meta property="og:url" content="https://www.freepdfconvert.io/unlock-pdf" />
+            <meta property="og:image" content="https://www.freepdfconvert.io/og-unlock-pdf.png" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content="FreePDFConvert – Free PDF Password Remover & Unlocker" />
@@ -190,7 +190,7 @@ const UnlockPdf = () => (
             <meta name="twitter:site" content="@freepdfconvert" />
             <meta name="twitter:title" content="Unlock PDF – Remove PDF Password Free Online | FreePDFConvert" />
             <meta name="twitter:description" content="Remove password from PDF online free. No sign-up, no watermark. Auto-unlock without password. Instant download." />
-            <meta name="twitter:image" content="https://freepdfconvert.io/og-unlock-pdf.png" />
+            <meta name="twitter:image" content="https://www.freepdfconvert.io/og-unlock-pdf.png" />
 
             {/* JSON-LD Structured Data */}
             <script
@@ -351,6 +351,86 @@ const UnlockPdf = () => (
                       </span>
                     ))}
                   </section>
+
+
+                </article>
+              )}
+
+              {/* ── UPLOADING / PROCESSING STATE ───────────────────────── */}
+              {(status === 'uploading' || status === 'processing') && (
+                <div
+                  className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl border border-gray-50 text-center w-full max-w-lg animate-in zoom-in-95 duration-300"
+                  role="status"
+                  aria-live="polite"
+                  aria-label={status === 'uploading' ? 'Uploading your PDF file' : 'Removing PDF password'}
+                >
+                  <div className="relative mb-8 md:mb-12 flex justify-center items-center">
+                    <Settings
+                      className="text-amber-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute"
+                      strokeWidth={1}
+                      aria-hidden="true"
+                    />
+                    <div className="relative z-10 bg-amber-50 p-6 rounded-3xl animate-pulse">
+                      <Lock className="text-rose-500 w-12 h-12 animate-pulse" aria-hidden="true" />
+                    </div>
+                  </div>
+                  <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
+                    {status === 'uploading' ? 'Uploading...' : 'Unlocking...'}
+                  </h2>
+                  <p className="text-gray-400 font-medium text-sm mb-8 truncate px-4" aria-label={`File: ${fileQueue[0]?.name}`}>
+                    {fileQueue[0]?.name}
+                  </p>
+                  <div
+                    className="w-full bg-gray-100 h-3 rounded-full overflow-hidden shadow-inner"
+                    role="progressbar"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={status === 'processing' ? 92 : 45}
+                    aria-label="Unlocking progress"
+                  >
+                    <div
+                      className={`bg-rose-600 h-full transition-all duration-700 ease-out ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* ── COMPLETED STATE ─────────────────────────────────────── */}
+              {status === 'completed' && (
+                <div
+                  className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"
+                  role="status"
+                  aria-live="polite"
+                  aria-label="PDF unlocked successfully. Your file is ready to download."
+                >
+                  <div
+                    className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3 shadow-emerald-100"
+                    aria-hidden="true"
+                  >
+                    <CheckCircle2 size={40} />
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight">
+                    PDF Unlocked!
+                  </h2>
+                  <p className="text-gray-500 mb-6">Password removed successfully. Your PDF is ready to download.</p>
+                  <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex flex-col items-center gap-6">
+                    <button
+                      onClick={handleDownload}
+                      className="bg-rose-600 hover:bg-rose-700 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl transition-all shadow-xl shadow-rose-200 hover:-translate-y-1 flex items-center justify-center gap-4"
+                      aria-label="Download your unlocked PDF file"
+                    >
+                      <Download size={28} aria-hidden="true" /> DOWNLOAD UNLOCKED PDF
+                    </button>
+                    <button
+                      onClick={reset}
+                      className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors"
+                      aria-label="Unlock another PDF file"
+                    >
+                      Unlock another file
+                    </button>
+                  </div>
+                </div>
+              )}
 
                   {/* ── HOW IT WORKS ──────────────────────────────────── */}
                   <section
@@ -538,86 +618,6 @@ const UnlockPdf = () => (
                       </p>
                     </div>
                   </section>
-
-                </article>
-              )}
-
-              {/* ── UPLOADING / PROCESSING STATE ───────────────────────── */}
-              {(status === 'uploading' || status === 'processing') && (
-                <div
-                  className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl border border-gray-50 text-center w-full max-w-lg animate-in zoom-in-95 duration-300"
-                  role="status"
-                  aria-live="polite"
-                  aria-label={status === 'uploading' ? 'Uploading your PDF file' : 'Removing PDF password'}
-                >
-                  <div className="relative mb-8 md:mb-12 flex justify-center items-center">
-                    <Settings
-                      className="text-amber-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute"
-                      strokeWidth={1}
-                      aria-hidden="true"
-                    />
-                    <div className="relative z-10 bg-amber-50 p-6 rounded-3xl animate-pulse">
-                      <Lock className="text-rose-500 w-12 h-12 animate-pulse" aria-hidden="true" />
-                    </div>
-                  </div>
-                  <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
-                    {status === 'uploading' ? 'Uploading...' : 'Unlocking...'}
-                  </h2>
-                  <p className="text-gray-400 font-medium text-sm mb-8 truncate px-4" aria-label={`File: ${fileQueue[0]?.name}`}>
-                    {fileQueue[0]?.name}
-                  </p>
-                  <div
-                    className="w-full bg-gray-100 h-3 rounded-full overflow-hidden shadow-inner"
-                    role="progressbar"
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={status === 'processing' ? 92 : 45}
-                    aria-label="Unlocking progress"
-                  >
-                    <div
-                      className={`bg-rose-600 h-full transition-all duration-700 ease-out ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* ── COMPLETED STATE ─────────────────────────────────────── */}
-              {status === 'completed' && (
-                <div
-                  className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"
-                  role="status"
-                  aria-live="polite"
-                  aria-label="PDF unlocked successfully. Your file is ready to download."
-                >
-                  <div
-                    className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3 shadow-emerald-100"
-                    aria-hidden="true"
-                  >
-                    <CheckCircle2 size={40} />
-                  </div>
-                  <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight">
-                    PDF Unlocked!
-                  </h2>
-                  <p className="text-gray-500 mb-6">Password removed successfully. Your PDF is ready to download.</p>
-                  <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex flex-col items-center gap-6">
-                    <button
-                      onClick={handleDownload}
-                      className="bg-rose-600 hover:bg-rose-700 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl transition-all shadow-xl shadow-rose-200 hover:-translate-y-1 flex items-center justify-center gap-4"
-                      aria-label="Download your unlocked PDF file"
-                    >
-                      <Download size={28} aria-hidden="true" /> DOWNLOAD UNLOCKED PDF
-                    </button>
-                    <button
-                      onClick={reset}
-                      className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors"
-                      aria-label="Unlock another PDF file"
-                    >
-                      Unlock another file
-                    </button>
-                  </div>
-                </div>
-              )}
-
             </main>
 
             <div className="mt-10 md:mt-20">

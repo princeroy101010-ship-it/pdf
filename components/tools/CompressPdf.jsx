@@ -62,27 +62,27 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://freepdfconvert.io/compress-pdf',
-      url: 'https://freepdfconvert.io/compress-pdf',
+      '@id': 'https://www.freepdfconvert.io/compress-pdf',
+      url: 'https://www.freepdfconvert.io/compress-pdf',
       name: 'Compress PDF Online Free – Reduce PDF File Size | FreePDFConvert',
       description: 'Compress PDF files online for free. Reduce PDF size up to 90% without losing quality. No signup, no watermark, instant download. Fast & secure.',
-      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-      about: { '@id': 'https://freepdfconvert.io/compress-pdf/#software' },
-      breadcrumb: { '@id': 'https://freepdfconvert.io/compress-pdf/#breadcrumb' },
+      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
+      about: { '@id': 'https://www.freepdfconvert.io/compress-pdf/#software' },
+      breadcrumb: { '@id': 'https://www.freepdfconvert.io/compress-pdf/#breadcrumb' },
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://freepdfconvert.io/compress-pdf/#breadcrumb',
+      '@id': 'https://www.freepdfconvert.io/compress-pdf/#breadcrumb',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'Compress PDF', item: 'https://freepdfconvert.io/compress-pdf' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'Compress PDF', item: 'https://www.freepdfconvert.io/compress-pdf' },
       ],
     },
     {
       '@type': 'SoftwareApplication',
-      '@id': 'https://freepdfconvert.io/compress-pdf/#software',
+      '@id': 'https://www.freepdfconvert.io/compress-pdf/#software',
       name: 'PDF Compressor – FreePDFConvert',
-      url: 'https://freepdfconvert.io/compress-pdf',
+      url: 'https://www.freepdfconvert.io/compress-pdf',
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'All – Web Browser',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -131,7 +131,7 @@ const jsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://freepdfconvert.io/compress-pdf/#faq',
+      '@id': 'https://www.freepdfconvert.io/compress-pdf/#faq',
       mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
@@ -316,6 +316,82 @@ const CompressPdf = () => (
                   ))}
                 </section>
 
+
+
+              </article>
+            )}
+
+            {/* ── LOADING / CONVERTING STATES ─────────────────────────────── */}
+            {(status === 'uploading' || status === 'processing') && (
+              <div
+                className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100 text-center w-full max-w-md my-auto animate-in zoom-in-95 duration-200"
+                role="status"
+                aria-live="polite"
+                aria-label={status === 'uploading' ? 'Uploading your PDF' : 'Compressing your PDF'}
+              >
+                <div className="relative mb-8 flex justify-center items-center">
+                  <Settings
+                    className="text-slate-100 animate-[spin_10s_linear_infinite] w-28 h-28 absolute"
+                    strokeWidth={1}
+                    aria-hidden="true"
+                  />
+                  <div className="relative z-10 bg-rose-50 text-rose-600 p-5 rounded-2xl animate-pulse">
+                    {status === 'uploading'
+                      ? <Upload className="animate-bounce w-10 h-10" aria-hidden="true" />
+                      : <Loader2 className="animate-spin w-10 h-10" aria-hidden="true" />
+                    }
+                  </div>
+                </div>
+                <h2 className="text-xl font-black text-slate-850 mb-1 tracking-tight uppercase">
+                  {status === 'uploading' ? 'Uploading' : 'Compressing'}...
+                </h2>
+                <p className="text-slate-400 font-medium text-xs mb-6 truncate px-4">
+                  {fileQueue[0]?.name}
+                </p>
+                <div
+                  className="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner"
+                  role="progressbar"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={status === 'processing' ? 92 : 45}
+                >
+                  <div className="bg-rose-600 h-full transition-all duration-500 ease-out" style={{ width: status === 'processing' ? '92%' : '45%' }} />
+                </div>
+              </div>
+            )}
+
+            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
+            {status === 'completed' && (
+              <div
+                className="text-center w-full max-w-md my-auto animate-in fade-in slide-in-from-bottom-4 duration-400"
+                role="status"
+                aria-live="polite"
+              >
+                <div className="bg-emerald-500 text-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-100" aria-hidden="true">
+                  <CheckCircle2 size={32} />
+                </div>
+                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">
+                  Compressed!
+                </h2>
+                <p className="text-slate-400 text-sm mb-6">Your optimized PDF generation sequence ended successfully.</p>
+                
+                <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center gap-4">
+                  <button
+                    onClick={handleDownload}
+                    className="bg-rose-600 hover:bg-rose-700 text-white w-full py-4 text-base font-black rounded-xl transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                  >
+                    <Download size={20} aria-hidden="true" /> DOWNLOAD COMPRESSED PDF
+                  </button>
+                  <button
+                    onClick={reset}
+                    className="text-slate-400 hover:text-slate-600 font-bold text-xs tracking-wide transition-colors uppercase mt-1"
+                  >
+                    Compress Another File
+                  </button>
+                </div>
+              </div>
+            )}
+
                 {/* Content Section: How It Works */}
                 <section aria-labelledby="how-it-works-heading" className="mt-20 w-full max-w-3xl border-t border-slate-100 pt-16">
                   <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
@@ -417,81 +493,6 @@ const CompressPdf = () => (
                     </p>
                   </div>
                 </section>
-
-              </article>
-            )}
-
-            {/* ── LOADING / CONVERTING STATES ─────────────────────────────── */}
-            {(status === 'uploading' || status === 'processing') && (
-              <div
-                className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100 text-center w-full max-w-md my-auto animate-in zoom-in-95 duration-200"
-                role="status"
-                aria-live="polite"
-                aria-label={status === 'uploading' ? 'Uploading your PDF' : 'Compressing your PDF'}
-              >
-                <div className="relative mb-8 flex justify-center items-center">
-                  <Settings
-                    className="text-slate-100 animate-[spin_10s_linear_infinite] w-28 h-28 absolute"
-                    strokeWidth={1}
-                    aria-hidden="true"
-                  />
-                  <div className="relative z-10 bg-rose-50 text-rose-600 p-5 rounded-2xl animate-pulse">
-                    {status === 'uploading'
-                      ? <Upload className="animate-bounce w-10 h-10" aria-hidden="true" />
-                      : <Loader2 className="animate-spin w-10 h-10" aria-hidden="true" />
-                    }
-                  </div>
-                </div>
-                <h2 className="text-xl font-black text-slate-850 mb-1 tracking-tight uppercase">
-                  {status === 'uploading' ? 'Uploading' : 'Compressing'}...
-                </h2>
-                <p className="text-slate-400 font-medium text-xs mb-6 truncate px-4">
-                  {fileQueue[0]?.name}
-                </p>
-                <div
-                  className="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner"
-                  role="progressbar"
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-valuenow={status === 'processing' ? 92 : 45}
-                >
-                  <div className="bg-rose-600 h-full transition-all duration-500 ease-out" style={{ width: status === 'processing' ? '92%' : '45%' }} />
-                </div>
-              </div>
-            )}
-
-            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
-            {status === 'completed' && (
-              <div
-                className="text-center w-full max-w-md my-auto animate-in fade-in slide-in-from-bottom-4 duration-400"
-                role="status"
-                aria-live="polite"
-              >
-                <div className="bg-emerald-500 text-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-100" aria-hidden="true">
-                  <CheckCircle2 size={32} />
-                </div>
-                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">
-                  Compressed!
-                </h2>
-                <p className="text-slate-400 text-sm mb-6">Your optimized PDF generation sequence ended successfully.</p>
-                
-                <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center gap-4">
-                  <button
-                    onClick={handleDownload}
-                    className="bg-rose-600 hover:bg-rose-700 text-white w-full py-4 text-base font-black rounded-xl transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2"
-                  >
-                    <Download size={20} aria-hidden="true" /> DOWNLOAD COMPRESSED PDF
-                  </button>
-                  <button
-                    onClick={reset}
-                    className="text-slate-400 hover:text-slate-600 font-bold text-xs tracking-wide transition-colors uppercase mt-1"
-                  >
-                    Compress Another File
-                  </button>
-                </div>
-              </div>
-            )}
-
           </main>
 
           <div className="mt-auto">

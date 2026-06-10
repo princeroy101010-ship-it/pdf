@@ -29,12 +29,12 @@ const PptxToPdf = () => (
 
       // ─── SEO VALUES ───
       const SEO = {
-        title:       "PPTX to PDF Converter – Free Online Tool | FreePDFConvert",
+        title:       "PPTX to PDF Converter Free Online Tool ",
         description: "Convert PowerPoint to PDF free online. No signup, no watermark. Fast & secure PPTX to PDF converter. Works on Windows, Mac, iPhone & Android.",
         keywords:    "pptx to pdf, powerpoint to pdf, convert pptx to pdf, pptx to pdf free, powerpoint to pdf converter, convert powerpoint to pdf online, pptx to pdf online, free pptx to pdf, ppt to pdf, ppt to pdf converter, convert ppt to pdf free, powerpoint to pdf no watermark, pptx to pdf without losing quality, save powerpoint as pdf, export ppt to pdf",
         h1:          "Convert PPTX to PDF Free Online",
         subtitle:    "Fast, free & secure. No signup required. Convert any PowerPoint file to PDF in seconds — works on all devices.",
-        canonical:   `https://freepdfconvert.io/${config?.slug || 'pptx-to-pdf'}`,
+        canonical:   `https://www.freepdfconvert.io/${config?.slug || 'pptx-to-pdf'}`,
         ogImage:     "/og-pptx-to-pdf.png",
       };
 
@@ -194,7 +194,57 @@ const PptxToPdf = () => (
                   </label>
                 </div>
 
-                {/* ─── SEO CONTENT SECTION ─── */}
+          
+
+              </article>
+            )}
+
+            {/* ─── UPLOADING / PROCESSING STATE ──────────────────────────────── */}
+            {(status === 'uploading' || status === 'processing') && (
+              <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg animate-in fade-in scale-in duration-300">
+                <div className="relative mb-8 flex justify-center items-center">
+                  <Settings className="text-green-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute" strokeWidth={1} />
+                  <div className="relative z-10 bg-green-50 p-6 rounded-3xl animate-pulse">
+                    {status === 'uploading' 
+                      ? <Upload className={`${THEME.text} animate-bounce w-12 h-12`} /> 
+                      : <Loader2 className={`${THEME.text} animate-spin w-12 h-12`} />
+                    }
+                  </div>
+                </div>
+                <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">{status === 'uploading' ? 'Uploading' : 'Converting'}...</h2>
+                <p className="text-gray-400 text-sm mb-8 truncate max-w-xs mx-auto">{fileQueue[0]?.name}</p>
+                <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+                  <div className={`${THEME.bg} h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}></div>
+                </div>
+              </div>
+            )}
+
+            {/* ─── COMPLETED STATE ───────────────────────────────────────────── */}
+            {status === 'completed' && (
+              <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
+                <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3">
+                  <CheckCircle2 size={40} />
+                </div>
+                <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Success!</h1>
+                <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
+                  <button 
+                    onClick={handleDownload} 
+                    className={`${THEME.bg} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 transition-all flex items-center justify-center gap-4`}
+                    aria-label="Download converted PDF architecture file"
+                  >
+                    <Download size={28} /> {DL_TEXT}
+                  </button>
+                  <button 
+                    onClick={reset} 
+                    className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors focus:outline-none"
+                  >
+                    Convert another file
+                  </button>
+                </div>
+              </div>
+            )}
+
+                  {/* ─── SEO CONTENT SECTION ─── */}
                 <section className="mt-16 w-full max-w-3xl text-left space-y-8">
 
                   <div>
@@ -248,54 +298,6 @@ const PptxToPdf = () => (
                   </div>
 
                 </section>
-
-              </article>
-            )}
-
-            {/* ─── UPLOADING / PROCESSING STATE ──────────────────────────────── */}
-            {(status === 'uploading' || status === 'processing') && (
-              <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg animate-in fade-in scale-in duration-300">
-                <div className="relative mb-8 flex justify-center items-center">
-                  <Settings className="text-green-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute" strokeWidth={1} />
-                  <div className="relative z-10 bg-green-50 p-6 rounded-3xl animate-pulse">
-                    {status === 'uploading' 
-                      ? <Upload className={`${THEME.text} animate-bounce w-12 h-12`} /> 
-                      : <Loader2 className={`${THEME.text} animate-spin w-12 h-12`} />
-                    }
-                  </div>
-                </div>
-                <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">{status === 'uploading' ? 'Uploading' : 'Converting'}...</h2>
-                <p className="text-gray-400 text-sm mb-8 truncate max-w-xs mx-auto">{fileQueue[0]?.name}</p>
-                <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
-                  <div className={`${THEME.bg} h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}></div>
-                </div>
-              </div>
-            )}
-
-            {/* ─── COMPLETED STATE ───────────────────────────────────────────── */}
-            {status === 'completed' && (
-              <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
-                <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3">
-                  <CheckCircle2 size={40} />
-                </div>
-                <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Success!</h1>
-                <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
-                  <button 
-                    onClick={handleDownload} 
-                    className={`${THEME.bg} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 transition-all flex items-center justify-center gap-4`}
-                    aria-label="Download converted PDF architecture file"
-                  >
-                    <Download size={28} /> {DL_TEXT}
-                  </button>
-                  <button 
-                    onClick={reset} 
-                    className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors focus:outline-none"
-                  >
-                    Convert another file
-                  </button>
-                </div>
-              </div>
-            )}
           </main>
           <div className="mt-10 md:mt-20"><Footer /></div>
         </div>
