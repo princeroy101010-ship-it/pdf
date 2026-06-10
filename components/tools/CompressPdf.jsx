@@ -22,124 +22,6 @@ import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['compress-pdf'];
 
-const FAQ_ITEMS = [
-  {
-    q: 'How do I compress a PDF for free?',
-    a: 'Upload your PDF on FreePDFConvert, choose your compression level (Extreme, Recommended, or Less), click Compress PDF Now, and download the smaller file — 100% free, no signup required.',
-  },
-  {
-    q: 'Will compressing a PDF reduce its quality?',
-    a: 'It depends on the compression level you choose. "Less" compression keeps near-original quality, "Recommended" balances size and quality, and "Extreme" gives the smallest file with some quality reduction.',
-  },
-  {
-    q: 'How much can I reduce a PDF file size?',
-    a: 'FreePDFConvert can reduce PDF size by up to 90% depending on the content. PDFs with many images compress the most; text-heavy PDFs compress less but still see significant reduction.',
-  },
-  {
-    q: 'Is it safe to upload my PDF to compress it?',
-    a: 'Yes. All uploads are encrypted with HTTPS/SSL. Your files are permanently and automatically deleted from our servers immediately after processing. We never read, store, or share your files.',
-  },
-  {
-    q: 'Does the compressed PDF have a watermark?',
-    a: 'No. FreePDFConvert never adds watermarks, logos, or branding to your compressed PDF. The output is completely clean.',
-  },
-  {
-    q: 'What devices can I use to compress a PDF?',
-    a: 'Our PDF compressor works on all devices — Windows, Mac, Linux, iPhone, iPad, and Android — in any modern browser. No app or software installation is needed.',
-  },
-  {
-    q: 'Is there a file size limit for PDF compression?',
-    a: 'FreePDFConvert supports large PDF files. You can compress PDFs free with no restrictions on the number of compressions.',
-  },
-  {
-    q: 'What is the difference between the compression levels?',
-    a: 'Extreme gives the smallest file size with lower image quality. Recommended is the best balance for most use cases. Less compression preserves near-original quality with moderate size reduction.',
-  },
-];
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/compress-pdf',
-      url: 'https://www.freepdfconvert.io/compress-pdf',
-      name: 'Compress PDF Online Free – Reduce PDF File Size | FreePDFConvert',
-      description: 'Compress PDF files online for free. Reduce PDF size up to 90% without losing quality. No signup, no watermark, instant download. Fast & secure.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/compress-pdf/#software' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/compress-pdf/#breadcrumb' },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/compress-pdf/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'Compress PDF', item: 'https://www.freepdfconvert.io/compress-pdf' },
-      ],
-    },
-    {
-      '@type': 'SoftwareApplication',
-      '@id': 'https://www.freepdfconvert.io/compress-pdf/#software',
-      name: 'PDF Compressor – FreePDFConvert',
-      url: 'https://www.freepdfconvert.io/compress-pdf',
-      applicationCategory: 'UtilitiesApplication',
-      operatingSystem: 'All – Web Browser',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      featureList: [
-        'Compress PDF free online',
-        'Three compression levels',
-        'Up to 90% file size reduction',
-        'No watermark added',
-        'No registration required',
-        'Works on all devices',
-        'Instant download',
-        'Files deleted after processing',
-      ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.8',
-        reviewCount: '2143',
-        bestRating: '5',
-        worstRating: '1',
-      },
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Compress a PDF Online',
-      description: 'Reduce your PDF file size in 3 easy steps using FreePDFConvert.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: '1',
-          name: 'Upload Your PDF',
-          text: "Click 'Select PDF File' or drag and drop your PDF into the upload area.",
-        },
-        {
-          '@type': 'HowToStep',
-          position: '2',
-          name: 'Choose Compression Level',
-          text: 'Select Extreme, Recommended, or Less compression depending on your quality vs. size preference.',
-        },
-        {
-          '@type': 'HowToStep',
-          position: '3',
-          name: 'Download Compressed PDF',
-          text: 'Click Compress PDF Now, then download your smaller PDF. File is deleted from servers immediately.',
-        },
-      ],
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/compress-pdf/#faq',
-      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
-};
 
 const TrustBadge = ({ label }) => (
   <span className="bg-white border border-slate-100 rounded-xl px-4 py-2 shadow-sm text-sm text-slate-600 font-semibold tracking-wide">
@@ -171,12 +53,7 @@ const CompressPdf = () => (
 
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-          <Script
-            id="compress-pdf-jsonld"
-            type="application/ld+json"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
+      
 
           <Header />
 

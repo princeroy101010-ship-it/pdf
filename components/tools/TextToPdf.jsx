@@ -43,90 +43,7 @@ const FAQ_ITEMS = [
   },
 ];
 
-// ─── JSON-LD Structured Data ──────────────────────────────────────────────────
-// ✅ FIX: FAQPage schema now uses FAQ_ITEMS — same questions shown in HTML.
-//         Removed duplicate WebSite schema (already in layout.js #website).
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/text-to-pdf',
-      url: 'https://www.freepdfconvert.io/text-to-pdf',
-      name: 'Text to PDF Converter – Free Online Tool | FreePDFConvert',
-      description:
-        'Convert text to PDF online for free. No installation, no sign-up required. Turn any TXT file into a professional PDF in seconds — fast, secure and 100% free.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/text-to-pdf/#software' },
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-          { '@type': 'ListItem', position: 2, name: 'Text to PDF', item: 'https://www.freepdfconvert.io/text-to-pdf' },
-        ],
-      },
-    },
-    {
-      '@type': 'SoftwareApplication',
-      '@id': 'https://www.freepdfconvert.io/text-to-pdf/#software',
-      name: 'Text to PDF Converter',
-      url: 'https://www.freepdfconvert.io/text-to-pdf',
-      applicationCategory: 'UtilitiesApplication',
-      operatingSystem: 'All – Web Browser',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      featureList: [
-        'Convert TXT to PDF free',
-        'No registration required',
-        'Instant PDF download',
-        'Secure file processing',
-        'Works on all devices',
-        'No watermark on output',
-      ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.8',
-        reviewCount: '1987',
-        bestRating: '5',
-        worstRating: '1',
-      },
-    },
-    // ✅ FIX: Single FAQPage — built from FAQ_ITEMS, matches rendered HTML exactly.
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/text-to-pdf/#faq',
-      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Convert Text to PDF Online',
-      description: 'Convert any TXT file to PDF in 3 simple steps using FreePDFConvert.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: '1',
-          name: 'Upload Your Text File',
-          text: "Click 'Select Text File' or drag and drop your .txt file into the upload area on FreePDFConvert.",
-        },
-        {
-          '@type': 'HowToStep',
-          position: '2',
-          name: 'Convert to PDF',
-          text: 'Our converter instantly processes your text file and generates a professional PDF document.',
-        },
-        {
-          '@type': 'HowToStep',
-          position: '3',
-          name: 'Download Your PDF',
-          text: 'Click Download PDF to save your file. Your text file is deleted from our servers immediately after conversion.',
-        },
-      ],
-    },
-  ],
-};
+
 
 const TextToPdf = () => (
   <BaseToolLogic config={config}>
@@ -144,65 +61,7 @@ const TextToPdf = () => (
     }) => {
       return (
         <>
-          {/* ─── HEAD / SEO ─────────────────────────────────────────────── */}
-          <Head>
-            <title>Text to PDF Converter Free Online, No Sign-Up</title>
-            <meta
-              name="description"
-              content="Convert text to PDF online free — no email, no install needed. Turn any TXT file into a clean PDF in seconds. No watermark. Fast, private & 100% free."
-            />
-            <meta
-              name="keywords"
-              content="text to pdf, txt to pdf, convert text to pdf, text to pdf converter, txt to pdf converter, text file to pdf, online text to pdf, free text to pdf, convert txt to pdf online, plain text to pdf, notepad to pdf, text document to pdf"
-            />
-            <meta
-              name="robots"
-              content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-            />
-            <meta name="author" content="FreePDFConvert" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="canonical" href="https://www.freepdfconvert.io/text-to-pdf" />
-
-            {/* Open Graph */}
-            <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="FreePDFConvert" />
-            <meta
-              property="og:title"
-              content="Text to PDF Converter – Free Online, No Sign-Up | FreePDFConvert"
-            />
-            <meta
-              property="og:description"
-              content="Convert text to PDF online free — no email, no install. Turn any TXT file into a clean PDF instantly. No watermark added."
-            />
-            <meta property="og:url" content="https://www.freepdfconvert.io/text-to-pdf" />
-            <meta property="og:image" content="https://www.freepdfconvert.io/og-text-to-pdf.png" />
-            <meta property="og:image:width" content="1200" />
-            <meta property="og:image:height" content="630" />
-            <meta
-              property="og:image:alt"
-              content="FreePDFConvert – Free Text to PDF Converter"
-            />
-            <meta property="og:locale" content="en_US" />
-
-            {/* Twitter Card */}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:site" content="@freepdfconvert" />
-            <meta
-              name="twitter:title"
-              content="Text to PDF Converter – Free Online | FreePDFConvert"
-            />
-            <meta
-              name="twitter:description"
-              content="Convert any TXT file to PDF online for free. No sign-up, no watermark, instant download."
-            />
-            <meta name="twitter:image" content="https://www.freepdfconvert.io/og-text-to-pdf.png" />
-
-            {/* ✅ Single JSON-LD block — no microdata in HTML */}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-          </Head>
+        
 
           {/* ─── PAGE ───────────────────────────────────────────────────── */}
           <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">

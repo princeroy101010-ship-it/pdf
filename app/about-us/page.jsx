@@ -351,6 +351,11 @@ const allTools = [
   { href: '/png-to-pdf',              label: 'PNG to PDF'            },
   { href: '/pdf-to-text',             label: 'PDF to Text'           },
   { href: '/text-to-pdf',             label: 'Text to PDF'           },
+  { href: '/extract-text-from-image', label: 'Extract Text from Image' },
+  { href: '/pdf-to-html',             label: 'PDF to HTML'             },
+  { href: '/pptx-to-text',            label: 'PowerPoint to Text'      },
+  { href: '/text-to-pptx',            label: 'Text to PowerPoint'      },
+  { href: '/word-to-text',            label: 'Word to Text'            },
 ];
 
 // "Why choose us" features data

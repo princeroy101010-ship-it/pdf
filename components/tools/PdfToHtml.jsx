@@ -43,74 +43,6 @@ const FAQ_ITEMS = [
   }
 ];
 
-// ─── Unified JSON-LD Graph Construction ─────────────────────────────────────
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-html',
-      url: 'https://www.freepdfconvert.io/pdf-to-html',
-      name: 'Free PDF to HTML Converter Online – PDF to HTML No Signup | FreePDFConvert',
-      description: 'Convert PDF to HTML free online. Transform PDF documents into web-ready HTML files instantly. No signup, no watermark, 100% secure. Best free PDF to HTML converter.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/pdf-to-html/#software' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/pdf-to-html/#breadcrumb' }
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-html/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'PDF to HTML', item: 'https://www.freepdfconvert.io/pdf-to-html' }
-      ]
-    },
-    {
-      '@type': 'WebApplication',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-html/#software',
-      name: 'Free PDF to HTML Converter Online',
-      url: 'https://www.freepdfconvert.io/pdf-to-html',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'All',
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Convert PDF to HTML Online Free',
-      description: 'Convert a PDF document to an HTML file in 3 simple steps using FreePDFConvert.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: 1,
-          name: 'Upload PDF File',
-          text: "Click 'Select PDF File' or drag and drop your PDF into the upload area."
-        },
-        {
-          '@type': 'HowToStep',
-          position: 2,
-          name: 'Convert to HTML',
-          text: 'The converter automatically transforms your PDF content into a structured HTML file.'
-        },
-        {
-          '@type': 'HowToStep',
-          position: 3,
-          name: 'Download HTML File',
-          text: 'Click Download HTML to save your file. No signup required, no watermark added.'
-        }
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-html/#faq',
-      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a }
-      }))
-    }
-  ]
-};
 
 const PdfToHtml = () => (
   <BaseToolLogic config={config}>
@@ -120,12 +52,7 @@ const PdfToHtml = () => (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
         {/* ✅ Injected Safely via Standard Modern Script Execution Block */}
-        <Script
-          id="pdf-to-html-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    
 
         <Header />
 

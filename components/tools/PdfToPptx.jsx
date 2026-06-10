@@ -45,75 +45,6 @@ const FAQ_ITEMS = [
   }
 ];
 
-// ─── Consolidated Structured Data Pipeline ──────────────────────────────────
-const unifiedGraphSchema = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-pptx',
-      url: 'https://www.freepdfconvert.io/pdf-to-pptx',
-      name: 'Free PDF to PowerPoint Converter Online – PDF to PPTX No Signup | FreePDFConvert',
-      description: 'Convert PDF to PowerPoint PPTX free online. Turn PDF slides into editable presentations instantly. No signup, no watermark, 100% secure. Best free PDF to PPTX converter.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#software' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#breadcrumb' }
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'PDF to PowerPoint', item: 'https://www.freepdfconvert.io/pdf-to-pptx' }
-      ]
-    },
-    {
-      '@type': 'WebApplication',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#software',
-      name: 'Free PDF to PowerPoint Converter Online',
-      url: 'https://www.freepdfconvert.io/pdf-to-pptx',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'All',
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Convert PDF to PowerPoint Online Free',
-      description: 'Convert a PDF into an editable PowerPoint PPTX presentation in 3 simple steps.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: 1,
-          name: 'Upload PDF File',
-          text: "Click 'Select PDF File' or drag and drop your PDF into the upload area."
-        },
-        {
-          '@type': 'HowToStep',
-          position: 2,
-          name: 'Convert to PowerPoint',
-          text: 'The converter automatically transforms each PDF page into an editable PowerPoint slide.'
-        },
-        {
-          '@type': 'HowToStep',
-          position: 3,
-          name: 'Download PPTX',
-          text: 'Click Download PPTX to save your presentation. No signup required, no watermark added.'
-        }
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-pptx/#faq',
-      mainEntity: FAQ_ITEMS.map((item) => ({
-        '@type': 'Question',
-        name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a }
-      }))
-    }
-  ]
-};
-
 const PdfToPptx = () => (
   <BaseToolLogic config={config}>
     {({ status, dragActive, fileQueue, acceptedFiles,
@@ -121,13 +52,7 @@ const PdfToPptx = () => (
         reset, handleDownload }) => (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-        {/* Structured Schema Injected via Next.js Optimized Execution Worker */}
-        <Script
-          id="pdf-to-pptx-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(unifiedGraphSchema) }}
-        />
+     
 
         <Header />
 

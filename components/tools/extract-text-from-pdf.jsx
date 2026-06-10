@@ -50,56 +50,7 @@ const FAQ_ITEMS = [
   }
 ];
 
-// ─── SEO: JSON-LD Schema ─────────────────────────────────────────────────────
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.freepdfconvert.io/extract-text-from-pdf",
-      "url": "https://www.freepdfconvert.io/extract-text-from-pdf",
-      "name": "Free Online OCR – Extract Text from Scanned PDF | FreePDFConvert",
-      "description": "Extract text from scanned PDF files free online. AI-powered OCR converts non-selectable PDF text into editable content instantly. No signup, no watermark.",
-      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://www.freepdfconvert.io/extract-text-from-pdf/#breadcrumb" }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.freepdfconvert.io/extract-text-from-pdf/#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Extract Text From PDF", "item": "https://www.freepdfconvert.io/extract-text-from-pdf" }
-      ]
-    },
-    {
-      "@type": "WebApplication",
-      "@id": "https://www.freepdfconvert.io/extract-text-from-pdf/#software",
-      "name": "Free Online OCR – Extract Text from PDF",
-      "url": "https://www.freepdfconvert.io/extract-text-from-pdf",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "description": "Free online OCR tool to extract text from scanned PDFs. No signup required. 100% secure browser-based processing.",
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.freepdfconvert.io/extract-text-from-pdf/#faq",
-      "mainEntity": FAQ_ITEMS.map(({ q, a }) => ({
-        "@type": "Question",
-        "name": q,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": a
-        }
-      }))
-    }
-  ]
-};
+
 
 export default function OCRToolPage() {
   const [extractedText, setExtractedText] = useState('');
@@ -233,13 +184,7 @@ export default function OCRToolPage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-      <Script
-        id="pdf-ocr-jsonld"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
+   
       <Header />
 
       <main 

@@ -45,74 +45,6 @@ const FAQ_ITEMS = [
   }
 ];
 
-// ─── Consolidated Structured Data Pipeline ──────────────────────────────────
-const unifiedGraphSchema = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-jpg',
-      url: 'https://www.freepdfconvert.io/pdf-to-jpg',
-      name: 'Free PDF to JPG Converter Online – PDF to Image No Signup | FreePDFConvert',
-      description: 'Convert PDF to JPG free online. Extract high-quality images from every PDF page instantly. No signup, no watermark, 100% secure. Best free PDF to JPG converter.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/pdf-to-jpg/#software' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/pdf-to-jpg/#breadcrumb' }
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-jpg/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'PDF to JPG', item: 'https://www.freepdfconvert.io/pdf-to-jpg' }
-      ]
-    },
-    {
-      '@type': 'WebApplication',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-jpg/#software',
-      name: 'Free PDF to JPG Converter Online',
-      url: 'https://www.freepdfconvert.io/pdf-to-jpg',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'All',
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Convert PDF to JPG Online Free',
-      description: 'Convert PDF pages to JPG images in 3 simple steps using FreePDFConvert.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: 1,
-          name: 'Upload PDF File',
-          text: "Click 'Select PDF File' or drag and drop your PDF into the upload area."
-        },
-        {
-          '@type': 'HowToStep',
-          position: 2,
-          name: 'Convert to JPG',
-          text: 'The converter automatically renders each PDF page into a high-quality JPG image.'
-        },
-        {
-          '@type': 'HowToStep',
-          position: 3,
-          name: 'Download JPG',
-          text: 'Click Download JPG to save your images. No signup required, no watermark added.'
-        }
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-jpg/#faq',
-      mainEntity: FAQ_ITEMS.map((item) => ({
-        '@type': 'Question',
-        name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a }
-      }))
-    }
-  ]
-};
 
 const PdfToJpg = () => (
   <BaseToolLogic config={config}>
@@ -121,13 +53,7 @@ const PdfToJpg = () => (
         reset, handleDownload }) => (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-        {/* Structured Schema Injected via Next.js Optimized Execution Worker */}
-        <Script
-          id="pdf-to-jpg-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(unifiedGraphSchema) }}
-        />
+     
 
         <Header />
 

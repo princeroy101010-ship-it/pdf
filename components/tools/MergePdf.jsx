@@ -46,74 +46,6 @@ const FAQ_ITEMS = [
   },
 ];
 
-// ─── Static JSON-LD Graph Structure (Declared Outside Render Loop) ──────────
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/merge-pdf',
-      url: 'https://www.freepdfconvert.io/merge-pdf',
-      name: 'Merge PDF Files Online Free – Combine PDFs Instantly | FreePDFConvert',
-      description: 'Merge multiple PDF files into one online free. Combine PDFs in any order instantly. No signup, no watermark, 100% secure. Fast and easy PDF merger.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/merge-pdf/#software' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/merge-pdf/#breadcrumb' },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/merge-pdf/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'Merge PDF', item: 'https://www.freepdfconvert.io/merge-pdf' },
-      ],
-    },
-    {
-      '@type': 'WebApplication',
-      '@id': 'https://www.freepdfconvert.io/merge-pdf/#software',
-      name: 'Free PDF Merger – Merge PDF Files Online',
-      url: 'https://www.freepdfconvert.io/merge-pdf',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'All',
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Merge PDF Files Online Free',
-      description: 'Combine multiple PDF files into one in 3 easy steps using FreePDFConvert.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: 1,
-          name: 'Upload PDF Files',
-          text: "Click 'Select Files to Merge' or drag and drop your PDF files. Add as many PDFs as you need.",
-        },
-        {
-          '@type': 'HowToStep',
-          position: 2,
-          name: 'Merge PDFs',
-          text: "Review the file order in the queue. Remove any unwanted files, then click 'Merge All Files'.",
-        },
-        {
-          '@type': 'HowToStep',
-          position: 3,
-          name: 'Download Merged PDF',
-          text: 'Click Download Merged PDF to save your combined file. No signup required, no watermark added.',
-        },
-      ],
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/merge-pdf/#faq',
-      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
-};
 
 // ─── Component Blueprint ────────────────────────────────────────────────────
 const MergePdf = () => (
@@ -125,13 +57,7 @@ const MergePdf = () => (
     }) => (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-        {/* ✅ Single Compiled Static JSON-LD Resource Block */}
-        <Script
-          id="merge-pdf-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+ 
 
         <Header />
 

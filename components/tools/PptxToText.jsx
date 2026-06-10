@@ -11,103 +11,7 @@ import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 const config = TOOLS_CONFIG['pptx-to-text'];
 
 // ─── SEO: JSON-LD Schemas ────────────────────────────────────────────────────
-const toolSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Free PowerPoint to Text Converter Online",
-  "url": "https://www.freepdfconvert.io/pptx-to-text",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "All",
-  "description": "Convert PowerPoint PPTX to plain text TXT free online. Extract all slide text from PPTX presentations instantly. No signup, no watermark, 100% secure.",
-  "isAccessibleForFree": true,
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-};
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I convert PowerPoint to text for free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Upload your PPTX file to FreePDFConvert's free PowerPoint to text converter, click Convert, and download your TXT file instantly. No signup or software installation required."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is the PPTX to text converter free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. FreePDFConvert's PPTX to text tool is completely free with no hidden fees, no subscription, and no account needed."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it extract text from all slides?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The converter extracts all text from every slide in your PowerPoint presentation and saves it into a single plain text TXT file."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Will the text file have a watermark?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. FreePDFConvert never adds watermarks to any converted file. Your text output is always clean and ready to use."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What programs can open the TXT output?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The output is a standard .txt file that opens in any text editor including Notepad, TextEdit, VS Code, Microsoft Word, Google Docs, and any word processor."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my PPTX file safe when uploaded?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. All uploads use SSL encryption and files are automatically deleted after conversion. Your data is never stored or shared."
-      }
-    }
-  ]
-};
-
-const howToSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How to Convert PowerPoint PPTX to Text Online Free",
-  "description": "Extract all text from a PowerPoint presentation into a plain TXT file in 3 simple steps.",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Upload PPTX File",
-      "text": "Click 'Select PPTX File' or drag and drop your PowerPoint file into the upload area."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "Convert to Text",
-      "text": "The converter automatically extracts all text from every slide of your presentation into a clean plain text file."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Download Text File",
-      "text": "Click Download Text File to save your TXT. No signup required, no watermark added."
-    }
-  ]
-};
 
 // ─── Component ───────────────────────────────────────────────────────────────
 const PptxToText = () => (
@@ -121,39 +25,7 @@ const PptxToText = () => (
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-          {/* ── SEO HEAD ──────────────────────────────────────────────────── */}
-          <Head>
-            <title>Free PowerPoint to Text Converter PPTX to TXT Online No Signup </title>
-            <meta name="description" content="Convert PowerPoint PPTX to plain text TXT free online. Extract all slide text from presentations instantly. No signup, no watermark, 100% secure." />
-            <meta name="keywords" content="pptx to text, powerpoint to text, convert pptx to txt free, extract text from pptx, powerpoint to txt online, pptx text extractor, pptx to plain text, presentation to text free" />
 
-            <link rel="canonical" href={`https://www.freepdfconvert.io/${targetSlug}`} />
-            <link rel="alternate" hreflang="en" href={`https://www.freepdfconvert.io/${targetSlug}`} />
-
-            <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
-            <meta property="og:type" content="website" />
-            <meta property="og:title" content="Free PowerPoint to Text Converter – PPTX to TXT Online No Signup | FreePDFConvert" />
-            <meta property="og:description" content="Convert PowerPoint PPTX to plain text TXT free. Extract all slide text instantly. No signup, no watermark." />
-            <meta property="og:url" content={`https://www.freepdfconvert.io/${targetSlug}`} />
-            <meta property="og:site_name" content="FreePDFConvert" />
-            <meta property="og:image" content="https://www.freepdfconvert.io/og-image.png" />
-            <meta property="og:image:width" content="1200" />
-            <meta property="og:image:height" content="630" />
-            <meta property="og:image:alt" content="Free PowerPoint to Text Converter Online" />
-            <meta property="og:locale" content="en_US" />
-
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:site" content="@freepdfconvert" />
-            <meta name="twitter:title" content="Free PowerPoint to Text Converter – FreePDFConvert" />
-            <meta name="twitter:description" content="Convert PPTX to TXT text free. No signup, no watermark. Instant download." />
-            <meta name="twitter:image" content="https://www.freepdfconvert.io/og-image.png" />
-
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-          </Head>
 
           <Header />
 

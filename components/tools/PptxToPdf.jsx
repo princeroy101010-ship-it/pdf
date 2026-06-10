@@ -39,115 +39,11 @@ const PptxToPdf = () => (
       };
 
       // ─── JSON-LD: WebApplication Schema ───
-      const schemaWebApp = {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "PPTX to PDF Converter",
-        "url": SEO.canonical,
-        "description": SEO.description,
-        "applicationCategory": "UtilityApplication",
-        "operatingSystem": "All",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "featureList": [
-          "Convert PPTX to PDF online for free",
-          "No registration required",
-          "No watermark on output PDF",
-          "High quality PDF output preserving slides layout",
-          "Works on Windows, Mac, Linux, Android, iOS"
-        ]
-      };
-
-      // ─── JSON-LD: FAQPage Schema ───
-      const schemaFAQ = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How do I convert PPTX to PDF for free?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Upload your PPTX or PPT file on FreePDFConvert.io, click Convert, and download your PDF instantly. It's 100% free with no signup required."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does the PDF keep the PowerPoint formatting and layout?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. FreePDFConvert preserves all slide layouts, fonts, images, and formatting when converting PowerPoint to PDF."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is there a watermark on the converted PDF?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. FreePDFConvert adds zero watermarks to your converted PDF files — completely free and clean output."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I convert PPT (older format) as well as PPTX?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Our converter supports both .pptx and .ppt PowerPoint formats and converts them to high-quality PDF documents."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does this PowerPoint to PDF converter work on mobile?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. FreePDFConvert works on all devices including iPhone, Android, Windows, Mac, and Linux — no app download needed."
-            }
-          }
-        ]
-      };
+  
 
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-          {/* ─── SEO HEAD TAGS ─── */}
-          <Head>
-            <title>{SEO.title}</title>
-            <meta name="description" content={SEO.description} />
-            <meta name="keywords" content={SEO.keywords} />
-            <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <meta name="author" content="FreePDFConvert" />
-            <link rel="canonical" href={SEO.canonical} />
-
-            {/* Open Graph */}
-            <meta property="og:title" content={SEO.title} />
-            <meta property="og:description" content={SEO.description} />
-            <meta property="og:url" content={SEO.canonical} />
-            <meta property="og:type" content="website" />
-            <meta property="og:image" content={SEO.ogImage} />
-            <meta property="og:image:width" content="1200" />
-            <meta property="og:image:height" content="630" />
-            <meta property="og:site_name" content="FreePDFConvert" />
-            <meta property="og:locale" content="en_US" />
-
-            {/* Twitter Card */}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={SEO.title} />
-            <meta name="twitter:description" content={SEO.description} />
-            <meta name="twitter:image" content={SEO.ogImage} />
-
-            {/* JSON-LD Structured Data */}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaWebApp) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
-            />
-          </Head>
 
           <Header />
           

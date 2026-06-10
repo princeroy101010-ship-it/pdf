@@ -47,91 +47,7 @@ const FAQ_ITEMS = [
 ];
 
 // ─── Static JSON-LD Graph Structure (Declared Outside Render Loop) ──────────
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/jpg-to-pdf',
-      url: 'https://www.freepdfconvert.io/jpg-to-pdf',
-      name: 'Free JPG to PDF Converter Online – No Signup, No Watermark | FreePDFConvert',
-      description:
-        'Convert JPG to PDF free online in seconds. Upload your JPG or JPEG image and download a clean PDF instantly. No signup, no watermark, no software needed.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#software' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#breadcrumb' },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'JPG to PDF', item: 'https://www.freepdfconvert.io/jpg-to-pdf' },
-      ],
-    },
-    {
-      '@type': 'SoftwareApplication',
-      '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#software',
-      name: 'Free JPG to PDF Converter Online',
-      url: 'https://www.freepdfconvert.io/jpg-to-pdf',
-      applicationCategory: 'UtilitiesApplication',
-      operatingSystem: 'All – Web Browser',
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      featureList: [
-        'Convert JPG to PDF free',
-        'JPEG to PDF supported',
-        'No signup required',
-        'No watermark added',
-        'Instant download',
-        'SSL encrypted uploads',
-        'Files deleted after conversion',
-        'Works on all devices',
-      ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.8',
-        reviewCount: '1874',
-        bestRating: '5',
-        worstRating: '1',
-      },
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Convert JPG to PDF Online Free',
-      description: 'Convert a JPG image to PDF in 3 simple steps using FreePDFConvert.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: '1',
-          name: 'Upload JPG File',
-          text: "Click 'Select JPG File' or drag and drop your JPG or JPEG image into the upload area.",
-        },
-        {
-          '@type': 'HowToStep',
-          position: '2',
-          name: 'Convert to PDF',
-          text: 'The converter automatically processes your JPG and converts it into a properly formatted PDF document.',
-        },
-        {
-          '@type': 'HowToStep',
-          position: '3',
-          name: 'Download PDF',
-          text: 'Click Download PDF to save your file. No signup required, no watermark added.',
-        },
-      ],
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/jpg-to-pdf/#faq',
-      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
-};
+
 
 // ─── Component Blueprint ────────────────────────────────────────────────────
 const JpgToPdf = () => (
@@ -144,12 +60,7 @@ const JpgToPdf = () => (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
         {/* ✅ Single Compiled Static JSON-LD Resource Block */}
-        <Script
-          id="jpg-to-pdf-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+     
 
         <Header />
 

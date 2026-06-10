@@ -259,6 +259,107 @@ export default function ToolClient({
               </div>
             </div>
 
+
+
+          </div>
+        )}
+
+        {/* ══ UPLOADING / PROCESSING STATE ════════════════ */}
+        {(status === 'uploading' || status === 'processing') && (
+          <div
+            className="bg-white p-12 md:p-16 rounded-[3rem] shadow-2xl border border-gray-50 text-center w-full max-w-lg animate-in zoom-in-95 duration-300"
+            role="status"
+            aria-live="polite"
+            aria-label={status === 'uploading' ? 'Uploading your file' : `Converting your file with ${toolName}`}
+          >
+            <Loader2
+              className="text-rose-600 animate-spin w-20 h-20 mx-auto mb-8"
+              aria-hidden="true"
+            />
+            <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase tracking-tight">
+              {status === 'uploading' ? 'Uploading...' : 'Converting...'}
+            </h2>
+            <p className="text-gray-500 text-sm">
+              {status === 'uploading'
+                ? 'Securely uploading your file...'
+                : `Running ${toolName} — almost done!`}
+            </p>
+            <div className="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden mt-8" role="progressbar" aria-label="Processing progress">
+              <div
+                className="bg-rose-600 h-full transition-all duration-1000 ease-out"
+                style={{ width: status === 'uploading' ? '45%' : '95%' }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* ══ COMPLETED STATE ══════════════════════════════ */}
+        {status === 'completed' && (
+          <div
+            className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"
+            role="region"
+            aria-label="File conversion completed"
+          >
+            <div
+              className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl shadow-emerald-100 rotate-3"
+              aria-hidden="true"
+            >
+              <CheckCircle2 size={40} strokeWidth={2.5} />
+            </div>
+            {/*
+              ✅ H1 in completed state: unique heading, contains tool keyword.
+                 This page state is not indexed separately (it's client-side)
+                 but good practice for accessibility.
+            */}
+            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight">
+              Conversion Complete!
+            </h1>
+            <p className="text-gray-500 mb-6 text-sm">
+              Your {toolName} result is ready. Click the button below to download.
+            </p>
+            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex flex-col items-center gap-6">
+              {/* File name display */}
+              <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-full">
+                <Files size={16} className="text-rose-600" aria-hidden="true" />
+                <span className="text-sm font-bold text-gray-600 truncate max-w-[200px]">
+                  {file?.name}
+                </span>
+              </div>
+
+              {/* ✅ Download link: target="_blank" + rel="noopener noreferrer" */}
+              <a
+                href={downloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-rose-600 hover:bg-rose-700 text-white w-full py-6 rounded-2xl text-2xl font-black transition-all flex items-center justify-center gap-4"
+                aria-label={`Download your converted ${outputFormat} file`}
+              >
+                <Download size={28} strokeWidth={3} aria-hidden="true" className="group-hover:animate-bounce" />
+                DOWNLOAD FILE
+              </a>
+
+              {/* Process another file */}
+              <button
+                onClick={reset}
+                className="text-gray-400 hover:text-rose-600 font-bold flex items-center gap-2 transition-colors text-xs uppercase tracking-widest mt-2"
+                aria-label={`Convert another file with ${toolName}`}
+              >
+                <RefreshCw size={14} aria-hidden="true" />
+                Convert another file
+              </button>
+            </div>
+
+            {/* ── Post-Download Trust Note ────────────────
+                ✅ Adds visible text to completed state.
+                ✅ Reassures users → reduces bounce rate → positive UX signal.
+            ─────────────────────────────────────────────── */}
+            <p className="text-gray-400 text-xs mt-6">
+              Your file has been permanently deleted from our servers.
+              All data is processed over 256-bit SSL encryption.
+            </p>
+          </div>
+        )}
+
             {/* ── HOW IT WORKS SECTION ──────────────────────
                 ✅ NEW — Fixes "low text-HTML ratio" warning.
                 ✅ H2 heading with target keyword.
@@ -385,105 +486,6 @@ export default function ToolClient({
                 </div>
               </section>
             )}
-
-          </div>
-        )}
-
-        {/* ══ UPLOADING / PROCESSING STATE ════════════════ */}
-        {(status === 'uploading' || status === 'processing') && (
-          <div
-            className="bg-white p-12 md:p-16 rounded-[3rem] shadow-2xl border border-gray-50 text-center w-full max-w-lg animate-in zoom-in-95 duration-300"
-            role="status"
-            aria-live="polite"
-            aria-label={status === 'uploading' ? 'Uploading your file' : `Converting your file with ${toolName}`}
-          >
-            <Loader2
-              className="text-rose-600 animate-spin w-20 h-20 mx-auto mb-8"
-              aria-hidden="true"
-            />
-            <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase tracking-tight">
-              {status === 'uploading' ? 'Uploading...' : 'Converting...'}
-            </h2>
-            <p className="text-gray-500 text-sm">
-              {status === 'uploading'
-                ? 'Securely uploading your file...'
-                : `Running ${toolName} — almost done!`}
-            </p>
-            <div className="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden mt-8" role="progressbar" aria-label="Processing progress">
-              <div
-                className="bg-rose-600 h-full transition-all duration-1000 ease-out"
-                style={{ width: status === 'uploading' ? '45%' : '95%' }}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* ══ COMPLETED STATE ══════════════════════════════ */}
-        {status === 'completed' && (
-          <div
-            className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"
-            role="region"
-            aria-label="File conversion completed"
-          >
-            <div
-              className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl shadow-emerald-100 rotate-3"
-              aria-hidden="true"
-            >
-              <CheckCircle2 size={40} strokeWidth={2.5} />
-            </div>
-            {/*
-              ✅ H1 in completed state: unique heading, contains tool keyword.
-                 This page state is not indexed separately (it's client-side)
-                 but good practice for accessibility.
-            */}
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight">
-              Conversion Complete!
-            </h1>
-            <p className="text-gray-500 mb-6 text-sm">
-              Your {toolName} result is ready. Click the button below to download.
-            </p>
-            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex flex-col items-center gap-6">
-              {/* File name display */}
-              <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-full">
-                <Files size={16} className="text-rose-600" aria-hidden="true" />
-                <span className="text-sm font-bold text-gray-600 truncate max-w-[200px]">
-                  {file?.name}
-                </span>
-              </div>
-
-              {/* ✅ Download link: target="_blank" + rel="noopener noreferrer" */}
-              <a
-                href={downloadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-rose-600 hover:bg-rose-700 text-white w-full py-6 rounded-2xl text-2xl font-black transition-all flex items-center justify-center gap-4"
-                aria-label={`Download your converted ${outputFormat} file`}
-              >
-                <Download size={28} strokeWidth={3} aria-hidden="true" className="group-hover:animate-bounce" />
-                DOWNLOAD FILE
-              </a>
-
-              {/* Process another file */}
-              <button
-                onClick={reset}
-                className="text-gray-400 hover:text-rose-600 font-bold flex items-center gap-2 transition-colors text-xs uppercase tracking-widest mt-2"
-                aria-label={`Convert another file with ${toolName}`}
-              >
-                <RefreshCw size={14} aria-hidden="true" />
-                Convert another file
-              </button>
-            </div>
-
-            {/* ── Post-Download Trust Note ────────────────
-                ✅ Adds visible text to completed state.
-                ✅ Reassures users → reduces bounce rate → positive UX signal.
-            ─────────────────────────────────────────────── */}
-            <p className="text-gray-400 text-xs mt-6">
-              Your file has been permanently deleted from our servers.
-              All data is processed over 256-bit SSL encryption.
-            </p>
-          </div>
-        )}
 
       </main>
 

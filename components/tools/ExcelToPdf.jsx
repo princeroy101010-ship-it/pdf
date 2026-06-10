@@ -17,73 +17,6 @@ const config = TOOLS_CONFIG['excel-to-pdf'];
 const BTN_TEXT = 'Select Excel File';
 const DL_TEXT = 'DOWNLOAD PDF';
 
-const FAQ_ITEMS = [
-  {
-    q: 'How do I convert Excel to PDF online for free?',
-    a: 'Upload your Excel spreadsheet (.xlsx or .xls) to FreePDFConvert. The tool automatically processes your files and structural cells, converting them into an optimized PDF document instantly without registration or watermarks.',
-  },
-  {
-    q: 'Will my Excel file formatting stay the same after PDF conversion?',
-    a: 'Yes. FreePDFConvert uses precision formatting algorithms to ensure that grids, tables, fonts, columns, and layout orientation match your original Excel workbook layout completely.',
-  },
-  {
-    q: 'Is it secure to upload my private business sheets here?',
-    a: 'Absolutely. All transmissions are protected with AES-256 bit banking-grade SSL data encryption pipelines. Uploaded Excel documents are permanently deleted from our servers within 2 hours.',
-  },
-  {
-    q: 'Can I convert large spreadsheets with multiple tabs?',
-    a: 'Yes. Our processing servers support large scale spreadsheet workbooks and render multiple active worksheet tabs cleanly into individual flowing PDF layout pages.',
-  }
-];
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/excel-to-pdf',
-      url: 'https://www.freepdfconvert.io/excel-to-pdf',
-      name: 'Convert Excel to PDF Online Free – Workbooks to PDF | FreePDFConvert',
-      description: 'Convert Excel spreadsheets to PDF online for free. Convert XLS and XLSX grids to clean PDF documents with no watermark, no signup. Fast & secure.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/excel-to-pdf/#breadcrumb' },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/excel-to-pdf/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'Excel to PDF', item: 'https://www.freepdfconvert.io/excel-to-pdf' },
-      ],
-    },
-    {
-      '@type': 'SoftwareApplication',
-      '@id': 'https://www.freepdfconvert.io/excel-to-pdf/#software',
-      name: 'Excel to PDF Converter – FreePDFConvert',
-      url: 'https://www.freepdfconvert.io/excel-to-pdf',
-      applicationCategory: 'UtilitiesApplication',
-      operatingSystem: 'All – Web Browser',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      featureList: [
-        'Convert XLSX to PDF free',
-        'Convert XLS to PDF online',
-        'Preserve table grid layout structural borders',
-        'No signup required',
-        'No watermark added'
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/excel-to-pdf/#faq',
-      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
-};
-
 const TrustBadge = ({ label }) => (
   <span className="bg-white border border-slate-100 rounded-xl px-4 py-2 shadow-sm text-sm text-slate-600 font-semibold tracking-wide">
     {label}
@@ -110,12 +43,7 @@ const ExcelToPdf = () => (
       const seo = config.seo;
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-          <Script
-            id="excel-to-pdf-jsonld"
-            type="application/ld+json"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
+     
 
           <Header />
 

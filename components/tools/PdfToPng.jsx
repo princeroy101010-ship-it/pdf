@@ -46,73 +46,6 @@ const FAQ_ITEMS = [
 ];
 
 // ─── Consolidated Structured Data Pipeline ──────────────────────────────────
-const unifiedGraphSchema = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-png',
-      url: 'https://www.freepdfconvert.io/pdf-to-png',
-      name: 'Free PDF to PNG Converter Online – PDF to Image No Signup | FreePDFConvert',
-      description: 'Convert PDF to PNG free online. Extract high-quality lossless PNG images from every PDF page instantly. No signup, no watermark, 100% secure.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/pdf-to-png/#software' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/pdf-to-png/#breadcrumb' }
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-png/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'PDF to PNG', item: 'https://www.freepdfconvert.io/pdf-to-png' }
-      ]
-    },
-    {
-      '@type': 'WebApplication',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-png/#software',
-      name: 'Free PDF to PNG Converter Online',
-      url: 'https://www.freepdfconvert.io/pdf-to-png',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'All',
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Convert PDF to PNG Online Free',
-      description: 'Convert PDF pages to PNG images in 3 simple steps using FreePDFConvert.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: 1,
-          name: 'Upload PDF File',
-          text: "Click 'Select PDF File' or drag and drop your PDF into the upload area."
-        },
-        {
-          '@type': 'HowToStep',
-          position: 2,
-          name: 'Convert to PNG',
-          text: 'The converter automatically renders each PDF page into a high-quality PNG image with lossless quality.'
-        },
-        {
-          '@type': 'HowToStep',
-          position: 3,
-          name: 'Download PNG',
-          text: 'Click Download PNG to save your images. No signup required, no watermark added.'
-        }
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-png/#faq',
-      mainEntity: FAQ_ITEMS.map((item) => ({
-        '@type': 'Question',
-        name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a }
-      }))
-    }
-  ]
-};
 
 const PdfToPng = () => (
   <BaseToolLogic config={config}>
@@ -121,13 +54,7 @@ const PdfToPng = () => (
         reset, handleDownload }) => (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-        {/* Structured Schema Injected via Next.js Optimized Execution Worker */}
-        <Script
-          id="pdf-to-png-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(unifiedGraphSchema) }}
-        />
+ 
 
         <Header />
 

@@ -10,104 +10,7 @@ import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['protect-pdf'];
 
-// ─── SEO: JSON-LD Schemas ────────────────────────────────────────────────────
-const toolSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Free PDF Password Protector Online",
-  "url": "https://www.freepdfconvert.io/protect-pdf",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "All",
-  "description": "Protect PDF with password free online. Add password encryption to any PDF instantly. No signup, no watermark, 100% secure.",
-  "isAccessibleForFree": true,
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-};
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I protect a PDF with a password for free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Upload your PDF to FreePDFConvert's free PDF protector, enter your desired password, and click Protect PDF Now. Download your encrypted PDF instantly. No signup required."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is the PDF password protection tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. FreePDFConvert's protect PDF tool is completely free with no hidden fees, no subscription, and no account needed."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What type of encryption is used to protect the PDF?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "FreePDFConvert uses strong AES encryption to password-protect your PDF, making it unreadable without the correct password."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can anyone open my protected PDF without the password?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Once your PDF is password-protected, it cannot be opened or read by anyone who does not have the correct password."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my PDF file safe when uploaded?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. All uploads use SSL encryption and files are automatically deleted after processing. Your PDF and password are never stored or shared."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Will the protected PDF work in Adobe Reader and other viewers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The password-protected PDF is fully compatible with Adobe Acrobat Reader, Foxit PDF Reader, Chrome's built-in PDF viewer, and all standard PDF applications."
-      }
-    }
-  ]
-};
-
-const howToSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How to Password Protect a PDF Online Free",
-  "description": "Add password protection to any PDF in 3 simple steps using FreePDFConvert.",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Upload PDF File",
-      "text": "Click 'Select PDF to Protect' or drag and drop your PDF into the upload area."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "Enter Password",
-      "text": "Type your chosen password into the password field. Use a strong combination of letters, numbers, and symbols."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Download Protected PDF",
-      "text": "Click 'Protect PDF Now' and download your encrypted PDF instantly. No signup required."
-    }
-  ]
-};
 
 // ─── Component ───────────────────────────────────────────────────────────────
 const ProtectPdf = () => (
@@ -122,39 +25,6 @@ const ProtectPdf = () => (
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-          {/* ── SEO HEAD ──────────────────────────────────────────────────── */}
-          <Head>
-            <title>Protect PDF with Password Free Online PDF Encryption No Signup </title>
-            <meta name="description" content="Protect PDF with password free online. Add strong AES encryption to any PDF instantly. No signup, no watermark, 100% secure. Best free PDF password protector." />
-            <meta name="keywords" content="protect pdf, protect pdf with password, pdf password protection, encrypt pdf online free, password protect pdf, lock pdf online, add password to pdf, secure pdf online free" />
-
-            <link rel="canonical" href={`https://www.freepdfconvert.io/${targetSlug}`} />
-            <link rel="alternate" hreflang="en" href={`https://www.freepdfconvert.io/${targetSlug}`} />
-
-            <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
-            <meta property="og:type" content="website" />
-            <meta property="og:title" content="Protect PDF with Password Free Online – PDF Encryption No Signup | FreePDFConvert" />
-            <meta property="og:description" content="Add password protection to any PDF free online. Strong AES encryption. No signup, no watermark." />
-            <meta property="og:url" content={`https://www.freepdfconvert.io/${targetSlug}`} />
-            <meta property="og:site_name" content="FreePDFConvert" />
-            <meta property="og:image" content="https://www.freepdfconvert.io/og-image.png" />
-            <meta property="og:image:width" content="1200" />
-            <meta property="og:image:height" content="630" />
-            <meta property="og:image:alt" content="Protect PDF with Password Online Free" />
-            <meta property="og:locale" content="en_US" />
-
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:site" content="@freepdfconvert" />
-            <meta name="twitter:title" content="Protect PDF with Password Free Online – FreePDFConvert" />
-            <meta name="twitter:description" content="Add password encryption to any PDF free. No signup, no watermark. Instant download." />
-            <meta name="twitter:image" content="https://www.freepdfconvert.io/og-image.png" />
-
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-          </Head>
 
           <Header />
 

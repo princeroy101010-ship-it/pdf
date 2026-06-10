@@ -12,120 +12,9 @@ const COLOR = 'rose-600';
 const BTN_TEXT = 'Select Word File';
 const DL_TEXT = 'DOWNLOAD PDF';
 
-// ─── JSON-LD Structured Data ──────────────────────────────────────────────────
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.freepdfconvert.io/word-to-pdf#webpage",
-      "url": "https://www.freepdfconvert.io/word-to-pdf",
-      "name": "Word to PDF Converter – Free Online | FreePDFConvert",
-      "description": "Convert Word to PDF online free. No signup, no watermark. Upload DOC or DOCX and get a perfect PDF in seconds. 100% free & secure.",
-      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://www.freepdfconvert.io/word-to-pdf#breadcrumb" },
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "https://www.freepdfconvert.io/og-image.png"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.freepdfconvert.io/word-to-pdf#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Word to PDF", "item": "https://www.freepdfconvert.io/word-to-pdf" }
-      ]
-    },
-    {
-      "@type": "SoftwareApplication",
-      "name": "Word to PDF Converter",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Web Browser",
-      "url": "https://www.freepdfconvert.io/word-to-pdf",
-      "description": "Free online tool to convert Microsoft Word DOC and DOCX files to PDF format. No watermark, no signup, instant conversion.",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "3124",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "featureList": [
-        "Convert Word DOC and DOCX to PDF",
-        "Preserve original formatting and fonts",
-        "No signup required",
-        "100% free to use",
-        "Secure SSL file transfer",
-        "Instant download in seconds"
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do I convert Word to PDF for free?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Upload your Word DOC or DOCX file on this page, wait a few seconds, then click Download PDF. It is completely free with no signup or installation required."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does Word to PDF conversion preserve formatting?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. FreePDFConvert accurately preserves fonts, images, tables, headers, footers, and page layout when converting Word to PDF."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is it safe to convert Word to PDF online?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. All file uploads use SSL encryption and files are automatically deleted from our servers after 1 hour. Your documents are never shared or stored permanently."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I convert DOCX to PDF without Microsoft Word?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. FreePDFConvert works entirely in your browser. You do not need Microsoft Word or any software installed to convert DOCX to PDF."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the file size limit for Word to PDF?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You can convert Word files up to 50MB for free with no account required."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "name": "How to Convert Word to PDF Online",
-      "description": "Step-by-step guide to convert a Word document to PDF for free online.",
-      "totalTime": "PT1M",
-      "step": [
-        { "@type": "HowToStep", "position": 1, "name": "Upload Word File", "text": "Click 'Select Word File' or drag and drop your DOC or DOCX file into the upload area." },
-        { "@type": "HowToStep", "position": 2, "name": "Auto Convert", "text": "Our tool automatically converts your Word document to a high-quality PDF file." },
-        { "@type": "HowToStep", "position": 3, "name": "Download PDF", "text": "Click 'Download PDF' to save your converted file instantly to your device." }
-      ]
-    }
-  ]
-};
+
 
 // ─── SEO Meta Config ──────────────────────────────────────────────────────────
-const SEO_TITLE       = "Word to PDF Converter Free Online";
-const SEO_DESCRIPTION = "Convert Word to PDF online free. No signup, no watermark. Upload DOC or DOCX and get a perfect PDF in seconds. Fast, secure, 100% free – FreePDFConvert.";
-const SEO_KEYWORDS    = "word to pdf, convert word to pdf, word to pdf converter, docx to pdf, doc to pdf, word to pdf free, word to pdf online, convert docx to pdf, microsoft word to pdf, free word to pdf, word document to pdf, convert doc to pdf online free";
-const CANONICAL_URL   = "https://www.freepdfconvert.io/word-to-pdf";
-const OG_IMAGE        = "https://www.freepdfconvert.io/og-image.png";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 const WordToPdf = () => (
@@ -137,43 +26,7 @@ const WordToPdf = () => (
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-          {/* ── SEO Head ─────────────────────────────────────────────────── */}
-          <Head>
-            {/* Primary Meta */}
-            <title>{SEO_TITLE}</title>
-            <meta name="description"   content={SEO_DESCRIPTION} />
-            <meta name="keywords"      content={SEO_KEYWORDS} />
-            <link rel="canonical"      href={CANONICAL_URL} />
-            <meta name="robots"        content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-            <meta name="author"        content="FreePDFConvert" />
-            <meta name="language"      content="English" />
-            <meta name="revisit-after" content="7 days" />
 
-            {/* Open Graph */}
-            <meta property="og:type"        content="website" />
-            <meta property="og:url"         content={CANONICAL_URL} />
-            <meta property="og:title"       content={SEO_TITLE} />
-            <meta property="og:description" content={SEO_DESCRIPTION} />
-            <meta property="og:image"       content={OG_IMAGE} />
-            <meta property="og:image:width"  content="1200" />
-            <meta property="og:image:height" content="630" />
-            <meta property="og:image:alt"   content="Word to PDF Converter – FreePDFConvert" />
-            <meta property="og:site_name"   content="FreePDFConvert" />
-            <meta property="og:locale"      content="en_US" />
-
-            {/* Twitter Card */}
-            <meta name="twitter:card"        content="summary_large_image" />
-            <meta name="twitter:title"       content={SEO_TITLE} />
-            <meta name="twitter:description" content={SEO_DESCRIPTION} />
-            <meta name="twitter:image"       content={OG_IMAGE} />
-            <meta name="twitter:image:alt"   content="Word to PDF Converter – FreePDFConvert" />
-
-            {/* JSON-LD Structured Data */}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-          </Head>
 
           <Header />
 

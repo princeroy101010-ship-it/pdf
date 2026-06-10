@@ -43,53 +43,6 @@ const FAQ_ITEMS = [
   }
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/image-to-text',
-      url: 'https://www.freepdfconvert.io/image-to-text',
-      name: 'Extract Text From Image Online Free – Accurate OCR | FreePDFConvert',
-      description: 'Convert images to text seamlessly. Free online AI OCR tool to instantly extract editable text from JPG, PNG, WEBP files and scanned PDFs without registering.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/image-to-text/#breadcrumb' },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/image-to-text/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'Image to Text', item: 'https://www.freepdfconvert.io/image-to-text' },
-      ],
-    },
-    {
-      '@type': 'SoftwareApplication',
-      '@id': 'https://www.freepdfconvert.io/image-to-text/#software',
-      name: 'AI Image Text Extractor OCR – FreePDFConvert',
-      url: 'https://www.freepdfconvert.io/image-to-text',
-      applicationCategory: 'UtilitiesApplication',
-      operatingSystem: 'All – Web Browser Client',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      featureList: [
-        'Image to text converter free',
-        'Scanned PDF text extraction',
-        'Secure client-side browser OCR processing',
-        'Instant copy-to-clipboard text output',
-        'No subscription or account required'
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/image-to-text/#faq',
-      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
-};
 
 export default function OCRToolPage() {
   const [extractedText, setExtractedText] = useState('');
@@ -220,12 +173,7 @@ export default function OCRToolPage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-      <Script
-        id="image-to-text-jsonld"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+     
       
       <Header />
 

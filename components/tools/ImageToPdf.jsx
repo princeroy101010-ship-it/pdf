@@ -45,81 +45,7 @@ const FAQ_ITEMS = [
 ];
 
 // ─── SEO: JSON-LD Graph Schema ───────────────────────────────────────────────
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.freepdfconvert.io/image-to-pdf",
-      "url": "https://www.freepdfconvert.io/image-to-pdf",
-      "name": "Free Image to PDF Converter – JPG & PNG to PDF Online",
-      "description": "Convert JPG, PNG images to PDF free online. Combine multiple images into one PDF instantly. No signup, no watermark. Fast and secure image to PDF converter.",
-      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://www.freepdfconvert.io/image-to-pdf/#breadcrumb" }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.freepdfconvert.io/image-to-pdf/#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Image to PDF Converter", "item": "https://www.freepdfconvert.io/image-to-pdf" }
-      ]
-    },
-    {
-      "@type": "WebApplication",
-      "@id": "https://www.freepdfconvert.io/image-to-pdf/#software",
-      "name": "Free Image to PDF Converter Online",
-      "url": "https://www.freepdfconvert.io/image-to-pdf",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "description": "Convert JPG, PNG and other images to PDF free online. Combine multiple images into one PDF. No signup, no watermark.",
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://www.freepdfconvert.io/image-to-pdf/#howto",
-      "name": "How to Convert Image to PDF Online Free",
-      "description": "Convert JPG or PNG images to PDF in 3 easy steps using FreePDFConvert.",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Upload Images",
-          "text": "Click 'Select Images' or drag and drop your JPG or PNG files. You can select multiple images at once."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Convert to PDF",
-          "text": "Click 'Convert to PDF'. The tool combines all selected images into a single PDF document."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Download PDF",
-          "text": "Click Download PDF to save your file. No signup required, no watermark added."
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.freepdfconvert.io/image-to-pdf/#faq",
-      "mainEntity": FAQ_ITEMS.map(item => ({
-        "@type": "Question",
-        "name": item.q,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": item.a
-        }
-      }))
-    }
-  ]
-};
+
 
 const ImageToPdf = () => (
   <BaseToolLogic config={config}>
@@ -129,12 +55,7 @@ const ImageToPdf = () => (
 
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-          <Script
-            id="image-to-pdf-jsonld"
-            type="application/ld+json"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
+     
 
           <Header />
 

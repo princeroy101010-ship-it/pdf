@@ -43,74 +43,7 @@ const FAQ_ITEMS = [
   }
 ];
 
-// ─── Static JSON-LD Graph Structure (Declared Outside Render Loop) ──────────
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-excel',
-      url: 'https://www.freepdfconvert.io/pdf-to-excel',
-      name: 'Free PDF to Excel Converter Online – PDF to XLSX No Signup | FreePDFConvert',
-      description: 'Convert PDF to Excel free online. Extract tables and data from PDF to XLSX instantly. No signup, no watermark, 100% secure. Best free PDF to Excel converter.',
-      isPartOf: { '@id': 'https://www.freepdfconvert.io/#website' },
-      about: { '@id': 'https://www.freepdfconvert.io/pdf-to-excel/#software' },
-      breadcrumb: { '@id': 'https://www.freepdfconvert.io/pdf-to-excel/#breadcrumb' }
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-excel/#breadcrumb',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.freepdfconvert.io/' },
-        { '@type': 'ListItem', position: 2, name: 'PDF to Excel', item: 'https://www.freepdfconvert.io/pdf-to-excel' }
-      ]
-    },
-    {
-      '@type': 'WebApplication',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-excel/#software',
-      name: 'Free PDF to Excel Converter Online',
-      url: 'https://www.freepdfconvert.io/pdf-to-excel',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'All',
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
-    },
-    {
-      '@type': 'HowTo',
-      name: 'How to Convert PDF to Excel Online Free',
-      description: 'Convert a PDF file to Excel spreadsheet in 3 simple steps using FreePDFConvert.',
-      step: [
-        {
-          '@type': 'HowToStep',
-          position: 1,
-          name: 'Upload PDF File',
-          text: "Click 'Select PDF File' or drag and drop your PDF into the upload area."
-        },
-        {
-          '@type': 'HowToStep',
-          position: 2,
-          name: 'Convert to Excel',
-          text: 'The converter automatically extracts tables and data from your PDF and builds an Excel spreadsheet.'
-        },
-        {
-          '@type': 'HowToStep',
-          position: 3,
-          name: 'Download Excel File',
-          text: 'Click Download Excel File to save your XLSX. No signup required, no watermark added.'
-        }
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': 'https://www.freepdfconvert.io/pdf-to-excel/#faq',
-      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a }
-      }))
-    }
-  ]
-};
+
 
 // ─── Component Blueprint ────────────────────────────────────────────────────
 const PdfToExcel = () => (
@@ -121,12 +54,7 @@ const PdfToExcel = () => (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
         {/* ✅ Single Compiled Static JSON-LD Resource Block */}
-        <Script
-          id="pdf-to-excel-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    
 
         <Header />
 
