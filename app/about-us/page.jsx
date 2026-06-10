@@ -349,13 +349,13 @@ const allTools = [
   { href: '/extract-text-from-pdf',   label: 'Extract Text from PDF' },
   { href: '/pdf-to-png',              label: 'PDF to PNG'            },
   { href: '/png-to-pdf',              label: 'PNG to PDF'            },
-  { href: '/pdf-to-text',             label: 'PDF to Text'           },
-  { href: '/text-to-pdf',             label: 'Text to PDF'           },
+  { href: '/pdf-to-Text',             label: 'PDF to Text'           },
+  { href: '/Text-to-pdf',             label: 'Text to PDF'           },
   { href: '/extract-text-from-image', label: 'Extract Text from Image' },
   { href: '/pdf-to-html',             label: 'PDF to HTML'             },
-  { href: '/pptx-to-text',            label: 'PowerPoint to Text'      },
-  { href: '/text-to-pptx',            label: 'Text to PowerPoint'      },
-  { href: '/word-to-text',            label: 'Word to Text'            },
+  { href: '/pptx-to-Text',            label: 'PowerPoint to Text'      },
+  { href: '/Text-to-pptx',            label: 'Text to PowerPoint'      },
+  { href: '/word-to-Text',            label: 'Word to Text'            },
 ];
 
 // "Why choose us" features data

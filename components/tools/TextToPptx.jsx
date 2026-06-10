@@ -6,6 +6,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { generateSchemas } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['Text-to-pptx'];
 const COLOR = 'rose-600';
@@ -16,6 +17,7 @@ const DL_TEXT = 'DOWNLOAD PPTX';
 
 
 function TextToPptxdata() {
+  
   return (
     <BaseToolLogic config={config}>
       {({
@@ -27,8 +29,7 @@ function TextToPptxdata() {
           {status === 'idle' && (
                 <article
                   className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
-                  itemScope
-                  itemType="https://schema.org/SoftwareApplication"
+               
                 >
                 
 
@@ -188,6 +189,7 @@ function TextToPptxdata() {
 // ✅ Only <JpgToPdfUploader> is client-side (needs useState).
 // ✅ Semrush/Googlebot see full text content without executing any JS.
 const TextToPptx = () => (
+  
  <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
             <Header />
 
@@ -315,8 +317,7 @@ const TextToPptx = () => (
                   <section
                     aria-labelledby="faq-heading"
                     className="mt-16 w-full max-w-3xl mb-8"
-                    itemScope
-                    itemType="https://schema.org/FAQPage"
+                 
                   >
                     <h2
                       id="faq-heading"
@@ -354,9 +355,7 @@ const TextToPptx = () => (
                         <div
                           key={q}
                           className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm"
-                          itemScope
-                          itemType="https://schema.org/Question"
-                          itemProp="mainEntity"
+                        
                         >
                           <h3
                             className="font-bold text-gray-900 mb-2"
@@ -365,9 +364,7 @@ const TextToPptx = () => (
                             {q}
                           </h3>
                           <div
-                            itemScope
-                            itemType="https://schema.org/Answer"
-                            itemProp="acceptedAnswer"
+                        
                           >
                             <p className="text-gray-500 text-sm leading-relaxed" itemProp="text">{a}</p>
                           </div>
