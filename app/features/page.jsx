@@ -4,7 +4,7 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Link from 'next/link';
 
-// ─── JSON-LD Structured Data ──────────────────────────────────────────────────
+// ─── JSON-LD STRUCTURED DATA ──────────────────────────────────────────────────
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -12,7 +12,6 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": "https://www.freepdfconvert.io/features#webpage",
       "url": "https://www.freepdfconvert.io/features",
-      // SEO: name matches title tag exactly
       "name": "Free PDF Tools Features FreePDFConvert.io",
       "description": "FreePDFConvert offers 20+ free PDF tools with lightning fast processing, AI compression, mobile-first design, and 100% privacy. No signup required.",
       "inLanguage": "en-US",
@@ -34,7 +33,7 @@ const jsonLd = {
       "@type": "BreadcrumbList",
       "@id": "https://www.freepdfconvert.io/features#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://www.freepdfconvert.io/" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
         { "@type": "ListItem", "position": 2, "name": "Features", "item": "https://www.freepdfconvert.io/features" }
       ]
     },
@@ -128,24 +127,17 @@ const jsonLd = {
   ]
 };
 
-// ─── Next.js Metadata Export ──────────────────────────────────────────────────
-// SEO RULES APPLIED:
-// Title: 50 chars ✅ — within 50–60 char Google display limit
-// Description: 157 chars ✅ — within 155–160 char optimal range
-// robots: Next.js object format ✅
+// ─── NEXT.JS METADATA EXPORT ──────────────────────────────────────────────────
 export const metadata = {
   title: "Free PDF Tools Features FreePDFConvert.io",
-  description:
-    "FreePDFConvert offers 20+ free PDF tools: PDF to Word, merge PDF, compress PDF and more. Fast servers, AI compression, zero signup, 100% privacy. Try free now.",
-  keywords:
-    "free pdf tools online, best free pdf converter, pdf to word free no signup, merge pdf free online, compress pdf free, fast pdf converter online, secure pdf tool no watermark, ai pdf compression, mobile pdf converter, free pdf tools no registration, split pdf free, pdf to excel free, online pdf tools 2025, free pdf converter features",
+  description: "FreePDFConvert offers 20+ free PDF tools: PDF to Word, merge PDF, compress PDF and more. Fast servers, AI compression, zero signup, 100% privacy. Try free now.",
+  keywords: "free pdf tools online, best free pdf converter, pdf to word free no signup, merge pdf free online, compress pdf free, fast pdf converter online, secure pdf tool no watermark, ai pdf compression, mobile pdf converter, free pdf tools no registration, split pdf free, pdf to excel free, online pdf tools 2026, free pdf converter features",
   alternates: {
     canonical: "https://www.freepdfconvert.io/features",
   },
   openGraph: {
     title: "Free PDF Tools Features FreePDFConvert.io",
-    description:
-      "20+ free PDF tools with fast servers, AI compression, zero signup, and 100% privacy. PDF to Word, merge PDF, compress PDF — free forever.",
+    description: "20+ free PDF tools with fast servers, AI compression, zero signup, and 100% privacy. PDF to Word, merge PDF, compress PDF — free forever.",
     url: "https://www.freepdfconvert.io/features",
     type: "website",
     images: [
@@ -162,11 +154,9 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Free PDF Tools Features FreePDFConvert.io",
-    description:
-      "AI-powered PDF tools. Lightning fast, mobile-first, zero data stored. PDF to Word, merge PDF, compress PDF — free forever, no signup.",
+    description: "AI-powered PDF tools. Lightning fast, mobile-first, zero data stored. PDF to Word, merge PDF, compress PDF — free forever, no signup.",
     images: ["https://www.freepdfconvert.io/og-image.png"],
   },
-  // SEO: Next.js object format (replaces old string format)
   robots: {
     index: true,
     follow: true,
@@ -184,7 +174,7 @@ export const metadata = {
   },
 };
 
-// ─── Feature Card Component ───────────────────────────────────────────────────
+// ─── FEATURE CARD COMPONENT ───────────────────────────────────────────────────
 const FeatureCard = ({ icon: Icon, title, desc }) => (
   <div className="p-8 md:p-10 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden">
     <div className="absolute -right-8 -top-8 w-32 h-32 bg-rose-50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 scale-50 group-hover:scale-150" />
@@ -196,7 +186,7 @@ const FeatureCard = ({ icon: Icon, title, desc }) => (
   </div>
 );
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 const WhyChooseUs = () => {
   const features = [
     {
@@ -233,7 +223,6 @@ const WhyChooseUs = () => {
 
   return (
     <>
-      {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -244,23 +233,20 @@ const WhyChooseUs = () => {
       <div className="min-h-screen bg-[#f8f9fa] flex flex-col font-sans">
 
         {/* ── HERO ──────────────────────────────────────────────────────── */}
-        {/* SEO: H1 now contains primary keyword "Free PDF Tools Online" */}
         <header className="max-w-5xl mx-auto text-center py-16 md:py-24 px-6">
           <span className="text-rose-600 font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-[10px] md:text-sm mb-4 md:mb-6 inline-block bg-rose-50 px-4 md:px-6 py-2 rounded-full">
             Why FreePDFConvert Is Different
           </span>
-          {/* SEO: H1 contains target keyword + brand — was "Not just another PDF Tool" (zero SEO value) */}
           <h1 className="text-4xl md:text-7xl font-black text-gray-900 mb-6 md:mb-8 tracking-tight leading-[1.1]">
             Free PDF Tools Online —<br className="hidden md:block" />
             <span className="text-rose-600 underline decoration-rose-200 underline-offset-4 md:underline-offset-8">Fast, Secure & Free.</span>
           </h1>
-          {/* SEO: expanded subtitle with long-tail keywords boosts text-to-HTML ratio */}
           <p className="text-base md:text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
             FreePDFConvert combines professional-grade technology with a simple, beautiful interface to give
             you the best free PDF conversion experience on the web. PDF to Word, merge PDF, compress PDF,
             split PDF, and 20+ more tools — no signup, no watermark, completely free.
           </p>
-          {/* Trust Signals */}
+          
           <div className="flex flex-wrap justify-center gap-3 mt-8 text-xs font-semibold text-gray-400 uppercase tracking-widest">
             <span>✓ 100% Free Forever</span>
             <span>✓ No Signup Required</span>
@@ -274,7 +260,6 @@ const WhyChooseUs = () => {
         <main className="max-w-7xl mx-auto px-6 pb-20 md:pb-32">
 
           {/* ── FEATURE CARDS GRID ────────────────────────────────────── */}
-          {/* SEO: aria-label added for accessibility + semantic signals */}
           <section aria-label="FreePDFConvert key features and benefits">
             <h2 className="sr-only">Key Features of FreePDFConvert Free PDF Tools</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -285,7 +270,6 @@ const WhyChooseUs = () => {
           </section>
 
           {/* ── STATS SECTION ─────────────────────────────────────────── */}
-          {/* SEO: H2 is now keyword-rich; added descriptive paragraph to boost text ratio */}
           <section className="mt-20 bg-white rounded-[2.5rem] p-10 md:p-16 border border-gray-100 shadow-sm" aria-label="FreePDFConvert usage statistics">
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-4">
               Trusted Free PDF Tool — Proven by Millions
@@ -312,7 +296,6 @@ const WhyChooseUs = () => {
           </section>
 
           {/* ── COMPARISON / WHY US ───────────────────────────────────── */}
-          {/* SEO: H2 keyword-rich; added intro paragraph; each card description expanded */}
           <section className="mt-20" aria-label="Why FreePDFConvert is the best free PDF tool online">
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-4">
               Why FreePDFConvert Is the Best Free PDF Tool Online
@@ -360,7 +343,6 @@ const WhyChooseUs = () => {
           </section>
 
           {/* ── HOW IT WORKS SECTION ──────────────────────────────────── */}
-          {/* SEO: new section adds meaningful keyword-rich content to fix low text-to-HTML ratio */}
           <section className="mt-20 bg-white rounded-[2.5rem] p-10 md:p-16 border border-gray-100 shadow-sm" aria-label="How to use FreePDFConvert free PDF tools">
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-4">
               How to Use FreePDFConvert Free PDF Tools
@@ -399,7 +381,6 @@ const WhyChooseUs = () => {
           </section>
 
           {/* ── FAQ SECTION ───────────────────────────────────────────── */}
-          {/* SEO: FAQPage JSON-LD schema above makes these eligible for Google rich results */}
           <section className="mt-20" aria-label="Frequently asked questions about FreePDFConvert free PDF tools">
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-3">
               Frequently Asked Questions — Free PDF Tools
@@ -450,7 +431,6 @@ const WhyChooseUs = () => {
           </section>
 
           {/* ── ALL TOOLS INTERNAL LINKS ──────────────────────────────── */}
-          {/* SEO: internal linking to all tool pages boosts crawlability and site authority */}
           <section className="mt-20" aria-label="All free PDF tools on FreePDFConvert">
             <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-3">
               All Free PDF Tools — No Signup Required
@@ -477,13 +457,13 @@ const WhyChooseUs = () => {
                 { href: '/image-to-pdf',          label: 'Image to PDF'       },
                 { href: '/extract-text-from-pdf', label: 'Extract Text from PDF' },
               ].map(({ href, label }) => (
-                <a
+                <Link
                   key={href}
                   href={href}
-                  className="bg-white rounded-2xl p-4 shadow-sm text-center text-sm font-bold text-gray-700 hover:text-rose-600 hover:shadow-md transition-all border border-gray-100"
+                  className="bg-white rounded-2xl p-4 shadow-sm text-center text-sm font-bold text-gray-700 hover:text-rose-600 hover:shadow-md transition-all border border-gray-100 block"
                 >
                   {label}
-                </a>
+                </Link>
               ))}
             </div>
           </section>

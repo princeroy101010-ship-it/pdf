@@ -3,24 +3,16 @@ import Header from '@/components/header';
 import { MousePointer2, ChevronRight, Settings2, DownloadCloud, Plus, ShieldCheck, Zap, Globe, Star } from 'lucide-react';
 import Link from 'next/link';
 
-// ─── SEO METADATA ───────────────────────────────────────────────────────────
-// ✅ Title: 52 chars (Google ideal: 50–60 chars) — primary keyword first
-// ✅ Description: 131 chars (Google ideal: 150–160 chars, but clear & intent-matched)
-// ✅ Canonical URL set
-// ✅ Robots: index + follow + max previews
+// ─── SEO METADATA (Next.js App Router Format) ──────────────────────────────────
 export const metadata = {
   title: "Convert PDF Free Online How FreePDFConvert Works",
-
   description:
     "Free PDF converter online upload, choose format, download in seconds. No signup, no watermark, 100% free. Works on all devices.",
-
   keywords:
     "how to convert pdf free, free pdf converter online, convert pdf online free, pdf to word free online, compress pdf free, pdf conversion steps, free online pdf tool, pdf converter no signup, convert pdf instantly, pdf tools no watermark, free pdf convert, how freepdfconvert works, online pdf converter fast, pdf to jpg free, pdf merge free online",
-
   alternates: {
     canonical: "https://freepdfconvert.io/how-work",
   },
-
   openGraph: {
     title: "Convert PDF Free Online How FreePDFConvert Works",
     description:
@@ -38,7 +30,6 @@ export const metadata = {
     locale: "en_US",
     siteName: "FreePDFConvert",
   },
-
   twitter: {
     card: "summary_large_image",
     title: "Convert PDF Free Online How FreePDFConvert Works",
@@ -46,20 +37,21 @@ export const metadata = {
       "Upload, configure, download. Free PDF conversion in seconds. No signup, no watermark, 100% free & secure.",
     images: ["https://freepdfconvert.io/og-image.png"],
   },
-
   robots: {
     index: true,
     follow: true,
-    "max-snippet": -1,
-    "max-image-preview": "large",
-    "max-video-preview": -1,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
-// ─── JSON-LD: HowTo Schema ───────────────────────────────────────────────────
-// ✅ Eligible for Google rich result (HowTo)
-// ✅ Each step has position, name, text, url
-// ✅ estimatedCost = 0 (free tool signal)
+// ─── JSON-LD SCHEMAS ─────────────────────────────────────────────────────────
 const schemaHowTo = {
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -104,9 +96,6 @@ const schemaHowTo = {
   ],
 };
 
-// ─── JSON-LD: FAQPage Schema ─────────────────────────────────────────────────
-// ✅ 5 questions targeting high-volume search queries
-// ✅ Eligible for Google FAQ rich result in SERPs
 const schemaFAQ = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -162,8 +151,6 @@ const schemaFAQ = {
   ],
 };
 
-// ─── JSON-LD: BreadcrumbList ─────────────────────────────────────────────────
-// ✅ Helps Google display breadcrumbs in search results
 const schemaBreadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -183,8 +170,6 @@ const schemaBreadcrumb = {
   ],
 };
 
-// ─── JSON-LD: WebPage Schema ─────────────────────────────────────────────────
-// ✅ Tells Google exactly what this page is, who published it, and when
 const schemaWebPage = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -236,7 +221,6 @@ const HowItWorks = () => {
     },
   ];
 
-  // ✅ Feature list — adds visible text content to improve text-to-HTML ratio
   const features = [
     { icon: ShieldCheck, title: "100% Secure", desc: "All files are encrypted during transfer and automatically deleted from our servers after conversion. Your privacy is fully protected." },
     { icon: Zap, title: "Lightning Fast", desc: "Our servers process your PDF conversion in seconds. No waiting, no queue. Get your converted file almost instantly." },
@@ -244,7 +228,6 @@ const HowItWorks = () => {
     { icon: Star, title: "No Watermarks Ever", desc: "Every file you convert or compress is completely watermark-free. What you download is a clean, professional-quality output." },
   ];
 
-  // ✅ Supported tools list — adds keyword-rich content & improves text ratio
   const tools = [
     { name: "PDF to Word", href: "/pdf-to-word", desc: "Convert PDF to editable Word document (.docx) free online." },
     { name: "PDF to Excel", href: "/pdf-to-excel", desc: "Extract tables from PDF into an Excel spreadsheet (.xlsx) instantly." },
@@ -258,8 +241,7 @@ const HowItWorks = () => {
 
   return (
     <>
-      {/* ─── JSON-LD Structured Data ─────────────────────────────────────── */}
-      {/* ✅ All 4 schemas injected — HowTo, FAQ, Breadcrumb, WebPage        */}
+      {/* ─── JSON-LD Structured Data Injection ─────────────────────────────── */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaHowTo) }}
@@ -283,7 +265,7 @@ const HowItWorks = () => {
       <section className="py-24 bg-[#f8f9fa]">
         <div className="max-w-7xl mx-auto px-6">
 
-          {/* ✅ Breadcrumb — visible to users + crawlers */}
+          {/* Breadcrumb Links */}
           <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-10 text-center">
             <Link href="/" className="hover:text-rose-600 transition-colors">Home</Link>
             <span className="mx-2">/</span>
@@ -291,13 +273,11 @@ const HowItWorks = () => {
           </nav>
 
           <div className="text-center mb-20">
-            {/* ✅ H1 — 52 chars, primary keyword "convert pdf free online" first */}
             <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
               How to{' '}
               <span className="text-rose-600">Convert PDF Free Online</span>
             </h1>
 
-            {/* ✅ Subheading — reinforces keywords, adds visible text */}
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-4">
               FreePDFConvert is a free online PDF converter that lets you convert, compress,
               and manage PDF files in seconds — with no signup, no watermark, and no hidden fees.
@@ -307,8 +287,7 @@ const HowItWorks = () => {
             </p>
           </div>
 
-          {/* ─── 3 STEPS ─────────────────────────────────────────────────── */}
-          {/* ✅ Each step has id anchor matching HowTo schema urls           */}
+          {/* ─── 3 STEPS CARDS ─────────────────────────────────────────────── */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
             {steps.map((step, idx) => (
               <div
@@ -316,13 +295,12 @@ const HowItWorks = () => {
                 id={step.id}
                 className="relative flex flex-col items-center text-center group"
               >
-                <div className="absolute -top-10 text-[120px] font-black text-gray-200/50 -z-0 group-hover:text-rose-100 transition-colors">
+                <div className="absolute -top-10 text-[120px] font-black text-gray-200/50 -z-0 group-hover:text-rose-100 transition-colors select-none">
                   {step.number}
                 </div>
                 <div className="w-24 h-24 bg-rose-600 text-white rounded-[2rem] flex items-center justify-center mb-8 shadow-xl shadow-rose-200 rotate-3 group-hover:rotate-6 transition-transform z-10">
                   <step.icon size={40} strokeWidth={2.5} />
                 </div>
-                {/* ✅ H2 for step titles — correct heading hierarchy */}
                 <h2 className="text-2xl font-black text-gray-800 mb-4 z-10">
                   {step.title}
                 </h2>
@@ -338,7 +316,7 @@ const HowItWorks = () => {
             ))}
           </div>
 
-          {/* ─── CTA BUTTON ─────────────────────────────────────────────── */}
+          {/* Call To Action Button */}
           <div className="mt-20 text-center">
             <Link href="/">
               <button className="bg-gray-900 text-white px-12 py-5 rounded-2xl font-black text-xl hover:bg-rose-600 transition-all shadow-2xl active:scale-95 flex items-center gap-3 mx-auto">
@@ -347,8 +325,7 @@ const HowItWorks = () => {
             </Link>
           </div>
 
-          {/* ─── SEO CONTENT BLOCK 1: About FreePDFConvert ───────────────── */}
-          {/* ✅ Adds substantial visible text to fix low text-to-HTML ratio  */}
+          {/* ─── SEO TEXT SECTIONS ─────────────────────────────────────────── */}
           <div className="mt-24 max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               What Is FreePDFConvert?
@@ -374,9 +351,7 @@ const HowItWorks = () => {
             </p>
           </div>
 
-          {/* ─── SEO CONTENT BLOCK 2: Features Grid ─────────────────────── */}
-          {/* ✅ H3 headings under H2 — proper H-tag hierarchy               */}
-          {/* ✅ More visible text content improves text-to-HTML ratio        */}
+          {/* Core App Features Grid */}
           <div className="mt-16 max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Why Use FreePDFConvert?
@@ -397,9 +372,7 @@ const HowItWorks = () => {
             </div>
           </div>
 
-          {/* ─── SEO CONTENT BLOCK 3: Tools List ────────────────────────── */}
-          {/* ✅ Internal linking to all tool pages — improves crawlability   */}
-          {/* ✅ Keyword-rich anchor text for each tool                       */}
+          {/* Full Tools Directory Module */}
           <div className="mt-16 max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-800 mb-2">
               Free PDF Tools Available on FreePDFConvert
@@ -423,8 +396,7 @@ const HowItWorks = () => {
             </div>
           </div>
 
-          {/* ─── SEO CONTENT BLOCK 4: How It Works Details ──────────────── */}
-          {/* ✅ Expands on each step with more text — boosts text ratio      */}
+          {/* In-depth Step Guides */}
           <div className="mt-16 max-w-3xl mx-auto space-y-8">
             <h2 className="text-2xl font-bold text-gray-800">
               Step-by-Step Guide: How to Convert a PDF File Free Online
@@ -474,9 +446,7 @@ const HowItWorks = () => {
             </div>
           </div>
 
-          {/* ─── FAQ Section ─────────────────────────────────────────────── */}
-          {/* ✅ Matches FAQPage schema exactly                               */}
-          {/* ✅ Targets featured snippet positions in Google                 */}
+          {/* Interactive Semantic Accordion Accord FAQs */}
           <div className="mt-16 max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Frequently Asked Questions
@@ -487,9 +457,9 @@ const HowItWorks = () => {
                   key={faq.name}
                   className="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 group"
                 >
-                  <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center gap-4">
+                  <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center gap-4 select-none">
                     {faq.name}
-                    <span className="text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0">
+                    <span className="text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 text-xs">
                       ▼
                     </span>
                   </summary>
@@ -501,7 +471,7 @@ const HowItWorks = () => {
             </div>
           </div>
 
-          {/* ─── Bottom CTA ──────────────────────────────────────────────── */}
+          {/* Footer Callout Banner */}
           <div className="mt-16 max-w-3xl mx-auto bg-rose-600 rounded-3xl p-10 text-center text-white">
             <h2 className="text-2xl font-black mb-3">
               Ready to Convert Your PDF for Free?

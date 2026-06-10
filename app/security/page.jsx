@@ -4,29 +4,21 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import Link from 'next/link';
 
-
+// ─── SEO METADATA (Next.js App Router Format) ──────────────────────────────────
 export const metadata = {
-  // ✅ Title: 58 characters — within 50–60 char Google display limit
-  title: "Secure PDF Converter AES-256 Encrypted ",
-
-  // ✅ Description: 158 characters — within 155–160 char optimal range
+  title: "Secure PDF Converter AES-256 Encrypted",
   description:
     "FreePDFConvert uses AES-256 encryption & SSL transfer. Files auto-deleted in 2 hours. Zero human access. 100% private, free PDF converter online.",
-
   keywords:
     "secure pdf converter, encrypted pdf converter, aes-256 pdf tool, safe pdf converter online, pdf converter no data storage, ssl encrypted pdf upload, private pdf converter, pdf tool gdpr compliant, secure file conversion online, pdf auto delete files, no human access pdf tool, bank level pdf security, free secure pdf tool, pdf privacy protection",
-
   alternates: {
     canonical: "https://freepdfconvert.io/security",
     languages: {
       "en-US": "https://freepdfconvert.io/security",
     },
   },
-
   openGraph: {
-    // ✅ OG title can be slightly longer (displayed differently than SERPs)
     title: "Secure PDF Converter AES-256 Encrypted & 100% Private | FreePDFConvert",
-    // ✅ OG description: 155 characters
     description:
       "AES-256 encryption, SSL transfers, auto-deletion in 2 hours, zero human access. The most secure free PDF converter online.",
     url: "https://freepdfconvert.io/security",
@@ -42,29 +34,29 @@ export const metadata = {
     locale: "en_US",
     siteName: "FreePDFConvert",
   },
-
   twitter: {
     card: "summary_large_image",
-    // ✅ Twitter title: 58 characters
     title: "Secure PDF Converter AES-256 Encrypted | FreePDFConvert",
-    // ✅ Twitter description: 155 characters
     description:
       "AES-256 encryption, SSL transfer, auto-delete in 2 hours. No human access. The safest free PDF converter online.",
     images: ["https://freepdfconvert.io/og-image.png"],
     site: "@freepdfconvert",
   },
-
   robots: {
     index: true,
     follow: true,
-    "max-snippet": -1,
-    "max-image-preview": "large",
-    "max-video-preview": -1,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
-// ─── JSON-LD: WebPage Schema ──────────────────────────────────────────────────
-// ✅ Added datePublished (was missing) alongside dateModified
+// ─── JSON-LD SCHEMAS ─────────────────────────────────────────────────────────
 const schemaWebPage = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -87,12 +79,10 @@ const schemaWebPage = {
       url: "https://freepdfconvert.io/logo.png",
     },
   },
-  datePublished: "2025-01-01", // ✅ Added — was missing before
-  dateModified: "2026-06-09",  // ✅ Updated to today's date
+  datePublished: "2025-01-01",
+  dateModified: "2026-06-10",
 };
 
-// ─── JSON-LD: FAQPage Schema ──────────────────────────────────────────────────
-// ✅ 5 FAQs targeting real user search queries for featured snippets
 const schemaFAQ = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -140,7 +130,6 @@ const schemaFAQ = {
   ],
 };
 
-// ─── JSON-LD: BreadcrumbList ──────────────────────────────────────────────────
 const schemaBreadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -160,7 +149,7 @@ const schemaBreadcrumb = {
   ],
 };
 
-// ─── COMPONENT ───────────────────────────────────────────────────────────────
+// ─── PAGE COMPONENT ──────────────────────────────────────────────────────────
 const SecuritySection = () => {
   const securityFeatures = [
     {
@@ -187,7 +176,7 @@ const SecuritySection = () => {
 
   return (
     <>
-      {/* ─── JSON-LD Structured Data ───────────────────────────────────────── */}
+      {/* Structural Data Injection */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaWebPage) }}
@@ -207,10 +196,8 @@ const SecuritySection = () => {
         <section className="py-24 bg-white min-h-screen">
           <div className="max-w-7xl mx-auto px-6">
 
-            {/* ─── HERO ─────────────────────────────────────────────────────── */}
+            {/* Hero Framework */}
             <div className="text-center mb-16">
-
-              {/* ✅ Semantic breadcrumb nav */}
               <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-6">
                 <Link href="/" className="hover:text-rose-600">Home</Link>
                 <span className="mx-2" aria-hidden="true">/</span>
@@ -221,7 +208,6 @@ const SecuritySection = () => {
                 Privacy First
               </span>
 
-              {/* ✅ H1: One per page — primary keyword at the front */}
               <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
                 Your Files Are{' '}
                 <span className="text-rose-600">100% Secure</span>
@@ -234,8 +220,7 @@ const SecuritySection = () => {
               </p>
             </div>
 
-            {/* ─── SECURITY FEATURE CARDS ───────────────────────────────────── */}
-            {/* ✅ H3 used for card titles (H2 reserved for section headings) */}
+            {/* Main Visual Grids */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {securityFeatures.map((feature, idx) => (
                 <div
@@ -245,23 +230,14 @@ const SecuritySection = () => {
                   <div className="bg-white w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-colors">
                     <feature.icon size={28} />
                   </div>
-                  {/* ✅ H3 for card titles — not H2 */}
                   <h3 className="text-xl font-bold text-gray-800 mb-3">{feature.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed font-medium">{feature.desc}</p>
                 </div>
               ))}
             </div>
 
-            {/* ─── SEO CONTENT: Rich body text to fix low Text-HTML ratio ──── */}
-            {/*
-              WHY THIS SECTION EXISTS:
-              SEMrush flagged a 0.03 text-to-HTML ratio (optimal: 0.25+).
-              The fix is to add meaningful, keyword-rich body content.
-              This content also helps with topical authority and featured snippets.
-            */}
+            {/* Editorial Layer */}
             <div className="mt-24 max-w-3xl mx-auto space-y-14">
-
-              {/* ✅ H2: Section heading — "Why" targets informational intent */}
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Why FreePDFConvert Is the Most Secure Free PDF Converter
@@ -294,7 +270,7 @@ const SecuritySection = () => {
                   ].map((f) => (
                     <li
                       key={f}
-                      className="bg-[#f8f9fa] rounded-xl px-4 py-3 border border-gray-100"
+                      className="bg-[#f8f9fa] rounded-xl px-4 py-3 border border-gray-100 font-medium"
                     >
                       {f}
                     </li>
@@ -302,7 +278,6 @@ const SecuritySection = () => {
                 </ul>
               </div>
 
-              {/* ✅ H2: How section — targets "how does pdf converter protect files" queries */}
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   How FreePDFConvert Protects Your Files
@@ -327,7 +302,6 @@ const SecuritySection = () => {
                 </p>
               </div>
 
-              {/* ✅ H2: Who should use — targets long-tail "secure pdf for" queries */}
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Who Should Use a Secure PDF Converter?
@@ -358,7 +332,7 @@ const SecuritySection = () => {
                 </p>
               </div>
 
-              {/* ✅ H2: FAQ section — targets featured snippet + AI Overview positions */}
+              {/* Accordions */}
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Security Frequently Asked Questions
@@ -369,9 +343,9 @@ const SecuritySection = () => {
                       key={faq.name}
                       className="bg-[#f8f9fa] rounded-2xl px-5 py-4 border border-gray-100 group"
                     >
-                      <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+                      <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center select-none">
                         {faq.name}
-                        <span className="text-gray-400 group-open:rotate-180 transition-transform" aria-hidden="true">
+                        <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs" aria-hidden="true">
                           ▼
                         </span>
                       </summary>
@@ -383,7 +357,7 @@ const SecuritySection = () => {
                 </div>
               </div>
 
-              {/* ✅ H2: CTA section with internal links — boosts crawl depth & anchor text */}
+              {/* Navigation Action Group */}
               <div className="bg-rose-50 rounded-3xl p-8 border border-rose-100 text-center">
                 <h2 className="text-xl font-bold text-gray-800 mb-3">
                   Ready to Convert Your PDF Securely?
@@ -420,7 +394,6 @@ const SecuritySection = () => {
               </div>
 
             </div>
-            {/* ─── END SEO CONTENT ──────────────────────────────────────────── */}
 
           </div>
         </section>

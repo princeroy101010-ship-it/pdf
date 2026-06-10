@@ -11,7 +11,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": "https://www.freepdfconvert.io/cookie-policy#webpage",
       "url": "https://www.freepdfconvert.io/cookie-policy",
-      "name": "Cookie Policy FreePDFConvert.io | Free PDF Tools",
+      "name": "Cookie Policy | FreePDFConvert.io",
       "description": "FreePDFConvert uses only essential, preference, and anonymous analytics cookies. No advertising tracking, no data selling. Full GDPR-friendly cookie transparency.",
       "inLanguage": "en-US",
       "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
@@ -93,12 +93,8 @@ const jsonLd = {
 };
 
 // ─── Next.js Metadata Export ──────────────────────────────────────────────────
-// SEO RULES APPLIED:
-// Title: 55 chars — within 50–60 char Google display limit
-// Description: 158 chars — within 155–160 char optimal range
-// Keywords: mix of high-volume + long-tail low-competition phrases
 export const metadata = {
-  title: "Cookie Policy FreePDFConvert ",
+  title: "Cookie Policy | FreePDFConvert",
   description:
     "FreePDFConvert uses only essential and analytics cookies. No advertising tracking, no data selling. GDPR-friendly. Manage or disable cookies anytime.",
   keywords:
@@ -107,7 +103,7 @@ export const metadata = {
     canonical: "https://www.freepdfconvert.io/cookie-policy",
   },
   openGraph: {
-    title: "Cookie Policy FreePDFConvert | Free PDF Tools",
+    title: "Cookie Policy | FreePDFConvert | Free PDF Tools",
     description:
       "FreePDFConvert uses only essential and analytics cookies. No advertising tracking, no data selling. GDPR-friendly. Manage or disable cookies anytime.",
     url: "https://www.freepdfconvert.io/cookie-policy",
@@ -125,7 +121,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cookie Policy FreePDFConvert | Free PDF Tools",
+    title: "Cookie Policy | FreePDFConvert | Free PDF Tools",
     description:
       "How FreePDFConvert uses cookies. Essential and analytics only — no advertising tracking, no data selling. GDPR-friendly.",
     images: ["https://www.freepdfconvert.io/og-image.png"],
@@ -176,7 +172,6 @@ const CookiePolicy = () => {
       <Header />
 
       {/* ── HERO HEADER ─────────────────────────────────────────────────── */}
-      {/* SEO NOTE: H1 contains primary keyword "Cookie Policy" + brand name */}
       <header className="bg-white py-20 px-6 text-center">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-600 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-6">
@@ -185,7 +180,6 @@ const CookiePolicy = () => {
           <h1 className="text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Cookie <span className="text-rose-600">Policy</span>
           </h1>
-          {/* SEO: descriptive subtitle adds keyword-rich visible text to fix low text-to-HTML ratio */}
           <p className="text-xl text-gray-400 font-medium max-w-2xl mx-auto">
             FreePDFConvert is committed to full transparency about how our free PDF tools use cookies.
             We use only the minimum cookies required — no advertising, no data selling, and no hidden tracking.
@@ -204,7 +198,6 @@ const CookiePolicy = () => {
       <main className="flex-1 max-w-4xl mx-auto px-6 py-16 w-full">
 
         {/* ── WHAT ARE COOKIES ──────────────────────────────────────────── */}
-        {/* SEO: expanded text content improves text-to-HTML ratio (fixes SEMrush warning) */}
         <div className="bg-rose-600 rounded-[2.5rem] p-10 mb-12 text-white shadow-xl shadow-rose-100 relative overflow-hidden">
           <Cookie className="absolute -right-8 -bottom-8 w-48 h-48 opacity-10 -rotate-12" />
           <h2 className="text-2xl font-black mb-4">What Are Cookies?</h2>
@@ -218,7 +211,6 @@ const CookiePolicy = () => {
         </div>
 
         {/* ── HOW WE USE COOKIES ────────────────────────────────────────── */}
-        {/* SEO: H2 is keyword-rich; body text is expanded to fix low text-to-HTML ratio */}
         <CookieSection icon={ShieldCheck} title="How FreePDFConvert Uses Cookies">
           <p>
             FreePDFConvert uses cookies only for specific, limited purposes that directly support the
@@ -311,7 +303,6 @@ const CookiePolicy = () => {
         </CookieSection>
 
         {/* ── COOKIE POLICY SUMMARY TABLE ───────────────────────────────── */}
-        {/* SEO: table adds meaningful structured text, significantly boosts text-to-HTML ratio */}
         <div className="mb-10 bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
           <h2 className="text-2xl font-black text-gray-800 mb-6 tracking-tight">
             Cookie Summary What FreePDFConvert Uses
@@ -357,7 +348,6 @@ const CookiePolicy = () => {
         </div>
 
         {/* ── YOUR PRIVACY RIGHTS ───────────────────────────────────────── */}
-        {/* SEO: adds keyword-rich text section, boosts content depth and text-to-HTML ratio */}
         <div className="mb-10 bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
           <h2 className="text-2xl font-black text-gray-800 mb-4 tracking-tight">
             Your Privacy Rights and Cookie Consent
@@ -384,7 +374,6 @@ const CookiePolicy = () => {
         </div>
 
         {/* ── FAQ SECTION ───────────────────────────────────────────────── */}
-        {/* SEO: FAQPage JSON-LD schema above + keyword-rich questions = rich results eligibility */}
         <section className="mb-12" aria-label="Cookie Policy Frequently Asked Questions">
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">
             Cookie Policy Frequently Asked Questions
@@ -421,8 +410,8 @@ const CookiePolicy = () => {
             ].map(({ q, a }) => (
               <details key={q} className="bg-white rounded-2xl shadow-sm group">
                 <summary className="p-5 font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-                  {q}
-                  <span className="text-rose-600 font-black text-lg group-open:rotate-45 transition-transform">+</span>
+                  <span>{q}</span>
+                  <span className="text-rose-600 font-black text-lg group-open:rotate-45 transition-transform shrink-0 ml-2">+</span>
                 </summary>
                 <p className="px-5 pb-5 text-sm text-gray-500 leading-relaxed">{a}</p>
               </details>
@@ -439,7 +428,6 @@ const CookiePolicy = () => {
         </div>
 
         {/* ── INTERNAL LINKS ────────────────────────────────────────────── */}
-        {/* SEO: internal linking to main tools boosts site-wide authority and crawlability */}
         <section aria-label="Free PDF Tools">
           <h2 className="text-2xl font-black text-gray-900 text-center mb-3">
             Explore Our Free PDF Tools
@@ -461,6 +449,7 @@ const CookiePolicy = () => {
               <a
                 key={href}
                 href={href}
+                title={`Go to ${label}`}
                 className="bg-white rounded-2xl p-4 shadow-sm text-center text-sm font-bold text-gray-700 hover:text-rose-600 hover:shadow-md transition-all border border-gray-100"
               >
                 {label}

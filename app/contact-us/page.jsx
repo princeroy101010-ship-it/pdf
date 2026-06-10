@@ -3,70 +3,34 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { Mail, Twitter, Send, ArrowRight, ShieldCheck, Zap, Globe, CheckCircle2 } from 'lucide-react';
 
-// ─── JSON-LD Structured Data ──────────────────────────────────────────────────
+// ─── JSON-LD STRUCTURED DATA ──────────────────────────────────────────────────
+// ✅ FIXED: Removed duplicate global WebSite and Organization definitions.
+// Isolates page-level schemas to maintain a crisp 1:1 entity mapping context.
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebSite",
-      "@id": "https://www.freepdfconvert.io/#website",
-      "url": "https://www.freepdfconvert.io/",
-      "name": "FreePDFConvert",
-      "description": "Free online PDF tools — convert, merge, compress, split, and edit PDF files instantly.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://www.freepdfconvert.io/?s={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
       "@type": "WebPage",
-      "@id": "https://www.freepdfconvert.io/contact-us#webpage",
-      "url": "https://www.freepdfconvert.io/contact-us",
-      "name": "Contact FreePDFConvert PDF Tool Support & Help",
-      "description": "Reach the FreePDFConvert support team via email, Telegram, or Twitter for PDF conversion help, bug reports, or feature requests. Fast 24-hour response guaranteed.",
+      "@id": "https://freepdfconvert.io/contact-us#webpage",
+      "url": "https://freepdfconvert.io/contact-us",
+      "name": "Contact FreePDFConvert – Support & Customer Help",
+      "description": "Get in touch with the FreePDFConvert support team for PDF tool inquiries, error handling, performance issues, and feature requests. 24-hour response guaranteed.",
       "inLanguage": "en-US",
-      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://www.freepdfconvert.io/contact-us#breadcrumb" },
+      "isPartOf": { "@id": "https://freepdfconvert.io/#website" },
+      "breadcrumb": { "@id": "https://freepdfconvert.io/contact-us#breadcrumb" },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://www.freepdfconvert.io/og-image.png",
+        "url": "https://freepdfconvert.io/og-image.png",
         "width": 1200,
         "height": 630
       }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://www.freepdfconvert.io/contact-us#breadcrumb",
+      "@id": "https://freepdfconvert.io/contact-us#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home",       "item": "https://www.freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://www.freepdfconvert.io/contact-us" }
-      ]
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.freepdfconvert.io/#organization",
-      "name": "FreePDFConvert",
-      "url": "https://www.freepdfconvert.io/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.freepdfconvert.io/og-image.png"
-      },
-      "contactPoint": [
-        {
-          "@type": "ContactPoint",
-          "email": "support@freepdfconvert.io",
-          "contactType": "customer support",
-          "availableLanguage": ["English"],
-          "areaServed": "Worldwide"
-        }
-      ],
-      "sameAs": [
-        "https://twitter.com/crpto23664246",
-        "https://t.me/@cryptonewstrendhub"
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freepdfconvert.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://freepdfconvert.io/contact-us" }
       ]
     },
     {
@@ -77,7 +41,7 @@ const jsonLd = {
           "name": "How can I contact FreePDFConvert support?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can contact FreePDFConvert support via email at support@freepdfconvert.io, through Telegram at @FreePDFConvert, or on Twitter/X. We respond to all queries as fast as possible."
+            "text": "You can contact FreePDFConvert support via email at support@freepdfconvert.io, through Telegram at @FreePDFConvert, or via our Twitter account. We respond to technical inquiries as quickly as possible."
           }
         },
         {
@@ -85,7 +49,7 @@ const jsonLd = {
           "name": "How long does FreePDFConvert support take to respond?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We aim to respond to all support emails and messages within 24 hours. Telegram messages are often answered even faster."
+            "text": "We process and answer support requests within 24 hours. General queries made through our Telegram channel are often addressed within a few hours."
           }
         },
         {
@@ -93,7 +57,7 @@ const jsonLd = {
           "name": "Can I request a new feature for FreePDFConvert?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. We welcome feature suggestions. Send your idea via email to support@freepdfconvert.io or message us on Telegram and we will review it for our next release."
+            "text": "Yes, feature suggestions are highly welcome. Reach out via email at support@freepdfconvert.io or join our channels to detail your suggestions for upcoming software updates."
           }
         },
         {
@@ -101,7 +65,7 @@ const jsonLd = {
           "name": "What issues can FreePDFConvert support help with?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our support team can help with PDF conversion errors, file download issues, formatting problems, feature requests, and general questions about any of our free PDF tools including PDF to Word, merge PDF, compress PDF, split PDF, and more."
+            "text": "Our help desk troubleshoots configuration problems, input formatting bugs, down times, size optimization flags, and utility operation issues across all converters."
           }
         },
         {
@@ -109,7 +73,7 @@ const jsonLd = {
           "name": "Is FreePDFConvert free to use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. FreePDFConvert is 100% free to use. All PDF tools — including PDF to Word, Word to PDF, compress PDF, merge PDF, split PDF, JPG to PDF, and more — are available at no cost with no registration required."
+            "text": "Yes, FreePDFConvert is completely free. All file conversions, modifications, data optimization systems, compressions, and encryption applications operate without costs or credentials."
           }
         }
       ]
@@ -117,32 +81,28 @@ const jsonLd = {
   ]
 };
 
-// ─── Next.js Metadata Export ──────────────────────────────────────────────────
-// SEO Rules Applied:
-// Title:       50–60 characters  ✓ (52 chars)
-// Description: 150–160 characters ✓ (158 chars)
-// Keywords:    High-volume + long-tail, low-competition ✓
+// ─── NEXT.JS METADATA EXPORT ──────────────────────────────────────────────────
 export const metadata = {
-  title: "Contact FreePDFConvert PDF Support & Help",
+  title: "Contact FreePDFConvert – Support & Customer Help",
   description:
-    "Need help with PDF conversion? Contact FreePDFConvert via email, Telegram, or Twitter. Free PDF tool support with 24-hour response. We are here to help.",
+    "Need technical help with file tools? Contact the FreePDFConvert help center via email or chat. Complete support for our document converters with quick response times.",
   keywords:
     "contact freepdfconvert, pdf tool support, free pdf converter help, pdf conversion error fix, freepdfconvert email support, online pdf tool help, pdf support 24 hours, contact pdf converter online, freepdfconvert feedback, report pdf bug, free pdf tool customer service, pdf to word help, compress pdf support",
   alternates: {
-    canonical: "https://www.freepdfconvert.io/contact-us",
+    canonical: "https://freepdfconvert.io/contact-us",
   },
   openGraph: {
-    title: "Contact FreePDFConvert Free PDF Tool Support",
+    title: "Contact FreePDFConvert – Support & Customer Help",
     description:
-      "Get fast help for any PDF conversion issue. Email, Telegram, or Twitter — our support team responds within 24 hours. 100% free PDF tool assistance.",
-    url: "https://www.freepdfconvert.io/contact-us",
+      "Get rapid technical help for your conversion setups. Drop a note to our support channels directly. Free support services on any device.",
+    url: "https://freepdfconvert.io/contact-us",
     type: "website",
     images: [
       {
-        url: "https://www.freepdfconvert.io/og-image.png",
+        url: "https://freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Contact FreePDFConvert PDF Tool Support"
+        alt: "Contact FreePDFConvert Customer Support Desk"
       }
     ],
     locale: "en_US",
@@ -150,16 +110,16 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact FreePDFConvert We Are Here to Help",
+    title: "Contact FreePDFConvert – Support & Customer Help",
     description:
-      "Reach us via email, Telegram, or Twitter for fast PDF conversion support. Free PDF tool help available 24 hours.",
-    images: ["https://www.freepdfconvert.io/og-image.png"],
+      "Reach out directly for any operational errors, data feedback, or feature proposals. Our support handles respond promptly.",
+    images: ["https://freepdfconvert.io/og-image.png"],
   },
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   authors: [{ name: "FreePDFConvert" }],
 };
 
-// ─── Contact Card Component ───────────────────────────────────────────────────
+// ─── CONTACT CARD COMPONENT ───────────────────────────────────────────────────
 const ContactCard = ({ icon: Icon, title, value, label, link, color }) => (
   <a
     href={link}
@@ -180,7 +140,7 @@ const ContactCard = ({ icon: Icon, title, value, label, link, color }) => (
   </a>
 );
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 const ContactUs = () => (
   <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
 
@@ -195,11 +155,6 @@ const ContactUs = () => (
     <main className="flex-1 max-w-7xl mx-auto px-6 py-20 w-full">
 
       {/* ── HERO ──────────────────────────────────────────────────────── */}
-      {/*
-        SEO FIX: H1 now contains primary keyword "Contact FreePDFConvert Support"
-        instead of the decorative "Let's Connect." — this directly helps Google
-        understand what this page is about and improves keyword relevance.
-      */}
       <div className="text-center mb-16">
         <span className="bg-rose-50 text-rose-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 inline-block">
           Support Hub
@@ -216,6 +171,7 @@ const ContactUs = () => (
           Reach out to the FreePDFConvert support team directly on your preferred platform.
           We respond within 24 hours — always free, no registration required.
         </p>
+        
         {/* Trust Signals */}
         <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs font-semibold text-gray-400 uppercase tracking-widest">
           <span>✓ 24-Hour Response</span>
@@ -226,14 +182,6 @@ const ContactUs = () => (
       </div>
 
       {/* ── SEO TEXT BLOCK ────────────────────────────────────────────── */}
-      {/*
-        SEO FIX #1 — TEXT-HTML RATIO:
-        This section adds high-quality, keyword-rich visible text content.
-        It directly fixes the SEMrush "low text-HTML ratio" warning (ratio was 0.03).
-        Target ratio after fix: 15–25% (acceptable for a contact page per SEO benchmarks).
-        Keywords targeted: "free pdf converter support", "pdf conversion help",
-        "contact pdf tool online", "pdf to word support", "compress pdf help"
-      */}
       <section className="mb-16 max-w-4xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 text-center">
           Get Free PDF Conversion Support — Fast &amp; Easy
@@ -300,7 +248,7 @@ const ContactUs = () => (
           icon={Send}
           title="Direct Message"
           value="@FreePDFConvert"
-          link="https://t.me/@cryptonewstrendhub"
+          link="https://t.me/freepdfconvert"
           color="bg-sky-50 text-sky-600"
         />
         <ContactCard
@@ -308,17 +256,12 @@ const ContactUs = () => (
           icon={Twitter}
           title="X / Twitter"
           value="Latest Updates"
-          link="https://twitter.com/crpto23664246"
+          link="https://twitter.com/freepdfconvert"
           color="bg-gray-900 text-white"
         />
       </div>
 
       {/* ── RESPONSE TIME INFO ────────────────────────────────────────── */}
-      {/*
-        SEO FIX #2 — TEXT-HTML RATIO + E-E-A-T (Experience, Expertise, Authority, Trust):
-        Adds more meaningful visible text, improving content depth.
-        E-E-A-T signals help Google rank informational/support pages higher.
-      */}
       <section className="mb-20 max-w-4xl mx-auto bg-white rounded-3xl p-8 md:p-12 border border-gray-100 shadow-sm">
         <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 text-center">
           Our Support Response Times
@@ -371,7 +314,7 @@ const ContactUs = () => (
 
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="https://t.me/your_telegram_link"
+              href="https://t.me/freepdfconvert"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join FreePDFConvert on Telegram for PDF tool updates"
@@ -396,12 +339,6 @@ const ContactUs = () => (
       </div>
 
       {/* ── FAQ SECTION ───────────────────────────────────────────────── */}
-      {/*
-        SEO FIX #3 — FAQ SCHEMA + TEXT RATIO:
-        5 FAQs (up from 4) with longer, keyword-rich answers.
-        Each answer targets a different long-tail search query.
-        JSON-LD FAQPage above matches these questions exactly (required for Google FAQ rich result).
-      */}
       <section className="mb-20" aria-label="Frequently Asked Questions about FreePDFConvert Support">
         <h2 className="text-3xl md:text-4xl font-black text-gray-900 text-center mb-4">
           Frequently Asked Questions
@@ -444,11 +381,6 @@ const ContactUs = () => (
       </section>
 
       {/* ── INTERNAL LINKS ────────────────────────────────────────────── */}
-      {/*
-        SEO FIX #4 — INTERNAL LINKING:
-        Added descriptive anchor text (not just tool names) for better keyword signals.
-        Internal links distribute page authority and help Google crawl all tool pages.
-      */}
       <section aria-label="Free PDF Tools by FreePDFConvert">
         <h2 className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-4">
           Explore Our Free PDF Tools
@@ -458,14 +390,14 @@ const ContactUs = () => (
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { href: '/pdf-to-word',   label: 'PDF to Word',   desc: 'Convert PDF to editable Word doc'   },
-            { href: '/word-to-pdf',   label: 'Word to PDF',   desc: 'Turn Word files into PDF instantly'  },
-            { href: '/merge-pdf',     label: 'Merge PDF',     desc: 'Combine multiple PDFs into one'      },
-            { href: '/compress-pdf',  label: 'Compress PDF',  desc: 'Reduce PDF file size for free'       },
-            { href: '/pdf-to-excel',  label: 'PDF to Excel',  desc: 'Extract tables from PDF to Excel'    },
-            { href: '/jpg-to-pdf',    label: 'JPG to PDF',    desc: 'Convert images to PDF online'        },
-            { href: '/split-pdf',     label: 'Split PDF',     desc: 'Split PDF into separate pages'       },
-            { href: '/unlock-pdf',    label: 'Unlock PDF',    desc: 'Remove password from PDF files'      },
+            { href: '/pdf-to-word', label: 'PDF to Word', desc: 'Convert PDF to editable Word doc' },
+            { href: '/word-to-pdf', label: 'Word to PDF', desc: 'Turn Word files into PDF instantly' },
+            { href: '/merge-pdf', label: 'Merge PDF', desc: 'Combine multiple PDFs into one' },
+            { href: '/compress-pdf', label: 'Compress PDF', desc: 'Reduce PDF file size for free' },
+            { href: '/pdf-to-excel', label: 'PDF to Excel', desc: 'Extract tables from PDF to Excel' },
+            { href: '/jpg-to-pdf', label: 'JPG to PDF', desc: 'Convert images to PDF online' },
+            { href: '/split-pdf', label: 'Split PDF', desc: 'Split PDF into separate pages' },
+            { href: '/unlock-pdf', label: 'Unlock PDF', desc: 'Remove password from PDF files' },
           ].map(({ href, label, desc }) => (
             <a
               key={href}

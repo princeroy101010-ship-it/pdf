@@ -4,25 +4,16 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Link from 'next/link';
 
-// ─── SEO METADATA ────────────────────────────────────────────────────────────
-// ✅ Title: 58 chars (Google ideal: 50–60 chars) — primary keyword first
-// ✅ Description: 131 chars (Google ideal: 150–160 chars, intent-matched & clear)
-// ✅ Absolute URLs for OG & Twitter images (relative paths break social previews)
-// ✅ Canonical URL set
-// ✅ Robots: index + follow + max previews
+// ─── SEO METADATA (Next.js App Router Format) ──────────────────────────────────
 export const metadata = {
   title: "Privacy Policy | FreePDFConvert Safe & Secure PDF Tool",
-
   description:
     "Your files are SSL encrypted and auto-deleted within 2 hours. FreePDFConvert never stores, reads, or sells your data. 100% private.",
-
   keywords:
     "freepdfconvert privacy policy, pdf converter privacy, secure pdf converter online, ssl encrypted pdf converter, no data storage pdf tool, safe pdf converter, pdf tool gdpr compliant, file privacy pdf, secure file conversion free, pdf converter no data sharing, private pdf tool, pdf files deleted after conversion",
-
   alternates: {
     canonical: "https://freepdfconvert.io/privacy-policy",
   },
-
   openGraph: {
     title: "Privacy Policy | FreePDFConvert Safe & Secure PDF Tool",
     description:
@@ -31,7 +22,6 @@ export const metadata = {
     type: "website",
     images: [
       {
-        // ✅ Absolute URL — relative paths fail on social platforms (Twitter, LinkedIn, Facebook)
         url: "https://freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
@@ -41,28 +31,28 @@ export const metadata = {
     locale: "en_US",
     siteName: "FreePDFConvert",
   },
-
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy | FreePDFConvert Safe & Secure PDF Tool",
     description:
       "Files SSL encrypted, never stored, deleted in 2 hours. No data selling. The most private free PDF tool online.",
-    // ✅ Absolute URL — Twitter card validator requires absolute image URLs
     images: ["https://freepdfconvert.io/og-image.png"],
   },
-
   robots: {
     index: true,
     follow: true,
-    "max-snippet": -1,
-    "max-image-preview": "large",
-    "max-video-preview": -1,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
-// ─── JSON-LD: WebPage Schema ─────────────────────────────────────────────────
-// ✅ Tells Google what page this is, publisher, language, and last modified date
-// ✅ dateModified updated to today (2026-06-09)
+// ─── JSON-LD SCHEMAS ─────────────────────────────────────────────────────────
 const schemaWebPage = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -71,7 +61,7 @@ const schemaWebPage = {
   description:
     "FreePDFConvert never stores, reads, or sells your files. All uploads are SSL encrypted and automatically deleted within 2 hours.",
   inLanguage: "en-US",
-  dateModified: "2026-06-09",
+  dateModified: "2026-06-10",
   isPartOf: {
     "@type": "WebSite",
     name: "FreePDFConvert",
@@ -88,9 +78,6 @@ const schemaWebPage = {
   },
 };
 
-// ─── JSON-LD: WebSite Schema ─────────────────────────────────────────────────
-// ✅ Enables Google Sitelinks Search Box in search results
-// ✅ This is a global schema — should appear on every page
 const schemaWebSite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -108,9 +95,6 @@ const schemaWebSite = {
   },
 };
 
-// ─── JSON-LD: FAQPage Schema ─────────────────────────────────────────────────
-// ✅ 5 questions targeting high-volume privacy-related search queries
-// ✅ Eligible for Google FAQ rich result — increases SERP space
 const schemaFAQ = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -158,8 +142,6 @@ const schemaFAQ = {
   ],
 };
 
-// ─── JSON-LD: BreadcrumbList ─────────────────────────────────────────────────
-// ✅ Helps Google display breadcrumbs in search results for this page
 const schemaBreadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -180,14 +162,12 @@ const schemaBreadcrumb = {
 };
 
 // ─── REUSABLE POLICY SECTION COMPONENT ──────────────────────────────────────
-// ✅ Unchanged from original — layout preserved exactly
 const PolicySection = ({ icon: Icon, title, children }) => (
   <div className="mb-12 group">
     <div className="flex items-center gap-4 mb-4">
       <div className="bg-rose-50 p-3 rounded-xl text-rose-600 group-hover:bg-rose-600 group-hover:text-white transition-all duration-300">
         <Icon size={24} />
       </div>
-      {/* ✅ H2 tags — correct heading hierarchy under the H1 */}
       <h2 className="text-2xl font-black text-gray-800 tracking-tight">{title}</h2>
     </div>
     <div className="pl-14 text-gray-500 font-medium leading-relaxed space-y-4">
@@ -201,8 +181,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-[#f8f9fa] flex flex-col">
 
-      {/* ─── JSON-LD Structured Data ─────────────────────────────────────── */}
-      {/* ✅ 4 schemas: WebPage, WebSite, FAQPage, BreadcrumbList            */}
+      {/* Structured Injection Block */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaWebPage) }}
@@ -222,13 +201,10 @@ const PrivacyPolicy = () => {
 
       <Header />
 
-      {/* ─── HERO SECTION ────────────────────────────────────────────────── */}
-      {/* ✅ Changed <header> to <section> — avoids duplicate landmark conflict
-              with the imported <Header /> component above                   */}
+      {/* ─── HERO HEADER SECTION ─────────────────────────────────────────── */}
       <section className="bg-white py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
 
-          {/* ✅ Breadcrumb — visible to users and crawlers */}
           <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-6">
             <Link href="/" className="hover:text-rose-600 transition-colors">Home</Link>
             <span className="mx-2">/</span>
@@ -239,13 +215,10 @@ const PrivacyPolicy = () => {
             Last Updated: June 2026
           </span>
 
-          {/* ✅ H1 — keyword-rich: "secure pdf converter privacy policy"
-                    58 chars, matches page title exactly                    */}
           <h1 className="text-5xl font-black text-gray-900 mb-6 tracking-tight">
             Privacy <span className="text-rose-600">Policy</span>
           </h1>
 
-          {/* ✅ Intro paragraph — adds visible text, improves text-to-HTML ratio */}
           <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto mb-4">
             Your files are SSL encrypted, never stored permanently, and automatically deleted
             within 2 hours. FreePDFConvert is a zero-data-sharing, 100% private free PDF converter.
@@ -260,10 +233,9 @@ const PrivacyPolicy = () => {
 
       <main className="flex-1 max-w-4xl mx-auto px-6 py-20 w-full">
 
-        {/* ─── PRIVACY PROMISE BANNER ──────────────────────────────────────── */}
-        {/* ✅ Unchanged layout — adds keyword-rich visible text               */}
+        {/* Brand Core Privacy Banner */}
         <div className="bg-rose-600 rounded-[2.5rem] p-10 mb-16 text-white shadow-xl shadow-rose-100 relative overflow-hidden">
-          <Files className="absolute -right-10 -bottom-10 w-64 h-64 opacity-10 rotate-12" />
+          <Files className="absolute -right-10 -bottom-10 w-64 h-64 opacity-10 rotate-12 pointer-events-none select-none" />
           <h2 className="text-3xl font-black mb-4 relative z-10">Our Privacy Promise</h2>
           <p className="text-rose-100 text-lg font-medium relative z-10 leading-relaxed">
             FreePDFConvert does not store your files. We do not read your content. We do not
@@ -272,8 +244,7 @@ const PrivacyPolicy = () => {
           </p>
         </div>
 
-        {/* ─── SEO INTRO CONTENT ───────────────────────────────────────────── */}
-        {/* ✅ Adds substantial visible text — directly fixes low text-HTML ratio */}
+        {/* SEO Editorial Intro */}
         <div className="mb-14 text-gray-600 leading-relaxed space-y-4">
           <p>
             At FreePDFConvert, we take your privacy seriously. When you use our free online
@@ -288,9 +259,7 @@ const PrivacyPolicy = () => {
           </p>
         </div>
 
-        {/* ─── POLICY SECTIONS ─────────────────────────────────────────────── */}
-        {/* ✅ H2 titles are keyword-rich for on-page SEO                       */}
-        {/* ✅ Added more paragraph content to each section for text ratio       */}
+        {/* ─── POLICY CHAPTER BLOCKS ───────────────────────────────────────── */}
         <PolicySection icon={Lock} title="SSL Encryption Your Files Are Fully Secure">
           <p>
             Every file you upload to FreePDFConvert is transmitted using{' '}
@@ -340,8 +309,8 @@ const PrivacyPolicy = () => {
           </p>
           <p>
             Access to our server infrastructure is restricted and logged. File processing
-            happens in an isolated pipeline with no manual access permitted. This design
-            ensures your documents are protected at every stage of the conversion process.
+            happening in an isolated pipeline ensures your documents are protected at every 
+            stage of the conversion layout.
           </p>
         </PolicySection>
 
@@ -393,8 +362,7 @@ const PrivacyPolicy = () => {
           </p>
         </PolicySection>
 
-        {/* ─── FAQ SECTION ─────────────────────────────────────────────────── */}
-        {/* ✅ Matches FAQPage schema exactly — targets featured snippets       */}
+        {/* ─── DATA ACCORDION / FAQ MODULE ─────────────────────────────────── */}
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
             Privacy Frequently Asked Questions
@@ -408,9 +376,9 @@ const PrivacyPolicy = () => {
                 key={faq.name}
                 className="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 group"
               >
-                <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center gap-4">
+                <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center gap-4 select-none">
                   {faq.name}
-                  <span className="text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0">
+                  <span className="text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 text-xs">
                     ▼
                   </span>
                 </summary>
@@ -422,8 +390,7 @@ const PrivacyPolicy = () => {
           </div>
         </div>
 
-        {/* ─── CONTACT CTA ─────────────────────────────────────────────────── */}
-        {/* ✅ Unchanged from original — layout preserved exactly              */}
+        {/* ─── ACTION ESCALATION CTA ───────────────────────────────────────── */}
         <div className="mt-20 p-8 bg-white border border-gray-100 rounded-3xl text-center">
           <h3 className="text-xl font-bold text-gray-800 mb-2">
             Have questions about your privacy?

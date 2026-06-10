@@ -116,7 +116,7 @@ const PptxToText = () => (
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
         reset, handleDownload }) => {
 
-      const seo = config.seo;
+      const targetSlug = config?.slug || 'pptx-to-text';
 
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
@@ -127,8 +127,8 @@ const PptxToText = () => (
             <meta name="description" content="Convert PowerPoint PPTX to plain text TXT free online. Extract all slide text from presentations instantly. No signup, no watermark, 100% secure." />
             <meta name="keywords" content="pptx to text, powerpoint to text, convert pptx to txt free, extract text from pptx, powerpoint to txt online, pptx text extractor, pptx to plain text, presentation to text free" />
 
-            <link rel="canonical" href={`https://freepdfconvert.io/${config.slug}`} />
-            <link rel="alternate" hreflang="en" href={`https://freepdfconvert.io/${config.slug}`} />
+            <link rel="canonical" href={`https://freepdfconvert.io/${targetSlug}`} />
+            <link rel="alternate" hreflang="en" href={`https://freepdfconvert.io/${targetSlug}`} />
 
             <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
             <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -136,7 +136,7 @@ const PptxToText = () => (
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Free PowerPoint to Text Converter – PPTX to TXT Online No Signup | FreePDFConvert" />
             <meta property="og:description" content="Convert PowerPoint PPTX to plain text TXT free. Extract all slide text instantly. No signup, no watermark." />
-            <meta property="og:url" content={`https://freepdfconvert.io/${config.slug}`} />
+            <meta property="og:url" content={`https://freepdfconvert.io/${targetSlug}`} />
             <meta property="og:site_name" content="FreePDFConvert" />
             <meta property="og:image" content="https://freepdfconvert.io/og-image.png" />
             <meta property="og:image:width" content="1200" />
@@ -150,16 +150,16 @@ const PptxToText = () => (
             <meta name="twitter:description" content="Convert PPTX to TXT text free. No signup, no watermark. Instant download." />
             <meta name="twitter:image" content="https://freepdfconvert.io/og-image.png" />
 
-            <script type="application/ld+json">{JSON.stringify(toolSchema)}</script>
-            <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-            <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
           </Head>
 
           <Header />
 
           <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full">
 
-            {/* ── IDLE ─────────────────────────────────────────────────────── */}
+            {/* ── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
               <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
@@ -181,20 +181,22 @@ const PptxToText = () => (
                   onDrop={handleDrop}
                   className={`relative w-full max-w-2xl min-h-[280px] md:min-h-[350px] rounded-[2.5rem] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 md:p-8
                     ${dragActive ? 'border-rose-600 scale-[1.02] bg-rose-50' : 'border-gray-200 bg-white hover:border-rose-300'}`}
+                  role="region"
+                  aria-label="PowerPoint text dropzone extraction handler"
                 >
-                  <label className="group cursor-pointer flex flex-col items-center w-full">
+                  <label className="group cursor-pointer flex flex-col items-center w-full focus-within:outline-none">
                     <div className="bg-rose-600 text-white p-4 md:p-6 rounded-2xl shadow-xl group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8">
                       <Plus size={32} strokeWidth={3} />
                     </div>
                     <div className="text-center space-y-4">
-                      <span className="inline-block bg-rose-600 text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg">
+                      <span className="inline-block bg-rose-600 text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg transform group-hover:shadow-2xl transition-all">
                         Select PPTX File
                       </span>
                       <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest">or drop PPTX file here</p>
                     </div>
                     <input
                       type="file"
-                      className="hidden"
+                      className="sr-only"
                       onChange={handleFileChange}
                       accept={acceptedFiles}
                       aria-label="Upload PowerPoint PPTX file to extract text"
@@ -244,36 +246,27 @@ const PptxToText = () => (
                   <h2 className="text-2xl font-black text-gray-900 mb-8">
                     Frequently Asked Questions
                   </h2>
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">How do I extract text from a PowerPoint file for free?</h3>
-                      <p className="text-gray-500 text-sm">Upload your PPTX using the tool above and click Convert. All slide text will be extracted into a TXT file ready to download in seconds — no signup required.</p>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">Does it extract text from all slides?</h3>
-                      <p className="text-gray-500 text-sm">Yes. The converter processes every slide in your PowerPoint and combines all extracted text into a single TXT file in slide order.</p>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">What programs can open the TXT output?</h3>
-                      <p className="text-gray-500 text-sm">The output is a standard .txt file that opens in any text editor — Windows Notepad, macOS TextEdit, VS Code, Sublime Text, Microsoft Word, Google Docs, and more.</p>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">Will the text file have a watermark?</h3>
-                      <p className="text-gray-500 text-sm">No. FreePDFConvert never adds watermarks to any converted file. Your TXT output is always completely clean.</p>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">Is my PPTX file safe when I upload it?</h3>
-                      <p className="text-gray-500 text-sm">Yes. All transfers use SSL encryption. Your PPTX file is automatically deleted from our servers after conversion and is never shared with any third party.</p>
-                    </div>
+                  <div className="space-y-4">
+                    {faqSchema.mainEntity.map((faq) => (
+                      <details key={faq.name} className="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 group transition-colors hover:border-gray-200">
+                        <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center focus:outline-none">
+                          {faq.name}
+                          <span className="text-rose-600 font-black text-lg group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <p className="mt-3 text-gray-500 text-sm leading-relaxed">
+                          {faq.acceptedAnswer.text}
+                        </p>
+                      </details>
+                    ))}
                   </div>
                 </section>
 
               </article>
             )}
 
-            {/* ── PROCESSING ───────────────────────────────────────────────── */}
+            {/* ── PROCESSING STATE ────────────────────────────────────────── */}
             {(status === 'uploading' || status === 'processing') && (
-              <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg">
+              <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg animate-in fade-in scale-in duration-300">
                 <div className="relative mb-8 flex justify-center items-center">
                   <Settings className="text-rose-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute" strokeWidth={1} />
                   <div className="relative z-10 bg-rose-50 p-6 rounded-3xl animate-pulse">
@@ -285,7 +278,7 @@ const PptxToText = () => (
                 <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
                   {status === 'uploading' ? 'Uploading' : 'Converting'}...
                 </h2>
-                <p className="text-gray-400 text-sm mb-8 truncate">{fileQueue[0]?.name}</p>
+                <p className="text-gray-400 text-sm mb-8 truncate max-w-xs mx-auto">{fileQueue[0]?.name}</p>
                 <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
                   <div
                     className={`bg-rose-600 h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
@@ -298,7 +291,7 @@ const PptxToText = () => (
               </div>
             )}
 
-            {/* ── COMPLETED ────────────────────────────────────────────────── */}
+            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
             {status === 'completed' && (
               <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
                 <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3">
@@ -309,12 +302,12 @@ const PptxToText = () => (
                 <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
                   <button
                     onClick={handleDownload}
-                    className="bg-rose-600 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4 transition-all"
+                    className="bg-rose-600 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 transition-all flex items-center justify-center gap-4"
                     aria-label="Download extracted plain text TXT file"
                   >
                     <Download size={28} aria-hidden="true" /> DOWNLOAD TEXT FILE
                   </button>
-                  <button onClick={reset} className="text-gray-400 hover:text-gray-600 font-semibold text-sm">
+                  <button onClick={reset} className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors focus:outline-none">
                     Convert another file
                   </button>
                 </div>

@@ -122,7 +122,7 @@ const jsonLd = {
 };
 
 // ─── SEO Meta Config ──────────────────────────────────────────────────────────
-const SEO_TITLE       = "Word to Text Converter – Free Online | FreePDFConvert";
+const SEO_TITLE       = "Word to Text Converter Free Online | FreePDFConvert";
 const SEO_DESCRIPTION = "Convert Word to Text online free. Extract plain text from DOC or DOCX files instantly. No signup, no watermark, 100% free & secure – FreePDFConvert.";
 const SEO_KEYWORDS    = "word to text, convert word to text, word to txt, docx to text, doc to txt, extract text from word, word to plain text, word to text converter free, docx to txt online, convert docx to txt, word document to text, word to text online free";
 const CANONICAL_URL   = "https://www.freepdfconvert.io/word-to-text";

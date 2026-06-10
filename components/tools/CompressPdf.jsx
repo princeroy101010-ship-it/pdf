@@ -6,11 +6,8 @@
 // or <meta> tags here — 'use client' renders inside <body>.
 //
 // ✅ FAQ FIX:
-// Previously: no FAQ schema here, but layout.js FAQPage was
-// leaking onto this URL → Google flagged 2 invalid items.
-// Fix: declare a self-contained FAQPage JSON-LD on this page,
-// using a single FAQ_ITEMS array for both schema + HTML so
-// they always match. No microdata (itemScope/itemProp) used.
+// Declarative self-contained FAQPage JSON-LD mapped directly from
+// a single FAQ_ITEMS array for perfect layout sync.
 // ============================================================
 import React from 'react';
 import Script from 'next/script';
@@ -25,7 +22,6 @@ import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['compress-pdf'];
 
-// ─── Single source of truth for FAQ ──────────────────────────────────────────
 const FAQ_ITEMS = [
   {
     q: 'How do I compress a PDF for free?',
@@ -61,29 +57,27 @@ const FAQ_ITEMS = [
   },
 ];
 
-// ─── JSON-LD — FAQPage + WebPage + SoftwareApplication ───────────────────────
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-   {
-  '@type': 'WebPage',
-  '@id': 'https://freepdfconvert.io/compress-pdf',
-  url: 'https://freepdfconvert.io/compress-pdf',
-  name: 'Compress PDF Online Free – Reduce PDF File Size | FreePDFConvert',
-  description:
-    'Compress PDF files online for free. Reduce PDF size up to 90% without losing quality. No signup, no watermark, instant download. Fast & secure.',
-  isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
-  about: { '@id': 'https://freepdfconvert.io/compress-pdf/#software' },
-  breadcrumb: { '@id': 'https://freepdfconvert.io/compress-pdf/#breadcrumb' },
-},
-{
-  '@type': 'BreadcrumbList',
-  '@id': 'https://freepdfconvert.io/compress-pdf/#breadcrumb',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-    { '@type': 'ListItem', position: 2, name: 'Compress PDF', item: 'https://freepdfconvert.io/compress-pdf' },
-  ],
-},
+    {
+      '@type': 'WebPage',
+      '@id': 'https://freepdfconvert.io/compress-pdf',
+      url: 'https://freepdfconvert.io/compress-pdf',
+      name: 'Compress PDF Online Free – Reduce PDF File Size | FreePDFConvert',
+      description: 'Compress PDF files online for free. Reduce PDF size up to 90% without losing quality. No signup, no watermark, instant download. Fast & secure.',
+      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
+      about: { '@id': 'https://freepdfconvert.io/compress-pdf/#software' },
+      breadcrumb: { '@id': 'https://freepdfconvert.io/compress-pdf/#breadcrumb' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://freepdfconvert.io/compress-pdf/#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'Compress PDF', item: 'https://freepdfconvert.io/compress-pdf' },
+      ],
+    },
     {
       '@type': 'SoftwareApplication',
       '@id': 'https://freepdfconvert.io/compress-pdf/#software',
@@ -135,7 +129,6 @@ const jsonLd = {
         },
       ],
     },
-    // ✅ Single FAQPage — built from FAQ_ITEMS, exactly matches rendered HTML
     {
       '@type': 'FAQPage',
       '@id': 'https://freepdfconvert.io/compress-pdf/#faq',
@@ -148,24 +141,24 @@ const jsonLd = {
   ],
 };
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
 const TrustBadge = ({ label }) => (
-  <span className="bg-white border border-gray-100 rounded-xl px-4 py-2 shadow-sm text-sm text-gray-500 font-semibold">
+  <span className="bg-white border border-slate-100 rounded-xl px-4 py-2 shadow-sm text-sm text-slate-600 font-semibold tracking-wide">
     {label}
   </span>
 );
 
 const FeatureCard = ({ title, desc }) => (
-  <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex gap-4 items-start">
-    <span className="text-2xl mt-0.5" aria-hidden="true">✅</span>
+  <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex gap-4 items-start hover:shadow-md transition-shadow duration-300">
+    <div className="text-xl bg-rose-50 text-rose-600 p-2 rounded-xl flex items-center justify-center shrink-0" aria-hidden="true">
+      <CheckCircle2 size={20} />
+    </div>
     <div>
-      <h3 className="font-bold text-gray-900 mb-1">{title}</h3>
-      <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+      <h3 className="font-bold text-slate-900 mb-1.5">{title}</h3>
+      <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
     </div>
   </div>
 );
 
-// ─── Main Component ───────────────────────────────────────────────────────────
 const CompressPdf = () => (
   <BaseToolLogic config={config}>
     {({
@@ -177,9 +170,7 @@ const CompressPdf = () => (
       const seo = config.seo;
 
       return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
-          {/* ✅ JSON-LD — afterInteractive so it doesn't block render */}
+        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
           <Script
             id="compress-pdf-jsonld"
             type="application/ld+json"
@@ -191,242 +182,238 @@ const CompressPdf = () => (
 
           <main
             id="main-content"
-            className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6"
+            className="flex-1 flex flex-col items-center justify-start pt-8 md:pt-12 px-4 md:px-6 w-full max-w-7xl mx-auto"
             role="main"
             aria-label="Compress PDF Tool"
           >
-
-            {/* ── IDLE ──────────────────────────────────────────────────── */}
+            {/* ── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
-              <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
-
-                {/* Hero */}
-                <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+              <article className="w-full flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-500">
+                
+                {/* Hero / Header Section */}
+                <header className="text-center mb-8 md:mb-10 max-w-3xl mx-auto">
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
                     {seo?.h1 ?? 'Compress PDF Online Free'}
                   </h1>
-                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
+                  <p className="text-base md:text-lg text-slate-500 font-medium leading-relaxed">
                     {seo?.subtitle ?? 'Reduce PDF file size up to 90% without losing quality. Free, instant, no signup required.'}
                   </p>
                 </header>
 
-                {/* Compression Level — shows after file selected */}
-                {fileQueue.length > 0 && (
-                  <div className="w-full max-w-2xl mb-10 animate-in slide-in-from-bottom-4">
-                    <div className="text-center mb-6">
-                      <h2 className="text-xl font-bold text-gray-800">Choose Compression Level</h2>
-                      <p className="text-sm text-gray-500">Balance between file size and quality</p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                      {[
-                        { key: 'extreme',     label: 'Extreme',     desc: 'Less quality, high compression', Icon: Zap },
-                        { key: 'recommended', label: 'Recommended', desc: 'Good quality, good compression', Icon: CheckCircle2 },
-                        { key: 'low',         label: 'Less',        desc: 'High quality, low compression',  Icon: Settings },
-                      ].map(({ key, label, desc, Icon }) => (
-                        <button
-                          key={key}
-                          onClick={() => setCompressionLevel(key)}
-                          aria-pressed={compressionLevel === key}
-                          className={`p-5 rounded-3xl border-2 transition-all text-left ${
-                            compressionLevel === key
-                              ? 'border-blue-700 bg-blue-50'
-                              : 'border-gray-100 bg-white hover:border-blue-200'
-                          }`}
-                        >
-                          <div className={`w-10 h-10 rounded-xl mb-3 flex items-center justify-center ${
-                            compressionLevel === key ? 'bg-rose-600 text-white' : 'bg-gray-100 text-gray-500'
-                          }`}>
-                            <Icon size={20} aria-hidden="true" />
-                          </div>
-                          <div className="font-black text-gray-800 text-sm uppercase">{label}</div>
-                          <div className="text-xs text-gray-500 leading-tight mt-1">{desc}</div>
-                        </button>
-                      ))}
-                    </div>
-                    <button
-                      onClick={() => startProcessing()}
-                      className="w-full hover:bg-rose-700 text-white py-5 bg-rose-600 rounded-2xl text-xl font-black shadow-xl shadow-blue-200 transition-all active:scale-95 flex items-center justify-center gap-3"
-                      aria-label="Start compressing your PDF"
-                    >
-                      COMPRESS PDF NOW
-                    </button>
-                  </div>
-                )}
-
-                {/* Drop Zone */}
-                <section
-                  aria-label="Upload your PDF file"
-                  onDragOver={handleDragOver}
-                  onDragLeave={handleDragLeave}
-                  onDrop={handleDrop}
-                  className={`relative w-full max-w-2xl ${
-                    fileQueue.length > 0 ? 'min-h-[120px] md:min-h-[150px]' : 'min-h-[280px] md:min-h-[350px]'
-                  } rounded-[2.5rem] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 md:p-8
-                    ${dragActive ? 'border-rose-600 bg-blue-50 scale-[1.02]' : 'border-gray-200 bg-white hover:border-blue-400'}`}
-                  role="region"
-                >
-                  <label
-                    htmlFor="pdf-upload-input"
-                    className="group cursor-pointer flex flex-col items-center w-full"
-                    aria-label="Select a PDF file to compress"
-                  >
+                {/* Main Interaction Card Workflow */}
+                <div className="w-full max-w-2xl bg-white rounded-3xl border border-slate-100 shadow-xl p-4 md:p-6 mb-12">
+                  
+                  {/* Step 1: Drop Zone / File Info UI */}
+                  <section aria-label="Upload your PDF file" className="w-full mb-6">
                     <div
-                      className="bg-rose-600 text-white p-4 md:p-6 rounded-2xl shadow-xl shadow-blue-200 group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8"
-                      aria-hidden="true"
+                      onDragOver={handleDragOver}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
+                      className={`relative w-full ${
+                        fileQueue.length > 0 ? 'min-h-[100px]' : 'min-h-[240px] md:min-h-[280px]'
+                      } rounded-2xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4
+                        ${dragActive ? 'border-rose-500 bg-rose-50/50 scale-[1.01]' : 'border-slate-200 bg-slate-50/50 hover:border-rose-400 hover:bg-white'}`}
+                      role="region"
                     >
-                      <Plus size={32} strokeWidth={3} />
+                      <label
+                        htmlFor="pdf-upload-input"
+                        className="group cursor-pointer flex flex-col items-center w-full py-4"
+                        aria-label="Select a PDF file to compress"
+                      >
+                        {fileQueue.length === 0 ? (
+                          <>
+                            <div className="bg-rose-600 text-white p-4 rounded-2xl shadow-lg shadow-rose-200 group-hover:scale-105 transition-transform duration-300 mb-4" aria-hidden="true">
+                              <Plus size={28} strokeWidth={2.5} />
+                            </div>
+                            <span className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3.5 rounded-xl text-base font-bold shadow-md active:scale-98 transition-all">
+                              Select PDF File
+                            </span>
+                            <p className="text-slate-400 font-bold text-xs uppercase tracking-widest mt-3">
+                              or drop file here
+                            </p>
+                          </>
+                        ) : (
+                          <div className="flex flex-col items-center w-full px-4">
+                            <p className="text-slate-700 font-bold text-sm bg-slate-100 px-4 py-2 rounded-lg max-w-full truncate mb-2">
+                              📎 {fileQueue[0]?.name}
+                            </p>
+                            <span className="text-rose-600 hover:text-rose-700 font-bold text-xs underline">
+                              Change Selected File
+                            </span>
+                          </div>
+                        )}
+                        <input
+                          id="pdf-upload-input"
+                          type="file"
+                          className="hidden"
+                          onChange={handleFileChange}
+                          accept={acceptedFiles}
+                        />
+                      </label>
                     </div>
-                    <div className="text-center space-y-4">
-                      <span className="inline-block bg-rose-600 hover:bg-rose-700 text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg active:scale-95">
-                        {fileQueue.length > 0 ? 'Change File' : 'Select PDF File'}
-                      </span>
-                      {fileQueue.length === 0 && (
-                        <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest block">
-                          or drop file here
-                        </p>
-                      )}
-                    </div>
-                    <input
-                      id="pdf-upload-input"
-                      type="file"
-                      className="hidden"
-                      onChange={handleFileChange}
-                      accept={acceptedFiles}
-                      aria-label="Upload PDF file"
-                    />
-                  </label>
-                </section>
+                  </section>
 
-                {/* Trust Badges */}
-                <section
-                  aria-label="Key features"
-                  className="mt-8 flex flex-wrap justify-center gap-3 md:gap-5"
-                >
+                  {/* Step 2: Compression Level Setup (Rendered Contextually) */}
+                  {fileQueue.length > 0 && (
+                    <section className="w-full border-t border-slate-100 pt-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                      <div className="mb-4">
+                        <h2 className="text-lg font-bold text-slate-800">Select Compression Profile</h2>
+                        <p className="text-xs text-slate-400">Optimize and balance visual clarity against desired output size</p>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+                        {[
+                          { key: 'extreme', label: 'Extreme', desc: 'Lowest quality, maximum size reduction', Icon: Zap },
+                          { key: 'recommended', label: 'Recommended', desc: 'Good quality, optimal compression', Icon: CheckCircle2 },
+                          { key: 'low', label: 'Less', desc: 'Near-original clarity, light compression', Icon: Settings },
+                        ].map(({ key, label, desc, Icon }) => (
+                          <button
+                            key={key}
+                            type="button"
+                            onClick={() => setCompressionLevel(key)}
+                            aria-pressed={compressionLevel === key}
+                            className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col justify-between ${
+                              compressionLevel === key
+                                ? 'border-rose-600 bg-rose-50/30 shadow-sm'
+                                : 'border-slate-100 bg-white hover:border-slate-200'
+                            }`}
+                          >
+                            <div>
+                              <div className={`w-8 h-8 rounded-lg mb-3 flex items-center justify-center ${
+                                compressionLevel === key ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-500'
+                              }`}>
+                                <Icon size={16} aria-hidden="true" />
+                              </div>
+                              <div className="font-black text-slate-800 text-xs uppercase tracking-wider">{label}</div>
+                              <div className="text-[11px] text-slate-400 leading-tight mt-1">{desc}</div>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={() => startProcessing()}
+                        className="w-full bg-rose-600 hover:bg-rose-700 text-white py-4 rounded-xl text-lg font-black shadow-lg shadow-rose-100 transition-all active:scale-[0.99] flex items-center justify-center gap-2"
+                        aria-label="Start compressing your PDF"
+                      >
+                        COMPRESS PDF NOW
+                      </button>
+                    </section>
+                  )}
+                </div>
+
+                {/* Trust Badges Bar */}
+                <section aria-label="Key features" className="flex flex-wrap justify-center gap-3 max-w-4xl px-4">
                   {[
                     '🔒 100% Secure & Private',
-                    '⚡ Instant Compression',
+                    '⚡ Instant Processing',
                     '🆓 Completely Free',
-                    '🚫 No Watermark',
-                    '🌐 No Install Required',
-                    '♾️ Unlimited Compressions',
+                    '🚫 No Watermarks',
+                    '🌐 Browser Based',
+                    '♾️ Unlimited Runs',
                   ].map((badge) => (
                     <TrustBadge key={badge} label={badge} />
                   ))}
                 </section>
 
-                {/* How It Works */}
-                <section aria-labelledby="how-it-works-heading" className="mt-16 w-full max-w-3xl">
-                  <h2
-                    id="how-it-works-heading"
-                    className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-8"
-                  >
+                {/* Content Section: How It Works */}
+                <section aria-labelledby="how-it-works-heading" className="mt-20 w-full max-w-3xl border-t border-slate-100 pt-16">
+                  <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
                     How to Compress a PDF — 3 Easy Steps
                   </h2>
                   <ol className="grid grid-cols-1 md:grid-cols-3 gap-6" role="list">
                     {[
-                      { step: '1', title: 'Upload Your PDF',         desc: 'Click "Select PDF File" or drag and drop your PDF into the upload area.',                                         icon: '📤' },
-                      { step: '2', title: 'Choose Compression',      desc: 'Select Extreme, Recommended, or Less compression to balance file size vs. quality.',                               icon: '⚙️' },
-                      { step: '3', title: 'Download Compressed PDF', desc: 'Click Compress PDF Now and download your smaller file. Your PDF is deleted from our servers immediately after.', icon: '📥' },
+                      { step: '1', title: 'Upload File', desc: 'Click "Select PDF File" or drag and drop your document target directly into the wrapper box.', icon: '📤' },
+                      { step: '2', title: 'Pick Level', desc: 'Select Extreme, Recommended, or Less profile matching your conversion goals.', icon: '⚙️' },
+                      { step: '3', title: 'Download', desc: 'Execute processing logic, grab your lightweight document, and go. File data wipes instantly.', icon: '📥' },
                     ].map(({ step, title, desc, icon }) => (
-                      <li key={step} className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center">
-                        <div className="text-4xl mb-3" aria-hidden="true">{icon}</div>
-                        <h3 className="font-black text-gray-900 text-lg mb-2">Step {step}: {title}</h3>
-                        <p className="text-gray-500 text-sm">{desc}</p>
+                      <li key={step} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100/80 text-center">
+                        <div className="text-3xl mb-3" aria-hidden="true">{icon}</div>
+                        <h3 className="font-bold text-slate-900 text-base mb-1.5">Step {step}: {title}</h3>
+                        <p className="text-slate-400 text-xs leading-relaxed">{desc}</p>
                       </li>
                     ))}
                   </ol>
                 </section>
 
-                {/* Why FreePDFConvert */}
-                <section aria-labelledby="why-heading" className="mt-16 w-full max-w-3xl">
-                  <h2
-                    id="why-heading"
-                    className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-8"
-                  >
+                {/* Content Section: Value Proposition Grid */}
+                <section aria-labelledby="why-heading" className="mt-20 w-full max-w-3xl">
+                  <h2 id="why-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
                     Why Use FreePDFConvert to Compress PDF?
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {[
-                      { title: 'Up to 90% Size Reduction',   desc: 'Our smart compression engine reduces PDF file size dramatically while preserving readability and structure.' },
-                      { title: 'Three Compression Levels',   desc: 'Choose Extreme for the smallest file, Recommended for the best balance, or Less for near-original quality.' },
-                      { title: 'No Sign-Up Required',        desc: 'Compress PDFs instantly without creating an account or providing your email — just upload and go.' },
-                      { title: 'No Watermark Added',         desc: 'Your compressed PDF is completely clean. No logos, no branding, no watermarks — ever.' },
-                      { title: 'Files Deleted Immediately',  desc: 'Your PDF is permanently deleted from our servers right after compression. 100% private and secure.' },
-                      { title: 'Works on All Devices',       desc: 'Compress PDFs on Windows, Mac, iPhone, or Android — any browser, any device, no installation needed.' },
+                      { title: 'Up to 90% Size Reduction', desc: 'Our smart compression engine reduces PDF file size dramatically while preserving readability and structure.' },
+                      { title: 'Three Compression Levels', desc: 'Choose Extreme for the smallest file, Recommended for the best balance, or Less for near-original quality.' },
+                      { title: 'No Sign-Up Required', desc: 'Compress PDFs instantly without creating an account or providing your email — just upload and go.' },
+                      { title: 'No Watermark Added', desc: 'Your compressed PDF is completely clean. No logos, no branding, no watermarks — ever.' },
+                      { title: 'Files Deleted Immediately', desc: 'Your PDF is permanently deleted from our servers right after compression. 100% private and secure.' },
+                      { title: 'Works on All Devices', desc: 'Compress PDFs on Windows, Mac, iPhone, or Android — any browser, any device, no installation needed.' },
                     ].map((f) => (
                       <FeatureCard key={f.title} {...f} />
                     ))}
                   </div>
                 </section>
 
-                {/* Compression Levels Explained */}
-                <section aria-labelledby="levels-heading" className="mt-16 w-full max-w-3xl">
-                  <h2
-                    id="levels-heading"
-                    className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-8"
-                  >
-                    Compression Levels Explained
+                {/* Content Section: Profiles Explained */}
+                <section aria-labelledby="levels-heading" className="mt-20 w-full max-w-3xl">
+                  <h2 id="levels-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
+                    Compression Profiles Explained
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {[
-                      { icon: '⚡', title: 'Extreme',     desc: 'Maximum size reduction. Best for email attachments, web uploads, or anywhere file size is critical. Some image quality reduction.' },
-                      { icon: '✅', title: 'Recommended', desc: 'The ideal balance for most users. Noticeably smaller file with minimal quality loss. Best for sharing documents professionally.' },
-                      { icon: '🎯', title: 'Less',        desc: 'Minimal compression with near-original quality. Best for archiving or when you need the highest quality preserved.' },
+                      { icon: '⚡', title: 'Extreme', desc: 'Maximum file size reduction. Best for restrictive email limits. Some image content quality drops.' },
+                      { icon: '✨', title: 'Recommended', desc: 'Ideal standard profile. Noticeably smaller footprint with robust preservation of structural details.' },
+                      { icon: '🎯', title: 'Less', desc: 'Minimal alteration footprint. Optimized for heavy vector archives and clean digital asset retention.' },
                     ].map(({ icon, title, desc }) => (
-                      <div key={title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-center">
-                        <div className="text-3xl mb-3" aria-hidden="true">{icon}</div>
-                        <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
-                        <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                      <div key={title} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm text-center">
+                        <div className="text-2xl mb-2.5" aria-hidden="true">{icon}</div>
+                        <h3 className="font-bold text-slate-900 mb-1 text-sm">{title}</h3>
+                        <p className="text-slate-400 text-xs leading-relaxed">{desc}</p>
                       </div>
                     ))}
                   </div>
                 </section>
 
-                {/* FAQ — plain HTML, no microdata */}
-                <section aria-labelledby="faq-heading" className="mt-16 w-full max-w-3xl mb-8">
-                  <h2
-                    id="faq-heading"
-                    className="text-2xl md:text-3xl font-black text-gray-900 text-center mb-8"
-                  >
+                {/* Content Section: Plain HTML FAQs */}
+                <section aria-labelledby="faq-heading" className="mt-20 w-full max-w-3xl mb-6">
+                  <h2 id="faq-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
                     Frequently Asked Questions
                   </h2>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {FAQ_ITEMS.map(({ q, a }) => (
-                      <div key={q} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-                        <h3 className="font-bold text-gray-900 mb-2">{q}</h3>
-                        <p className="text-gray-500 text-sm leading-relaxed">{a}</p>
+                      <div key={q} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+                        <h3 className="font-bold text-slate-900 text-sm mb-1.5">{q}</h3>
+                        <p className="text-slate-500 text-xs leading-relaxed">{a}</p>
                       </div>
                     ))}
                   </div>
                 </section>
 
-                {/* SEO Content Block */}
-                <section
-                  aria-labelledby="seo-content-heading"
-                  className="mt-4 w-full max-w-3xl mb-12 bg-white rounded-3xl p-8 border border-gray-100 shadow-sm"
-                >
-                  <h2 id="seo-content-heading" className="text-xl font-black text-gray-900 mb-4">
+                {/* Editorial Copy Block */}
+                <section aria-labelledby="seo-content-heading" className="mt-12 w-full max-w-3xl mb-12 bg-white rounded-2xl p-6 md:p-8 border border-slate-100 shadow-sm">
+                  <h2 id="seo-content-heading" className="text-lg font-black text-slate-900 mb-3">
                     Compress PDF Online — Fast, Free & Secure
                   </h2>
-                  <div className="text-gray-500 text-sm space-y-3 leading-relaxed">
+                  <div className="text-slate-500 text-xs space-y-3 leading-relaxed">
                     <p>
-                      <strong className="text-gray-700">FreePDFConvert</strong> is the fastest way to{' '}
-                      <strong className="text-gray-700">compress PDF files online</strong>, completely free
+                      <strong className="text-slate-700">FreePDFConvert</strong> is the fastest way to{' '}
+                      <strong className="text-slate-700">compress PDF files online</strong>, completely free
                       and without registration. Whether you need to shrink a PDF for email, reduce a scanned
                       document, or minimize a presentation file, our{' '}
-                      <strong className="text-gray-700">PDF compressor</strong> handles it in seconds.
+                      <strong className="text-slate-700">PDF compressor</strong> handles it in seconds.
                     </p>
                     <p>
                       Unlike other tools, our{' '}
-                      <strong className="text-gray-700">free PDF size reducer</strong> gives you three
+                      <strong className="text-slate-700">free PDF size reducer</strong> gives you three
                       compression levels so you stay in control of the quality vs. size trade-off. The output
                       is completely watermark-free and ready to share or upload anywhere.
                     </p>
                     <p>
-                      Need to <strong className="text-gray-700">reduce PDF file size</strong> quickly? Upload
+                      Need to <strong className="text-slate-700">reduce PDF file size</strong> quickly? Upload
                       your file, choose your compression level, and download the result instantly. Your file is
                       deleted from our servers immediately after, making FreePDFConvert the most private{' '}
-                      <strong className="text-gray-700">online PDF compressor</strong> available.
+                      <strong className="text-slate-700">online PDF compressor</strong> available.
                     </p>
                   </div>
                 </section>
@@ -434,80 +421,72 @@ const CompressPdf = () => (
               </article>
             )}
 
-            {/* ── UPLOADING / PROCESSING ────────────────────────────────── */}
+            {/* ── LOADING / CONVERTING STATES ─────────────────────────────── */}
             {(status === 'uploading' || status === 'processing') && (
               <div
-                className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl border border-gray-50 text-center w-full max-w-lg animate-in zoom-in-95 duration-300"
+                className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100 text-center w-full max-w-md my-auto animate-in zoom-in-95 duration-200"
                 role="status"
                 aria-live="polite"
                 aria-label={status === 'uploading' ? 'Uploading your PDF' : 'Compressing your PDF'}
               >
-                <div className="relative mb-8 md:mb-12 flex justify-center items-center">
+                <div className="relative mb-8 flex justify-center items-center">
                   <Settings
-                    className="text-blue-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute"
+                    className="text-slate-100 animate-[spin_10s_linear_infinite] w-28 h-28 absolute"
                     strokeWidth={1}
                     aria-hidden="true"
                   />
-                  <div className="relative z-10 bg-blue-50 p-6 rounded-3xl animate-pulse">
+                  <div className="relative z-10 bg-rose-50 text-rose-600 p-5 rounded-2xl animate-pulse">
                     {status === 'uploading'
-                      ? <Upload className="text-blue-700 animate-bounce w-12 h-12" aria-hidden="true" />
-                      : <Loader2 className="text-blue-700 animate-spin w-12 h-12" aria-hidden="true" />
+                      ? <Upload className="animate-bounce w-10 h-10" aria-hidden="true" />
+                      : <Loader2 className="animate-spin w-10 h-10" aria-hidden="true" />
                     }
                   </div>
                 </div>
-                <h2 className="text-2xl font-black text-gray-800 mb-2 tracking-tight uppercase">
+                <h2 className="text-xl font-black text-slate-850 mb-1 tracking-tight uppercase">
                   {status === 'uploading' ? 'Uploading' : 'Compressing'}...
                 </h2>
-                <p className="text-gray-400 font-medium text-sm mb-8 truncate px-4" aria-label={`File: ${fileQueue[0]?.name}`}>
+                <p className="text-slate-400 font-medium text-xs mb-6 truncate px-4">
                   {fileQueue[0]?.name}
                 </p>
                 <div
-                  className="w-full bg-gray-100 h-3 rounded-full overflow-hidden shadow-inner"
+                  className="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner"
                   role="progressbar"
                   aria-valuemin={0}
                   aria-valuemax={100}
                   aria-valuenow={status === 'processing' ? 92 : 45}
-                  aria-label="Compression progress"
                 >
-                  <div className={`bg-rose-600 h-full transition-all duration-700 ease-out ${
-                    status === 'processing' ? 'w-[92%]' : 'w-[45%]'
-                  }`} />
+                  <div className="bg-rose-600 h-full transition-all duration-500 ease-out" style={{ width: status === 'processing' ? '92%' : '45%' }} />
                 </div>
               </div>
             )}
 
-            {/* ── COMPLETED ─────────────────────────────────────────────── */}
+            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
             {status === 'completed' && (
               <div
-                className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"
+                className="text-center w-full max-w-md my-auto animate-in fade-in slide-in-from-bottom-4 duration-400"
                 role="status"
                 aria-live="polite"
-                aria-label="Compression complete. Your PDF is ready to download."
               >
-                <div
-                  className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3 shadow-emerald-100"
-                  aria-hidden="true"
-                >
-                  <CheckCircle2 size={40} />
+                <div className="bg-emerald-500 text-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-100" aria-hidden="true">
+                  <CheckCircle2 size={32} />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight">
+                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">
                   Compressed!
                 </h2>
-                <p className="text-gray-500 mb-6">Your PDF has been compressed. Click below to download.</p>
-                <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex flex-col items-center gap-6">
+                <p className="text-slate-400 text-sm mb-6">Your optimized PDF generation sequence ended successfully.</p>
+                
+                <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center gap-4">
                   <button
                     onClick={handleDownload}
-                    className="bg-rose-600 hover:bg-rose-700 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl transition-all shadow-xl shadow-blue-200 hover:-translate-y-1 flex items-center justify-center gap-4"
-                    aria-label="Download your compressed PDF file"
+                    className="bg-rose-600 hover:bg-rose-700 text-white w-full py-4 text-base font-black rounded-xl transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2"
                   >
-                    <Download size={28} aria-hidden="true" /> DOWNLOAD COMPRESSED PDF
+                    <Download size={20} aria-hidden="true" /> DOWNLOAD COMPRESSED PDF
                   </button>
                   <button
                     onClick={reset}
-                    className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors"
-                    aria-label="Compress another PDF file"
+                    className="text-slate-400 hover:text-slate-600 font-bold text-xs tracking-wide transition-colors uppercase mt-1"
                   >
-                    Compress another file
+                    Compress Another File
                   </button>
                 </div>
               </div>
@@ -515,7 +494,7 @@ const CompressPdf = () => (
 
           </main>
 
-          <div className="mt-10 md:mt-20">
+          <div className="mt-auto">
             <Footer />
           </div>
         </div>

@@ -8,7 +8,15 @@ import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['pdf-to-text'];
-const COLOR = 'rose-600';
+
+// Fixed Tailwind compilation issue by providing explicit style primitives
+const COLOR_CLASSES = {
+  bg: 'bg-rose-600',
+  border: 'border-rose-600',
+  hoverBorder: 'hover:border-rose-500',
+  text: 'text-rose-600'
+};
+
 const BTN_TEXT = 'Select PDF File';
 const DL_TEXT = 'DOWNLOAD TEXT FILE';
 
@@ -141,7 +149,10 @@ const PdfToText = () => (
             <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
             <meta name="author" content="FreePDFConvert" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            
+            {/* Semantic Link Targets */}
             <link rel="canonical" href="https://freepdfconvert.io/pdf-to-text" />
+            <link rel="alternate" href="https://freepdfconvert.io/pdf-to-text" hrefLang="x-default" />
 
             {/* Open Graph */}
             <meta property="og:type" content="website" />
@@ -194,7 +205,6 @@ const PdfToText = () => (
                   <header className="text-center mb-8 md:mb-12">
                     <h1
                       className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight"
-                      itemProp="name"
                     >
                       PDF to Text Converter
                     </h1>
@@ -213,7 +223,7 @@ const PdfToText = () => (
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
                     className={`relative w-full max-w-2xl min-h-[280px] md:min-h-[350px] rounded-[2.5rem] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 md:p-8
-                      ${dragActive ? `border-${COLOR} scale-[1.02] bg-green-50` : 'border-gray-200 bg-white hover:border-green-300'}`}
+                      ${dragActive ? `${COLOR_CLASSES.border} scale-[1.02] bg-green-50` : `border-gray-200 bg-white ${COLOR_CLASSES.hoverBorder}`}`}
                     role="region"
                   >
                     <label
@@ -222,13 +232,13 @@ const PdfToText = () => (
                       aria-label="Select a PDF file to convert to text"
                     >
                       <div
-                        className={`bg-${COLOR} text-white p-4 md:p-6 rounded-2xl shadow-xl group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8`}
+                        className={`${COLOR_CLASSES.bg} text-white p-4 md:p-6 rounded-2xl shadow-xl group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8`}
                         aria-hidden="true"
                       >
                         <Plus size={32} strokeWidth={3} />
                       </div>
                       <div className="text-center space-y-4">
-                        <span className={`inline-block bg-${COLOR} text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg`}>
+                        <span className={`inline-block ${COLOR_CLASSES.bg} text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg`}>
                           {BTN_TEXT}
                         </span>
                         <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest">
@@ -257,7 +267,7 @@ const PdfToText = () => (
                       '🆓 Completely Free',
                       '📄 Supports Scanned PDFs',
                       '🌐 No Install Required',
-                      '♾️ No File Size Limit'
+                      '🌐 No File Size Limit'
                     ].map((badge) => (
                       <span
                         key={badge}
@@ -306,9 +316,9 @@ const PdfToText = () => (
                         <li
                           key={step}
                           className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center"
+                          itemProp="step"
                           itemScope
                           itemType="https://schema.org/HowToStep"
-                          itemProp="step"
                         >
                           <div className="text-4xl mb-3" aria-hidden="true">{icon}</div>
                           <meta itemProp="position" content={step} />
@@ -419,9 +429,9 @@ const PdfToText = () => (
                         <div
                           key={q}
                           className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm"
+                          itemProp="mainEntity"
                           itemScope
                           itemType="https://schema.org/Question"
-                          itemProp="mainEntity"
                         >
                           <h3
                             className="font-bold text-gray-900 mb-2"
@@ -430,9 +440,9 @@ const PdfToText = () => (
                             {q}
                           </h3>
                           <div
+                            itemProp="acceptedAnswer"
                             itemScope
                             itemType="https://schema.org/Answer"
-                            itemProp="acceptedAnswer"
                           >
                             <p className="text-gray-500 text-sm leading-relaxed" itemProp="text">{a}</p>
                           </div>
@@ -481,11 +491,13 @@ const PdfToText = () => (
                       className="text-green-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute"
                       strokeWidth={1}
                       aria-hidden="true"
-                    />
+                    >
+                      <title>Processing settings</title>
+                    </Settings>
                     <div className="relative z-10 bg-green-50 p-6 rounded-3xl animate-pulse">
                       {status === 'uploading'
-                        ? <Upload className={`text-${COLOR} animate-bounce w-12 h-12`} aria-hidden="true" />
-                        : <Loader2 className={`text-${COLOR} animate-spin w-12 h-12`} aria-hidden="true" />
+                        ? <Upload className={`${COLOR_CLASSES.text} animate-bounce w-12 h-12`} aria-hidden="true" />
+                        : <Loader2 className={`${COLOR_CLASSES.text} animate-spin w-12 h-12`} aria-hidden="true" />
                       }
                     </div>
                   </div>
@@ -504,7 +516,7 @@ const PdfToText = () => (
                     aria-label="Conversion progress"
                   >
                     <div
-                      className={`bg-${COLOR} h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
+                      className={`${COLOR_CLASSES.bg} h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
                     />
                   </div>
                 </div>
@@ -531,7 +543,7 @@ const PdfToText = () => (
                   <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
                     <button
                       onClick={handleDownload}
-                      className={`bg-${COLOR} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4 transition-transform`}
+                      className={`${COLOR_CLASSES.bg} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4 transition-transform`}
                       aria-label="Download your converted text file"
                     >
                       <Download size={28} aria-hidden="true" /> {DL_TEXT}

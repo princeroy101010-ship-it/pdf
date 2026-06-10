@@ -1,5 +1,12 @@
 'use client';
+// ============================================================
+// ✅ SEO NOTE:
+// Title/description/og/twitter/robots/canonical → handled in
+// [slug]/page.jsx via generateMetadata(). Do NOT add <title>
+// or <meta> tags here — 'use client' renders inside <body>.
+// ============================================================
 import React from 'react';
+import Script from 'next/script';
 import { Download, CheckCircle2, Upload, Loader2, Plus, Settings } from 'lucide-react';
 import Header from '../header';
 import Footer from '../footer';
@@ -7,9 +14,93 @@ import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['excel-to-pdf'];
-const COLOR = 'rose-600';          // ✅ Original color — bilkul same
 const BTN_TEXT = 'Select Excel File';
 const DL_TEXT = 'DOWNLOAD PDF';
+
+const FAQ_ITEMS = [
+  {
+    q: 'How do I convert Excel to PDF online for free?',
+    a: 'Upload your Excel spreadsheet (.xlsx or .xls) to FreePDFConvert. The tool automatically processes your files and structural cells, converting them into an optimized PDF document instantly without registration or watermarks.',
+  },
+  {
+    q: 'Will my Excel file formatting stay the same after PDF conversion?',
+    a: 'Yes. FreePDFConvert uses precision formatting algorithms to ensure that grids, tables, fonts, columns, and layout orientation match your original Excel workbook layout completely.',
+  },
+  {
+    q: 'Is it secure to upload my private business sheets here?',
+    a: 'Absolutely. All transmissions are protected with AES-256 bit banking-grade SSL data encryption pipelines. Uploaded Excel documents are permanently deleted from our servers within 2 hours.',
+  },
+  {
+    q: 'Can I convert large spreadsheets with multiple tabs?',
+    a: 'Yes. Our processing servers support large scale spreadsheet workbooks and render multiple active worksheet tabs cleanly into individual flowing PDF layout pages.',
+  }
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://freepdfconvert.io/excel-to-pdf',
+      url: 'https://freepdfconvert.io/excel-to-pdf',
+      name: 'Convert Excel to PDF Online Free – Workbooks to PDF | FreePDFConvert',
+      description: 'Convert Excel spreadsheets to PDF online for free. Convert XLS and XLSX grids to clean PDF documents with no watermark, no signup. Fast & secure.',
+      isPartOf: { '@id': 'https://freepdfconvert.io/#website' },
+      breadcrumb: { '@id': 'https://freepdfconvert.io/excel-to-pdf/#breadcrumb' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://freepdfconvert.io/excel-to-pdf/#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'Excel to PDF', item: 'https://freepdfconvert.io/excel-to-pdf' },
+      ],
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://freepdfconvert.io/excel-to-pdf/#software',
+      name: 'Excel to PDF Converter – FreePDFConvert',
+      url: 'https://freepdfconvert.io/excel-to-pdf',
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'All – Web Browser',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      featureList: [
+        'Convert XLSX to PDF free',
+        'Convert XLS to PDF online',
+        'Preserve table grid layout structural borders',
+        'No signup required',
+        'No watermark added'
+      ]
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://freepdfconvert.io/excel-to-pdf/#faq',
+      mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
+
+const TrustBadge = ({ label }) => (
+  <span className="bg-white border border-slate-100 rounded-xl px-4 py-2 shadow-sm text-sm text-slate-600 font-semibold tracking-wide">
+    {label}
+  </span>
+);
+
+const FeatureCard = ({ title, desc }) => (
+  <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex gap-4 items-start hover:shadow-md transition-shadow duration-300">
+    <div className="text-xl bg-rose-50 text-rose-600 p-2 rounded-xl flex items-center justify-center shrink-0" aria-hidden="true">
+      <CheckCircle2 size={20} />
+    </div>
+    <div>
+      <h3 className="font-bold text-slate-900 mb-1.5">{title}</h3>
+      <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+    </div>
+  </div>
+);
 
 const ExcelToPdf = () => (
   <BaseToolLogic config={config}>
@@ -18,69 +109,209 @@ const ExcelToPdf = () => (
         reset, handleDownload }) => {
       const seo = config.seo;
       return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
+          <Script
+            id="excel-to-pdf-jsonld"
+            type="application/ld+json"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
 
-          {/* ✅ SEO: Koi bhi <title>/<meta> nahi — [slug]/page.jsx handle karta hai */}
           <Header />
 
-          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
-
+          <main 
+            id="main-content"
+            className="flex-1 flex flex-col items-center justify-start pt-8 md:pt-12 px-4 md:px-6 w-full max-w-7xl mx-auto"
+            role="main"
+            aria-label="Excel to PDF Converter Tool"
+          >
+            {/* ── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
-              <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
-                <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">{seo.h1}</h1>
-                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">{seo.subtitle}</p>
+              <article className="w-full flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-500">
+                
+                <header className="text-center mb-8 md:mb-10 max-w-3xl mx-auto">
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+                    {seo?.h1 ?? 'Convert Excel to PDF Online Free'}
+                  </h1>
+                  <p className="text-base md:text-lg text-slate-500 font-medium leading-relaxed">
+                    {seo?.subtitle ?? 'Convert XLSX and XLS spreadsheets into perfectly structured PDF documents layout instantly.'}
+                  </p>
                 </header>
 
-                <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}
-                  className={`relative w-full max-w-2xl min-h-[280px] md:min-h-[350px] rounded-[2.5rem] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 md:p-8
-                    ${dragActive ? `border-${COLOR} scale-[1.02] bg-green-50` : 'border-gray-200 bg-white hover:border-green-300'}`}>
-                  <label className="group cursor-pointer flex flex-col items-center w-full">
-                    <div className={`bg-${COLOR} text-white p-4 md:p-6 rounded-2xl shadow-xl group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8`}>
-                      <Plus size={32} strokeWidth={3} />
+                <div className="w-full max-w-2xl bg-white rounded-3xl border border-slate-100 shadow-xl p-4 md:p-6 mb-12">
+                  <section aria-label="Upload your Excel sheet" className="w-full">
+                    <div
+                      onDragOver={handleDragOver}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
+                      className={`relative w-full min-h-[240px] md:min-h-[280px] rounded-2xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4
+                        ${dragActive ? 'border-rose-600 bg-rose-50/50 scale-[1.01]' : 'border-slate-200 bg-slate-50/50 hover:border-rose-400 hover:bg-white'}`}
+                      role="region"
+                    >
+                      <label
+                        className="group cursor-pointer flex flex-col items-center w-full py-4 select-none"
+                        aria-label="Select an Excel file to convert"
+                      >
+                        {fileQueue.length === 0 ? (
+                          <>
+                            <div className="bg-rose-600 text-white p-4 rounded-2xl shadow-lg shadow-rose-200 group-hover:scale-105 transition-transform duration-300 mb-4" aria-hidden="true">
+                              <Plus size={28} strokeWidth={2.5} />
+                            </div>
+                            <span className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3.5 rounded-xl text-base font-bold shadow-md active:scale-98 transition-all">
+                              {BTN_TEXT}
+                            </span>
+                            <p className="text-slate-400 font-bold text-xs uppercase tracking-widest mt-3">
+                              or drop file here
+                            </p>
+                          </>
+                        ) : (
+                          <div className="flex flex-col items-center w-full px-4">
+                            <p className="text-slate-700 font-bold text-sm bg-slate-100 px-4 py-2 rounded-lg max-w-full truncate mb-2">
+                              📎 {fileQueue[0]?.name}
+                            </p>
+                            <span className="text-rose-600 hover:text-rose-700 font-bold text-xs underline">
+                              Change Selected File
+                            </span>
+                          </div>
+                        )}
+                        <input type="file" className="hidden" onChange={handleFileChange} accept={acceptedFiles} />
+                      </label>
                     </div>
-                    <div className="text-center space-y-4">
-                      <span className={`inline-block bg-${COLOR} text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg`}>{BTN_TEXT}</span>
-                      <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest">or drop file here</p>
-                    </div>
-                    <input type="file" className="hidden" onChange={handleFileChange} accept={acceptedFiles} />
-                  </label>
+                  </section>
                 </div>
+
+                {/* Trust Badges Bar */}
+                <section aria-label="Key features" className="flex flex-wrap justify-center gap-3 max-w-4xl px-4">
+                  {[
+                    '🔒 100% Secure & Private',
+                    '⚡ Grid Preservation',
+                    '🆓 Completely Free',
+                    '🚫 No Watermarks',
+                    '🌐 Browser Based',
+                    '♾️ Unlimited Runs',
+                  ].map((badge) => (
+                    <TrustBadge key={badge} label={badge} />
+                  ))}
+                </section>
+
+                {/* Content Section: How It Works */}
+                <section aria-labelledby="how-it-works-heading" className="mt-20 w-full max-w-3xl border-t border-slate-100 pt-16">
+                  <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
+                    How to Convert Excel to PDF — 3 Simple Steps
+                  </h2>
+                  <ol className="grid grid-cols-1 md:grid-cols-3 gap-6" role="list">
+                    {[
+                      { step: '1', title: 'Upload Spreadsheet', desc: 'Click "Select Excel File" or drag and drop your XLS/XLSX sheet onto the interactive grid card drop zone.', icon: '📤' },
+                      { step: '2', title: 'Auto Convert', desc: 'Our automated server instantly parses workbook sheets, layouts, data formatting, and structural styles into high clarity PDF content structures.', icon: '⚙️' },
+                      { step: '3', title: 'Download Result', desc: 'Grab your new watermark-free document immediately. Files clear completely from all servers right after download.', icon: '📥' },
+                    ].map(({ step, title, desc, icon }) => (
+                      <li key={step} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100/80 text-center">
+                        <div className="text-3xl mb-3" aria-hidden="true">{icon}</div>
+                        <h3 className="font-bold text-slate-900 text-base mb-1.5">Step {step}: {title}</h3>
+                        <p className="text-slate-400 text-xs leading-relaxed">{desc}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+
+                {/* Content Section: Value Proposition Grid */}
+                <section aria-labelledby="why-heading" className="mt-20 w-full max-w-3xl">
+                  <h2 id="why-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
+                    Why Choose FreePDFConvert for Excel to PDF?
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      { title: 'High Fidelity Cell Grid Rendering', desc: 'Our layout preservation conversion script handles tabular alignments, formulas outputs text, charts borders, and structural cell dimensions without formatting drops.' },
+                      { title: 'XLS & XLSX Supported', desc: 'Seamlessly upload native spreadsheet formats from any Microsoft Excel version or alternate suite engines effortlessly.' },
+                      { title: 'No Registration Required', desc: 'Convert documents instantly without running profile verification setups, adding credentials info fields, or creating email data accounts.' },
+                      { title: 'Watermark Free Documents', desc: 'Every parsed document output remains clean and ready for institutional reporting workflows with zero site stamps added.' },
+                      { title: 'Full Private Infrastructure', desc: 'Your confidential ledger and accounts records data handles safely via secure temporary cache frameworks that clean completely in 2 hours.' },
+                      { title: 'Works Smooth Everywhere', desc: 'Operates identically inside any modern layout browser engine across desktop setups, tablets, Android, or iOS environments.' },
+                    ].map((f) => (
+                      <FeatureCard key={f.title} {...f} />
+                    ))}
+                  </div>
+                </section>
+
+                {/* Content Section: Plain HTML FAQs */}
+                <section aria-labelledby="faq-heading" className="mt-20 w-full max-w-3xl mb-6">
+                  <h2 id="faq-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
+                    Frequently Asked Questions
+                  </h2>
+                  <div className="space-y-3">
+                    {FAQ_ITEMS.map(({ q, a }) => (
+                      <div key={q} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+                        <h3 className="font-bold text-slate-900 text-sm mb-1.5">{q}</h3>
+                        <p className="text-slate-500 text-xs leading-relaxed">{a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Editorial Copy Block */}
+                <section aria-labelledby="seo-content-heading" className="mt-12 w-full max-w-3xl mb-12 bg-white rounded-2xl p-6 md:p-8 border border-slate-100 shadow-sm">
+                  <h2 id="seo-content-heading" className="text-lg font-black text-slate-900 mb-3">
+                    Convert Excel Spreadsheets to PDF Online — Secure and Precise
+                  </h2>
+                  <div className="text-slate-500 text-xs space-y-3 leading-relaxed">
+                    <p>
+                      Converting institutional ledger frameworks requires accuracy. <strong className="text-slate-700">FreePDFConvert</strong> leverages high performing structural formatting libraries to ensure your converted output reflects pristine alignment rules.
+                    </p>
+                    <p>
+                      Whether you are shipping tabular models, data tracking metrics, or summary charts layouts, our cloud-hosted processors parse your elements into high density portable data pages seamlessly.
+                    </p>
+                  </div>
+                </section>
+
               </article>
             )}
 
+            {/* ── LOADING STATE ────────────────────────────────────────────── */}
             {(status === 'uploading' || status === 'processing') && (
-              <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg">
+              <div 
+                className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-100 text-center w-full max-w-md my-auto animate-in zoom-in-95 duration-200"
+                role="status"
+                aria-live="polite"
+              >
                 <div className="relative mb-8 flex justify-center items-center">
-                  <Settings className="text-green-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute" strokeWidth={1} />
-                  <div className="relative z-10 bg-green-50 p-6 rounded-3xl animate-pulse">
-                    {status === 'uploading' ? <Upload className={`text-${COLOR} animate-bounce w-12 h-12`} /> : <Loader2 className={`text-${COLOR} animate-spin w-12 h-12`} />}
+                  <Settings className="text-slate-100 animate-[spin_10s_linear_infinite] w-28 h-28 absolute" strokeWidth={1} />
+                  <div className="relative z-10 bg-rose-50 text-rose-600 p-5 rounded-2xl animate-pulse">
+                    {status === 'uploading' ? <Upload className="animate-bounce w-10 h-10" /> : <Loader2 className="animate-spin w-10 h-10" />}
                   </div>
                 </div>
-                <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">{status === 'uploading' ? 'Uploading' : 'Converting'}...</h2>
-                <p className="text-gray-400 text-sm mb-8 truncate">{fileQueue[0]?.name}</p>
-                <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
-                  <div className={`bg-${COLOR} h-full transition-all duration-700 ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}></div>
+                <h2 className="text-xl font-black text-slate-850 mb-1 tracking-tight uppercase">
+                  {status === 'uploading' ? 'Uploading' : 'Converting'}...
+                </h2>
+                <p className="text-slate-400 font-medium text-xs mb-6 truncate px-4">{fileQueue[0]?.name}</p>
+                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner">
+                  <div className="bg-rose-600 h-full transition-all duration-500 ease-out" style={{ width: status === 'processing' ? '92%' : '45%' }}></div>
                 </div>
               </div>
             )}
 
+            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
             {status === 'completed' && (
-              <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
-                <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3"><CheckCircle2 size={40} /></div>
-                {/* ✅ SEO Fix only: h1 → h2 */}
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Success!</h2>
-                <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl flex flex-col items-center gap-6">
-                  <button onClick={handleDownload} className={`bg-${COLOR} text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl shadow-xl hover:-translate-y-1 flex items-center justify-center gap-4`}>
-                    <Download size={28} /> {DL_TEXT}
+              <div 
+                className="text-center w-full max-w-md my-auto animate-in fade-in slide-in-from-bottom-4 duration-400"
+                role="status"
+                aria-live="polite"
+              >
+                <div className="bg-emerald-500 text-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-100"><CheckCircle2 size={32} /></div>
+                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Success!</h2>
+                <p className="text-slate-400 text-sm mb-6">Your Excel cell framework converted to premium PDF cleanly.</p>
+                
+                <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center gap-4">
+                  <button onClick={handleDownload} className="bg-rose-600 hover:bg-rose-700 text-white w-full py-4 text-base font-black rounded-xl transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <Download size={20} /> {DL_TEXT}
                   </button>
-                  <button onClick={reset} className="text-gray-400 hover:text-gray-600 font-semibold text-sm">Convert another file</button>
+                  <button onClick={reset} className="text-slate-400 hover:text-slate-600 font-bold text-xs tracking-wide transition-colors uppercase mt-1">Convert another file</button>
                 </div>
               </div>
             )}
 
           </main>
-          <div className="mt-10 md:mt-20"><Footer /></div>
+          
+          <div className="mt-auto"><Footer /></div>
         </div>
       );
     }}

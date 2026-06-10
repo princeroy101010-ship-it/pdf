@@ -4,48 +4,27 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Link from 'next/link';
 
-// ─── SEO RULES APPLIED ───────────────────────────────────────────────────────
-// Title:        50–60 chars ✅ (was 72 chars — truncated in SERPs)
-// Description:  155–160 chars ✅ (was 175 chars — truncated in SERPs)
-// H1:           One per page, primary keyword first ✅
-// H2:           Section headings only ✅ (was also used on every card — fixed)
-// H3:           Card titles ✅ (TermCard now renders H3, not H2)
-// Text/HTML:    Added rich body content to fix 0.03 ratio → target 0.25+ ✅
-// Schema:       Added datePublished, updated dateModified to today ✅
-// OG images:    Changed to absolute URLs ✅ (relative paths break sharing)
-// Internal links: Added links to tool pages for crawl depth ✅
-// <header> tag: Replaced with <div> — <header> inside <main> is invalid ✅
-// ─────────────────────────────────────────────────────────────────────────────
-
+// ─── SEO METADATA (Next.js App Router Format) ──────────────────────────────────
 export const metadata = {
-  // ✅ Title: 57 characters — within 50–60 char Google display limit
   title: "Terms of Service Free PDF Converter",
-
-  // ✅ Description: 158 characters — within 155–160 char optimal range
   description:
     "FreePDFConvert Terms of Service: usage rights, prohibited content, liability limits for our free online PDF tools. Clear, fair, and easy to understand.",
-
   keywords:
     "freepdfconvert terms of service, pdf converter terms and conditions, free pdf tool legal agreement, pdf converter usage rights, freepdfconvert legal, online pdf converter policy, pdf converter acceptable use, freepdfconvert disclaimer, pdf tool terms",
-
   alternates: {
     canonical: "https://freepdfconvert.io/terms-of-service",
     languages: {
       "en-US": "https://freepdfconvert.io/terms-of-service",
     },
   },
-
   openGraph: {
-    // ✅ OG title — slightly longer is fine (not SERP-truncated)
     title: "Terms of Service FreePDFConvert | Free PDF Tools Legal Agreement",
-    // ✅ OG description: 124 characters
     description:
       "Usage rights, prohibited content, and liability terms for FreePDFConvert free PDF tools. Clear, fair, and easy to understand.",
     url: "https://freepdfconvert.io/terms-of-service",
     type: "website",
     images: [
       {
-        // ✅ Absolute URL — relative paths break OG sharing on external platforms
         url: "https://freepdfconvert.io/og-image.png",
         width: 1200,
         height: 630,
@@ -55,30 +34,29 @@ export const metadata = {
     locale: "en_US",
     siteName: "FreePDFConvert",
   },
-
   twitter: {
     card: "summary_large_image",
-    // ✅ Twitter title: 54 characters
     title: "Terms of Service Free PDF Converter | FreePDFConvert",
-    // ✅ Twitter description: 113 characters
     description:
       "Read our terms before using FreePDFConvert. Free PDF tools with clear, fair usage policies. No hidden clauses.",
-    // ✅ Absolute URL
     images: ["https://freepdfconvert.io/og-image.png"],
     site: "@freepdfconvert",
   },
-
   robots: {
     index: true,
     follow: true,
-    "max-snippet": -1,
-    "max-image-preview": "large",
-    "max-video-preview": -1,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
-// ─── JSON-LD: WebPage Schema ──────────────────────────────────────────────────
-// ✅ Added datePublished (was missing) + updated dateModified to today
+// ─── JSON-LD SCHEMAS ─────────────────────────────────────────────────────────
 const schemaWebPage = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -101,11 +79,10 @@ const schemaWebPage = {
       url: "https://freepdfconvert.io/logo.png",
     },
   },
-  datePublished: "2025-01-01", // ✅ Added — was missing before
-  dateModified: "2026-06-09",  // ✅ Updated to today
+  datePublished: "2025-01-01",
+  dateModified: "2026-06-10",
 };
 
-// ─── JSON-LD: FAQPage Schema ──────────────────────────────────────────────────
 const schemaFAQ = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -153,7 +130,6 @@ const schemaFAQ = {
   ],
 };
 
-// ─── JSON-LD: BreadcrumbList ──────────────────────────────────────────────────
 const schemaBreadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -173,16 +149,13 @@ const schemaBreadcrumb = {
   ],
 };
 
-// ─── REUSABLE CARD ────────────────────────────────────────────────────────────
-// ✅ Changed H2 → H3 inside card
-// H2 is reserved for section headings. Card titles are sub-sections = H3.
+// ─── REUSABLE CARD COMPONENT ──────────────────────────────────────────────────
 const TermCard = ({ icon: Icon, title, children }) => (
   <div className="p-8 bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all mb-8">
     <div className="flex items-center gap-4 mb-6">
       <div className="bg-rose-50 p-3 rounded-xl text-rose-600">
         <Icon size={24} />
       </div>
-      {/* ✅ H3 — not H2. Cards are sub-sections, not top-level sections. */}
       <h3 className="text-2xl font-black text-gray-800 tracking-tight">{title}</h3>
     </div>
     <div className="text-gray-500 font-medium leading-relaxed space-y-4 text-sm md:text-base">
@@ -191,12 +164,12 @@ const TermCard = ({ icon: Icon, title, children }) => (
   </div>
 );
 
-// ─── COMPONENT ───────────────────────────────────────────────────────────────
+// ─── MAIN COMPONENT ──────────────────────────────────────────────────────────
 const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-[#f8f9fa] flex flex-col">
 
-      {/* ─── JSON-LD Structured Data ───────────────────────────────────────── */}
+      {/* Structured Data Script Wrappers */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaWebPage) }}
@@ -212,18 +185,8 @@ const TermsOfService = () => {
 
       <Header />
 
-      {/*
-        ✅ Changed <header> to <div>
-        Using a native <header> HTML element here is a semantic conflict:
-        - The page already has a <Header /> component (site header)
-        - A second <header> inside the page body confuses screen readers
-          and violates HTML5 landmark semantics
-        - Google may mis-identify it as a duplicate header region
-      */}
       <div className="bg-white py-20 px-6 text-center">
         <div className="max-w-4xl mx-auto">
-
-          {/* ✅ Semantic breadcrumb */}
           <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-6">
             <Link href="/" className="hover:text-rose-600">Home</Link>
             <span className="mx-2" aria-hidden="true">/</span>
@@ -234,7 +197,6 @@ const TermsOfService = () => {
             <Scale size={16} aria-hidden="true" /> Legal Agreement — Last Updated June 2026
           </div>
 
-          {/* ✅ H1: One per page */}
           <h1 className="text-5xl font-black text-gray-900 mb-4 tracking-tight">
             Terms of <span className="text-rose-600">Service</span>
           </h1>
@@ -247,8 +209,7 @@ const TermsOfService = () => {
 
       <main className="flex-1 max-w-4xl mx-auto px-6 py-16 w-full">
 
-        {/* ─── ACCEPTANCE BANNER ────────────────────────────────────────────── */}
-        {/* ✅ H2: First real section heading on the page */}
+        {/* Acceptance Intro */}
         <div className="bg-gray-900 rounded-[2.5rem] p-10 mb-12 text-white relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 p-8 opacity-10" aria-hidden="true">
             <Scale size={120} />
@@ -264,8 +225,7 @@ const TermsOfService = () => {
           </p>
         </div>
 
-        {/* ─── TERM CARDS ───────────────────────────────────────────────────── */}
-        {/* ✅ All card titles now render as H3 (via updated TermCard component) */}
+        {/* System Policies */}
         <TermCard icon={ShieldAlert} title="1. Usage License">
           <p>
             We grant you a personal, non-exclusive, non-transferable license to use
@@ -315,15 +275,7 @@ const TermsOfService = () => {
           </p>
         </TermCard>
 
-        {/* ─── SEO CONTENT: Rich body text to fix low Text-HTML ratio ──────── */}
-        {/*
-          WHY THIS SECTION EXISTS:
-          SEMrush flagged a 0.03 text-to-HTML ratio.
-          Legal pages are naturally thin — adding this topical, informational
-          content raises the ratio AND builds trust signals for E-E-A-T.
-        */}
-
-        {/* ✅ H2: Informational section targeting "pdf converter safe to use" queries */}
+        {/* Informational SEO Explanatory Content Block */}
         <div className="mt-6 mb-10 bg-white rounded-[2rem] border border-gray-100 shadow-sm p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Using FreePDFConvert Responsibly
@@ -350,7 +302,6 @@ const TermsOfService = () => {
           </p>
         </div>
 
-        {/* ✅ H2: Privacy link section — E-E-A-T trust + internal linking */}
         <div className="mb-10 bg-white rounded-[2rem] border border-gray-100 shadow-sm p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Your Privacy and Data Rights
@@ -376,8 +327,7 @@ const TermsOfService = () => {
           </p>
         </div>
 
-        {/* ─── FAQ SECTION ──────────────────────────────────────────────────── */}
-        {/* ✅ H2: FAQ — targets featured snippet + AI Overview positions */}
+        {/* FAQs Accordion Grid */}
         <div className="mt-8 mb-12">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Terms of Service Frequently Asked Questions
@@ -388,10 +338,10 @@ const TermsOfService = () => {
                 key={faq.name}
                 className="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 group"
               >
-                <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+                <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center select-none">
                   {faq.name}
                   <span
-                    className="text-gray-400 group-open:rotate-180 transition-transform"
+                    className="text-gray-400 group-open:rotate-180 transition-transform text-xs"
                     aria-hidden="true"
                   >
                     ▼
@@ -405,8 +355,7 @@ const TermsOfService = () => {
           </div>
         </div>
 
-        {/* ─── INTERNAL LINKS CTA ───────────────────────────────────────────── */}
-        {/* ✅ Internal links to tool pages — boosts crawl depth + anchor text signals */}
+        {/* Internal Navigation Routing Hub */}
         <div className="bg-rose-50 rounded-3xl p-8 border border-rose-100 text-center mb-10">
           <h2 className="text-xl font-bold text-gray-800 mb-3">
             Start Converting PDFs — Free &amp; Secure
@@ -443,7 +392,7 @@ const TermsOfService = () => {
           </div>
         </div>
 
-        {/* ─── CONTACT ──────────────────────────────────────────────────────── */}
+        {/* Legal Reporting Contact Anchor */}
         <div className="text-center py-10 border-t border-gray-200">
           <p className="text-gray-400 text-sm font-bold uppercase tracking-widest">
             Questions? Contact us at{' '}

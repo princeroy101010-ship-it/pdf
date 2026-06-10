@@ -1,18 +1,14 @@
 'use client';
-// ============================================================
-// ✅ SEO NOTE:
-// Title/description/og/twitter/robots/canonical → handled in
-// [slug]/page.jsx via generateMetadata(). Do NOT use <Head>
-// here — 'use client' renders inside <body>, meta tags placed
-// here are ignored by Google completely.
+// ============================================================================
+// ✅ SEO ARCHITECTURE:
+// Title/description/og/twitter/robots/canonical → handled in [slug]/page.jsx 
+// via generateMetadata(). Do NOT use <Head> here — 'use client' renders inside 
+// <body>, meta tags placed here are ignored by Google entirely.
 //
-// ✅ FAQ FIX:
-// Previously: faqSchema had 5 questions, rendered HTML FAQ had
-// 5 DIFFERENT questions with different wording → Google flagged
-// 2 invalid items (mismatched schema vs visible content).
-// Fix: single FAQ_ITEMS array drives both JSON-LD and HTML.
-// No microdata (itemScope/itemProp) used anywhere.
-// ============================================================
+// ✅ MATCHING SCHEMA & CONTENT VALIDATION:
+// A single FAQ_ITEMS array drives both JSON-LD and HTML view. No microdata 
+// (itemScope/itemProp) used anywhere to prevent structural indexing pollution.
+// ============================================================================
 import React from 'react';
 import Script from 'next/script';
 import {
@@ -26,8 +22,7 @@ import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['jpg-to-pdf'];
 
-// ─── Single source of truth for FAQ ──────────────────────────────────────────
-// ✅ Used in BOTH JSON-LD schema and rendered HTML — they always match exactly.
+// ─── Single Source Of Truth For Frequently Asked Questions ──────────────────
 const FAQ_ITEMS = [
   {
     q: 'How do I convert a JPG to PDF for free?',
@@ -51,7 +46,7 @@ const FAQ_ITEMS = [
   },
 ];
 
-// ─── JSON-LD — single @graph, all schemas in one block ───────────────────────
+// ─── Static JSON-LD Graph Structure (Declared Outside Render Loop) ──────────
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -67,13 +62,13 @@ const jsonLd = {
       breadcrumb: { '@id': 'https://freepdfconvert.io/jpg-to-pdf/#breadcrumb' },
     },
     {
-  '@type': 'BreadcrumbList',
-  '@id': 'https://freepdfconvert.io/jpg-to-pdf/#breadcrumb',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
-    { '@type': 'ListItem', position: 2, name: 'JPG to PDF', item: 'https://freepdfconvert.io/jpg-to-pdf' },
-  ],
-},
+      '@type': 'BreadcrumbList',
+      '@id': 'https://freepdfconvert.io/jpg-to-pdf/#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://freepdfconvert.io/' },
+        { '@type': 'ListItem', position: 2, name: 'JPG to PDF', item: 'https://freepdfconvert.io/jpg-to-pdf' },
+      ],
+    },
     {
       '@type': 'SoftwareApplication',
       '@id': 'https://freepdfconvert.io/jpg-to-pdf/#software',
@@ -126,7 +121,6 @@ const jsonLd = {
         },
       ],
     },
-    // ✅ FAQPage — built from FAQ_ITEMS, exactly matches rendered HTML below
     {
       '@type': 'FAQPage',
       '@id': 'https://freepdfconvert.io/jpg-to-pdf/#faq',
@@ -139,7 +133,7 @@ const jsonLd = {
   ],
 };
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// ─── Component Blueprint ────────────────────────────────────────────────────
 const JpgToPdf = () => (
   <BaseToolLogic config={config}>
     {({
@@ -149,7 +143,7 @@ const JpgToPdf = () => (
     }) => (
       <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-        {/* ✅ Single JSON-LD block — no <Head>, no microdata */}
+        {/* ✅ Single Compiled Static JSON-LD Resource Block */}
         <Script
           id="jpg-to-pdf-jsonld"
           type="application/ld+json"
@@ -166,11 +160,11 @@ const JpgToPdf = () => (
           aria-label="JPG to PDF Converter Tool"
         >
 
-          {/* ── IDLE ──────────────────────────────────────────────────── */}
+          {/* ── STATUS: IDLE ──────────────────────────────────────────────── */}
           {status === 'idle' && (
             <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
-              {/* Hero */}
+              {/* Hero Banner Area */}
               <header className="text-center mb-8 md:mb-12">
                 <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
                   Free <span className="text-rose-600">JPG to PDF</span> Converter Online
@@ -181,7 +175,7 @@ const JpgToPdf = () => (
                 </p>
               </header>
 
-              {/* Upload Zone */}
+              {/* Secure Upload Boundary dropzone */}
               <section
                 aria-label="Upload your JPG file"
                 onDragOver={handleDragOver}
@@ -216,12 +210,13 @@ const JpgToPdf = () => (
                     className="hidden"
                     onChange={handleFileChange}
                     accept={acceptedFiles}
+                    multiple={false}
                     aria-label="Upload JPG image to convert to PDF"
                   />
                 </label>
               </section>
 
-              {/* Trust Badges */}
+              {/* Structural Value Verification Metrics */}
               <section
                 aria-label="Key features"
                 className="mt-8 flex flex-wrap justify-center gap-3 md:gap-5"
@@ -243,7 +238,7 @@ const JpgToPdf = () => (
                 ))}
               </section>
 
-              {/* Feature Cards */}
+              {/* Context Metric Features */}
               <section
                 aria-label="Tool features"
                 className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full"
@@ -273,7 +268,7 @@ const JpgToPdf = () => (
                 ))}
               </section>
 
-              {/* How It Works */}
+              {/* Execution Steps Description Node */}
               <section
                 aria-labelledby="how-it-works-heading"
                 className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6"
@@ -314,8 +309,7 @@ const JpgToPdf = () => (
                 </ol>
               </section>
 
-              {/* FAQ — plain HTML, no microdata, driven by FAQ_ITEMS */}
-              {/* ✅ Questions here match JSON-LD above exactly */}
+              {/* Document Textual Validation FAQs */}
               <section
                 aria-labelledby="faq-heading"
                 className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16"
@@ -339,7 +333,7 @@ const JpgToPdf = () => (
             </article>
           )}
 
-          {/* ── UPLOADING / PROCESSING ──────────────────────────────────── */}
+          {/* ── STATUS: UPLOADING / PROCESSING ────────────────────────────── */}
           {(status === 'uploading' || status === 'processing') && (
             <div
               className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg"
@@ -386,7 +380,7 @@ const JpgToPdf = () => (
             </div>
           )}
 
-          {/* ── COMPLETED ──────────────────────────────────────────────── */}
+          {/* ── STATUS: COMPLETED ─────────────────────────────────────────── */}
           {status === 'completed' && (
             <div
               className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"

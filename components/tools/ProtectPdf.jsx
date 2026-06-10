@@ -117,7 +117,7 @@ const ProtectPdf = () => (
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
         startProcessing, reset, handleDownload }) => {
 
-      const seo = config.seo;
+      const targetSlug = config?.slug || 'protect-pdf';
 
       return (
         <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
@@ -128,8 +128,8 @@ const ProtectPdf = () => (
             <meta name="description" content="Protect PDF with password free online. Add strong AES encryption to any PDF instantly. No signup, no watermark, 100% secure. Best free PDF password protector." />
             <meta name="keywords" content="protect pdf, protect pdf with password, pdf password protection, encrypt pdf online free, password protect pdf, lock pdf online, add password to pdf, secure pdf online free" />
 
-            <link rel="canonical" href={`https://freepdfconvert.io/${config.slug}`} />
-            <link rel="alternate" hreflang="en" href={`https://freepdfconvert.io/${config.slug}`} />
+            <link rel="canonical" href={`https://freepdfconvert.io/${targetSlug}`} />
+            <link rel="alternate" hreflang="en" href={`https://freepdfconvert.io/${targetSlug}`} />
 
             <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
             <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -137,7 +137,7 @@ const ProtectPdf = () => (
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Protect PDF with Password Free Online – PDF Encryption No Signup | FreePDFConvert" />
             <meta property="og:description" content="Add password protection to any PDF free online. Strong AES encryption. No signup, no watermark." />
-            <meta property="og:url" content={`https://freepdfconvert.io/${config.slug}`} />
+            <meta property="og:url" content={`https://freepdfconvert.io/${targetSlug}`} />
             <meta property="og:site_name" content="FreePDFConvert" />
             <meta property="og:image" content="https://freepdfconvert.io/og-image.png" />
             <meta property="og:image:width" content="1200" />
@@ -151,16 +151,16 @@ const ProtectPdf = () => (
             <meta name="twitter:description" content="Add password encryption to any PDF free. No signup, no watermark. Instant download." />
             <meta name="twitter:image" content="https://freepdfconvert.io/og-image.png" />
 
-            <script type="application/ld+json">{JSON.stringify(toolSchema)}</script>
-            <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-            <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
           </Head>
 
           <Header />
 
           <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full">
 
-            {/* ── IDLE ─────────────────────────────────────────────────────── */}
+            {/* ── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
               <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
@@ -187,7 +187,7 @@ const ProtectPdf = () => (
                       </div>
                       <button
                         onClick={reset}
-                        className="text-gray-300 hover:text-rose-600 transition-colors"
+                        className="text-gray-300 hover:text-rose-600 transition-colors focus:outline-none"
                         aria-label="Remove selected file"
                       >
                         <X size={18} />
@@ -210,7 +210,7 @@ const ProtectPdf = () => (
                         />
                         <button
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-rose-600"
+                          className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-rose-600 focus:outline-none"
                           aria-label={showPassword ? 'Hide password' : 'Show password'}
                         >
                           {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
@@ -219,7 +219,7 @@ const ProtectPdf = () => (
                       <button
                         onClick={() => startProcessing()}
                         disabled={!password}
-                        className="w-full bg-rose-600 disabled:bg-gray-200 disabled:cursor-not-allowed text-white py-4 md:py-5 rounded-2xl text-lg md:text-xl font-black shadow-xl shadow-rose-100 hover:bg-rose-700 transition-all active:scale-95 flex items-center justify-center gap-3"
+                        className="w-full bg-rose-600 disabled:bg-gray-200 disabled:cursor-not-allowed text-white py-4 md:py-5 rounded-2xl text-lg md:text-xl font-black shadow-xl shadow-rose-100 hover:bg-rose-700 transition-all active:scale-95 flex items-center justify-center gap-3 focus:outline-none"
                         aria-label="Encrypt and protect PDF with password"
                       >
                         <ShieldCheck size={24} aria-hidden="true" /> PROTECT PDF NOW
@@ -236,20 +236,22 @@ const ProtectPdf = () => (
                     onDrop={handleDrop}
                     className={`relative w-full max-w-2xl min-h-[280px] md:min-h-[350px] rounded-[2.5rem] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 md:p-8
                       ${dragActive ? 'border-rose-600 bg-rose-50 scale-[1.02]' : 'border-gray-200 bg-white hover:border-rose-400'}`}
+                    role="region"
+                    aria-label="PDF dropzone protective logic configuration mapping handler"
                   >
-                    <label className="group cursor-pointer flex flex-col items-center w-full">
+                    <label className="group cursor-pointer flex flex-col items-center w-full focus-within:outline-none">
                       <div className="bg-rose-600 text-white p-4 md:p-6 rounded-2xl shadow-xl shadow-rose-200 group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8">
                         <Plus size={32} strokeWidth={3} />
                       </div>
                       <div className="text-center space-y-4">
-                        <span className="inline-block bg-rose-600 hover:bg-rose-700 text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg active:scale-95">
+                        <span className="inline-block bg-rose-600 hover:bg-rose-700 text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg transition-all transform group-hover:shadow-2xl">
                           Select PDF to Protect
                         </span>
                         <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest block">or drop PDF file here</p>
                       </div>
                       <input
                         type="file"
-                        className="hidden"
+                        className="sr-only"
                         onChange={handleFileChange}
                         accept={acceptedFiles}
                         aria-label="Upload PDF file to protect with password"
@@ -295,49 +297,40 @@ const ProtectPdf = () => (
                   </ol>
                 </section>
 
-                {/* FAQ Section */}
+                {/* FAQ Section Accordions */}
                 <section className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16">
                   <h2 className="text-2xl font-black text-gray-900 mb-8">
                     Frequently Asked Questions
                   </h2>
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">How do I protect a PDF with a password for free?</h3>
-                      <p className="text-gray-500 text-sm">Upload your PDF above, enter your password, and click Protect PDF Now. Your encrypted PDF will be ready to download in seconds with no signup required.</p>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">What type of encryption is used?</h3>
-                      <p className="text-gray-500 text-sm">FreePDFConvert uses strong AES encryption to lock your PDF. This is the same encryption standard used by banks and governments to protect sensitive data.</p>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">Can someone open the PDF without the password?</h3>
-                      <p className="text-gray-500 text-sm">No. Once your PDF is password-protected, it cannot be opened or read by anyone who does not have the exact password you set.</p>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">Is the protected PDF compatible with Adobe Reader?</h3>
-                      <p className="text-gray-500 text-sm">Yes. The protected PDF works with Adobe Acrobat Reader, Foxit PDF, Chrome's built-in viewer, and all standard PDF applications. Users will be prompted to enter the password when opening.</p>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-800 mb-1">Is my PDF and password safe?</h3>
-                      <p className="text-gray-500 text-sm">Yes. All transfers use SSL encryption. Your PDF file and the password you enter are never stored on our servers and are never shared with any third party.</p>
-                    </div>
+                  <div className="space-y-4">
+                    {faqSchema.mainEntity.map((faq) => (
+                      <details key={faq.name} className="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 group transition-colors hover:border-gray-200">
+                        <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center focus:outline-none">
+                          {faq.name}
+                          <span className="text-rose-600 font-black text-lg group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <p className="mt-3 text-gray-500 text-sm leading-relaxed">
+                          {faq.acceptedAnswer.text}
+                        </p>
+                      </details>
+                    ))}
                   </div>
                 </section>
 
               </article>
             )}
 
-            {/* ── PROCESSING ───────────────────────────────────────────────── */}
+            {/* ── PROCESSING STATE ────────────────────────────────────────── */}
             {(status === 'uploading' || status === 'processing') && (
               <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl border border-gray-50 text-center w-full max-w-lg animate-in zoom-in-95 duration-300">
                 <div className="relative mb-8 md:mb-12 flex justify-center items-center">
                   <Settings className="text-rose-100 animate-[spin_8s_linear_infinite] w-32 h-32 absolute" strokeWidth={1} />
                   <div className="relative z-10 bg-rose-50 p-6 rounded-3xl animate-pulse">
-                    <ShieldCheck className="text-rose-600 w-12 h-12 animate-pulse" />
+                    <ShieldCheck className="text-rose-600 w-12 h-12" />
                   </div>
                 </div>
                 <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">Encrypting...</h2>
-                <p className="text-gray-400 font-medium text-sm mb-8 truncate px-4">{fileQueue[0]?.name}</p>
+                <p className="text-gray-400 font-medium text-sm mb-8 truncate px-4 max-w-xs mx-auto">{fileQueue[0]?.name}</p>
                 <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden shadow-inner">
                   <div
                     className={`bg-rose-600 h-full transition-all duration-700 ease-out ${status === 'processing' ? 'w-[92%]' : 'w-[45%]'}`}
@@ -350,7 +343,7 @@ const ProtectPdf = () => (
               </div>
             )}
 
-            {/* ── COMPLETED ────────────────────────────────────────────────── */}
+            {/* ── COMPLETED STATE ─────────────────────────────────────────── */}
             {status === 'completed' && (
               <div className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500">
                 <div className="bg-emerald-500 text-white w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl rotate-3 shadow-emerald-100">
@@ -361,14 +354,14 @@ const ProtectPdf = () => (
                 <div className="bg-white p-5 md:p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex flex-col items-center gap-6">
                   <button
                     onClick={handleDownload}
-                    className="bg-rose-600 hover:bg-rose-700 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl transition-all shadow-xl shadow-rose-200 hover:-translate-y-1 flex items-center justify-center gap-4"
+                    className="bg-rose-600 hover:bg-rose-700 text-white w-full py-6 text-xl md:text-2xl font-black rounded-2xl transition-all shadow-xl shadow-rose-200 hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-4 focus:outline-none"
                     aria-label="Download password-protected PDF file"
                   >
                     <Download size={28} aria-hidden="true" /> DOWNLOAD PROTECTED PDF
                   </button>
                   <button
                     onClick={reset}
-                    className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors"
+                    className="text-gray-400 hover:text-gray-600 font-semibold text-sm transition-colors focus:outline-none"
                   >
                     Protect another file
                   </button>
