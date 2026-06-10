@@ -9,7 +9,7 @@ import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['pptx-to-pdf'];
-const BTN_TEXT = 'Select PPTX File';
+const BTN_TEXT = 'Select PPTX .pptx File';
 const DL_TEXT = 'DOWNLOAD PDF';
 
 // Tailwind JIT compiler safe style tokens
@@ -21,45 +21,22 @@ const THEME = {
   focusRing: 'focus:ring-rose-500'
 };
 
-const PptxToPdf = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+
+function PptxToPdfdata() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+    status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => {
-
-      // ─── SEO VALUES ───
-      const SEO = {
-        title:       "PPTX to PDF Converter Free Online Tool ",
-        description: "Convert PowerPoint to PDF free online. No signup, no watermark. Fast & secure PPTX to PDF converter. Works on Windows, Mac, iPhone & Android.",
-        keywords:    "pptx to pdf, powerpoint to pdf, convert pptx to pdf, pptx to pdf free, powerpoint to pdf converter, convert powerpoint to pdf online, pptx to pdf online, free pptx to pdf, ppt to pdf, ppt to pdf converter, convert ppt to pdf free, powerpoint to pdf no watermark, pptx to pdf without losing quality, save powerpoint as pdf, export ppt to pdf",
-        h1:          "Convert PPTX to PDF Free Online",
-        subtitle:    "Fast, free & secure. No signup required. Convert any PowerPoint file to PDF in seconds — works on all devices.",
-        canonical:   `https://www.freepdfconvert.io/${config?.slug || 'pptx-to-pdf'}`,
-        ogImage:     "/og-pptx-to-pdf.png",
-      };
-
-      // ─── JSON-LD: WebApplication Schema ───
-  
-
-      return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
-
-          <Header />
-          
-          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
-
+        reset, handleDownload 
+      }) => (
+        <>
             {/* ─── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
               <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
-                <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                    {SEO.h1}
-                  </h1>
-                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
-                    {SEO.subtitle}
-                  </p>
-                </header>
+          
 
                 <div 
                   onDragOver={handleDragOver} 
@@ -139,6 +116,33 @@ const PptxToPdf = () => (
                 </div>
               </div>
             )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const PptxToPdf = () => (
+  <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+
+
+          <Header />
+          
+          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
+
+            <header className="text-center mb-8 md:mb-12">
+                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                    Convert PPTX to PDF Online Free
+                  </h1>
+                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
+                    Free online PPTX to PDF converter. Convert PowerPoint presentations to high-quality PDF documents instantly without registration
+                  </p>
+                </header>
+                <PptxToPdfdata />
 
                   {/* ─── SEO CONTENT SECTION ─── */}
                 <section className="mt-16 w-full max-w-3xl text-left space-y-8">
@@ -174,32 +178,58 @@ const PptxToPdf = () => (
                     </ul>
                   </div>
 
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                      Frequently Asked Questions
-                    </h2>
-                    <div className="space-y-4">
-                      {schemaFAQ.mainEntity.map((faq) => (
-                        <details key={faq.name} className="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 group transition-colors hover:border-gray-200">
-                          <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center focus:outline-none">
-                            {faq.name}
-                            <span className={`${THEME.text} font-black text-lg group-open:rotate-180 transition-transform`}>▼</span>
-                          </summary>
-                          <p className="mt-3 text-gray-500 text-sm leading-relaxed">
-                            {faq.acceptedAnswer.text}
-                          </p>
-                        </details>
-                      ))}
-                    </div>
-                  </div>
+               <div className="mt-6">
+  <h2 className="text-2xl font-bold text-gray-800 mb-4">
+    Popular PPTX to PDF Questions
+  </h2>
+
+  <ul className="list-disc pl-6 space-y-3 text-gray-600">
+    <li>
+      <strong>How do I convert PPTX to PDF online for free?</strong> Upload your PowerPoint presentation and convert it to PDF instantly without registration.
+    </li>
+
+    <li>
+      <strong>What is the best PPTX to PDF converter?</strong> A reliable converter preserves slide layouts, fonts, images, and formatting while providing fast conversion.
+    </li>
+
+    <li>
+      <strong>Can I convert PowerPoint to PDF without losing formatting?</strong> Yes, the converter maintains the original design, text, and slide structure as accurately as possible.
+    </li>
+
+    <li>
+      <strong>Is PPTX to PDF conversion free?</strong> Yes, you can convert PPTX files to PDF online completely free of charge.
+    </li>
+
+    <li>
+      <strong>Can I use a PPTX to PDF converter on mobile?</strong> Yes, the tool works on Android, iPhone, tablets, and desktop devices.
+    </li>
+
+    <li>
+      <strong>Are my PowerPoint files secure?</strong> Yes, uploaded PPTX files are processed securely and deleted automatically after conversion.
+    </li>
+
+    <li>
+      <strong>Can I convert PPTX to PDF without software?</strong> Yes, the entire conversion process works directly in your web browser.
+    </li>
+
+    <li>
+      <strong>How long does PPTX to PDF conversion take?</strong> Most PowerPoint presentations are converted to PDF within a few seconds.
+    </li>
+
+    <li>
+      <strong>Why convert PPTX to PDF?</strong> PDF files are easier to share, print, and view consistently across all devices and operating systems.
+    </li>
+
+    <li>
+      <strong>Does the PDF keep all PowerPoint slides?</strong> Yes, all slides from the original PPTX presentation are included in the converted PDF document.
+    </li>
+  </ul>
+</div>
 
                 </section>
           </main>
           <div className="mt-10 md:mt-20"><Footer /></div>
         </div>
-      );
-    }}
-  </BaseToolLogic>
 );
 
 export default PptxToPdf;

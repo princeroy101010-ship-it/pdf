@@ -23,23 +23,20 @@ const THEME = {
 
 
 
-// ─── Component ────────────────────────────────────────────────────────────────
-const PdfToWord = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+
+
+function PdfToWorddata() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+      status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => {
-      const seo = config?.seo || { h1: "Convert PDF to Word", subtitle: "Free online tool to transform PDFs into editable DOCX files effortlessly." };
-      
-      return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
-
-          <Header />
-
-          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
-
-            {/* ── IDLE STATE ──────────────────────────────────────────────── */}
+        reset, handleDownload
+      }) => (
+        <>
+                 {/* ── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
               <article
                 className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
@@ -47,27 +44,7 @@ const PdfToWord = () => (
                 itemType="https://schema.org/SoftwareApplication"
               >
                 {/* Hidden SEO metadata for crawlers */}
-                <meta itemProp="name" content="PDF to Word Converter" />
-                <meta itemProp="applicationCategory" content="UtilitiesApplication" />
-                <meta itemProp="operatingSystem" content="Web Browser" />
-                <meta itemProp="offers" content='{"@type":"Offer","price":"0","priceCurrency":"USD"}' />
-
-                <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                    {seo.h1}
-                  </h1>
-                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
-                    {seo.subtitle}
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-3 mt-5 text-xs font-semibold text-gray-400 uppercase tracking-widest">
-                    <span>✓ 100% Free</span>
-                    <span>✓ No Signup</span>
-                    <span>✓ No Watermark</span>
-                    <span>✓ Secure & Private</span>
-                    <span>✓ Instant Download</span>
-                  </div>
-                </header>
-
+             
                 {/* Upload Area */}
                 <div
                   onDragOver={handleDragOver}
@@ -149,7 +126,40 @@ const PdfToWord = () => (
               </div>
             )}
 
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
 
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const PdfToWord = () => (
+   <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+
+
+          <Header />
+
+          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
+
+     <header className="text-center mb-8 md:mb-12">
+                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                   PDF to Word Converter Online Free
+                  </h1>
+                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
+                    Convert PDF to editable Word documents (DOCX) online for free. Fast, accurate PDF to Word conversion with no signup required.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3 mt-5 text-xs font-semibold text-gray-400 uppercase tracking-widest">
+                    <span>✓ 100% Free</span>
+                    <span>✓ No Signup</span>
+                    <span>✓ No Watermark</span>
+                    <span>✓ Secure & Private</span>
+                    <span>✓ Instant Download</span>
+                  </div>
+                </header>
+<PdfToWorddata/>
                 {/* ── SEO CONTENT SECTION (Fully Crawlable and Indexed) ── */}
                 <section className="w-full max-w-4xl mt-16 md:mt-24 space-y-12 text-gray-600">
 
@@ -258,9 +268,6 @@ const PdfToWord = () => (
           </div>
 
         </div>
-      );
-    }}
-  </BaseToolLogic>
 );
 
 export default PdfToWord;

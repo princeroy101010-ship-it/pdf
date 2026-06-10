@@ -21,43 +21,21 @@ const THEME = {
   focusRing: 'focus:ring-rose-500'
 };
 
-const PngToPdf = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+function PngToPdfdata() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+    status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => {
-
-      // ─── SEO VALUES ───
-      const SEO = {
-        title:       "PNG to PDF Converter Free Online Tool ",
-        description: "Convert PNG to PDF free online instantly. No signup needed. High quality, fast & secure PNG image to PDF converter. Works on mobile, Windows, Mac & Linux.",
-        keywords:    "png to pdf, png to pdf converter, convert png to pdf, png to pdf free, png image to pdf, png to pdf online, convert png to pdf free, free png to pdf converter, png to pdf no watermark, png to pdf high quality, multiple png to pdf, png to pdf without losing quality, png file to pdf, change png to pdf, png to pdf download",
-        h1:          "Convert PNG to PDF Free Online",
-        subtitle:    "Fast, free & secure. No signup required. Convert any PNG image to PDF in seconds — works on all devices.",
-        canonical:   `https://www.freepdfconvert.io/${config?.slug || 'png-to-pdf'}`,
-        ogImage:     "/og-png-to-pdf.png",
-      };
-
-
-      return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
-
-          <Header />
-          
-          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
-
-            {/* ─── IDLE STATE ──────────────────────────────────────────────── */}
+        reset, handleDownload
+      }) => (
+        <>
+                {/* ─── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
               <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
-                <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                    {SEO.h1}
-                  </h1>
-                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
-                    {SEO.subtitle}
-                  </p>
-                </header>
+            
 
                 <div 
                   onDragOver={handleDragOver} 
@@ -137,6 +115,34 @@ const PngToPdf = () => (
               </div>
             )}
 
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const PngToPdf = () => (
+<div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+
+   
+          <Header />
+          
+          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6">
+    <header className="text-center mb-8 md:mb-12">
+                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                  PNG to PDF Converter Free Online Tool 
+                  </h1>
+                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
+                    Convert PNG to PDF free online instantly. No signup needed. High quality, fast & secure PNG image to PDF converter. Works on mobile, Windows, Mac & Linux.
+                  </p>
+                </header>
+
+                <PngToPdfdata />
+  
 
             
                 {/* ─── SEO CONTENT SECTION ─── */}
@@ -173,32 +179,109 @@ const PngToPdf = () => (
                     </ul>
                   </div>
 
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                      Frequently Asked Questions
-                    </h2>
-                    <div className="space-y-4">
-                      {schemaFAQ.mainEntity.map((faq) => (
-                        <details key={faq.name} className="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 group transition-colors hover:border-gray-200">
-                          <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center focus:outline-none">
-                            {faq.name}
-                            <span className={`${THEME.text} font-black text-lg group-open:rotate-180 transition-transform`}>▼</span>
-                          </summary>
-                          <p className="mt-3 text-gray-500 text-sm leading-relaxed">
-                            {faq.acceptedAnswer.text}
-                          </p>
-                        </details>
-                      ))}
-                    </div>
-                  </div>
+                  
+               <div className="space-y-4">
+  <h2 className="text-2xl font-bold text-gray-800">
+    Frequently Asked Questions
+  </h2>
+
+  <ul className="space-y-4 text-gray-600">
+    <li>
+      <strong className="text-gray-800">
+        How do I convert PNG to PDF online for free?
+      </strong>
+      <p className="mt-1">
+        Upload your PNG images, click the Convert button, and download the generated PDF file instantly. No registration is required.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        What is the best PNG to PDF converter?
+      </strong>
+      <p className="mt-1">
+        A good PNG to PDF converter should be fast, secure, free, and able to preserve image quality. Our tool provides all these features.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        Can I convert multiple PNG images into one PDF?
+      </strong>
+      <p className="mt-1">
+        Yes, you can upload multiple PNG files and combine them into a single PDF document in the correct order.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        Does converting PNG to PDF reduce image quality?
+      </strong>
+      <p className="mt-1">
+        No, the converter maintains the original image quality as much as possible while creating the PDF file.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        Is this PNG to PDF converter free?
+      </strong>
+      <p className="mt-1">
+        Yes, the tool is completely free to use with no hidden fees, subscriptions, or account creation required.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        Can I use the PNG to PDF converter on mobile devices?
+      </strong>
+      <p className="mt-1">
+        Yes, the tool works on Android, iPhone, iPad, Windows, Mac, and all modern web browsers.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        Are my PNG files secure during conversion?
+      </strong>
+      <p className="mt-1">
+        Yes, uploaded files are processed securely and automatically deleted after conversion to protect your privacy.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        Can I convert PNG to PDF without installing software?
+      </strong>
+      <p className="mt-1">
+        Yes, everything happens online in your browser, so no software download or installation is needed.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        How long does PNG to PDF conversion take?
+      </strong>
+      <p className="mt-1">
+        Most conversions are completed within a few seconds, depending on the number and size of your PNG files.
+      </p>
+    </li>
+
+    <li>
+      <strong className="text-gray-800">
+        Can I create a high-quality PDF from PNG images?
+      </strong>
+      <p className="mt-1">
+        Yes, the converter generates high-quality PDF documents while preserving the clarity and resolution of your PNG images.
+      </p>
+    </li>
+  </ul>
+</div>
 
                 </section>
           </main>
           <div className="mt-10 md:mt-20"><Footer /></div>
         </div>
-      );
-    }}
-  </BaseToolLogic>
 );
 
 export default PngToPdf;

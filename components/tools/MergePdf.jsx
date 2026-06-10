@@ -47,41 +47,24 @@ const FAQ_ITEMS = [
 ];
 
 
-// ─── Component Blueprint ────────────────────────────────────────────────────
-const MergePdf = () => (
-  <BaseToolLogic config={config}>
-    {({ 
-      status, dragActive, fileQueue, acceptedFiles,
+
+
+
+function Mergepdfdata() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+          status, dragActive, fileQueue, acceptedFiles,
       handleFileChange, handleDragOver, handleDragLeave, handleDrop,
       removeFile, startProcessing, reset, handleDownload 
-    }) => (
-      <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
- 
-
-        <Header />
-
-        <main 
-          id="main-content"
-          className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
-          role="main"
-          aria-label="PDF Merger Tool"
-        >
-
+      }) => (
+        <>
+      
           {/* ── STATUS: IDLE ──────────────────────────────────────────────── */}
           {status === 'idle' && (
             <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
-              {/* Hero Banner Area */}
-              <header className="text-center mb-8 md:mb-12">
-                <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                  Merge <span className="text-rose-600">PDF Files</span> Online Free
-                </h1>
-                <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
-                  Combine multiple PDF files into one document instantly.
-                  100% free, no signup, no watermark required.
-                </p>
-              </header>
+          
 
               {/* Active File Queue Layer */}
               {fileQueue.length > 0 && (
@@ -237,6 +220,40 @@ const MergePdf = () => (
               </div>
             </div>
           )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const Mergepdf = () => (
+ <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+
+ 
+
+        <Header />
+
+        <main 
+          id="main-content"
+          className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
+          role="main"
+          aria-label="PDF Merger Tool"
+        >
+              {/* Hero Banner Area */}
+              <header className="text-center mb-8 md:mb-12">
+                <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                  Merge <span className="text-rose-600">PDF Files</span> Online Free
+                </h1>
+                <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
+                  Combine multiple PDF files into one document instantly.
+                  100% free, no signup, no watermark required.
+                </p>
+              </header>
+<Mergepdfdata/>
    {/* Structural Value Verification Cards */}
               <section aria-label="Tool features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
                 <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
@@ -295,8 +312,7 @@ const MergePdf = () => (
           <Footer />
         </div>
       </div>
-    )}
-  </BaseToolLogic>
 );
 
-export default MergePdf;
+export default Mergepdf;
+

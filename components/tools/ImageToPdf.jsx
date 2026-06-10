@@ -44,42 +44,21 @@ const FAQ_ITEMS = [
   }
 ];
 
-// ─── SEO: JSON-LD Graph Schema ───────────────────────────────────────────────
-
-
-const ImageToPdf = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+function ImageTopdf() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+      status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        removeFile, startProcessing, reset, handleDownload }) => {
-
-      return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-     
-
-          <Header />
-
-          <main 
-            id="main-content"
-            className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
-            role="main"
-            aria-label="Image to PDF workspace utilities"
-          >
-
-            {/* ── IDLE ─────────────────────────────────────────────────────── */}
+        removeFile, startProcessing, reset, handleDownload 
+      }) => (
+        <>
+         {/* ── IDLE ─────────────────────────────────────────────────────── */}
             {status === 'idle' && (
               <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
                 {/* H1 + Intro */}
-                <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-                    Free <span className="text-rose-600">Image to PDF</span> Converter Online
-                  </h1>
-                  <p className="text-base md:text-lg text-slate-500 font-medium max-w-xl mx-auto leading-relaxed">
-                    Convert JPG and PNG images to PDF instantly. Combine multiple images into one PDF file.
-                    100% free, no signup, no watermark.
-                  </p>
-                </header>
+              
 
                 {/* Image Queue */}
                 {fileQueue.length > 0 && (
@@ -222,6 +201,40 @@ const ImageToPdf = () => (
               </div>
             )}
 
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const Imagetopdf = () => (
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
+     
+
+          <Header />
+
+          <main 
+            id="main-content"
+            className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
+            role="main"
+            aria-label="Image to PDF workspace utilities"
+          >
+              <header className="text-center mb-8 md:mb-12">
+                  <h1 className="text-3xl md:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+                    Free <span className="text-rose-600">Image to PDF</span> Converter Online
+                  </h1>
+                  <p className="text-base md:text-lg text-slate-500 font-medium max-w-xl mx-auto leading-relaxed">
+                    Convert JPG and PNG images to PDF instantly. Combine multiple images into one PDF file.
+                    100% free, no signup, no watermark.
+                  </p>
+                </header>
+                     <ImageTopdf />
+
+
      {/* Feature Cards */}
                 <section
                   aria-label="Service performance parameters"
@@ -288,9 +301,7 @@ const ImageToPdf = () => (
             <Footer />
           </div>
         </div>
-      );
-    }}
-  </BaseToolLogic>
 );
 
-export default ImageToPdf;
+export default Imagetopdf;
+

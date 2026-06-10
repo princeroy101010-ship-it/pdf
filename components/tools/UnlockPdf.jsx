@@ -10,54 +10,25 @@ import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 const config = TOOLS_CONFIG['unlock-pdf'];
 
 
-const UnlockPdf = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles, password, showPassword,
+
+function UnlockPdfUploader() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+        status, dragActive, fileQueue, acceptedFiles, password, showPassword,
         setPassword, setShowPassword,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        startProcessing, reset, handleDownload }) => {
-
-      return (
+        startProcessing, reset, handleDownload 
+      }) => (
         <>
-
-
-          {/* ─── PAGE ───────────────────────────────────────────────────── */}
-          <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-            <Header />
-
-            <main
-              id="main-content"
-              className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6"
-              role="main"
-              aria-label="Unlock PDF Password Remover Tool"
-            >
-
-              {/* ── IDLE STATE ─────────────────────────────────────────── */}
-              {status === 'idle' && (
+          {status === 'idle' && (
                 <article
                   className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
                   itemScope
                   itemType="https://schema.org/SoftwareApplication"
                 >
-                  <meta itemProp="name" content="Unlock PDF – PDF Password Remover" />
-                  <meta itemProp="applicationCategory" content="UtilitiesApplication" />
-                  <meta itemProp="operatingSystem" content="Web Browser" />
-
-                  {/* Hero Header */}
-                  <header className="text-center mb-8 md:mb-12">
-                    <h1
-                      className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight"
-                      itemProp="name"
-                    >
-                      Unlock PDF Online Free
-                    </h1>
-                    <p
-                      className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed"
-                      itemProp="description"
-                    >
-                      Remove password from any PDF instantly — free, no sign-up required. Auto-unlock without password. Download your unlocked PDF in seconds.
-                    </p>
-                  </header>
+                  
+       
 
                   {/* Password Input State — file selected */}
                   {fileQueue.length > 0 && (
@@ -253,8 +224,42 @@ const UnlockPdf = () => (
                   </div>
                 </div>
               )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
 
-                  {/* ── HOW IT WORKS ──────────────────────────────────── */}
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const UnlockPdf = () => (
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+            <Header />
+
+            <main
+              id="main-content"
+              className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6"
+              role="main"
+              aria-label="Unlock PDF Password Remover Tool"
+            >
+
+                  <header className="text-center mb-8 md:mb-12">
+                    <h1
+                      className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight"
+                      itemProp="name"
+                    >
+                      Unlock PDF Online Free
+                    </h1>
+                    <p
+                      className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed"
+                      itemProp="description"
+                    >
+                      Remove password from any PDF instantly — free, no sign-up required. Auto-unlock without password. Download your unlocked PDF in seconds.
+                    </p>
+                  </header>          
+<UnlockPdfUploader />
                   <section
                     aria-labelledby="how-it-works-heading"
                     className="mt-16 w-full max-w-3xl"
@@ -446,10 +451,7 @@ const UnlockPdf = () => (
               <Footer />
             </div>
           </div>
-        </>
-      );
-    }}
-  </BaseToolLogic>
 );
 
 export default UnlockPdf;
+

@@ -7,58 +7,30 @@ import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
-const config = TOOLS_CONFIG['text-to-pptx'];
+const config = TOOLS_CONFIG['Text-to-pptx'];
 const COLOR = 'rose-600';
 const BTN_TEXT = 'Select Text File';
 const DL_TEXT = 'DOWNLOAD PPTX';
 
 
-const TextToPptx = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+function TextToPptxdata() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+    status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => {
-
-      return (
+        reset, handleDownload
+      }) => (
         <>
-
-          {/* ─── PAGE ───────────────────────────────────────────────────── */}
-          <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-            <Header />
-
-            <main
-              id="main-content"
-              className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6"
-              role="main"
-              aria-label="Text to PowerPoint PPTX Converter Tool"
-            >
-
-              {/* ── IDLE STATE ─────────────────────────────────────────── */}
-              {status === 'idle' && (
+          {status === 'idle' && (
                 <article
                   className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
                   itemScope
                   itemType="https://schema.org/SoftwareApplication"
                 >
-                  <meta itemProp="name" content="Text to PPTX Converter" />
-                  <meta itemProp="applicationCategory" content="UtilitiesApplication" />
-                  <meta itemProp="operatingSystem" content="Web Browser" />
-
-                  {/* Hero Header */}
-                  <header className="text-center mb-8 md:mb-12">
-                    <h1
-                      className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight"
-                      itemProp="name"
-                    >
-                      Text to PowerPoint Converter
-                    </h1>
-                    <p
-                      className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto"
-                      itemProp="description"
-                    >
-                      Convert any text file to PowerPoint PPTX online — free, instant, no sign-up required. Turn your TXT file into a presentation in seconds.
-                    </p>
-                  </header>
+                
 
                   {/* Drop Zone */}
                   <section
@@ -205,6 +177,42 @@ const TextToPptx = () => (
                   </div>
                 </div>
               )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const TextToPptx = () => (
+ <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+            <Header />
+
+            <main
+              id="main-content"
+              className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6"
+              role="main"
+              aria-label="Text to PowerPoint PPTX Converter Tool"
+            >
+
+     <header className="text-center mb-8 md:mb-12">
+                    <h1
+                      className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight"
+                      itemProp="name"
+                    >
+                      Text to PowerPoint Converter
+                    </h1>
+                    <p
+                      className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto"
+                      itemProp="description"
+                    >
+                      Convert any text file to PowerPoint PPTX online — free, instant, no sign-up required. Turn your TXT file into a presentation in seconds.
+                    </p>
+                  </header>
+     <TextToPptxdata />
                   {/* ── HOW IT WORKS ──────────────────────────────────── */}
                   <section
                     aria-labelledby="how-it-works-heading"
@@ -397,10 +405,6 @@ const TextToPptx = () => (
               <Footer />
             </div>
           </div>
-        </>
-      );
-    }}
-  </BaseToolLogic>
 );
 
 export default TextToPptx;

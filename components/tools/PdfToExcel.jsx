@@ -46,39 +46,23 @@ const FAQ_ITEMS = [
 
 
 // ─── Component Blueprint ────────────────────────────────────────────────────
-const PdfToExcel = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+
+function Pdftoexceld() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+   status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => (
-      <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
-        {/* ✅ Single Compiled Static JSON-LD Resource Block */}
-    
-
-        <Header />
-
-        <main 
-          id="main-content"
-          className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
-          role="main"
-          aria-label="PDF to Excel Converter Tool"
-        >
-
-          {/* ── STATUS: IDLE ──────────────────────────────────────────────── */}
-          {status === 'idle' && (
+        reset, handleDownload 
+      }) => (
+        <>
+       {status === 'idle' && (
             <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
               {/* Hero Banner Area */}
-              <header className="text-center mb-8 md:mb-12">
-                <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                  Free <span className="text-rose-600">PDF to Excel</span> Converter Online
-                </h1>
-                <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
-                  Extract tables and data from PDF to XLSX spreadsheet instantly.
-                  100% free, no signup, no watermark required.
-                </p>
-              </header>
+           
 
               {/* Secure Upload Boundary dropzone */}
               <section
@@ -186,21 +170,56 @@ const PdfToExcel = () => (
               </div>
             </div>
           )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const Pdftoexcel = () => (
+   <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+
+        {/* ✅ Single Compiled Static JSON-LD Resource Block */}
+    
+
+        <Header />
+
+        <main 
+          id="main-content"
+          className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
+          role="main"
+          aria-label="PDF to Excel Converter Tool"
+        >
+             <header className="text-center mb-8 md:mb-12">
+                <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                  Free <span className="text-rose-600">PDF to Excel</span> Converter Online
+                </h1>
+                <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
+                  Extract tables and data from PDF to XLSX spreadsheet instantly.
+                  100% free, no signup, no watermark required.
+                </p>
+              </header>
+<Pdftoexceld/>
+     
     {/* Structural Value Verification Cards */}
               <section aria-label="Tool features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
                 <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                  <Table className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Preserves Tables & Data</h3>
-                  <p className="text-gray-500 text-sm">Rows, columns, and cell values from your PDF are accurately extracted into a properly formatted Excel spreadsheet.</p>
+                  <Table className="text-rose-900 mb-3" size={24} aria-hidden="true" />
+                  <h3 className="font-bold text-base mb-2 text-rose-900">Preserves Tables & Data</h3>
+                  <p className="text-gray-500 text-sm ">Rows, columns, and cell values from your PDF are accurately extracted into a properly formatted Excel spreadsheet.</p>
                 </div>
                 <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
                   <Zap className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Instant Conversion</h3>
-                  <p className="text-gray-500 text-sm">Upload your PDF and get a ready-to-edit XLSX file in seconds. Compatible with Excel, Google Sheets, and LibreOffice.</p>
+                  <h3 className="font-bold text-base mb-2 text-rose-900">Instant Conversion</h3>
+                  <p className="text-gray-500 text-sm ">Upload your PDF and get a ready-to-edit XLSX file in seconds. Compatible with Excel, Google Sheets, and LibreOffice.</p>
                 </div>
                 <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
                   <ShieldCheck className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                  <h3 className="font-bold text-base mb-2">Secure & Private</h3>
+                  <h3 className="font-bold text-base mb-2 text-rose-900">Secure & Private</h3>
                   <p className="text-gray-500 text-sm">SSL encryption on all uploads. Your PDF is automatically deleted after conversion and never stored or shared.</p>
                 </div>
               </section>
@@ -243,8 +262,6 @@ const PdfToExcel = () => (
           <Footer />
         </div>
       </div>
-    )}
-  </BaseToolLogic>
 );
 
-export default PdfToExcel;
+export default Pdftoexcel;

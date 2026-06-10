@@ -82,10 +82,10 @@ function ExcelToPdfdata() {
                 
                 <header className="text-center mb-8 md:mb-10 max-w-3xl mx-auto">
                   <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-                   Convert Excel to PDF Online Free
+                    {seo?.h1 ?? 'Convert Excel to PDF Online Free'}
                   </h1>
                   <p className="text-base md:text-lg text-slate-500 font-medium leading-relaxed">
-                   Convert XLSX and XLS spreadsheets into perfectly structured PDF documents layout instantly
+                    {seo?.subtitle ?? 'Convert XLSX and XLS spreadsheets into perfectly structured PDF documents layout instantly.'}
                   </p>
                 </header>
 

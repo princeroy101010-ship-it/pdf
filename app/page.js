@@ -178,7 +178,7 @@ const VIPConverter = () => {
     },
     {
       title: "Text to PDF",
-      slug: "text-to-pdf",
+      slug: "Text-to-pdf",
       desc: "Convert plain text (.txt) files into clean, formatted PDF documents in one click.",
       icon: FileUp,
       color: "text-slate-600",
@@ -186,7 +186,7 @@ const VIPConverter = () => {
     },
     {
       title: "PDF to Text",
-      slug: "pdf-to-text",
+      slug: "pdf-to-Text",
       desc: "Extract all readable text content from any PDF into a plain .txt file instantly.",
       icon: FileText,
       color: "text-yellow-700",
@@ -194,7 +194,7 @@ const VIPConverter = () => {
     },
     {
       title: "Text to Word",
-      slug: "text-to-word",
+      slug: "Text-to-word",
       desc: "Transform plain text documents into formatted, editable Microsoft Word DOCX files.",
       icon: FileText,
       color: "text-indigo-600",
@@ -202,7 +202,7 @@ const VIPConverter = () => {
     },
     {
       title: "Word to Text",
-      slug: "word-to-text",
+      slug: "word-to-Text",
       desc: "Strip formatting from Word documents and export clean, plain text content easily.",
       icon: FileText,
       color: "text-blue-500",
@@ -210,7 +210,7 @@ const VIPConverter = () => {
     },
     {
       title: "PowerPoint to Text",
-      slug: "pptx-to-text",
+      slug: "pptx-to-Text",
       desc: "Extract all slide text and speaker notes from PowerPoint presentations into TXT.",
       icon: FileText,
       color: "text-orange-600",
@@ -218,7 +218,7 @@ const VIPConverter = () => {
     },
     {
       title: "Text to PowerPoint",
-      slug: "text-to-pptx",
+      slug: "Text-to-pptx",
       desc: "Create a basic PowerPoint presentation from your text file automatically.",
       icon: FileUp,
       color: "text-red-700",

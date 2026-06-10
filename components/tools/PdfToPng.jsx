@@ -47,38 +47,23 @@ const FAQ_ITEMS = [
 
 // ─── Consolidated Structured Data Pipeline ──────────────────────────────────
 
-const PdfToPng = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+
+function Pdftopngdata() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+       status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => (
-      <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
- 
-
-        <Header />
-
-        <main 
-          id="main-content"
-          className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
-          role="main"
-          aria-label="PDF to PNG Engine Interface"
-        >
-
-          {/* ── STATUS: IDLE ──────────────────────────────────────────────── */}
-          {status === 'idle' && (
+        reset, handleDownload 
+      }) => (
+        <>
+           {status === 'idle' && (
             <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
               {/* Header Title Block */}
-              <header className="text-center mb-8 md:mb-12">
-                <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                  Free <span className="text-rose-600">PDF to PNG</span> Converter Online
-                </h1>
-                <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
-                  Convert every PDF page into a lossless, high-quality PNG image instantly.
-                  100% free, no signup, no watermark required.
-                </p>
-              </header>
+           
 
               {/* Upload Workspace Zone Dropzone */}
               <section
@@ -185,6 +170,42 @@ const PdfToPng = () => (
               </div>
             </div>
           )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const Pdftopng = () => (
+ <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+
+ 
+
+        <Header />
+
+        <main 
+          id="main-content"
+          className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
+          role="main"
+          aria-label="PDF to PNG Engine Interface"
+        >
+
+          {/* ── STATUS: IDLE ──────────────────────────────────────────────── */}
+        <header className="text-center mb-8 md:mb-12">
+                <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                  Free <span className="text-rose-600">PDF to PNG</span> Converter Online
+                </h1>
+                <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
+                  Convert every PDF page into a lossless, high-quality PNG image instantly.
+                  100% free, no signup, no watermark required.
+                </p>
+              </header>
+
+              <Pdftopngdata/>
 
               {/* Value Proposition Grid Cards */}
               <section aria-label="Tool core features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
@@ -243,8 +264,6 @@ const PdfToPng = () => (
           <Footer />
         </div>
       </div>
-    )}
-  </BaseToolLogic>
 );
 
-export default PdfToPng;
+export default Pdftopng;

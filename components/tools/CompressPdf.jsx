@@ -23,6 +23,41 @@ import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 const config = TOOLS_CONFIG['compress-pdf'];
 
 
+const FAQ_ITEMS = [
+  {
+    q: 'How do I compress a PDF for free?',
+    a: 'Upload your PDF on FreePDFConvert, choose your compression level (Extreme, Recommended, or Less), click Compress PDF Now, and download the smaller file — 100% free, no signup required.',
+  },
+  {
+    q: 'Will compressing a PDF reduce its quality?',
+    a: 'It depends on the compression level you choose. "Less" compression keeps near-original quality, "Recommended" balances size and quality, and "Extreme" gives the smallest file with some quality reduction.',
+  },
+  {
+    q: 'How much can I reduce a PDF file size?',
+    a: 'FreePDFConvert can reduce PDF size by up to 90% depending on the content. PDFs with many images compress the most; text-heavy PDFs compress less but still see significant reduction.',
+  },
+  {
+    q: 'Is it safe to upload my PDF to compress it?',
+    a: 'Yes. All uploads are encrypted with HTTPS/SSL. Your files are permanently and automatically deleted from our servers immediately after processing. We never read, store, or share your files.',
+  },
+  {
+    q: 'Does the compressed PDF have a watermark?',
+    a: 'No. FreePDFConvert never adds watermarks, logos, or branding to your compressed PDF. The output is completely clean.',
+  },
+  {
+    q: 'What devices can I use to compress a PDF?',
+    a: 'Our PDF compressor works on all devices — Windows, Mac, Linux, iPhone, iPad, and Android — in any modern browser. No app or software installation is needed.',
+  },
+  {
+    q: 'Is there a file size limit for PDF compression?',
+    a: 'FreePDFConvert supports large PDF files. You can compress PDFs free with no restrictions on the number of compressions.',
+  },
+  {
+    q: 'What is the difference between the compression levels?',
+    a: 'Extreme gives the smallest file size with lower image quality. Recommended is the best balance for most use cases. Less compression preserves near-original quality with moderate size reduction.',
+  },
+];
+
 const TrustBadge = ({ label }) => (
   <span className="bg-white border border-slate-100 rounded-xl px-4 py-2 shadow-sm text-sm text-slate-600 font-semibold tracking-wide">
     {label}
@@ -41,41 +76,25 @@ const FeatureCard = ({ title, desc }) => (
   </div>
 );
 
-const CompressPdf = () => (
-  <BaseToolLogic config={config}>
-    {({
+
+
+// ─── Uploader — client-only, needs BaseToolLogic state ──────────────────────
+function CompressPdf() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
       status, dragActive, fileQueue, acceptedFiles,
       compressionLevel, setCompressionLevel,
       handleFileChange, handleDragOver, handleDragLeave, handleDrop,
       startProcessing, reset, handleDownload,
-    }) => {
-      const seo = config.seo;
-
-      return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-      
-
-          <Header />
-
-          <main
-            id="main-content"
-            className="flex-1 flex flex-col items-center justify-start pt-8 md:pt-12 px-4 md:px-6 w-full max-w-7xl mx-auto"
-            role="main"
-            aria-label="Compress PDF Tool"
-          >
-            {/* ── IDLE STATE ──────────────────────────────────────────────── */}
+      }) => (
+        <>
+        {/* ── IDLE STATE ──────────────────────────────────────────────── */}
             {status === 'idle' && (
               <article className="w-full flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-500">
                 
                 {/* Hero / Header Section */}
-                <header className="text-center mb-8 md:mb-10 max-w-3xl mx-auto">
-                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-                    {seo?.h1 ?? 'Compress PDF Online Free'}
-                  </h1>
-                  <p className="text-base md:text-lg text-slate-500 font-medium leading-relaxed">
-                    {seo?.subtitle ?? 'Reduce PDF file size up to 90% without losing quality. Free, instant, no signup required.'}
-                  </p>
-                </header>
+            
 
                 {/* Main Interaction Card Workflow */}
                 <div className="w-full max-w-2xl bg-white rounded-3xl border border-slate-100 shadow-xl p-4 md:p-6 mb-12">
@@ -268,7 +287,37 @@ const CompressPdf = () => (
                 </div>
               </div>
             )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
 
+const compressPdfdata = () => (
+
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
+      
+
+          <Header />
+
+          <main
+            id="main-content"
+            className="flex-1 flex flex-col items-center justify-start pt-8 md:pt-12 px-4 md:px-6 w-full max-w-7xl mx-auto"
+            role="main"
+            aria-label="Compress PDF Tool"
+          >
+    <header className="text-center mb-8 md:mb-12 w-full">
+  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+    Compress PDF Online Free
+  </h1>
+
+  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
+    Reduce PDF file size online for free without losing quality. 
+    Fast, secure, and easy PDF compression tool with no signup required.
+  </p>
+</header>
+         
+<CompressPdf />
                 {/* Content Section: How It Works */}
                 <section aria-labelledby="how-it-works-heading" className="mt-20 w-full max-w-3xl border-t border-slate-100 pt-16">
                   <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-black text-slate-900 text-center mb-10">
@@ -376,9 +425,7 @@ const CompressPdf = () => (
             <Footer />
           </div>
         </div>
-      );
-    }}
-  </BaseToolLogic>
 );
 
-export default CompressPdf;
+export default compressPdfdata;
+

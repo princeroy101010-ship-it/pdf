@@ -8,43 +8,28 @@ import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
-const config = TOOLS_CONFIG['pptx-to-text'];
+const config = TOOLS_CONFIG['pptx-to-Text'];
 
 // ─── SEO: JSON-LD Schemas ────────────────────────────────────────────────────
 
 
-// ─── Component ───────────────────────────────────────────────────────────────
-const PptxToText = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+
+function PptxToTextdata() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+        status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => {
-
-      const targetSlug = config?.slug || 'pptx-to-text';
-
-      return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
-
-
-          <Header />
-
-          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full">
-
-            {/* ── IDLE STATE ──────────────────────────────────────────────── */}
-            {status === 'idle' && (
+        reset, handleDownload
+      }) => (
+        <>
+           {status === 'idle' && (
               <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
                 {/* H1 + Intro */}
-                <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                    Free <span className="text-rose-600">PowerPoint to Text</span> Converter Online
-                  </h1>
-                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
-                    Extract all slide text from your PowerPoint PPTX and save it as a plain TXT file instantly.
-                    100% free, no signup, no watermark.
-                  </p>
-                </header>
+           
 
                 {/* Upload Zone */}
                 <div
@@ -62,7 +47,7 @@ const PptxToText = () => (
                     </div>
                     <div className="text-center space-y-4">
                       <span className="inline-block bg-rose-600 text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg transform group-hover:shadow-2xl transition-all">
-                        Select PPTX File
+                        Select PPTX only .pptx File
                       </span>
                       <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest">or drop PPTX file here</p>
                     </div>
@@ -130,7 +115,36 @@ const PptxToText = () => (
                 </div>
               </div>
             )}
-     {/* Feature Cards */}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const PptxToText = () => (
+     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+
+
+
+          <Header />
+
+          <main className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full">
+
+              <header className="text-center mb-8 md:mb-12">
+                  <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+                    Free <span className="text-rose-600">PowerPoint to Text</span> Converter Online
+                  </h1>
+                  <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
+                    Extract all slide text from your PowerPoint PPTX and save it as a plain TXT file instantly.
+                    100% free, no signup, no watermark.
+                  </p>
+                </header>
+
+                <PptxToTextdata />
                 <section aria-label="Tool features" className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full">
                   <div className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
                     <FileText className="text-rose-600 mb-3" size={24} aria-hidden="true" />
@@ -172,19 +186,51 @@ const PptxToText = () => (
                   <h2 className="text-2xl font-black text-gray-900 mb-8">
                     Frequently Asked Questions
                   </h2>
-                  <div className="space-y-4">
-                    {faqSchema.mainEntity.map((faq) => (
-                      <details key={faq.name} className="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 group transition-colors hover:border-gray-200">
-                        <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center focus:outline-none">
-                          {faq.name}
-                          <span className="text-rose-600 font-black text-lg group-open:rotate-180 transition-transform">▼</span>
-                        </summary>
-                        <p className="mt-3 text-gray-500 text-sm leading-relaxed">
-                          {faq.acceptedAnswer.text}
-                        </p>
-                      </details>
-                    ))}
-                  </div>
+                 <div className="mt-6">
+
+
+  <ul className="list-disc pl-6 space-y-3 text-gray-600">
+    <li>
+      <strong>How do I convert PPTX to text online for free?</strong> Upload your PowerPoint presentation and extract text instantly without registration.
+    </li>
+
+    <li>
+      <strong>What is the best PPTX to text converter?</strong> A reliable converter extracts text accurately from all PowerPoint slides while preserving content order.
+    </li>
+
+    <li>
+      <strong>Can I extract text from PowerPoint presentations?</strong> Yes, you can extract text from all slides in a PPTX file and save it as a text document.
+    </li>
+
+    <li>
+      <strong>Is PPTX to text conversion free?</strong> Yes, you can convert PPTX files to text online completely free of charge.
+    </li>
+
+    <li>
+      <strong>Can I use a PPTX to text converter on mobile?</strong> Yes, the tool works on Android, iPhone, tablets, and desktop devices.
+    </li>
+
+    <li>
+      <strong>Are my PowerPoint files secure?</strong> Yes, uploaded PPTX files are processed securely and deleted automatically after conversion.
+    </li>
+
+    <li>
+      <strong>Can I convert PPTX to text without software?</strong> Yes, the entire conversion process works directly in your web browser.
+    </li>
+
+    <li>
+      <strong>How long does PPTX to text conversion take?</strong> Most PowerPoint presentations are converted to text within a few seconds.
+    </li>
+
+    <li>
+      <strong>Why convert PPTX to text?</strong> Text files are easier to edit, copy, analyze, and reuse in documents, websites, and reports.
+    </li>
+
+    <li>
+      <strong>Does the converter extract text from all slides?</strong> Yes, text from all slides in the original PPTX presentation is extracted and included in the output.
+    </li>
+  </ul>
+</div>
                 </section>
           </main>
 
@@ -192,9 +238,6 @@ const PptxToText = () => (
             <Footer />
           </div>
         </div>
-      );
-    }}
-  </BaseToolLogic>
 );
 
 export default PptxToText;

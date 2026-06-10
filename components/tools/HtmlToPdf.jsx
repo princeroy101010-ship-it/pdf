@@ -42,121 +42,30 @@ const FAQ_ITEMS = [
   }
 ];
 
-// ─── SEO: JSON-LD Graph Schema ───────────────────────────────────────────────
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.freepdfconvert.io/html-to-pdf",
-      "url": "https://www.freepdfconvert.io/html-to-pdf",
-      "name": "Free HTML to PDF Converter Online – No Signup, No Watermark | FreePDFConvert",
-      "description": "Convert HTML to PDF free online in seconds. Upload your .html file and download a clean PDF instantly. No signup, no watermark, no software needed.",
-      "isPartOf": { "@id": "https://www.freepdfconvert.io/#website" },
-      "breadcrumb": { "@id": "https://www.freepdfconvert.io/html-to-pdf/#breadcrumb" }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.freepdfconvert.io/html-to-pdf/#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.freepdfconvert.io/" },
-        { "@type": "ListItem", "position": 2, "name": "HTML to PDF Converter", "item": "https://www.freepdfconvert.io/html-to-pdf" }
-      ]
-    },
-    {
-      "@type": "WebApplication",
-      "@id": "https://www.freepdfconvert.io/html-to-pdf/#software",
-      "name": "Free HTML to PDF Converter Online",
-      "url": "https://www.freepdfconvert.io/html-to-pdf",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "All",
-      "description": "Convert HTML files to PDF online free. No signup required. Fast, secure, and 100% free HTML to PDF converter with no watermark.",
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://www.freepdfconvert.io/html-to-pdf/#howto",
-      "name": "How to Convert HTML to PDF Online Free",
-      "description": "Convert any HTML file to PDF in 3 simple steps using FreePDFConvert.",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Upload HTML File",
-          "text": "Click 'Select HTML File' or drag and drop your .html file into the upload area."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Convert to PDF",
-          "text": "The converter automatically processes your HTML file and converts it to PDF format."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Download PDF",
-          "text": "Click the Download PDF button to save your converted file. No signup required."
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.freepdfconvert.io/html-to-pdf/#faq",
-      "mainEntity": FAQ_ITEMS.map(({ q, a }) => ({
-        "@type": "Question",
-        "name": q,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": a
-        }
-      }))
-    }
-  ]
-};
 
-const HtmlToPdf = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+
+
+
+
+
+function HmtltopdfUploader() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+        status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => {
-
-      return (
-        <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-          <Script
-            id="html-to-pdf-jsonld"
-            type="application/ld+json"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
-
-          <Header />
-
-          <main 
-            id="main-content" 
-            className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
-            role="main"
-            aria-label="HTML to PDF converter utility section"
-          >
-
+        reset, handleDownload
+      }) => (
+        <>
+      
             {/* ── IDLE: Upload ─────────────────────────────────────────────── */}
             {status === 'idle' && (
               <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
 
                 {/* H1 + Intro */}
-                <header className="text-center mb-8 md:mb-12">
-                  <h1 className="text-3xl md:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-                    Free <span className="text-rose-600">HTML to PDF</span> Converter Online
-                  </h1>
-                  <p className="text-base md:text-lg text-slate-500 font-medium max-w-xl mx-auto leading-relaxed">
-                    Convert any HTML file to a clean, formatted PDF instantly.
-                    100% free, no signup, no watermark required.
-                  </p>
-                </header>
+          
 
                 {/* Upload Zone */}
                 <div
@@ -250,9 +159,40 @@ const HtmlToPdf = () => (
                 </div>
               </div>
             )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
 
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const htlmtoPdf = () => (
+   <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
+      
 
+          <Header />
 
+          <main 
+            id="main-content" 
+            className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
+            role="main"
+            aria-label="HTML to PDF converter utility section"
+          >
+
+      <header className="text-center mb-8 md:mb-12">
+                  <h1 className="text-3xl md:text-6xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+                    Free <span className="text-rose-600">HTML to PDF</span> Converter Online
+                  </h1>
+                  <p className="text-base md:text-lg text-slate-500 font-medium max-w-xl mx-auto leading-relaxed">
+                    Convert any HTML file to a clean, formatted PDF instantly.
+                    100% free, no signup, no watermark required.
+                  </p>
+                </header>
+
+<HmtltopdfUploader />
     {/* Feature Cards */}
                 <section
                   aria-label="Core workspace options and service advantages"
@@ -313,9 +253,6 @@ const HtmlToPdf = () => (
             <Footer />
           </div>
         </div>
-      );
-    }}
-  </BaseToolLogic>
 );
 
-export default HtmlToPdf;
+export default htlmtoPdf;

@@ -1,16 +1,18 @@
 'use client';
 // ============================================================================
-// ✅ SEO ARCHITECTURE:
-// Title/description/og/twitter/robots/canonical → handled in [slug]/page.jsx 
-// via generateMetadata(). Do NOT use <Head> here — 'use client' renders inside 
-// <body>, meta tags placed here are ignored by Google entirely.
+// components/tools/JpgToPdf.jsx
 //
-// ✅ MATCHING SCHEMA & CONTENT VALIDATION:
-// A single FAQ_ITEMS array drives both JSON-LD and HTML view. No microdata 
-// (itemScope/itemProp) used anywhere to prevent structural indexing pollution.
+// ✅ SSR FIX: H1, features, how-to, FAQ are outside BaseToolLogic so Next.js
+//    server-renders them into raw HTML. Semrush/Googlebot see all text
+//    immediately — no JS execution needed. Fixes "low text-HTML ratio" warning.
+//
+// ✅ Only the uploader (status-dependent UI) stays inside BaseToolLogic
+//    because it needs useState/handlers from that component.
+//
+// ✅ SEO: Title/meta/canonical/schema → [slug]/page.jsx via generateMetadata()
 // ============================================================================
+
 import React from 'react';
-import Script from 'next/script';
 import {
   Download, CheckCircle2, Upload, Loader2,
   Plus, Settings, Zap, ShieldCheck, FileImage,
@@ -22,7 +24,7 @@ import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
 const config = TOOLS_CONFIG['jpg-to-pdf'];
 
-// ─── Single Source Of Truth For Frequently Asked Questions ──────────────────
+// ─── FAQ data — drives both visible HTML and JSON-LD schema ─────────────────
 const FAQ_ITEMS = [
   {
     q: 'How do I convert a JPG to PDF for free?',
@@ -30,7 +32,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Is this JPG to PDF converter completely free?',
-    a: 'Yes. FreePDFConvert\'s JPG to PDF tool is 100% free with no hidden charges, no subscription, and no tricks.',
+    a: "Yes. FreePDFConvert's JPG to PDF tool is 100% free with no hidden charges, no subscription, and no tricks.",
   },
   {
     q: 'Will my converted PDF have a watermark?',
@@ -46,115 +48,63 @@ const FAQ_ITEMS = [
   },
 ];
 
-// ─── Static JSON-LD Graph Structure (Declared Outside Render Loop) ──────────
-
-
-// ─── Component Blueprint ────────────────────────────────────────────────────
-const JpgToPdf = () => (
-  <BaseToolLogic config={config}>
-    {({
-      status, dragActive, fileQueue, acceptedFiles,
-      handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-      reset, handleDownload,
-    }) => (
-      <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-
-        {/* ✅ Single Compiled Static JSON-LD Resource Block */}
-     
-
-        <Header />
-
-        <main
-          id="main-content"
-          className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
-          role="main"
-          aria-label="JPG to PDF Converter Tool"
-        >
-
-          {/* ── STATUS: IDLE ──────────────────────────────────────────────── */}
+// ─── Uploader — client-only, needs BaseToolLogic state ──────────────────────
+function JpgToPdfUploader() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+        status, dragActive, fileQueue, acceptedFiles,
+        handleFileChange, handleDragOver, handleDragLeave, handleDrop,
+        reset, handleDownload,
+      }) => (
+        <>
+          {/* ── IDLE: Upload dropzone ────────────────────────────────────── */}
           {status === 'idle' && (
-            <article className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
-
-              {/* Hero Banner Area */}
-              <header className="text-center mb-8 md:mb-12">
-                <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
-                  Free <span className="text-rose-600">JPG to PDF</span> Converter Online
-                </h1>
-                <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
-                  Convert JPG and JPEG images to PDF instantly.
-                  100% free, no signup, no watermark required.
-                </p>
-              </header>
-
-              {/* Secure Upload Boundary dropzone */}
-              <section
-                aria-label="Upload your JPG file"
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                className={`relative w-full max-w-2xl min-h-[280px] md:min-h-[350px] rounded-[2.5rem] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 md:p-8
-                  ${dragActive ? 'border-rose-600 scale-[1.02] bg-rose-50' : 'border-gray-200 bg-white hover:border-rose-300'}`}
-                role="region"
+            <section
+              aria-label="Upload your JPG file"
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`relative w-full max-w-2xl min-h-[280px] md:min-h-[350px] rounded-[2.5rem] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 md:p-8
+                ${dragActive
+                  ? 'border-rose-600 scale-[1.02] bg-rose-50'
+                  : 'border-gray-200 bg-white hover:border-rose-300'
+                }`}
+              role="region"
+            >
+              <label
+                htmlFor="jpg-upload-input"
+                className="group cursor-pointer flex flex-col items-center w-full"
+                aria-label="Select a JPG image to convert to PDF"
               >
-                <label
-                  htmlFor="jpg-upload-input"
-                  className="group cursor-pointer flex flex-col items-center w-full"
-                  aria-label="Select a JPG image to convert to PDF"
+                <div
+                  className="bg-rose-600 text-white p-4 md:p-6 rounded-2xl shadow-xl group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8"
+                  aria-hidden="true"
                 >
-                  <div
-                    className="bg-rose-600 text-white p-4 md:p-6 rounded-2xl shadow-xl group-hover:scale-110 group-hover:rotate-90 transition-all duration-500 mb-5 md:mb-8"
-                    aria-hidden="true"
-                  >
-                    <Plus size={32} strokeWidth={3} />
-                  </div>
-                  <div className="text-center space-y-4">
-                    <span className="inline-block bg-rose-600 text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg">
-                      Select JPG File
-                    </span>
-                    <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest">
-                      or drop JPG / JPEG file here
-                    </p>
-                  </div>
-                  <input
-                    id="jpg-upload-input"
-                    type="file"
-                    className="hidden"
-                    onChange={handleFileChange}
-                    accept={acceptedFiles}
-                    multiple={false}
-                    aria-label="Upload JPG image to convert to PDF"
-                  />
-                </label>
-              </section>
-
-              {/* Structural Value Verification Metrics */}
-              <section
-                aria-label="Key features"
-                className="mt-8 flex flex-wrap justify-center gap-3 md:gap-5"
-              >
-                {[
-                  '🔒 100% Secure & Private',
-                  '⚡ Instant Conversion',
-                  '🆓 Completely Free',
-                  '🚫 No Watermark',
-                  '🌐 No Install Required',
-                  '♾️ Unlimited Conversions',
-                ].map((badge) => (
-                  <span
-                    key={badge}
-                    className="bg-white border border-gray-100 rounded-xl px-4 py-2 shadow-sm text-sm text-gray-500 font-semibold"
-                  >
-                    {badge}
+                  <Plus size={32} strokeWidth={3} />
+                </div>
+                <div className="text-center space-y-4">
+                  <span className="inline-block bg-rose-600 text-white px-6 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-xl font-bold shadow-lg">
+                    Select JPG File
                   </span>
-                ))}
-              </section>
-
-           
-
-            </article>
+                  <p className="text-gray-400 font-semibold text-sm uppercase tracking-widest">
+                    or drop JPG / JPEG file here
+                  </p>
+                </div>
+                <input
+                  id="jpg-upload-input"
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileChange}
+                  accept={acceptedFiles}
+                  multiple={false}
+                  aria-label="Upload JPG image to convert to PDF"
+                />
+              </label>
+            </section>
           )}
 
-          {/* ── STATUS: UPLOADING / PROCESSING ────────────────────────────── */}
+          {/* ── UPLOADING / PROCESSING ───────────────────────────────────── */}
           {(status === 'uploading' || status === 'processing') && (
             <div
               className="bg-white p-8 md:p-16 rounded-[3rem] shadow-2xl text-center w-full max-w-lg"
@@ -178,10 +128,7 @@ const JpgToPdf = () => (
               <h2 className="text-2xl font-black text-gray-800 mb-2 uppercase">
                 {status === 'uploading' ? 'Uploading' : 'Converting'}...
               </h2>
-              <p
-                className="text-gray-400 text-sm mb-8 truncate"
-                aria-label={`File: ${fileQueue[0]?.name}`}
-              >
+              <p className="text-gray-400 text-sm mb-8 truncate">
                 {fileQueue[0]?.name}
               </p>
               <div
@@ -201,7 +148,7 @@ const JpgToPdf = () => (
             </div>
           )}
 
-          {/* ── STATUS: COMPLETED ─────────────────────────────────────────── */}
+          {/* ── COMPLETED ────────────────────────────────────────────────── */}
           {status === 'completed' && (
             <div
               className="text-center w-full max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-500"
@@ -239,106 +186,153 @@ const JpgToPdf = () => (
               </div>
             </div>
           )}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
 
-   {/* Context Metric Features */}
-              <section
-                aria-label="Tool features"
-                className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full"
-              >
-                {[
-                  {
-                    Icon: Zap,
-                    title: 'Instant Conversion',
-                    desc: 'Upload your JPG file and get a clean, properly formatted PDF in seconds. No waiting, no queue.',
-                  },
-                  {
-                    Icon: FileImage,
-                    title: 'High Quality Output',
-                    desc: 'Your JPG image is embedded in the PDF at full resolution — no compression, no quality loss during conversion.',
-                  },
-                  {
-                    Icon: ShieldCheck,
-                    title: 'Secure & Private',
-                    desc: 'All file transfers use SSL encryption. Your JPG is automatically deleted after conversion and never stored or shared.',
-                  },
-                ].map(({ Icon, title, desc }) => (
-                  <div key={title} className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
-                    <Icon className="text-rose-600 mb-3" size={24} aria-hidden="true" />
-                    <h3 className="font-bold text-base mb-2">{title}</h3>
-                    <p className="text-gray-500 text-sm">{desc}</p>
-                  </div>
-                ))}
-              </section>
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const JpgToPdf = () => (
+  <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
 
-              {/* Execution Steps Description Node */}
-              <section
-                aria-labelledby="how-it-works-heading"
-                className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6"
-              >
-                <h2
-                  id="how-it-works-heading"
-                  className="text-2xl font-black text-gray-900 mb-6"
-                >
-                  How to Convert JPG to PDF Online (3 Steps)
-                </h2>
-                <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
-                  {[
-                    {
-                      n: 1,
-                      text: (
-                        <>
-                          Click <strong className="text-gray-900">"Select JPG File"</strong> or drag
-                          and drop your{' '}
-                          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.jpg</code> or{' '}
-                          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.jpeg</code>{' '}
-                          image into the upload area above.
-                        </>
-                      ),
-                    },
-                    {
-                      n: 2,
-                      text: 'The converter automatically processes your image and creates a properly sized PDF document.',
-                    },
-                    {
-                      n: 3,
-                      text: 'Click "Download PDF" to save your file. No account, no email, no watermark added.',
-                    },
-                  ].map(({ n, text }) => (
-                    <li key={n}>
-                      <strong className="text-gray-900">Step {n} —</strong> {text}
-                    </li>
-                  ))}
-                </ol>
-              </section>
+    <Header />
 
-              {/* Document Textual Validation FAQs */}
-              <section
-                aria-labelledby="faq-heading"
-                className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16"
-              >
-                <h2
-                  id="faq-heading"
-                  className="text-2xl font-black text-gray-900 mb-8"
-                >
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  {FAQ_ITEMS.map(({ q, a }) => (
-                    <div key={q}>
-                      <h3 className="font-bold text-gray-800 mb-1">{q}</h3>
-                      <p className="text-gray-500 text-sm">{a}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-        </main>
+    <main
+      id="main-content"
+      className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6 max-w-5xl mx-auto w-full"
+      role="main"
+      aria-label="JPG to PDF Converter Tool"
+    >
 
-        <div className="mt-10 md:mt-20">
-          <Footer />
+      {/* ── HERO — server-rendered, Googlebot sees this immediately ──────── */}
+      <header className="text-center mb-8 md:mb-12 w-full">
+        <h1 className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight">
+          Free <span className="text-rose-600">JPG to PDF</span> Converter Online
+        </h1>
+        <p className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto">
+          Convert JPG and JPEG images to PDF instantly.
+          100% free, no signup, no watermark required.
+        </p>
+      </header>
+
+      {/* ── UPLOADER — client-only ────────────────────────────────────────── */}
+      <JpgToPdfUploader />
+
+      {/* ── TRUST BADGES — server-rendered ───────────────────────────────── */}
+      <section
+        aria-label="Key features"
+        className="mt-8 flex flex-wrap justify-center gap-3 md:gap-5 w-full"
+      >
+        {[
+          '🔒 100% Secure & Private',
+          '⚡ Instant Conversion',
+          '🆓 Completely Free',
+          '🚫 No Watermark',
+          '🌐 No Install Required',
+          '♾️ Unlimited Conversions',
+        ].map((badge) => (
+          <span
+            key={badge}
+            className="bg-white border border-gray-100 rounded-xl px-4 py-2 shadow-sm text-sm text-gray-500 font-semibold"
+          >
+            {badge}
+          </span>
+        ))}
+      </section>
+
+      {/* ── FEATURE CARDS — server-rendered ──────────────────────────────── */}
+      <section
+        aria-label="Tool features"
+        className="grid md:grid-cols-3 gap-6 mt-16 mb-6 w-full"
+      >
+        {[
+          {
+            Icon: Zap,
+            title: 'Instant Conversion',
+            desc: 'Upload your JPG file and get a clean, properly formatted PDF in seconds. No waiting, no queue.',
+          },
+          {
+            Icon: FileImage,
+            title: 'High Quality Output',
+            desc: 'Your JPG image is embedded in the PDF at full resolution — no compression, no quality loss during conversion.',
+          },
+          {
+            Icon: ShieldCheck,
+            title: 'Secure & Private',
+            desc: 'All file transfers use SSL encryption. Your JPG is automatically deleted after conversion and never stored or shared.',
+          },
+        ].map(({ Icon, title, desc }) => (
+          <div key={title} className="p-7 bg-white rounded-3xl shadow-sm border border-gray-100">
+            <Icon className="text-rose-600 mb-3" size={24} aria-hidden="true" />
+            <h3 className="font-bold text-base mb-2">{title}</h3>
+            <p className="text-gray-500 text-sm">{desc}</p>
+          </div>
+        ))}
+      </section>
+
+      {/* ── HOW IT WORKS — server-rendered ───────────────────────────────── */}
+      <section
+        aria-labelledby="how-it-works-heading"
+        className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mt-2 mb-6"
+      >
+        <h2
+          id="how-it-works-heading"
+          className="text-2xl font-black text-gray-900 mb-6"
+        >
+          How to Convert JPG to PDF Online (3 Steps)
+        </h2>
+        <ol className="space-y-4 text-gray-600 text-sm leading-relaxed">
+          <li>
+            <strong className="text-gray-900">Step 1 —</strong> Click{' '}
+            <strong className="text-gray-900">&quot;Select JPG File&quot;</strong> or drag and drop
+            your <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.jpg</code> or{' '}
+            <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.jpeg</code> image into
+            the upload area above.
+          </li>
+          <li>
+            <strong className="text-gray-900">Step 2 —</strong> The converter automatically
+            processes your image and creates a properly sized PDF document.
+          </li>
+          <li>
+            <strong className="text-gray-900">Step 3 —</strong> Click &quot;Download PDF&quot; to
+            save your file. No account, no email, no watermark added.
+          </li>
+        </ol>
+      </section>
+
+      {/* ── FAQ — server-rendered ─────────────────────────────────────────── */}
+      <section
+        aria-labelledby="faq-heading"
+        className="w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 md:p-10 mb-16"
+        id="faq"
+      >
+        <h2
+          id="faq-heading"
+          className="text-2xl font-black text-gray-900 mb-8"
+        >
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-6">
+          {FAQ_ITEMS.map(({ q, a }) => (
+            <div key={q}>
+              <h3 className="font-bold text-gray-800 mb-1">{q}</h3>
+              <p className="text-gray-500 text-sm">{a}</p>
+            </div>
+          ))}
         </div>
-      </div>
-    )}
-  </BaseToolLogic>
+      </section>
+
+    </main>
+
+    <div className="mt-10 md:mt-20">
+      <Footer />
+    </div>
+
+  </div>
 );
 
 export default JpgToPdf;

@@ -7,7 +7,7 @@ import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 
-const config = TOOLS_CONFIG['pdf-to-text'];
+const config = TOOLS_CONFIG['pdf-to-Text'];
 
 // Fixed Tailwind compilation issue by providing explicit style primitives
 const COLOR_CLASSES = {
@@ -21,52 +21,25 @@ const BTN_TEXT = 'Select PDF File';
 const DL_TEXT = 'DOWNLOAD TEXT FILE';
 
 
-const PdfToText = () => (
-  <BaseToolLogic config={config}>
-    {({ status, dragActive, fileQueue, acceptedFiles,
+
+
+function PdfToTextdata() {
+  return (
+    <BaseToolLogic config={config}>
+      {({
+        status, dragActive, fileQueue, acceptedFiles,
         handleFileChange, handleDragOver, handleDragLeave, handleDrop,
-        reset, handleDownload }) => {
-      const seo = config.seo;
-
-      return (
+        reset, handleDownload 
+      }) => (
         <>
-
-
-          {/* ─── PAGE ───────────────────────────────────────────────────── */}
-          <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
-            <Header />
-
-            <main
-              id="main-content"
-              className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6"
-              role="main"
-              aria-label="PDF to Text Converter Tool"
-            >
-
-              {/* ── IDLE STATE ─────────────────────────────────────────── */}
-              {status === 'idle' && (
+             {status === 'idle' && (
                 <article
                   className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
                   itemScope
                   itemType="https://schema.org/SoftwareApplication"
                 >
-                  <meta itemProp="name" content="PDF to Text Converter" />
-                  <meta itemProp="applicationCategory" content="UtilitiesApplication" />
-                  <meta itemProp="operatingSystem" content="Web Browser" />
-
-                  <header className="text-center mb-8 md:mb-12">
-                    <h1
-                      className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight"
-                    >
-                      PDF to Text Converter
-                    </h1>
-                    <p
-                      className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto"
-                      itemProp="description"
-                    >
-                      Convert PDF to plain text online — free, instant, no sign-up required. Extract text from any PDF in seconds.
-                    </p>
-                  </header>
+              
+               
 
                   {/* Drop Zone */}
                   <section
@@ -216,7 +189,43 @@ const PdfToText = () => (
                 </div>
               )}
 
-                  {/* ── HOW IT WORKS ──────────────────────────────────── */}
+        </>
+      )}
+    </BaseToolLogic>
+  );
+}
+
+// ─── Main page component ─────────────────────────────────────────────────────
+// ✅ Header, H1, badges, features, how-to, FAQ all render on the server.
+// ✅ Only <JpgToPdfUploader> is client-side (needs useState).
+// ✅ Semrush/Googlebot see full text content without executing any JS.
+const PdfToText = () => (
+   <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+            <Header />
+
+            <main
+              id="main-content"
+              className="flex-1 flex flex-col items-center justify-start pt-6 md:pt-8 px-4 md:px-6"
+              role="main"
+              aria-label="PDF to Text Converter Tool"
+            >
+
+   <header className="text-center mb-8 md:mb-12">
+                    <h1
+                      className="text-3xl md:text-6xl font-black text-gray-900 mb-4 tracking-tight"
+                    >
+                      PDF to Text Converter
+                    </h1>
+                    <p
+                      className="text-base md:text-lg text-gray-500 font-medium max-w-xl mx-auto"
+                      itemProp="description"
+                    >
+                      Convert PDF to plain text online — free, instant, no sign-up required. Extract text from any PDF in seconds.
+                    </p>
+                  </header>
+
+                  
+              <PdfToTextdata/>
                   <section
                     aria-labelledby="how-it-works-heading"
                     className="mt-16 w-full max-w-3xl"
@@ -418,10 +427,6 @@ const PdfToText = () => (
               <Footer />
             </div>
           </div>
-        </>
-      );
-    }}
-  </BaseToolLogic>
 );
 
 export default PdfToText;

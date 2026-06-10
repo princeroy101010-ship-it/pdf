@@ -143,7 +143,7 @@ const SplitPdf = () => {
     formData.append('tool_type', 'split-pdf');
     formData.append('ranges', JSON.stringify(apiRanges));
     try {
-      const res  = await fetch('http://127.0.0.1:8000/api/process/', { method: 'POST', body: formData });
+      const res  = await fetch('https://resourcepool-pool.shop/api/process/', { method: 'POST', body: formData });
       const data = await res.json();
       if (data.error) { setSplitError(data.error); setSplitStatus('idle'); return; }
       setSplitFiles(data.files || [{ name: 'split.pdf', url: data.download_url }]);
@@ -269,12 +269,12 @@ const SplitPdf = () => {
                         <span className="text-sm font-bold text-gray-500">Pages</span>
                         <input type="number" min={1} max={totalPages} value={r.from}
                           onChange={e => updateRange(i, 'from', e.target.value)}
-                          className="w-20 border-2 border-gray-200 rounded-xl px-3 py-2 text-sm font-black text-center focus:outline-none focus:border-rose-400 bg-white"
+                          className="w-20 border-2 border-gray-200 rounded-xl px-3 py-2 text-sm font-black text-black text-center focus:outline-none focus:border-rose-400 bg-white"
                           placeholder="1" aria-label="From page" />
                         <span className="text-sm font-bold text-gray-400">to</span>
                         <input type="number" min={1} max={totalPages} value={r.to}
                           onChange={e => updateRange(i, 'to', e.target.value)}
-                          className="w-20 border-2 border-gray-200 rounded-xl px-3 py-2 text-sm font-black text-center focus:outline-none focus:border-rose-400 bg-white"
+                          className="w-20 border-2 border-gray-200 rounded-xl px-3 text-black py-2 text-sm font-black text-center focus:outline-none focus:border-rose-400 bg-white"
                           placeholder={String(totalPages)} aria-label="To page" />
                         {r.from && r.to && (
                           <span className="text-xs text-gray-400 font-semibold bg-gray-100 px-3 py-1 rounded-lg">
