@@ -259,8 +259,8 @@ const WordToText = () => (
                       {[
                         { href: '/word-to-pdf',    label: 'Word to PDF'    },
                         { href: '/pdf-to-word',    label: 'PDF to Word'    },
-                        { href: '/pdf-to-text',    label: 'PDF to Text'    },
-                        { href: '/text-to-word',   label: 'Text to Word'   },
+                        { href: '/pdf-to-Text',    label: 'PDF to Text'    },
+                        { href: '/Text-to-word',   label: 'Text to Word'   },
                         { href: '/merge-pdf',      label: 'Merge PDF'      },
                         { href: '/compress-pdf',   label: 'Compress PDF'   },
                         { href: '/pdf-to-excel',   label: 'PDF to Excel'   },

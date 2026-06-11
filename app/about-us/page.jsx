@@ -356,6 +356,7 @@ const allTools = [
   { href: '/pptx-to-Text',            label: 'PowerPoint to Text'      },
   { href: '/Text-to-pptx',            label: 'Text to PowerPoint'      },
   { href: '/word-to-Text',            label: 'Word to Text'            },
+  { href: '/Text-to-word',            label: 'Word to Text'            },
 ];
 
 // "Why choose us" features data

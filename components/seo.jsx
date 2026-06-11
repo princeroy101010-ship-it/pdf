@@ -819,7 +819,6 @@ const ExtractTextFromImageSEO = () => (
 
 export const AboutUsdata = () => (
   <div className="max-w-3xl mx-auto px-4 py-16">
-    <h1 className="text-4xl font-black text-gray-900 mb-4">About FreePDFConvert</h1>
     <p className="text-gray-500 text-base mb-12 leading-relaxed">
       Free, fast, and private PDF tools for everyone — no signup, no watermark, no cost.
     </p>
@@ -919,7 +918,6 @@ export const AboutUsdata = () => (
 // ════════════════════════════════════════════════════════
 export const ContactUsdata = () => (
   <div className="max-w-3xl mx-auto px-4 py-16">
-    <h1 className="text-4xl font-black text-gray-900 mb-4">Contact FreePDFConvert</h1>
     <p className="text-gray-500 text-base mb-12 leading-relaxed">
       Have a question, found a bug, or want to work with us? We're here to help.
     </p>
@@ -1027,7 +1025,6 @@ export const ContactUsdata = () => (
 // ════════════════════════════════════════════════════════
 export const CookiePolicydata = () => (
   <div className="max-w-3xl mx-auto px-4 py-16">
-    <h1 className="text-4xl font-black text-gray-900 mb-4">Cookie Policy</h1>
     <p className="text-gray-500 text-sm mb-2">Last updated: June 1, 2025</p>
     <p className="text-gray-500 text-base mb-12 leading-relaxed">
       This Cookie Policy explains what cookies are, which cookies FreePDFConvert uses,
@@ -1143,7 +1140,6 @@ export const CookiePolicydata = () => (
 // ════════════════════════════════════════════════════════
 export const Featuresdata = () => (
   <div className="max-w-4xl mx-auto px-4 py-16">
-    <h1 className="text-4xl font-black text-gray-900 mb-4">FreePDFConvert Features</h1>
     <p className="text-gray-500 text-base mb-12 leading-relaxed">
       Everything you need to work with PDF and document files — 26+ tools, all free, all instant.
     </p>
@@ -1243,7 +1239,6 @@ export const Featuresdata = () => (
 // ════════════════════════════════════════════════════════
 export const HowItWorksdata = () => (
   <div className="max-w-3xl mx-auto px-4 py-16">
-    <h1 className="text-4xl font-black text-gray-900 mb-4">How FreePDFConvert Works</h1>
     <p className="text-gray-500 text-base mb-12 leading-relaxed">
       From upload to download in under 30 seconds — here's exactly what happens when you use FreePDFConvert.
     </p>
@@ -1338,7 +1333,6 @@ export const HowItWorksdata = () => (
 // ════════════════════════════════════════════════════════
 export const PrivacyPolicydata = () => (
   <div className="max-w-3xl mx-auto px-4 py-16">
-    <h1 className="text-4xl font-black text-gray-900 mb-4">Privacy Policy</h1>
     <p className="text-gray-500 text-sm mb-2">Last updated: June 1, 2025</p>
     <p className="text-gray-500 text-base mb-12 leading-relaxed">
       FreePDFConvert is committed to protecting your privacy. This policy explains exactly
@@ -1476,7 +1470,6 @@ export const PrivacyPolicydata = () => (
 // ════════════════════════════════════════════════════════
 export const Securitydata = () => (
   <div className="max-w-3xl mx-auto px-4 py-16">
-    <h1 className="text-4xl font-black text-gray-900 mb-4">Security at FreePDFConvert</h1>
     <p className="text-gray-500 text-base mb-12 leading-relaxed">
       Your documents contain sensitive information. Here is exactly how we protect your files and data.
     </p>
@@ -1593,7 +1586,6 @@ export const Securitydata = () => (
 // ════════════════════════════════════════════════════════
 export const TermsOfServicedata = () => (
   <div className="max-w-3xl mx-auto px-4 py-16">
-    <h1 className="text-4xl font-black text-gray-900 mb-4">Terms of Service</h1>
     <p className="text-gray-500 text-sm mb-2">Last updated: June 1, 2025</p>
     <p className="text-gray-500 text-base mb-12 leading-relaxed">
       By using FreePDFConvert, you agree to these terms. Please read them carefully.
