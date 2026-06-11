@@ -3,7 +3,7 @@ import { ShieldCheck, Lock, Trash2, EyeOff, Files, Globe, Cookie } from 'lucide-
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Link from 'next/link';
-
+import { PrivacyPolicydata } from '@/components/seo';
 // ─── SEO METADATA (Next.js App Router Format) ──────────────────────────────────
 export const metadata = {
   title: "Privacy Policy | FreePDFConvert Safe & Secure PDF Tool",
@@ -408,7 +408,7 @@ const PrivacyPolicy = () => {
             </button>
           </Link>
         </div>
-
+<PrivacyPolicydata/>
       </main>
 
       <Footer />

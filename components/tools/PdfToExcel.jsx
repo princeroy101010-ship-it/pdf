@@ -16,6 +16,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { PdfToExcelSEO } from '../seo';
 
 const config = TOOLS_CONFIG['pdf-to-excel'];
 
@@ -256,6 +257,7 @@ const Pdftoexcel = () => (
                   ))}
                 </div>
               </section>
+              <PdfToExcelSEO/>
         </main>
 
         <div className="mt-10 md:mt-20">

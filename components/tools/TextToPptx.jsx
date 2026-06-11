@@ -7,6 +7,7 @@ import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
 import { generateSchemas } from '@/lib/toolsConfig';
+import { TextToPptxSEO } from '../seo';
 
 const config = TOOLS_CONFIG['Text-to-pptx'];
 const COLOR = 'rose-600';
@@ -396,6 +397,7 @@ const TextToPptx = () => (
                       </p>
                     </div>
                   </section>
+                  <TextToPptxSEO/>
             </main>
 
             <div className="mt-10 md:mt-20">

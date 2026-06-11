@@ -6,6 +6,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { PdfToTextSEO } from '../seo';
 
 const config = TOOLS_CONFIG['pdf-to-Text'];
 
@@ -35,8 +36,7 @@ function PdfToTextdata() {
              {status === 'idle' && (
                 <article
                   className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
-                  itemScope
-                  itemType="https://schema.org/SoftwareApplication"
+                
                 >
               
                
@@ -229,8 +229,7 @@ const PdfToText = () => (
                   <section
                     aria-labelledby="how-it-works-heading"
                     className="mt-16 w-full max-w-3xl"
-                    itemScope
-                    itemType="https://schema.org/HowTo"
+                  
                   >
                     <meta itemProp="name" content="How to Convert PDF to Text Online" />
                     <h2
@@ -264,8 +263,7 @@ const PdfToText = () => (
                           key={step}
                           className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 text-center"
                           itemProp="step"
-                          itemScope
-                          itemType="https://schema.org/HowToStep"
+                        
                         >
                           <div className="text-4xl mb-3" aria-hidden="true">{icon}</div>
                           <meta itemProp="position" content={step} />
@@ -337,8 +335,7 @@ const PdfToText = () => (
                   <section
                     aria-labelledby="faq-heading"
                     className="mt-16 w-full max-w-3xl mb-8"
-                    itemScope
-                    itemType="https://schema.org/FAQPage"
+                 
                   >
                     <h2
                       id="faq-heading"
@@ -377,8 +374,7 @@ const PdfToText = () => (
                           key={q}
                           className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm"
                           itemProp="mainEntity"
-                          itemScope
-                          itemType="https://schema.org/Question"
+                         
                         >
                           <h3
                             className="font-bold text-gray-900 mb-2"
@@ -388,8 +384,7 @@ const PdfToText = () => (
                           </h3>
                           <div
                             itemProp="acceptedAnswer"
-                            itemScope
-                            itemType="https://schema.org/Answer"
+                         
                           >
                             <p className="text-gray-500 text-sm leading-relaxed" itemProp="text">{a}</p>
                           </div>
@@ -421,6 +416,9 @@ const PdfToText = () => (
                       </p>
                     </div>
                   </section>
+
+                                <PdfToTextSEO/>    
+
             </main>
 
             <div className="mt-10 md:mt-20">

@@ -3,6 +3,7 @@ import { Zap, ShieldCheck, Sparkles, Smartphone, CloudOff, Target, Plus, Files, 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Link from 'next/link';
+import { Featuresdata } from '@/components/seo';
 
 // ─── JSON-LD STRUCTURED DATA ──────────────────────────────────────────────────
 const jsonLd = {
@@ -483,7 +484,7 @@ const WhyChooseUs = () => {
               </button>
             </Link>
           </div>
-
+<Featuresdata/>
         </main>
 
         <Footer />

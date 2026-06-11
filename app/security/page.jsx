@@ -3,7 +3,7 @@ import { ShieldCheck, Lock, EyeOff, Trash2 } from 'lucide-react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import Link from 'next/link';
-
+import { Securitydata } from '@/components/seo';
 // ─── SEO METADATA (Next.js App Router Format) ──────────────────────────────────
 export const metadata = {
   title: "Secure PDF Converter AES-256 Encrypted",
@@ -394,6 +394,7 @@ const SecuritySection = () => {
 
           </div>
         </section>
+        <Securitydata/>
       </main>
 
       <Footer />

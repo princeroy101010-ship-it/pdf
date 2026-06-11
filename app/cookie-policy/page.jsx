@@ -2,8 +2,9 @@ import React from 'react';
 import { Cookie, ShieldCheck, Settings, Info, MousePointer2 } from 'lucide-react';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import {CookiePolicydata} from '@/components/seo';
 
-// ─── JSON-LD Structured Data ──────────────────────────────────────────────────
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -456,7 +457,7 @@ const CookiePolicy = () => {
             ))}
           </div>
         </section>
-
+<CookiePolicydata/>
       </main>
 
       <Footer />

@@ -2,7 +2,7 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { MousePointer2, ChevronRight, Settings2, DownloadCloud, Plus, ShieldCheck, Zap, Globe, Star } from 'lucide-react';
 import Link from 'next/link';
-
+import { HowItWorksdata } from '@/components/seo';
 // ─── SEO METADATA (Next.js App Router Format) ──────────────────────────────────
 export const metadata = {
   title: "Convert PDF Free Online How FreePDFConvert Works",
@@ -469,7 +469,7 @@ const HowItWorks = () => {
               ))}
             </div>
           </div>
-
+<HowItWorksdata/>
           {/* Footer Callout Banner */}
           <div className="mt-16 max-w-3xl mx-auto bg-rose-600 rounded-3xl p-10 text-center text-white">
             <h2 className="text-2xl font-black mb-3">

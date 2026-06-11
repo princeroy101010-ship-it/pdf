@@ -7,6 +7,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { PngToPdfSEO } from '../seo';
 
 const config = TOOLS_CONFIG['png-to-pdf'];
 const BTN_TEXT = 'Select PNG File';
@@ -279,6 +280,9 @@ const PngToPdf = () => (
 </div>
 
                 </section>
+
+                              <PngToPdfSEO/>    
+
           </main>
           <div className="mt-10 md:mt-20"><Footer /></div>
         </div>

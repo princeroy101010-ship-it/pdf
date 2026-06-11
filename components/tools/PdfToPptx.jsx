@@ -14,6 +14,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { PdfToPptxSEO } from '../seo';
 
 const config = TOOLS_CONFIG['pdf-to-pptx'];
 
@@ -257,6 +258,9 @@ const PdfToPptx = () => (
                   ))}
                 </div>
               </section>
+
+                            <PdfToPptxSEO/>    
+
         </main>
 
         <div className="mt-10 md:mt-20">

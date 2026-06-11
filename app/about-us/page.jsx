@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { Play, ShieldCheck, Zap, CheckCircle2, Globe, Users, Award } from 'lucide-react';
-
+import {AboutUsdata} from '@/components/seo';
 // ═══════════════════════════════════════════════════════════════
 // about-us/page.js
 //
@@ -678,6 +678,7 @@ const AboutUs = () => (
         </section>
 
       </div>
+      <AboutUsdata/>
     </main>
 
     <Footer />

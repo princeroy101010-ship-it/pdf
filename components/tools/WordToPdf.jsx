@@ -6,6 +6,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { WordToPdfSEO } from '../seo';
 
 const config = TOOLS_CONFIG['word-to-pdf'];
 const COLOR = 'rose-600';
@@ -30,8 +31,7 @@ function WordToPdfdata() {
         {status === 'idle' && (
               <article
                 className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
-                itemScope
-                itemType="https://schema.org/SoftwareApplication"
+              
               >
              
              
@@ -279,6 +279,8 @@ const WordToPdf = () => (
                   </div>
 
                 </section>
+                              <WordToPdfSEO/>    
+
           </main>
 
           <div className="mt-10 md:mt-20">

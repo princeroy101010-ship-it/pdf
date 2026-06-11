@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Download, CheckCircle2, Plus, Settings, Loader2, X, Scissors, FileText, Trash2, Zap, ShieldCheck, Layers } from 'lucide-react';
 import Header from '../header';
 import Footer from '../footer';
+import { SplitPdfSEO } from '../seo';
 
 // ─── PDF Page Thumbnail ───────────────────────────────────────────────────────
 const PageThumb = ({ pdfDoc, pageNum, selected, onClick }) => {
@@ -498,6 +499,8 @@ const SplitPdf = () => {
                 </div>
               </div>
             </section>
+                          <SplitPdfSEO/>    
+
       </main>
 
       <Footer />

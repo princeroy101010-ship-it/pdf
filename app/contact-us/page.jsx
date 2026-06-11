@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { Mail, Twitter, Send, ArrowRight, ShieldCheck, Zap, Globe, CheckCircle2 } from 'lucide-react';
-
+import {ContactUsdata} from '@/components/seo';
 // ─── JSON-LD STRUCTURED DATA ──────────────────────────────────────────────────
 // ✅ FIXED: Removed duplicate global WebSite and Organization definitions.
 // Isolates page-level schemas to maintain a crisp 1:1 entity mapping context.
@@ -409,7 +409,7 @@ const ContactUs = () => (
           ))}
         </div>
       </section>
-
+<ContactUsdata/>
     </main>
 
     <Footer />

@@ -14,6 +14,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { PdfToJpgSEO } from '../seo';
 
 const config = TOOLS_CONFIG['pdf-to-jpg'];
 
@@ -255,6 +256,8 @@ const PDftojpg = () => (
                   ))}
                 </div>
               </section>
+
+              <PdfToJpgSEO/>
         </main>
 
         <div className="mt-10 md:mt-20">

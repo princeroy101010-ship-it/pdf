@@ -6,7 +6,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
-
+import { TextToPdfSEO } from '../seo';
 const config = TOOLS_CONFIG['Text-to-pdf'];
 const COLOR = 'rose-600';
 const BTN_TEXT = 'Select Text File';
@@ -440,6 +440,8 @@ const TextToPdf = () => (
                       </p>
                     </div>
                   </section>
+
+                  <TextToPdfSEO/>
             </main>
 
             <div className="mt-10 md:mt-20">

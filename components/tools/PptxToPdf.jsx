@@ -7,6 +7,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { PptxToPdfSEO } from '../seo';
 
 const config = TOOLS_CONFIG['pptx-to-pdf'];
 const BTN_TEXT = 'Select PPTX .pptx File';
@@ -227,6 +228,8 @@ const PptxToPdf = () => (
 </div>
 
                 </section>
+                         <PptxToPdfSEO/>    
+     
           </main>
           <div className="mt-10 md:mt-20"><Footer /></div>
         </div>

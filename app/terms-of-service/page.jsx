@@ -3,7 +3,7 @@ import { Scale, ShieldAlert, FileWarning, Ban, CheckCircle2, Files } from 'lucid
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Link from 'next/link';
-
+import { TermsOfServicedata } from '@/components/seo';
 // ─── SEO METADATA (Next.js App Router Format) ──────────────────────────────────
 export const metadata = {
   title: "Terms of Service Free PDF Converter",
@@ -401,7 +401,7 @@ const TermsOfService = () => {
             </a>
           </p>
         </div>
-
+<TermsOfServicedata/>
       </main>
 
       <Footer />

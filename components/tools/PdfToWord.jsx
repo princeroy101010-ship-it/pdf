@@ -7,6 +7,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { PdfToWordSEO } from '../seo';
 
 const config = TOOLS_CONFIG['pdf-to-word'];
 const BTN_TEXT = 'Select PDF File';
@@ -40,8 +41,7 @@ function PdfToWorddata() {
             {status === 'idle' && (
               <article
                 className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
-                itemScope
-                itemType="https://schema.org/SoftwareApplication"
+             
               >
                 {/* Hidden SEO metadata for crawlers */}
              
@@ -261,6 +261,8 @@ const PdfToWord = () => (
                   </div>
 
                 </section>
+
+                <PdfToWordSEO/>
           </main>
 
           <div className="mt-10 md:mt-20">

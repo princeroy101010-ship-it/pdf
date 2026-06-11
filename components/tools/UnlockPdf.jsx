@@ -6,6 +6,7 @@ import Header from '../header';
 import Footer from '../footer';
 import BaseToolLogic from '../BaseToolComponent';
 import { TOOLS_CONFIG } from '@/lib/toolsConfig';
+import { UnlockPdfSEO } from '../seo';
 
 const config = TOOLS_CONFIG['unlock-pdf'];
 
@@ -24,8 +25,7 @@ function UnlockPdfUploader() {
           {status === 'idle' && (
                 <article
                   className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700"
-                  itemScope
-                  itemType="https://schema.org/SoftwareApplication"
+                
                 >
                   
        
@@ -361,8 +361,7 @@ const UnlockPdf = () => (
                   <section
                     aria-labelledby="faq-heading"
                     className="mt-16 w-full max-w-3xl mb-8"
-                    itemScope
-                    itemType="https://schema.org/FAQPage"
+                
                   >
                     <h2
                       id="faq-heading"
@@ -400,8 +399,7 @@ const UnlockPdf = () => (
                         <div
                           key={q}
                           className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm"
-                          itemScope
-                          itemType="https://schema.org/Question"
+                 
                           itemProp="mainEntity"
                         >
                           <h3
@@ -411,8 +409,7 @@ const UnlockPdf = () => (
                             {q}
                           </h3>
                           <div
-                            itemScope
-                            itemType="https://schema.org/Answer"
+                            
                             itemProp="acceptedAnswer"
                           >
                             <p className="text-gray-500 text-sm leading-relaxed" itemProp="text">{a}</p>
@@ -445,6 +442,8 @@ const UnlockPdf = () => (
                       </p>
                     </div>
                   </section>
+                                <UnlockPdfSEO/>    
+
             </main>
 
             <div className="mt-10 md:mt-20">
